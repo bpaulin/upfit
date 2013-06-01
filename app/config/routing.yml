@@ -1,0 +1,5 @@
+bpaulin_upfit:
+    resource: "@BpaulinUpfitBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
