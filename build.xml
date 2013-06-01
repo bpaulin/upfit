@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Upfit" basedir="." default="check">
+
+    <property file="build.properties" />
+
+    <target name="composer.self-update">
+        <composer command="self-update" composer="${path.composer}" php="${path.php}"/>
+    </target>
+
+    <target name="composer.update"
+            depends="composer.self-update">
+        <composer command="update" composer="${path.composer}" php="${path.php}"/>
+    </target>
+
+    <target name="composer.install"
+            depends="composer.self-update">
+        <composer command="install" composer="${path.composer}" php="${path.php}">
+            <arg value="--no-dev" />
+            <arg value="--optimize-autoloader" />
+        </composer>
+    </target>
+
+    <target name="check.style">
+        <exec command="${path.php} bin/phpcs -p --standard=PSR2 --extensions=php src/"
+                passthru="true"
+                checkreturn="true"/>
+    </target>
+
+    <target name="check:test">
+        <exec command="${path.php} bin/phpunit -c app"
+              passthru="true"
+              checkreturn="true" />
+    </target>
+
+    <target name="check" 
+            depends="check.style,check:test">
+    </target>
+
+</project>
