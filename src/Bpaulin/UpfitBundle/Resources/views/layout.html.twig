@@ -5,7 +5,7 @@
         '@BpaulinUpfitBundle/Resources/public/css/bootstrap-combined.no-icons.min.css'
         '@BpaulinUpfitBundle/Resources/public/css/font-awesome.min.css'
     %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
+        <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
     {% block stylesheets %}{% endblock %}
 {% endblock %}
@@ -18,4 +18,27 @@
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
     {% block javascripts %}{% endblock %}
+{% endblock %}
+
+{% block body %}
+{% include 'BpaulinUpfitBundle:layout:navbar_top.html.twig' %}
+<div class="container-fluid">
+    <div class="row-fluid">
+	    <div class="span2">
+	    	{% include 'BpaulinUpfitBundle:layout:sidebar.html.twig' %}
+	    	<!--Sidebar content-->
+	    </div>
+	    <div class="span10">
+	    	{% include 'BpaulinUpfitBundle:layout:breadcrumb.html.twig' %}
+	    	<h1>{% block h1 %}Title{% endblock %}</h1>
+	    	{% include 'BpaulinUpfitBundle:layout:actions.html.twig' %}
+	    	<!--Body content-->
+		    <div class="row-fluid">
+			    <div class="span12">
+	    			{% block content %}{% endblock %}
+			    </div>
+		    </div>
+		</div>
+    </div>
+</div>
 {% endblock %}
