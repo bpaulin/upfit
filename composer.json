@@ -22,7 +22,8 @@
         "phing/phing": "dev-master"
     },
     "require-dev": {
-        "squizlabs/php_codesniffer": "dev-master"
+        "squizlabs/php_codesniffer": "dev-master",
+        "phpunit/phpunit": "3.7.*"
     },
     "scripts": {
         "post-install-cmd": [

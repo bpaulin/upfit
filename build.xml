@@ -26,8 +26,14 @@
                 checkreturn="true"/>
     </target>
 
+    <target name="check:test">
+        <exec command="${path.php} bin/phpunit -c app"
+              passthru="true"
+              checkreturn="true" />
+    </target>
+
     <target name="check" 
-            depends="check.style">
+            depends="check.style,check:test">
     </target>
 
 </project>
