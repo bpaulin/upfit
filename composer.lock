@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "c8427a6733482ffac443eb268a880499",
+    "hash": "a3c5f73d2a72140856b99923634b1f91",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -830,6 +830,58 @@
             "time": "2013-04-23 10:09:48"
         },
         {
+            "name": "phing/phing",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phingofficial/phing.git",
+                "reference": "c944e0436ad6a12225cd58d322ef32927bef1587"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phingofficial/phing/zipball/c944e0436ad6a12225cd58d322ef32927bef1587",
+                "reference": "c944e0436ad6a12225cd58d322ef32927bef1587",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.0"
+            },
+            "bin": [
+                "bin/phing"
+            ],
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "classes/phing/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "include-path": [
+                "classes"
+            ],
+            "license": [
+                "LGPL3"
+            ],
+            "authors": [
+                {
+                    "name": "Michiel Rook",
+                    "email": "mrook@php.net"
+                },
+                {
+                    "name": "Phing Community",
+                    "homepage": "http://www.phing.info/trac/wiki/Development/Contributors"
+                }
+            ],
+            "description": "PHing Is Not GNU make; it's a PHP project build system or build tool based on Apache Ant.",
+            "homepage": "http://www.phing.info/",
+            "keywords": [
+                "build",
+                "task",
+                "tool"
+            ],
+            "time": "2013-05-29 18:17:22"
+        },
+        {
             "name": "psr/log",
             "version": "1.0.0",
             "source": {
@@ -1493,9 +1545,9 @@
 
     ],
     "minimum-stability": "RC",
-    "stability-flags": [
-
-    ],
+    "stability-flags": {
+        "phing/phing": 20
+    },
     "platform": {
         "php": ">=5.3.3"
     },
