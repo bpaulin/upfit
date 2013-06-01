@@ -3,24 +3,24 @@
 
     <property file="build.properties" />
 
-    <target name="composer.self-update">
+    <target name="composer:self-update">
         <composer command="self-update" composer="${path.composer}" php="${path.php}"/>
     </target>
 
-    <target name="composer.update"
-            depends="composer.self-update">
+    <target name="composer:update"
+            depends="composer:self-update">
         <composer command="update" composer="${path.composer}" php="${path.php}"/>
     </target>
 
-    <target name="composer.install"
-            depends="composer.self-update">
+    <target name="composer:install"
+            depends="composer:self-update">
         <composer command="install" composer="${path.composer}" php="${path.php}">
             <arg value="--no-dev" />
             <arg value="--optimize-autoloader" />
         </composer>
     </target>
 
-    <target name="check.style">
+    <target name="check:style">
         <exec command="${path.php} bin/phpcs -p --standard=PSR2 --extensions=php src/"
                 passthru="true"
                 checkreturn="true"/>
@@ -32,8 +32,14 @@
               checkreturn="true" />
     </target>
 
-    <target name="check" 
-            depends="check.style,check:test">
+    <target name="check:behat">
+        <exec command="./bin/behat --format=progress @BpaulinUpfitBundle"
+              passthru="true"
+              checkreturn="true" />
+    </target>
+
+    <target name="check"
+            depends="check:style,check:test,check:behat">
     </target>
 
 </project>
