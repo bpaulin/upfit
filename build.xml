@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="Upfit" basedir="." default="composer.update">
+<project name="Upfit" basedir="." default="check">
 
     <property file="build.properties" />
 
@@ -18,6 +18,16 @@
             <arg value="--no-dev" />
             <arg value="--optimize-autoloader" />
         </composer>
+    </target>
+
+    <target name="check.style">
+        <exec command="${path.php} bin/phpcs -p --standard=PSR2 --extensions=php src/"
+                passthru="true"
+                checkreturn="true"/>
+    </target>
+
+    <target name="check" 
+            depends="check.style">
     </target>
 
 </project>

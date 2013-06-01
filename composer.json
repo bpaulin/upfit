@@ -21,6 +21,9 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "phing/phing": "dev-master"
     },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "dev-master"
+    },
     "scripts": {
         "post-install-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
