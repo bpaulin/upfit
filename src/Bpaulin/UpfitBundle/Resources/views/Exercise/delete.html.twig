@@ -1,0 +1,12 @@
+{% extends "BpaulinUpfitBundle::layout.html.twig" %}
+
+{% block content -%}
+    <h1>Exercise</h1>
+
+
+        <form action="{{ path('admin_exercise_delete_confirm', { 'id': entity.id }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+{% endblock %}

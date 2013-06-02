@@ -12,9 +12,9 @@ Scenario Outline: Visitor should be able to login and logout
   Given I am on homepage
    Then I should see a link to "/login" in "connection" area
    When I follow this link
-    And I fill in the following
-    | username | password |
-    | <user>   | <user>   |
+    And I fill in the following:
+        | username | <user> |
+        | password | <user> |
     And I press "submit"
    Then I should be on "<user>" homepage
     # And I should see a "success" in "notification" area

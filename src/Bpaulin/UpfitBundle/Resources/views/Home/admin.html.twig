@@ -1,5 +1,8 @@
 {% extends "BpaulinUpfitBundle::layout.html.twig" %}
-
+{% set actions = {
+		'exercise' : path('admin_exercise')
+	}
+%}
 {% block content %}
 Hello {{ name }}!
 <table class="table">
@@ -10,7 +13,7 @@ Hello {{ name }}!
 			<th>c</th>
 		</tr>
 	</thead>
-	{% for i in 0..200 %}
+	{% for i in 0..2 %}
 		<tbody>
 			<tr>
 				<td>a-{{ i }}</td>

@@ -53,11 +53,11 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
     /** @beforeScenario */
     public function setup($event)
     {
-    }
+        $em = $this->kernel->getContainer()->get('doctrine')->getManager();
+        $em->getConnection()->query(
+            'START TRANSACTION;SET FOREIGN_KEY_CHECKS=0; TRUNCATE exercise; SET FOREIGN_KEY_CHECKS=1; COMMIT;'
+        );
 
-    /** @AfterScenario */
-    public function teardown($event)
-    {
         $userManager = $this->kernel->getContainer()->get('fos_user.user_manager');
 
         // Pour récupérer la liste de tous les utilisateurs
@@ -65,6 +65,11 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
             // Pour supprimer un utilisateur
             $userManager->deleteUser($user);
         };
+    }
+
+    /** @AfterScenario */
+    public function teardown($event)
+    {
     }
 
     //
@@ -115,12 +120,21 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
     }
 
     /**
+     * @Then /^I should see a link to "([^"]*)"$/
+     */
+    public function iShouldSeeALinkTo($url)
+    {
+        $this->lastLink = $url;
+        return $this->assertElementOnPage("a[href$='".$url."']");
+    }
+
+    /**
      * @Then /^I should see a link to "([^"]*)" in "([^"]*)" area$/
      */
     public function iShouldSeeALinkToInArea($url, $area)
     {
         $this->lastLink = $url;
-        return $this->assertElementOnPage("#".$area."-area [href$='".$url."']");
+        return $this->assertElementOnPage("#".$area."-area a[href$='".$url."']");
     }
 
     /**
@@ -132,20 +146,6 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
             ->getSession()
             ->visit($this->lastLink);
         return new Step\Then("the response status code should be 200");
-    }
-
-    /**
-     * @Given /^I fill in the following$/
-     */
-    public function iFillInTheFollowing(TableNode $table)
-    {
-        $hash = $table->getHash();
-        foreach ($hash as $row) {
-            return array(
-                new Step\Then("I fill in \"username\" with \"".$row['username']."\""),
-                new Step\Then("I fill in \"password\" with \"".$row['password']."\""),
-            );
-        }
     }
 
     /**
@@ -165,5 +165,142 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
     public function iShouldSeeInArea($text, $area)
     {
         return new Step\Then("the \""."#".$area."-area"."\" element should contain \"$text\"");
+    }
+
+    /**
+     * @Given /^I am admin$/
+     */
+    public function iAmAdmin()
+    {
+        return array(
+            new Step\Given("a administrator named \"admin\""),
+            new Step\Given("I am on \"/login\""),
+            new Step\When("I fill in \"_username\" with \"admin\""),
+            new Step\When("I fill in \"_password\" with \"admin\""),
+            new Step\When("I press \"_submit\"")
+        );
+    }
+
+    /**
+     * @Given /^an exercise named "([^"]*)"$/
+     */
+    public function anExerciseNamed($name)
+    {
+        $em = $this->kernel->getContainer()->get('doctrine')->getManager();
+        $className = $em->getRepository('BpaulinUpfitBundle:Exercise')->getClassName();
+
+        $exercise = new $className;
+        $exercise->setName($name);
+
+        $em->persist($exercise);
+        $em->flush();
+
+        return $exercise;
+    }
+
+    /**
+     * @Given /^I am on "([^"]*)" homepage$/
+     */
+    public function iAmOnHomepage2($role)
+    {
+        return $this->getMink()
+                    ->getSession()
+                    ->visit("/".$role);
+    }
+
+    /**
+     * @Given /^I am on exercise "([^"]*)" page$/
+     */
+    public function iAmOnExercisePage($name)
+    {
+        $em = $this->kernel->getContainer()->get('doctrine')->getManager();
+        $exercise = $em->getRepository('BpaulinUpfitBundle:Exercise')->findOneByName($name);
+        return $this->getMink()
+            ->getSession()
+            ->visit("/admin/exercise/".$exercise->getId());
+    }
+
+    /**
+     * @Then /^I should see a link to following exercises$/
+     */
+    public function iShouldSeeALinkToFollowingExercises(TableNode $table)
+    {
+        $hash = $table->getHash();
+        $steps  = array();
+        foreach ($hash as $row) {
+            $steps[] = new Step\Then("I should see a link to exercise \"".$row['exercise']."\"");
+        }
+        return $steps;
+    }
+
+    /**
+     * @Then /^I should see a link to exercise "([^"]*)"$/
+     */
+    public function iShouldSeeALinkToExercise($name)
+    {
+        $em = $this->kernel->getContainer()->get('doctrine')->getManager();
+        $exercise = $em->getRepository('BpaulinUpfitBundle:Exercise')->findOneByName($name);
+        return new Step\Then("I should see a link to \"/admin/exercise/".$exercise->getId()."\"");
+    }
+
+    /**
+     * @Given /^I should not see a link to exercise "([^"]*)"$/
+     */
+    public function iShouldNotSeeALinkToExercise($name)
+    {
+        $em = $this->kernel->getContainer()->get('doctrine')->getManager();
+        $exercise = $em->getRepository('BpaulinUpfitBundle:Exercise')->findOneByName($name);
+        if (!$exercise) {
+            return true;
+        }
+        return new Step\Then("I should not see a link to \"/admin/exercise/".$exercise->getId()."\"");
+    }
+
+    /**
+     * @Then /^I should see a link to edit exercise "([^"]*)"$/
+     */
+    public function iShouldSeeALinkToEditExercise($name)
+    {
+        $em = $this->kernel->getContainer()->get('doctrine')->getManager();
+        $exercise = $em->getRepository('BpaulinUpfitBundle:Exercise')->findOneByName($name);
+        return new Step\Then("I should see a link to \"/admin/exercise/".$exercise->getId()."/edit\"");
+    }
+
+    /**
+     * @Then /^I should see a link to delete exercise "([^"]*)"$/
+     */
+    public function iShouldSeeALinkToDeleteExercise($name)
+    {
+        $em = $this->kernel->getContainer()->get('doctrine')->getManager();
+        $exercise = $em->getRepository('BpaulinUpfitBundle:Exercise')->findOneByName($name);
+        return new Step\Then("I should see a link to \"/admin/exercise/".$exercise->getId()."/delete\"");
+    }
+
+    /**
+     * @Then /^I should see a link to create exercise$/
+     */
+    public function iShouldSeeALinkToCreateExercise()
+    {
+        return new Step\Then("I should see a link to \"/admin/exercise/new\"");
+    }
+
+
+    /**
+     * @Given /^I fill in "([^"]*)" form with the following:$/
+     */
+    public function iFillInFormWithTheFollowing($form, TableNode $table)
+    {
+        $form = 'bpaulin_upfitbundle_'.$form.'type_';
+        foreach ($table->getRowsHash() as $field => $value) {
+            $this->fillField($form.$field, $value);
+        }
+    }
+
+    /**
+     * @Given /^I should see a "([^"]*)" message "([^"]*)"$/
+     */
+    public function iShouldSeeAMessage($type, $texte)
+    {
+        return new Step\Then("I should see \"$texte\" in the \"#notification-area .alert-$type\" element");
     }
 }

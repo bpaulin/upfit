@@ -1,0 +1,10 @@
+<div id="notification-area">
+{% for level in ['error', 'info', 'success'] %}
+    {% for flashMessage in app.session.flashbag.get(level) %}
+        <div class="alert alert-{{ level }}">
+            {{ flashMessage }}
+            <a class="close" data-dismiss="alert" href="#">&times;</a>
+        </div>
+    {% endfor %}
+{% endfor %}
+</div>
