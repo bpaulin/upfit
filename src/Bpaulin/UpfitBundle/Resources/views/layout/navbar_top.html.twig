@@ -20,3 +20,12 @@
         </div>
       </div>
     </div>
+    <div id="connection-area">
+    {% if app.user.username is defined %}
+      {{ app.user.username }}
+    {% else %}
+      <a href="{{ path('fos_user_security_login') }}">
+          {{ 'layout.login'|trans({}, 'FOSUserBundle') }}
+      </a>
+    {% endif %}
+    </div>

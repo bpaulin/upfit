@@ -10,6 +10,8 @@ use Behat\Behat\Context\BehatContext;
 use Behat\Behat\Exception\PendingException;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
+use Behat\Behat\Event\ScenarioEvent;
+use Behat\Behat\Context\Step;
 
 //
 // Require 3rd-party libraries here:
@@ -25,6 +27,7 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
 {
     private $kernel;
     private $parameters;
+    private $lastLink;
 
     /**
      * Initializes context with parameters from behat.yml.
@@ -47,6 +50,23 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
         $this->kernel = $kernel;
     }
 
+    /** @beforeScenario */
+    public function setup($event)
+    {
+    }
+
+    /** @AfterScenario */
+    public function teardown($event)
+    {
+        $userManager = $this->kernel->getContainer()->get('fos_user.user_manager');
+
+        // Pour récupérer la liste de tous les utilisateurs
+        foreach ($userManager->findUsers() as $user) {
+            // Pour supprimer un utilisateur
+            $userManager->deleteUser($user);
+        };
+    }
+
     //
     // Place your definition and hook methods here:
     //
@@ -65,7 +85,16 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
      */
     public function aAdministratorNamed($arg1)
     {
-        throw new PendingException();
+        $userManager = $this->kernel->getContainer()->get('fos_user.user_manager');
+
+        $user = $userManager->createUser();
+        $user->setUsername("admin")
+            ->setEmail("admin@upfit.com")
+            ->setPlainPassword("admin")
+            ->setRoles(array('ROLE_ADMIN'))
+            ->setEnabled(true);
+
+        $userManager->updateUser($user, true);
     }
 
     /**
@@ -73,15 +102,25 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
      */
     public function aMemberNamed($arg1)
     {
-        throw new PendingException();
+        $userManager = $this->kernel->getContainer()->get('fos_user.user_manager');
+
+        $user = $userManager->createUser();
+        $user->setUsername("member")
+            ->setEmail("member@upfit.com")
+            ->setPlainPassword("member")
+            ->setRoles(array('ROLE_USER'))
+            ->setEnabled(true);
+
+        $userManager->updateUser($user, true);
     }
 
     /**
      * @Then /^I should see a link to "([^"]*)" in "([^"]*)" area$/
      */
-    public function iShouldSeeALinkToInArea($arg1, $arg2)
+    public function iShouldSeeALinkToInArea($url, $area)
     {
-        throw new PendingException();
+        $this->lastLink = $url;
+        return $this->assertElementOnPage("#".$area."-area [href$='".$url."']");
     }
 
     /**
@@ -89,7 +128,10 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
      */
     public function iFollowThisLink()
     {
-        throw new PendingException();
+        $this->getMink()
+            ->getSession()
+            ->visit($this->lastLink);
+        return new Step\Then("the response status code should be 200");
     }
 
     /**
@@ -97,30 +139,31 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
      */
     public function iFillInTheFollowing(TableNode $table)
     {
-        throw new PendingException();
+        $hash = $table->getHash();
+        foreach ($hash as $row) {
+            return array(
+                new Step\Then("I fill in \"username\" with \"".$row['username']."\""),
+                new Step\Then("I fill in \"password\" with \"".$row['password']."\""),
+            );
+        }
     }
 
     /**
      * @Then /^I should be on "([^"]*)" homepage$/
      */
-    public function iShouldBeOnHomepage($arg1)
+    public function iShouldBeOnHomepage($role)
     {
-        throw new PendingException();
-    }
-
-    /**
-     * @Given /^I should see a "([^"]*)" in "([^"]*)" area$/
-     */
-    public function iShouldSeeAInArea($arg1, $arg2)
-    {
-        throw new PendingException();
+        return array(
+            new Step\Given("I should be on \"/".$role."\""),
+            new Step\Then("the response status code should be 200")
+        );
     }
 
     /**
      * @Given /^I should see "([^"]*)" in "([^"]*)" area$/
      */
-    public function iShouldSeeInArea($arg1, $arg2)
+    public function iShouldSeeInArea($text, $area)
     {
-        throw new PendingException();
+        return new Step\Then("the \""."#".$area."-area"."\" element should contain \"$text\"");
     }
 }

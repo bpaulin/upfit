@@ -17,7 +17,7 @@ Scenario Outline: Visitor should be able to go to login page
     | <user>   | <user>   |
     And I press "submit"
    Then I should be on "<user>" homepage
-    And I should see a "success" in "notification" area
+    # And I should see a "success" in "notification" area
     And I should see "<user>" in "connection" area
 
   Examples:
