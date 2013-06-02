@@ -1,8 +1,8 @@
 {
-    "name": "symfony/framework-standard-edition",
+    "name": "bpaulin/upfit",
     "license": "MIT",
     "type": "project",
-    "description": "The \"Symfony Standard Edition\" distribution",
+    "description": "Bpaulin Upfit",
     "autoload": {
         "psr-0": { "": "src/" }
     },
@@ -20,6 +20,7 @@
         "sensio/generator-bundle": "2.3.*",
         "incenteev/composer-parameter-handler": "~2.0",
         "jquery/jquery": "*",
+        "bootstrap/js": "*",
         "phing/phing": "dev-master"
     },
     "require-dev": {
@@ -70,6 +71,17 @@
                 "version": "1",
                 "dist": {
                     "url": "http://code.jquery.com/jquery-latest.js",
+                    "type": "file"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "bootstrap/js",
+                "version": "2.3.2",
+                "dist": {
+                    "url": "http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js",
                     "type": "file"
                 }
             }

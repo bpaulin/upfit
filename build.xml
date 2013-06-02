@@ -33,7 +33,7 @@
     </target>
 
     <target name="check:behat">
-        <exec command="./bin/behat --format=progress @BpaulinUpfitBundle"
+        <exec command="${path.php} bin/behat --format=progress @BpaulinUpfitBundle"
               passthru="true"
               checkreturn="true" />
     </target>
