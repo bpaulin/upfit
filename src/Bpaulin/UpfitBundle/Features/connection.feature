@@ -8,7 +8,7 @@ Background:
     And a member named "member"
 
 
-Scenario Outline: Visitor should be able to go to login page
+Scenario Outline: Visitor should be able to login and logout
   Given I am on homepage
    Then I should see a link to "/login" in "connection" area
    When I follow this link
@@ -19,6 +19,9 @@ Scenario Outline: Visitor should be able to go to login page
    Then I should be on "<user>" homepage
     # And I should see a "success" in "notification" area
     And I should see "<user>" in "connection" area
+    And I should see a link to "/logout" in "connection" area
+   When I follow this link
+   Then I should be on homepage
 
   Examples:
     | user   |
