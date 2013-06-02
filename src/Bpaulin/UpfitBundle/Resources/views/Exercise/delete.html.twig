@@ -1,12 +1,17 @@
 {% extends "BpaulinUpfitBundle::layout.html.twig" %}
+{% set actions = {
+        'Back to the list' : path('admin_exercise'),
+        'Show' : path('admin_exercise_edit', { 'id': entity.id }),
+        'Edit' : path('admin_exercise_edit', { 'id': entity.id }),
+    }
+%}
+
+{% block h1 %}Exercise <small>{{ entity.name }}</small>{% endblock %}
 
 {% block content -%}
-    <h1>Exercise</h1>
-
-
-        <form action="{{ path('admin_exercise_delete_confirm', { 'id': entity.id }) }}" method="post">
-            <input type="hidden" name="_method" value="DELETE" />
-            {{ form_widget(delete_form) }}
-            <button type="submit">Delete</button>
-        </form>
+    <form action="{{ path('admin_exercise_delete_confirm', { 'id': entity.id }) }}" method="post">
+        <input type="hidden" name="_method" value="DELETE" />
+        {{ form_widget(delete_form) }}
+        <button type="submit">Delete</button>
+    </form>
 {% endblock %}

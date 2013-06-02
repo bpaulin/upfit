@@ -1,41 +1,26 @@
 {% extends "BpaulinUpfitBundle::layout.html.twig" %}
+{% set actions = {
+        'Create a new entry' : path('admin_exercise_new'),
+    }
+%}
+
+{% block h1 %}Exercises{% endblock %}
 
 {% block content -%}
-    <h1>Exercise list</h1>
-
-    <table class="records_list">
+    <table class="records_list table table-condensed">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Name</th>
-                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('admin_exercise_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.name }}</td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('admin_exercise_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('admin_exercise_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-                </td>
+                <td>{{ entity.id }}</td>
+                <td><a href="{{ path('admin_exercise_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-        <ul>
-        <li>
-            <a href="{{ path('admin_exercise_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
     {% endblock %}

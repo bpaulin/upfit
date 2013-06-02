@@ -1,11 +1,7 @@
-<div id="actions-area"><div class="btn-group">
-  <button class="btn">Left</button>
-  <button class="btn">Middle</button>
-  <button class="btn">Right</button>
-</div>
 {% if actions is defined %}
-{% for label, route in actions %}
-    <a href="{{ route }}">{{ label }}</a>
-{% endfor %}
+    <div class="btn-group actions-area">
+        {% for label, route in actions %}
+            <a class="btn" href="{{ route }}">{{ label }}</a>
+        {% endfor %}
+    </div>
 {% endif %}
-</div>
