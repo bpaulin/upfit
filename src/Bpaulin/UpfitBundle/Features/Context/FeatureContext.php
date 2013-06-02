@@ -59,4 +59,68 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
     //        $container->get('some_service')->doSomethingWith($argument);
     //    }
     //
+
+    /**
+     * @Given /^a administrator named "([^"]*)"$/
+     */
+    public function aAdministratorNamed($arg1)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Given /^a member named "([^"]*)"$/
+     */
+    public function aMemberNamed($arg1)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Then /^I should see a link to "([^"]*)" in "([^"]*)" area$/
+     */
+    public function iShouldSeeALinkToInArea($arg1, $arg2)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @When /^I follow this link$/
+     */
+    public function iFollowThisLink()
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Given /^I fill in the following$/
+     */
+    public function iFillInTheFollowing(TableNode $table)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Then /^I should be on "([^"]*)" homepage$/
+     */
+    public function iShouldBeOnHomepage($arg1)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Given /^I should see a "([^"]*)" in "([^"]*)" area$/
+     */
+    public function iShouldSeeAInArea($arg1, $arg2)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Given /^I should see "([^"]*)" in "([^"]*)" area$/
+     */
+    public function iShouldSeeInArea($arg1, $arg2)
+    {
+        throw new PendingException();
+    }
 }

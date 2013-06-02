@@ -1,31 +1,31 @@
-# security:
-#     encoders:
-#         FOS\UserBundle\Model\UserInterface: sha512
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: sha512
 
-#     role_hierarchy:
-#         ROLE_ADMIN:       ROLE_USER
-#         ROLE_SUPER_ADMIN: ROLE_ADMIN
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
 
-#     providers:
-#         fos_userbundle:
-#             id: fos_user.user_provider.username
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username
 
-#     firewalls:
-#         main:
-#             pattern: ^/
-#             form_login:
-#                 provider: fos_userbundle
-#                 csrf_provider: form.csrf_provider
-#                 # check_path: fos_user_security_check
-#                 # default_target_path: bpaulin_upfit_home_index
-#             logout:
-#                 path: fos_user_security_logout
-#                 # target: bpaulin_upfit_home_index
-#             anonymous:    true
+    firewalls:
+        main:
+            pattern: ^/
+            form_login:
+                provider: fos_userbundle
+                csrf_provider: form.csrf_provider
+                # check_path: fos_user_security_check
+                # default_target_path: bpaulin_upfit_home_index
+            logout:
+                path: fos_user_security_logout
+                # target: bpaulin_upfit_home_index
+            anonymous:    true
 
-#     access_control:
-#         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-#         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
-#         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-#         - { path: ^/admin/, role: ROLE_ADMIN }
-#         - { path: ^/member/, role: ROLE_USER }
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/member/, role: ROLE_USER }
