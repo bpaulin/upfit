@@ -21,7 +21,12 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "jquery/jquery": "*",
         "bootstrap/js": "*",
-        "phing/phing": "dev-master"
+        "phing/phing": "dev-master",
+        "doctrine/data-fixtures": "dev-master@dev",
+        "doctrine/doctrine-fixtures-bundle": "dev-master",
+        "doctrine/migrations": "dev-master@dev",
+        "doctrine/doctrine-migrations-bundle": "dev-master@dev",
+        "friendsofsymfony/user-bundle": "*"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "dev-master",

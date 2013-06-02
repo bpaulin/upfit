@@ -1,4 +1,4 @@
-Feature: Product Category Relationship
+Feature: let's try bdd
   In order to test
   As a developer
   I need behat to access site
