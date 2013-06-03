@@ -1,6 +1,10 @@
 {% extends "BpaulinUpfitBundle:Crud:show.html.twig" %}
 {%
     set breadcrumbs = {
+        'Admin' : {
+            'route': path('upfit_admin'),
+            'icon': 'briefcase',
+        },
         'Exercises' : {
             'route': path('admin_exercise'),
             'icon': 'list',
