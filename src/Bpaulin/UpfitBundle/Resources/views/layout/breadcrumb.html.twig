@@ -1,5 +1,34 @@
 <ul class="breadcrumb">
-  <li><a href="#">Home</a> <span class="divider">/</span></li>
-  <li><a href="#">Library</a> <span class="divider">/</span></li>
-  <li class="active">Data</li>
+    {% if breadcrumbs is defined %}
+        <li>
+            <a href="{{app.request.baseurl}}"><i class="icon-home"></i></a>
+            <span class="divider">/</span>
+        </li>
+        {% for label, route in breadcrumbs %}
+            {% if loop.last %}
+                <li class="active">
+                    <span class="visible-phone">
+                        {{ label }}
+                    </span>
+                </li>
+            {% else %}
+                <li>
+                    <a href="{{ route.route }}">
+                        {% if route.icon is defined %}
+                            <i class="icon-{{ route.icon }}"></i>
+                            <span class="hidden-phone">{{ label|trans }}</span>
+                        {% else %}
+                            {{ label|trans }}
+                        {% endif %}
+                    </a>
+                    <span class="divider">/</span>
+                </li>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <li class="active">
+            <span><i class="icon-home"></i></span>
+            <span class="divider">/</span>
+        </li>
+    {% endif %}
 </ul>

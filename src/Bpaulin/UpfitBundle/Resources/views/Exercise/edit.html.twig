@@ -1,8 +1,17 @@
 {% extends "BpaulinUpfitBundle:Crud:edit.html.twig" %}
 {%
-    set actions = {
-        'Back to the list' : path('admin_exercise'),
-        'Show' : path('admin_exercise_show', { 'id': entity.id }),
+    set breadcrumbs = {
+        'Exercises' : {
+            'route': path('admin_exercise'),
+            'icon': 'list',
+        },
+        (entity.name) : {
+            'route': path('admin_exercise_show', { 'id': entity.id }),
+        },
+        'Edit' : {
+            'route': path('admin_exercise_edit', { 'id': entity.id }),
+            'icon': 'edit',
+        },
     }
 %}
 {%

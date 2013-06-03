@@ -4,23 +4,4 @@
 	}
 %}
 {% block content %}
-Hello {{ name }}!
-<table class="table">
-	<thead>
-		<tr>
-			<th>a</th>
-			<th>b</th>
-			<th>c</th>
-		</tr>
-	</thead>
-	{% for i in 0..2 %}
-		<tbody>
-			<tr>
-				<td>a-{{ i }}</td>
-				<td>b-{{ i }}</td>
-				<td>c-{{ i }}</td>
-			</tr>
-		</tbody>
-	{% endfor %}
-</table>
 {% endblock %}

@@ -1,9 +1,16 @@
 {% extends "BpaulinUpfitBundle:Crud:new.html.twig" %}
 {%
-    set actions = {
-        'Back to the list' : path('admin_exercise'),
+    set breadcrumbs = {
+        'Exercises' : {
+            'route': path('admin_exercise'),
+        },
+        'New' : {
+            'route': path('admin_exercise_create'),
+            'icon': 'plus',
+        },
     }
 %}
 {%
-    set action = path('admin_exercise_create', { 'id': entity.id })
+    set action = path('admin_exercise_create')
 %}
+{% block h1 %}Exercise <small>New</small>{% endblock %}

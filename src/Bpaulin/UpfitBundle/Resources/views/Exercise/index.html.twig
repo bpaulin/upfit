@@ -1,7 +1,17 @@
 {% extends "BpaulinUpfitBundle:Crud:index.html.twig" %}
 {%
+    set breadcrumbs = {
+        'Exercises' : {
+            'route': path('admin_exercise'),
+        },
+    }
+%}
+{%
     set actions = {
-        'Create a new entry' : path('admin_exercise_new'),
+        'Add' : {
+            'route': path('admin_exercise_new'),
+            'icon': 'plus',
+        },
     }
 %}
 {%

@@ -1,9 +1,28 @@
 {% extends "BpaulinUpfitBundle:Crud:show.html.twig" %}
 {%
+    set breadcrumbs = {
+        'Exercises' : {
+            'route': path('admin_exercise'),
+            'icon': 'list',
+        },
+        (entity.name) : {
+            'route': path('admin_exercise_show', { 'id': entity.id }),
+            'icon': 'edit',
+        },
+    }
+%}
+{%
     set actions = {
-        'Back to the list' : path('admin_exercise'),
-        'Edit' : path('admin_exercise_edit', { 'id': entity.id }),
-        'Delete' : path('admin_exercise_delete', { 'id': entity.id }),
+        'Edit' : {
+            'route': path('admin_exercise_edit', { 'id': entity.id }),
+            'icon': 'edit',
+            'class': 'primary'
+        },
+        'Delete' : {
+            'route': path('admin_exercise_delete', { 'id': entity.id }),
+            'icon': 'minus',
+            'class': 'danger'
+        },
     }
 %}
 {%

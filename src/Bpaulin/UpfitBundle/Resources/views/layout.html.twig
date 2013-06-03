@@ -22,21 +22,14 @@
 
 {% block body %}
 {% include 'BpaulinUpfitBundle:layout:navbar_top.html.twig' %}
-<div class="container-fluid">
-    <div class="row-fluid">
-	    <div class="span2">
-	    	{% include 'BpaulinUpfitBundle:layout:sidebar.html.twig' %}
-	    </div>
-	    <div class="span10">
+<div class="container">
+    <div class="row">
+	    <div class="span12">
+            <h1 class='hidden-phone'>{% block h1 %}Upfit{% endblock %}</h1>
             {% include 'BpaulinUpfitBundle:layout:message.html.twig' %}
             {% include 'BpaulinUpfitBundle:layout:breadcrumb.html.twig' %}
-	    	<h1>{% block h1 %}Upfit{% endblock %}</h1>
-	    	{% include 'BpaulinUpfitBundle:layout:actions.html.twig' %}
-		    <div class="row-fluid">
-			    <div class="span12">
-	    			{% block content %}{% endblock %}
-			    </div>
-		    </div>
+		    {% block content %}{% endblock %}
+            {% include 'BpaulinUpfitBundle:layout:actions.html.twig' %}
 		</div>
     </div>
 </div>

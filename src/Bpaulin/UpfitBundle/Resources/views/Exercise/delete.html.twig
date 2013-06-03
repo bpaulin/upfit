@@ -1,9 +1,17 @@
 {% extends "BpaulinUpfitBundle:Crud:delete.html.twig" %}
 {%
-    set actions = {
-        'Back to the list' : path('admin_exercise'),
-        'Show' : path('admin_exercise_edit', { 'id': entity.id }),
-        'Edit' : path('admin_exercise_edit', { 'id': entity.id }),
+    set breadcrumbs = {
+        'Exercises' : {
+            'route': path('admin_exercise'),
+            'icon': 'list',
+        },
+        (entity.name) : {
+            'route': path('admin_exercise_show', { 'id': entity.id }),
+        },
+        'Delete' : {
+            'route': path('admin_exercise_delete', { 'id': entity.id }),
+            'icon': 'minus',
+        },
     }
 %}
 {%
