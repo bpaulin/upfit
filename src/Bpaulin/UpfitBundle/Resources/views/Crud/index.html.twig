@@ -1,0 +1,24 @@
+{% extends "BpaulinUpfitBundle::layout.html.twig" %}
+
+{% block content -%}
+    <table class="records_list table table-condensed">
+        <thead>
+            <tr>
+                {% for field in fields|keys %}
+                    <th>{{ field }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                {% block row %}
+                    {% for field in fields %}
+                        <td>{{ attribute(entity, field) }}</td>
+                    {% endfor %}
+                {% endblock %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

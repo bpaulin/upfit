@@ -26,7 +26,6 @@ Scenario: Administrator can update exercises
   And I fill in "exercise" form with the following:
     | name |  |
   And I press "Edit"
-  And print last response
   And I fill in "exercise" form with the following:
     | name | exercise3 |
   And I press "Edit"

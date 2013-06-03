@@ -1,26 +1,19 @@
-{% extends "BpaulinUpfitBundle::layout.html.twig" %}
-{% set actions = {
+{% extends "BpaulinUpfitBundle:Crud:index.html.twig" %}
+{%
+    set actions = {
         'Create a new entry' : path('admin_exercise_new'),
+    }
+%}
+{%
+    set fields = {
+        'Id' : 'id',
+        'Name' : 'name',
     }
 %}
 
 {% block h1 %}Exercises{% endblock %}
 
-{% block content -%}
-    <table class="records_list table table-condensed">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td>{{ entity.id }}</td>
-                <td><a href="{{ path('admin_exercise_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    {% endblock %}
+{% block row %}
+    <td>{{ entity.id }}</td>
+    <td><a href="{{ path('admin_exercise_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
+{% endblock %}

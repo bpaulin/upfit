@@ -1,0 +1,8 @@
+{% extends "BpaulinUpfitBundle::layout.html.twig" %}
+{% block content -%}
+    <form action="{{ action }}" method="post">
+        <input type="hidden" name="_method" value="DELETE" />
+        {{ form_widget(delete_form) }}
+        <button type="submit">Delete</button>
+    </form>
+{% endblock %}

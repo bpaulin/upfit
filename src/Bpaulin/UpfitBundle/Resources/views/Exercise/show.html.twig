@@ -1,18 +1,16 @@
-{% extends "BpaulinUpfitBundle::layout.html.twig" %}
-{% set actions = {
+{% extends "BpaulinUpfitBundle:Crud:show.html.twig" %}
+{%
+    set actions = {
         'Back to the list' : path('admin_exercise'),
         'Edit' : path('admin_exercise_edit', { 'id': entity.id }),
         'Delete' : path('admin_exercise_delete', { 'id': entity.id }),
     }
 %}
+{%
+    set fields = {
+        'Id' : entity.id,
+        'Name' : entity.name,
+    }
+%}
 
 {% block h1 %}Exercise <small>{{ entity.name }}</small>{% endblock %}
-
-{% block content -%}
-    <dl class="record_properties">
-        <dt>Id</dt>
-        <dd>{{ entity.id }}</dd>
-        <dt>Name</dt>
-        <dd>{{ entity.name }}</dd>
-    </dl>
-{% endblock %}
