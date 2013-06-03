@@ -2,6 +2,17 @@ default:
   extensions:
     Behat\Symfony2Extension\Extension:
       mink_driver: true
+      bundle: BpaulinUpfitBundle
     Behat\MinkExtension\Extension:
       default_session: 'symfony2'
       base_url: 'http://localhost/app_dev.php'
+  formatter:
+    name:                   pretty
+    parameters:
+      output_path:          null
+
+report:
+  formatter:
+    name:                   progress,junit,html
+    parameters:
+      output_path:          null,build/reports/test/behat,build/reports/test/behat/index.html

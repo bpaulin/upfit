@@ -21,9 +21,13 @@
     </target>
 
     <target name="check:style">
-        <exec command="${path.php} bin/phpcs -p --standard=PSR2 --extensions=php src/"
-                passthru="true"
-                checkreturn="true"/>
+        <exec executable="${path.php}" passthru="true" checkreturn="true">
+            <arg value="${path.phpcs}"/>
+            <arg value="-p"/>
+            <arg value="--standard=PSR2"/>
+            <arg value="--extensions=php"/>
+            <arg path="${dir.src}"/>
+        </exec>
     </target>
 
     <target name="check:lint"
@@ -32,13 +36,13 @@
 
     <target name="check:lint:twig">
         <SymfonyConsole command="twig:lint">
-            <arg value="@BpaulinUpfitBundle" quotes="true"/>
+            <arg value="${bundle}" quotes="true"/>
         </SymfonyConsole>
     </target>
 
     <target name="check:lint:php">
         <phplint interpreter="${path.php}" haltonfailure="true">
-            <fileset dir="src">
+            <fileset dir="${dir.src}">
                 <include name="**/*.php"/>
             </fileset>
         </phplint>
@@ -54,19 +58,49 @@
     </target>
 
     <target name="check:test">
-        <exec command="${path.php} bin/phpunit -c app"
-              passthru="true"
-              checkreturn="true" />
+        <exec executable="${path.php}" passthru="true" checkreturn="true">
+            <arg value="${path.phpunit}"/>
+            <arg value="--configuration=app"/>
+            <arg value="--exclude-group=behat"/>
+        </exec>
     </target>
 
     <target name="check:behat">
-        <exec command="${path.php} bin/behat --ansi --expand @BpaulinUpfitBundle"
-              passthru="true"
-              checkreturn="true" />
+        <exec executable="${path.php}" passthru="true" checkreturn="true">
+            <arg value="${path.behat}"/>
+            <arg value="--ansi"/>
+            <arg value="--expand"/>
+        </exec>
     </target>
 
     <target name="check"
             depends="check:lint,check:style,check:base,check:test,check:behat">
+    </target>
+
+    <target name="report:behat">
+        <mkdir dir="${dir.reports.test.behat}" />
+        <exec executable="${path.php}" passthru="true" checkreturn="true">
+            <arg value="${path.behat}"/>
+            <arg value="--ansi"/>
+            <arg value="--expand"/>
+            <arg value="--profile=report"/>
+        </exec>
+    </target>
+
+    <target name="report:test">
+        <mkdir dir="${dir.reports.test.behat}" />
+        <exec executable="${path.php}" passthru="true">
+            <arg value="${path.phpunit}"/>
+            <arg value="--testdox-html=${dir.reports.test}/testdox.html"/>
+            <arg value="--log-junit=${dir.reports.test}/phpunit.xml"/>
+            <arg value="--coverage-clover=${dir.reports.test}/clover.xml"/>
+            <arg value="--coverage-html=${dir.reports.test}/coverage"/>
+            <arg value="--configuration=app"/>
+        </exec>
+    </target>
+
+    <target name="report"
+            depends="report:test">
     </target>
 
 </project>
