@@ -174,12 +174,23 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
     {
         return array(
             new Step\Given("a administrator named \"admin\""),
+            new Step\Given("I am \"admin\"")
+        );
+    }
+
+    /**
+     * @Given /^I am "([^"]*)"$/
+     */
+    public function iAm($name)
+    {
+        return array(
             new Step\Given("I am on \"/login\""),
-            new Step\When("I fill in \"_username\" with \"admin\""),
-            new Step\When("I fill in \"_password\" with \"admin\""),
+            new Step\When("I fill in \"_username\" with \"$name\""),
+            new Step\When("I fill in \"_password\" with \"$name\""),
             new Step\When("I press \"_submit\"")
         );
     }
+
 
     /**
      * @Given /^an exercise named "([^"]*)"$/

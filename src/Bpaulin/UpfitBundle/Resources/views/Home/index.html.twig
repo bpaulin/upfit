@@ -1,23 +1,17 @@
 {% extends "BpaulinUpfitBundle::layout.html.twig" %}
+{%
+	set actions = {
+		'Member' : path('upfit_member')
+	}
+%}
+{% if is_granted("ROLE_ADMIN") %}
+	{%
+		set actions = actions|merge({
+			'Admin' : path('upfit_admin')
+		})
+	%}
+{% endif %}
 
 {% block content %}
-Hello {{ name }}!
-<table class="table">
-	<thead>
-		<tr>
-			<th>a</th>
-			<th>b</th>
-			<th>c</th>
-		</tr>
-	</thead>
-	{% for i in 0..200 %}
-		<tbody>
-			<tr>
-				<td>a-{{ i }}</td>
-				<td>b-{{ i }}</td>
-				<td>c-{{ i }}</td>
-			</tr>
-		</tbody>
-	{% endfor %}
-</table>
 {% endblock %}
+
