@@ -1,5 +1,5 @@
 {% if actions is defined %}
-    <div class="btn-group actions-area">
+    <div class="btn-group" id="actions-area">
         {% for label, route in actions %}
             <a class="btn" href="{{ route }}">{{ label }}</a>
         {% endfor %}

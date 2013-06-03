@@ -92,21 +92,10 @@ class ExerciseController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function showAction($id)
+    public function showAction(Exercise $entity)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('BpaulinUpfitBundle:Exercise')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Exercise entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-
         return array(
             'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
         );
     }
 
@@ -117,23 +106,13 @@ class ExerciseController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function editAction($id)
+    public function editAction(Exercise $entity)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('BpaulinUpfitBundle:Exercise')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Exercise entity.');
-        }
-
         $editForm = $this->createForm(new ExerciseType(), $entity);
-        $deleteForm = $this->createDeleteForm($id);
 
         return array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         );
     }
 
@@ -144,21 +123,16 @@ class ExerciseController extends Controller
      * @Method("PUT")
      * @Template("BpaulinUpfitBundle:Exercise:edit.html.twig")
      */
-    public function updateAction(Request $request, $id)
+    public function updateAction(Request $request, Exercise $entity)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('BpaulinUpfitBundle:Exercise')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Exercise entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createForm(new ExerciseType(), $entity);
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
             $em->persist($entity);
             $em->flush();
 
@@ -172,7 +146,6 @@ class ExerciseController extends Controller
         return array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         );
     }
 
@@ -182,19 +155,13 @@ class ExerciseController extends Controller
      * @Route("/{id}", name="admin_exercise_delete_confirm")
      * @Method("DELETE")
      */
-    public function confirmDeleteAction(Request $request, $id)
+    public function confirmDeleteAction(Request $request, Exercise $entity)
     {
-        $form = $this->createDeleteForm($id);
+        $form = $this->createDeleteForm($entity->getid());
         $form->bind($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('BpaulinUpfitBundle:Exercise')->find($id);
-
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Exercise entity.');
-            }
-
             $em->remove($entity);
             $em->flush();
             $this->get('session')->getFlashBag()->add(
@@ -213,17 +180,9 @@ class ExerciseController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function deleteAction(Request $request, $id)
+    public function deleteAction(Request $request, Exercise $entity)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('BpaulinUpfitBundle:Exercise')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Exercise entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($entity->getId());
 
         return array(
             'entity'      => $entity,
