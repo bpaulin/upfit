@@ -39,7 +39,7 @@ class ProgramSubContext extends BehatContext
         $program = $em->getRepository('BpaulinUpfitBundle:Program')->findOneByName($name);
         return $this->getMainContext()->getMink()
             ->getSession()
-            ->visit("/admin/program/".$program->getId());
+            ->visit($this->getMainContext()->locatePath("/admin/program/".$program->getId()));
     }
 
     /**

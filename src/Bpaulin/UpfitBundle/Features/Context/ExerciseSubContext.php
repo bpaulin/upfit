@@ -39,7 +39,7 @@ class ExerciseSubContext extends BehatContext
         $exercise = $em->getRepository('BpaulinUpfitBundle:Exercise')->findOneByName($name);
         return $this->getMainContext()->getMink()
             ->getSession()
-            ->visit("/admin/exercise/".$exercise->getId());
+            ->visit($this->getMainContext()->locatePath("/admin/exercise/".$exercise->getId()));
     }
 
     /**

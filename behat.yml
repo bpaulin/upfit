@@ -5,9 +5,10 @@ default:
             bundle: BpaulinUpfitBundle
         Behat\MinkExtension\Extension:
             default_session: 'symfony2'
-            base_url: 'http://localhost/app_dev.php'
+            base_url: 'http://localhost:8000/app_dev.php'
+            selenium2: ~
     formatter:
-        name: pretty
+        name: progress
         parameters:
             output_path: null
 
@@ -16,3 +17,15 @@ report:
         name: progress,junit,html
         parameters:
             output_path: null,build/reports/test/behat,build/reports/test/behat/index.html
+
+ci:
+    filters:
+        tags: "~@javascript"
+    formatter:
+        name: progress
+
+wip:
+    filters:
+        tags: "@wip"
+    formatter:
+        name: pretty
