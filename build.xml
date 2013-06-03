@@ -26,6 +26,33 @@
                 checkreturn="true"/>
     </target>
 
+    <target name="check:lint"
+            depends="check:lint:twig,check:lint:php">
+    </target>
+
+    <target name="check:lint:twig">
+        <SymfonyConsole command="twig:lint">
+            <arg value="@BpaulinUpfitBundle" quotes="true"/>
+        </SymfonyConsole>
+    </target>
+
+    <target name="check:lint:php">
+        <phplint interpreter="${path.php}" haltonfailure="true">
+            <fileset dir="src">
+                <include name="**/*.php"/>
+            </fileset>
+        </phplint>
+    </target>
+
+    <target name="check:base"
+            depends="check:base:schema">
+    </target>
+
+    <target name="check:base:schema">
+        <SymfonyConsole command="doctrine:schema:validate">
+        </SymfonyConsole>
+    </target>
+
     <target name="check:test">
         <exec command="${path.php} bin/phpunit -c app"
               passthru="true"
@@ -33,13 +60,13 @@
     </target>
 
     <target name="check:behat">
-        <exec command="${path.php} bin/behat --format=progress @BpaulinUpfitBundle"
+        <exec command="${path.php} bin/behat --ansi --expand @BpaulinUpfitBundle"
               passthru="true"
               checkreturn="true" />
     </target>
 
     <target name="check"
-            depends="check:style,check:test,check:behat">
+            depends="check:lint,check:style,check:base,check:test,check:behat">
     </target>
 
 </project>
