@@ -24,6 +24,10 @@ Scenario: Administrator can update exercises
   Then I should see a link to edit exercise "exercise1"
   When I follow this link
   And I fill in "exercise" form with the following:
+    | name |  |
+  And I press "Edit"
+  And print last response
+  And I fill in "exercise" form with the following:
     | name | exercise3 |
   And I press "Edit"
   Then I should be on "/admin/exercise"
@@ -35,6 +39,9 @@ Scenario: Administrator can create exercises
   Given I am on "/admin/exercise"
   Then I should see a link to create exercise
   When I follow this link
+  And I fill in "exercise" form with the following:
+    | name |  |
+  And I press "Create"
   And I fill in "exercise" form with the following:
     | name | exercise4 |
   And I press "Create"
