@@ -1,0 +1,33 @@
+{% extends "BpaulinUpfitBundle:Crud:index.html.twig" %}
+{%
+    set breadcrumbs = {
+        'Admin' : {
+            'route': path('upfit_admin'),
+            'icon': 'briefcase',
+        },
+        'Programs' : {
+            'route': path('admin_program'),
+        },
+    }
+%}
+{%
+    set actions = {
+        'Add' : {
+            'route': path('admin_program_new'),
+            'icon': 'plus',
+        },
+    }
+%}
+{%
+    set fields = {
+        'Id' : 'id',
+        'Name' : 'name',
+    }
+%}
+
+{% block h1 %}Programs{% endblock %}
+
+{% block row %}
+    <td>{{ entity.id }}</td>
+    <td><a href="{{ path('admin_program_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
+{% endblock %}

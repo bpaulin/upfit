@@ -1,0 +1,20 @@
+{% extends "BpaulinUpfitBundle:Crud:new.html.twig" %}
+{%
+    set breadcrumbs = {
+        'Admin' : {
+            'route': path('upfit_admin'),
+            'icon': 'briefcase',
+        },
+        'Programs' : {
+            'route': path('admin_program'),
+        },
+        'New' : {
+            'route': path('admin_program_create'),
+            'icon': 'plus',
+        },
+    }
+%}
+{%
+    set action = path('admin_program_create')
+%}
+{% block h1 %}Program <small>New</small>{% endblock %}

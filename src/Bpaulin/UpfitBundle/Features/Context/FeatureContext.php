@@ -37,6 +37,8 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
     public function __construct(array $parameters)
     {
         $this->parameters = $parameters;
+        $this->useContext('program', new ProgramSubContext());
+        $this->useContext('exercise', new ExerciseSubContext());
     }
 
     /**
@@ -50,12 +52,23 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
         $this->kernel = $kernel;
     }
 
+    /**
+     * Get HttpKernel instance.
+     */
+    public function getKernel()
+    {
+        return $this->kernel;
+    }
+
     /** @beforeScenario */
     public function setup($event)
     {
         $em = $this->kernel->getContainer()->get('doctrine')->getManager();
         $em->getConnection()->query(
-            'START TRANSACTION;SET FOREIGN_KEY_CHECKS=0; TRUNCATE exercise; SET FOREIGN_KEY_CHECKS=1; COMMIT;'
+            'START TRANSACTION;SET FOREIGN_KEY_CHECKS=0; TRUNCATE TABLE exercise; SET FOREIGN_KEY_CHECKS=1; COMMIT;'
+        );
+        $em->getConnection()->query(
+            'START TRANSACTION;SET FOREIGN_KEY_CHECKS=0; TRUNCATE TABLE program; SET FOREIGN_KEY_CHECKS=1; COMMIT;'
         );
 
         $userManager = $this->kernel->getContainer()->get('fos_user.user_manager');
@@ -71,19 +84,6 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
     public function teardown($event)
     {
     }
-
-    //
-    // Place your definition and hook methods here:
-    //
-    //    /**
-    //     * @Given /^I have done something with "([^"]*)"$/
-    //     */
-    //    public function iHaveDoneSomethingWith($argument)
-    //    {
-    //        $container = $this->kernel->getContainer();
-    //        $container->get('some_service')->doSomethingWith($argument);
-    //    }
-    //
 
     /**
      * @Given /^a administrator named "([^"]*)"$/
@@ -191,24 +191,6 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
         );
     }
 
-
-    /**
-     * @Given /^an exercise named "([^"]*)"$/
-     */
-    public function anExerciseNamed($name)
-    {
-        $em = $this->kernel->getContainer()->get('doctrine')->getManager();
-        $className = $em->getRepository('BpaulinUpfitBundle:Exercise')->getClassName();
-
-        $exercise = new $className;
-        $exercise->setName($name);
-
-        $em->persist($exercise);
-        $em->flush();
-
-        return $exercise;
-    }
-
     /**
      * @Given /^I am on "([^"]*)" homepage$/
      */
@@ -218,83 +200,6 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
                     ->getSession()
                     ->visit("/".$role);
     }
-
-    /**
-     * @Given /^I am on exercise "([^"]*)" page$/
-     */
-    public function iAmOnExercisePage($name)
-    {
-        $em = $this->kernel->getContainer()->get('doctrine')->getManager();
-        $exercise = $em->getRepository('BpaulinUpfitBundle:Exercise')->findOneByName($name);
-        return $this->getMink()
-            ->getSession()
-            ->visit("/admin/exercise/".$exercise->getId());
-    }
-
-    /**
-     * @Then /^I should see a link to following exercises$/
-     */
-    public function iShouldSeeALinkToFollowingExercises(TableNode $table)
-    {
-        $hash = $table->getHash();
-        $steps  = array();
-        foreach ($hash as $row) {
-            $steps[] = new Step\Then("I should see a link to exercise \"".$row['exercise']."\"");
-        }
-        return $steps;
-    }
-
-    /**
-     * @Then /^I should see a link to exercise "([^"]*)"$/
-     */
-    public function iShouldSeeALinkToExercise($name)
-    {
-        $em = $this->kernel->getContainer()->get('doctrine')->getManager();
-        $exercise = $em->getRepository('BpaulinUpfitBundle:Exercise')->findOneByName($name);
-        return new Step\Then("I should see a link to \"/admin/exercise/".$exercise->getId()."\"");
-    }
-
-    /**
-     * @Given /^I should not see a link to exercise "([^"]*)"$/
-     */
-    public function iShouldNotSeeALinkToExercise($name)
-    {
-        $em = $this->kernel->getContainer()->get('doctrine')->getManager();
-        $exercise = $em->getRepository('BpaulinUpfitBundle:Exercise')->findOneByName($name);
-        if (!$exercise) {
-            return true;
-        }
-        return new Step\Then("I should not see a link to \"/admin/exercise/".$exercise->getId()."\"");
-    }
-
-    /**
-     * @Then /^I should see a link to edit exercise "([^"]*)"$/
-     */
-    public function iShouldSeeALinkToEditExercise($name)
-    {
-        $em = $this->kernel->getContainer()->get('doctrine')->getManager();
-        $exercise = $em->getRepository('BpaulinUpfitBundle:Exercise')->findOneByName($name);
-        return new Step\Then("I should see a link to \"/admin/exercise/".$exercise->getId()."/edit\"");
-    }
-
-    /**
-     * @Then /^I should see a link to delete exercise "([^"]*)"$/
-     */
-    public function iShouldSeeALinkToDeleteExercise($name)
-    {
-        $em = $this->kernel->getContainer()->get('doctrine')->getManager();
-        $exercise = $em->getRepository('BpaulinUpfitBundle:Exercise')->findOneByName($name);
-        return new Step\Then("I should see a link to \"/admin/exercise/".$exercise->getId()."/delete\"");
-    }
-
-    /**
-     * @Then /^I should see a link to create exercise$/
-     */
-    public function iShouldSeeALinkToCreateExercise()
-    {
-        return new Step\Then("I should see a link to \"/admin/exercise/new\"");
-    }
-
 
     /**
      * @Given /^I fill in "([^"]*)" form with the following:$/
