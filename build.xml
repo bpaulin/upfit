@@ -65,6 +65,13 @@
         </exec>
     </target>
 
+    <target name="demo">
+        <exec executable="${path.php}" passthru="true" checkreturn="true">
+            <arg value="${path.behat}"/>
+            <arg value="--profile=demo"/>
+        </exec>
+    </target>
+
     <target name="check:behat">
         <exec executable="${path.php}" passthru="true" checkreturn="true">
             <arg value="${path.behat}"/>
@@ -73,7 +80,20 @@
         </exec>
     </target>
 
-    <target name="check"
+    <target name="check:behat:wip">
+        <exec executable="${path.php}" passthru="true" checkreturn="true">
+            <arg value="${path.behat}"/>
+            <arg value="--ansi"/>
+            <arg value="--expand"/>
+            <arg value="--profile=wip"/>
+        </exec>
+    </target>
+
+    <target name="check:wip"
+            depends="check:lint,check:test,check:behat:wip">
+    </target>
+
+    <target name="check:all"
             depends="check:lint,check:style,check:base,check:test,check:behat">
     </target>
 

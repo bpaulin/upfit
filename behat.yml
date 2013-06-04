@@ -29,3 +29,10 @@ wip:
         tags: "@wip"
     formatter:
         name: pretty
+
+demo:
+    formatter:
+        name: progress
+    extensions:
+        Behat\MinkExtension\Extension:
+            default_session: 'selenium2'
