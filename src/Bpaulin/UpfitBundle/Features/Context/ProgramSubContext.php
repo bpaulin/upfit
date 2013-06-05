@@ -31,6 +31,35 @@ class ProgramSubContext extends BehatContext
     }
 
     /**
+     * @Given /^a program named "([^"]*)" with following stages:$/
+     */
+    public function aProgramNamedWithFollowingStages($name, TableNode $table)
+    {
+        $program = $this->aProgramNamed($name);
+        $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
+        $className = $em->getRepository('BpaulinUpfitBundle:Stage')->getClassName();
+
+        $hash = $table->getHash();
+        $steps  = array();
+        foreach ($hash as $position=>$row) {
+            $exercise = $this->getMainContext()->getSubcontext('exercise')->anExerciseNamed($row['exercise']);
+
+            $stage = new $className;
+            $stage->setProgram($program)
+                ->setExercise($exercise)
+                ->setPosition($position)
+                ->setSets($row['sets'])
+                ->setNumber($row['number'])
+                ->setUnit($row['unit'])
+                ->setDifficulty($row['difficulty'])
+                ->setDifficultyUnit($row['unit']);
+
+            $em->persist($stage);
+        }
+        $em->flush();
+    }
+
+    /**
      * @Given /^I am on program "([^"]*)" page$/
      */
     public function iAmOnProgramPage($name)

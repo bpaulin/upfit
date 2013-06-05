@@ -13,15 +13,16 @@ class StageType extends AbstractType
         $builder
             ->add('order')
             ->add('exercise')
-            ->add('program')
-        ;
+            ->add('program');
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'Bpaulin\UpfitBundle\Entity\Stage'
-        ));
+        $resolver->setDefaults(
+            array(
+                'data_class' => 'Bpaulin\UpfitBundle\Entity\Stage'
+            )
+        );
     }
 
     public function getName()

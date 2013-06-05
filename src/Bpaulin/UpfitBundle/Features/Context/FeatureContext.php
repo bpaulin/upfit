@@ -2,6 +2,9 @@
 
 namespace Bpaulin\UpfitBundle\Features\Context;
 
+
+use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Behat\Symfony2Extension\Context\KernelAwareInterface;
 use Behat\MinkExtension\Context\MinkContext;
@@ -63,21 +66,31 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
     /** @beforeScenario */
     public function setup($event)
     {
-        $em = $this->kernel->getContainer()->get('doctrine')->getManager();
-        $em->getConnection()->query(
-            'START TRANSACTION;SET FOREIGN_KEY_CHECKS=0; TRUNCATE TABLE exercise; SET FOREIGN_KEY_CHECKS=1; COMMIT;'
-        );
-        $em->getConnection()->query(
-            'START TRANSACTION;SET FOREIGN_KEY_CHECKS=0; TRUNCATE TABLE program; SET FOREIGN_KEY_CHECKS=1; COMMIT;'
-        );
 
-        $userManager = $this->kernel->getContainer()->get('fos_user.user_manager');
+        // $em = $this->kernel->getContainer()->get('doctrine')->getManager();
+        // $em->getConnection()->query(
+        //     'START TRANSACTION;SET FOREIGN_KEY_CHECKS=0; TRUNCATE TABLE exercise; SET FOREIGN_KEY_CHECKS=1; COMMIT;'
+        // );
+        // $em->getConnection()->query(
+        //     'START TRANSACTION;SET FOREIGN_KEY_CHECKS=0; TRUNCATE TABLE program; SET FOREIGN_KEY_CHECKS=1; COMMIT;'
+        // );
 
-        // Pour récupérer la liste de tous les utilisateurs
-        foreach ($userManager->findUsers() as $user) {
-            // Pour supprimer un utilisateur
-            $userManager->deleteUser($user);
-        };
+        // $userManager = $this->kernel->getContainer()->get('fos_user.user_manager');
+
+        // // Pour récupérer la liste de tous les utilisateurs
+        // foreach ($userManager->findUsers() as $user) {
+        //     // Pour supprimer un utilisateur
+        //     $userManager->deleteUser($user);
+        // };
+        // $application = new Application($this->kernel);
+        // $application->run(
+        //     new ArrayInput(
+        //         array(
+        //             'command' => 'doctrine:fixtures:load',
+        //             '--no-interaction' => null,
+        //         )
+        //     )
+        // );
     }
 
     /** @AfterScenario */
@@ -180,7 +193,7 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
     public function iAmAdmin()
     {
         return array(
-            new Step\Given("a administrator named \"admin\""),
+            // new Step\Given("a administrator named \"admin\""),
             new Step\Given("I am \"admin\"")
         );
     }

@@ -1,3 +1,4 @@
+@wip
 Feature: program management
   In order to manage programs
   As an administator
@@ -5,17 +6,19 @@ Feature: program management
 
 Background:
   Given I am admin
-  And a program named "program1"
-  And a program named "program2"
+  And a program named "program1" with following stages:
+    | exercise    | sets | number  | unit        | difficulty | unit  |
+    | pushup      | 1    | 30      | seconds     |            |       |
+    | pushup      | 2    | 15      | repetitions |            |       |
+    | pull        | 2    | 15      | repetitions | 5          | kilos |
+    | bike        | 1    | 30      | kilometers  |            |       |
+    | bike        | 2    | 60      | minutes     |            |       |
 
 Scenario: Administrator can read programs
   Given I am on "admin" homepage
   Then I should see a link to "/admin/program" in "actions" area
   When I follow this link
-  Then I should see a link to following programs
-    | program |
-    | program1 |
-    | program2 |
+  Then I should see a link to program "program1"
   When I follow this link
   Then I should see a link to "/admin/program"
 

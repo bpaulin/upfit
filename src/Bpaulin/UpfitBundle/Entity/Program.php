@@ -29,6 +29,12 @@ class Program
      */
     private $name;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Stage", mappedBy="program", cascade={"remove"})
+     * @Assert\Count(min = "1", max = "20")
+     */
+    protected $stages;
+
 
     /**
      * Get id
@@ -61,5 +67,45 @@ class Program
     public function getName()
     {
         return $this->name;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->stages = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add stages
+     *
+     * @param \Bpaulin\UpfitBundle\Entity\Stage $stages
+     * @return Program
+     */
+    public function addStage(\Bpaulin\UpfitBundle\Entity\Stage $stages)
+    {
+        $this->stages[] = $stages;
+
+        return $this;
+    }
+
+    /**
+     * Remove stages
+     *
+     * @param \Bpaulin\UpfitBundle\Entity\Stage $stages
+     */
+    public function removeStage(\Bpaulin\UpfitBundle\Entity\Stage $stages)
+    {
+        $this->stages->removeElement($stages);
+    }
+
+    /**
+     * Get stages
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getStages()
+    {
+        return $this->stages;
     }
 }

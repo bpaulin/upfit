@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "ed0386b209de5322472fcc6235edd8c3",
+    "hash": "d0c3c06b8b3bf7dc87b6011bc48d211c",
     "packages": [
         {
             "name": "bootstrap/js",
@@ -68,9 +68,9 @@
                     "email": "kontakt@beberlei.de"
                 },
                 {
-                    "name": "Johannes Schmitt",
+                    "name": "Johannes M. Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -128,7 +128,7 @@
             ],
             "authors": [
                 {
-                    "name": "Jonathan H. Wage",
+                    "name": "Jonathan Wage",
                     "email": "jonwage@gmail.com",
                     "homepage": "http://www.jwage.com/"
                 }
@@ -827,12 +827,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phingofficial/phing.git",
-                "reference": "c944e0436ad6a12225cd58d322ef32927bef1587"
+                "reference": "1d76a264e15eaad29c817a59adee0b4fa1c763f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phingofficial/phing/zipball/c944e0436ad6a12225cd58d322ef32927bef1587",
-                "reference": "c944e0436ad6a12225cd58d322ef32927bef1587",
+                "url": "https://api.github.com/repos/phingofficial/phing/zipball/1d76a264e15eaad29c817a59adee0b4fa1c763f1",
+                "reference": "1d76a264e15eaad29c817a59adee0b4fa1c763f1",
                 "shasum": ""
             },
             "require": {
@@ -871,7 +871,7 @@
                 "task",
                 "tool"
             ],
-            "time": "2013-05-29 18:17:22"
+            "time": "2013-06-05 08:25:51"
         },
         {
             "name": "psr/log",
@@ -1166,23 +1166,22 @@
         },
         {
             "name": "symfony/icu",
-            "version": "v1.2.0",
+            "version": "v1.0.0",
             "target-dir": "Symfony/Component/Icu",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Icu.git",
-                "reference": "v1.2.0-RC1"
+                "reference": "v1.0.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Icu/zipball/v1.2.0-RC1",
-                "reference": "v1.2.0-RC1",
+                "url": "https://api.github.com/repos/symfony/Icu/zipball/v1.0.0",
+                "reference": "v1.0.0",
                 "shasum": ""
             },
             "require": {
-                "lib-icu": ">=4.4",
                 "php": ">=5.3.3",
-                "symfony/intl": ">=2.3-RC,<3.0"
+                "symfony/intl": ">=2.3,<3.0"
             },
             "type": "library",
             "autoload": {
@@ -1210,7 +1209,7 @@
                 "icu",
                 "intl"
             ],
-            "time": "2013-05-16 08:18:58"
+            "time": "2013-06-03 18:32:07"
         },
         {
             "name": "symfony/monolog-bundle",
@@ -2357,9 +2356,6 @@
                 "reference": null,
                 "shasum": null
             },
-            "bin": [
-                "selenium-server-standalone-2.33.0.jar"
-            ],
             "type": "library"
         },
         {
@@ -2368,12 +2364,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "8cb66e3d32a173504ceb5591e36e04c7f9c5ad12"
+                "reference": "ce305d147960a4794eed965cb1b8f9aac24581e9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/8cb66e3d32a173504ceb5591e36e04c7f9c5ad12",
-                "reference": "8cb66e3d32a173504ceb5591e36e04c7f9c5ad12",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/ce305d147960a4794eed965cb1b8f9aac24581e9",
+                "reference": "ce305d147960a4794eed965cb1b8f9aac24581e9",
                 "shasum": ""
             },
             "require": {
@@ -2431,7 +2427,56 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2013-06-03 00:01:52"
+            "time": "2013-06-05 05:13:35"
+        },
+        {
+            "name": "vipsoft/doctrine-data-fixtures-extension",
+            "version": "v0.9.15",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vipsoft/DoctrineDataFixturesExtension.git",
+                "reference": "v0.9.15"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vipsoft/DoctrineDataFixturesExtension/zipball/v0.9.15",
+                "reference": "v0.9.15",
+                "shasum": ""
+            },
+            "require": {
+                "behat/behat": ">=2.4.0,<2.5.0",
+                "behat/symfony2-extension": ">=1.0",
+                "doctrine/data-fixtures": "dev-master",
+                "php": ">=5.3.6",
+                "symfony/config": ">=2.0.0,<3.0-dev",
+                "symfony/dependency-injection": ">=2.0.0,<3.0-dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "VIPSoft\\DoctrineDataFixturesExtension": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anthon Pang",
+                    "email": "apang@softwaredevelopment.ca",
+                    "role": "Fork Maintainer"
+                }
+            ],
+            "description": "Doctrine data fixtures extension for Behat",
+            "homepage": "http://github.com/vipsoft/",
+            "keywords": [
+                "BDD",
+                "Behat",
+                "Data fixtures",
+                "doctrine"
+            ],
+            "time": "2013-03-12 22:54:20"
         }
     ],
     "aliases": [
