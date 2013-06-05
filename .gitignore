@@ -1,4 +1,6 @@
 /web/bundles/
+/web/css/
+/web/js/
 /app/bootstrap.php.cache
 /app/cache/*
 /app/config/parameters.yml
@@ -7,5 +9,5 @@
 /vendor/
 /bin/
 /composer.phar
-upfit2.sublime-workspace
+/upfit2.sublime-workspace
 *~
