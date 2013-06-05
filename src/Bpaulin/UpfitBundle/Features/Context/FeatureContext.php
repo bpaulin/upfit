@@ -124,7 +124,11 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
      */
     public function iShouldSeeALinkTo($url)
     {
-        $this->lastLink = $url;
+        $this->lastLink  = $this->getMink()
+                                ->getSession()
+                                ->getPage()
+                                ->find('css', "a[href$='".$url."']")
+                                ->getAttribute('href');
         return $this->assertElementOnPage("a[href$='".$url."']");
     }
 
@@ -133,7 +137,11 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
      */
     public function iShouldSeeALinkToInArea($url, $area)
     {
-        $this->lastLink = $url;
+        $this->lastLink  = $this->getMink()
+                                ->getSession()
+                                ->getPage()
+                                ->find('css', "#".$area."-area a[href$='".$url."']")
+                                ->getAttribute('href');
         return $this->assertElementOnPage("#".$area."-area a[href$='".$url."']");
     }
 
@@ -145,7 +153,7 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
         $this->getMink()
             ->getSession()
             ->visit($this->lastLink);
-        return new Step\Then("the response status code should be 200");
+        //return new Step\Then("the response status code should be 200");
     }
 
     /**
@@ -155,7 +163,6 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
     {
         return array(
             new Step\Given("I should be on \"/".$role."\""),
-            new Step\Then("the response status code should be 200")
         );
     }
 
@@ -198,7 +205,7 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
     {
         return $this->getMink()
                     ->getSession()
-                    ->visit("/".$role);
+                    ->visit($this->locatePath("/".$role));
     }
 
     /**

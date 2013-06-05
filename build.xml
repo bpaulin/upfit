@@ -65,7 +65,17 @@
         </exec>
     </target>
 
-    <target name="demo">
+    <target name="prod:test">
+        <SymfonyConsole command="assetic:dump">
+            <arg value="--env=prod"/>
+        </SymfonyConsole>
+        <SymfonyConsole command="cache:clear">
+            <arg value="--env=prod"/>
+        </SymfonyConsole>
+    </target>
+
+    <target name="demo"
+            depends="prod:test">
         <exec executable="${path.php}" passthru="true" checkreturn="true">
             <arg value="${path.behat}"/>
             <arg value="--profile=demo"/>
@@ -95,6 +105,15 @@
 
     <target name="check:all"
             depends="check:lint,check:style,check:base,check:test,check:behat">
+    </target>
+
+    <target name="prod:test">
+        <SymfonyConsole command="assetic:dump">
+            <arg value="--env=prod"/>
+        </SymfonyConsole>
+        <SymfonyConsole command="cache:clear">
+            <arg value="--env=prod"/>
+        </SymfonyConsole>
     </target>
 
     <target name="report:behat">

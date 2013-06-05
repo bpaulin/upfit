@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "a6977fd6cf675f813a647124c78716a1",
+    "hash": "ed0386b209de5322472fcc6235edd8c3",
     "packages": [
         {
             "name": "bootstrap/js",
@@ -1775,12 +1775,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Behat/MinkExtension.git",
-                "reference": "v1.1.2"
+                "reference": "6ed67ce283cd5ee882fefefd9358a670a13d404c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Behat/MinkExtension/zipball/v1.1.2",
-                "reference": "v1.1.2",
+                "url": "https://api.github.com/repos/Behat/MinkExtension/zipball/6ed67ce283cd5ee882fefefd9358a670a13d404c",
+                "reference": "6ed67ce283cd5ee882fefefd9358a670a13d404c",
                 "shasum": ""
             },
             "require": {
@@ -1821,7 +1821,7 @@
                 "test",
                 "web"
             ],
-            "time": "2013-06-03 10:05:51"
+            "time": "2013-06-04 17:35:37"
         },
         {
             "name": "behat/mink-selenium2-driver",
@@ -2347,6 +2347,20 @@
                 "xunit"
             ],
             "time": "2013-01-13 10:24:48"
+        },
+        {
+            "name": "selenium/standalone-server",
+            "version": "2.33",
+            "dist": {
+                "type": "file",
+                "url": "http://selenium.googlecode.com/files/selenium-server-standalone-2.33.0.jar",
+                "reference": null,
+                "shasum": null
+            },
+            "bin": [
+                "selenium-server-standalone-2.33.0.jar"
+            ],
+            "type": "library"
         },
         {
             "name": "squizlabs/php_codesniffer",
