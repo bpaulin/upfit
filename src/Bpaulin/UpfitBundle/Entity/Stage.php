@@ -150,14 +150,14 @@ class Stage
     public function setSets($sets)
     {
         $this->sets = $sets;
-    
+
         return $this;
     }
 
     /**
      * Get sets
      *
-     * @return integer 
+     * @return integer
      */
     public function getSets()
     {
@@ -173,14 +173,14 @@ class Stage
     public function setNumber($number)
     {
         $this->number = $number;
-    
+
         return $this;
     }
 
     /**
      * Get number
      *
-     * @return integer 
+     * @return integer
      */
     public function getNumber()
     {
@@ -196,14 +196,14 @@ class Stage
     public function setUnit($unit)
     {
         $this->unit = $unit;
-    
+
         return $this;
     }
 
     /**
      * Get unit
      *
-     * @return integer 
+     * @return integer
      */
     public function getUnit()
     {
@@ -219,14 +219,14 @@ class Stage
     public function setDifficulty($difficulty)
     {
         $this->difficulty = $difficulty;
-    
+
         return $this;
     }
 
     /**
      * Get difficulty
      *
-     * @return integer 
+     * @return integer
      */
     public function getDifficulty()
     {
@@ -242,14 +242,14 @@ class Stage
     public function setDifficultyUnit($difficultyUnit)
     {
         $this->difficultyUnit = $difficultyUnit;
-    
+
         return $this;
     }
 
     /**
      * Get difficultyUnit
      *
-     * @return integer 
+     * @return integer
      */
     public function getDifficultyUnit()
     {

@@ -41,7 +41,7 @@ class ProgramSubContext extends BehatContext
 
         $hash = $table->getHash();
         $steps  = array();
-        foreach ($hash as $position=>$row) {
+        foreach ($hash as $position => $row) {
             $exercise = $this->getMainContext()->getSubcontext('exercise')->anExerciseNamed($row['exercise']);
 
             $stage = new $className;
@@ -133,5 +133,17 @@ class ProgramSubContext extends BehatContext
     public function iShouldSeeALinkToCreateProgram()
     {
         return new Step\Then("I should see a link to \"/admin/program/new\"");
+    }
+
+    /**
+     * @Given /^I fill in last stage form with the following:$/
+     */
+    public function iFillInLastStageFormWithTheFollowing(TableNode $table)
+    {
+        //bpaulin_upfitbundle_programtype_stages_0_difficultyUnit
+        $form = 'bpaulin_upfitbundle_programtype_stages_0_';
+        foreach ($table->getRowsHash() as $field => $value) {
+            $this->getMainContext()->fillField($form.$field, $value);
+        }
     }
 }

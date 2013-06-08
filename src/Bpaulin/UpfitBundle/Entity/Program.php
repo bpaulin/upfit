@@ -30,8 +30,8 @@ class Program
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="Stage", mappedBy="program", cascade={"remove"})
-     * @Assert\Count(min = "1", max = "20")
+     * @ORM\OneToMany(targetEntity="Stage", mappedBy="program", cascade={"remove", "persist"})
+     * @Assert\Count(min = "1")
      */
     protected $stages;
 
@@ -85,7 +85,7 @@ class Program
     public function addStage(\Bpaulin\UpfitBundle\Entity\Stage $stages)
     {
         $this->stages[] = $stages;
-
+        $stages->setProgram($this);
         return $this;
     }
 

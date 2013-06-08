@@ -23,3 +23,27 @@
 %}
 
 {% block h1 %}Program <small>{{ entity.name }}</small>{% endblock %}
+
+{% block javascripts %}
+    {# javascripts '@jquery_ui_js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts #}
+    {% javascripts
+        '@BpaulinUpfitBundle/Resources/public/js/collections.js'
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <script>
+    $().ready(function(){
+        $('#bpaulin_upfitbundle_programtype_stages').collectionForm(
+            {
+                "addTagLink" : '<a href="#" class="btn btn-success btn-small add__link"><i class="icon-plus"></i>{% trans %}Add a stage{% endtrans %}</a>',
+                "delTagLink" : '<a href="#" class="btn btn-danger btn-small" ><i class="icon-remove"></i>{% trans %}Remove this stage{% endtrans %}</a>',
+                "sortable" : false,
+                "positionField" : 'input:first',
+                "sortLink" : '<span class="label label-info label-sort"><i class="icon-move icon-white"></i> {% trans %}sort{% endtrans %}</span>'
+            }
+        );
+    });
+  </script>
+{% endblock %}

@@ -11,9 +11,19 @@ class StageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('order')
-            ->add('exercise')
-            ->add('program');
+            ->add('position')
+            ->add(
+                'exercise',
+                null,
+                array(
+                    'property'=> 'name'
+                )
+            )
+            ->add('sets')
+            ->add('number')
+            ->add('unit')
+            ->add('difficulty')
+            ->add('difficultyUnit');
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

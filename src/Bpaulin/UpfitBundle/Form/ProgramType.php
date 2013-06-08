@@ -11,7 +11,16 @@ class ProgramType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name');
+            ->add('name')
+            ->add(
+                'stages',
+                'collection',
+                array(
+                    'type' => new StageType(),
+                    'allow_add'    => true,
+                    'by_reference' => false,
+                )
+            );
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

@@ -1,4 +1,3 @@
-@wip
 Feature: program management
   In order to manage programs
   As an administator
@@ -37,15 +36,22 @@ Scenario: Administrator can update programs
   And I should see a link to program "program3"
   And I should not see a link to program "program1"
 
+@wip @javascript
 Scenario: Administrator can create programs
   Given I am on "/admin/program"
   Then I should see a link to create program
   When I follow this link
   And I fill in "program" form with the following:
-    | name |  |
-  And I press "Create"
-  And I fill in "program" form with the following:
     | name | program4 |
+  And I follow "Add a stage"
+  And I fill in last stage form with the following:
+    | exercise | pushup |
+    | position | 1 |
+    | sets | 1 |
+    | number | 1 |
+    | unit | 1 |
+    | difficulty | 1 |
+    | difficultyUnit | 1 |
   And I press "Create"
   Then I should be on "/admin/program"
   And I should see a "success" message "program program4 created"
