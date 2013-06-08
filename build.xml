@@ -161,4 +161,65 @@
             depends="report:mess,report:test">
     </target>
 
+    <target name="base:test:drop">
+        <SymfonyConsole command="doctrine:database:drop">
+            <arg value="--env=test"/>
+            <arg value="--force"/>
+        </SymfonyConsole>
+    </target>
+
+    <target name="base:test:create">
+        <SymfonyConsole command="doctrine:database:create" checkreturn="true">
+            <arg value="--env=test"/>
+        </SymfonyConsole>
+    </target>
+
+    <target name="base:test:update">
+        <SymfonyConsole command="doctrine:schema:update" checkreturn="true">
+            <arg value="--env=test"/>
+            <arg value="--force"/>
+        </SymfonyConsole>
+    </target>
+
+    <target name="base:test:fill">
+        <SymfonyConsole command="doctrine:fixtures:load" checkreturn="true">
+            <arg value="--env=test"/>
+            <arg value="--no-interaction"/>
+            <arg value="--fixtures=${dir.bundle}/DataFixtures/ORM/Test"/>
+        </SymfonyConsole>
+    </target>
+
+    <target name="base:test:reset"
+            depends="base:test:drop,base:test:create,base:test:update,base:test:fill"/>
+
+    <target name="base:dev:drop">
+        <SymfonyConsole command="doctrine:database:drop">
+            <arg value="--env=dev"/>
+            <arg value="--force"/>
+        </SymfonyConsole>
+    </target>
+
+    <target name="base:dev:create">
+        <SymfonyConsole command="doctrine:database:create" checkreturn="true">
+            <arg value="--env=dev"/>
+        </SymfonyConsole>
+    </target>
+
+    <target name="base:dev:update">
+        <SymfonyConsole command="doctrine:migrations:migrate" checkreturn="true">
+            <arg value="--env=dev"/>
+            <arg value="--no-interaction"/>
+        </SymfonyConsole>
+    </target>
+
+    <target name="base:dev:fill">
+        <SymfonyConsole command="doctrine:fixtures:load" checkreturn="true">
+            <arg value="--env=dev"/>
+            <arg value="--no-interaction"/>
+            <arg value="--fixtures=${dir.bundle}/DataFixtures/ORM/Dev"/>
+        </SymfonyConsole>
+    </target>
+
+    <target name="base:dev:reset"
+            depends="base:dev:drop,base:dev:create,base:dev:update,base:dev:fill"/>
 </project>
