@@ -1,3 +1,4 @@
+@wip
 Feature: Exercise management
   In order to manage exercises
   As an administator
@@ -5,34 +6,35 @@ Feature: Exercise management
 
 Background:
   Given I am admin
-  And an exercise named "exercise1"
-  And an exercise named "exercise2"
 
 Scenario: Administrator can read exercises
   Given I am on "admin" homepage
   Then I should see a link to "/admin/exercise" in "actions" area
   When I follow this link
   Then I should see a link to following exercises
-    | exercise |
+    | exercise  |
     | exercise1 |
     | exercise2 |
+    | exercise3 |
+    | exercise4 |
+    | exercise5 |
   When I follow this link
   Then I should see a link to "/admin/exercise"
+  And I should see "exercise5" as "name"
 
 Scenario: Administrator can update exercises
   Given I am on exercise "exercise1" page
   Then I should see a link to edit exercise "exercise1"
   When I follow this link
   And I fill in "exercise" form with the following:
-    | name |  |
-  And I press "Edit"
-  And I fill in "exercise" form with the following:
-    | name | exercise3 |
+    | name | exercise6 |
   And I press "Edit"
   Then I should be on "/admin/exercise"
-  And I should see a "success" message "Exercise exercise3 updated"
-  And I should see a link to exercise "exercise3"
+  And I should see a "success" message "Exercise exercise6 updated"
   And I should not see a link to exercise "exercise1"
+  And I should see a link to exercise "exercise6"
+  When I follow this link
+  Then I should see "exercise6" as "name"
 
 Scenario: Administrator can create exercises
   Given I am on "/admin/exercise"
@@ -42,20 +44,22 @@ Scenario: Administrator can create exercises
     | name |  |
   And I press "Create"
   And I fill in "exercise" form with the following:
-    | name | exercise4 |
+    | name | exercise7 |
   And I press "Create"
   Then I should be on "/admin/exercise"
-  And I should see a "success" message "Exercise exercise4 created"
-  And I should see a link to exercise "exercise4"
+  And I should see a "success" message "Exercise exercise7 created"
+  And I should see a link to exercise "exercise7"
+  When I follow this link
+  Then I should see "exercise7" as "name"
 
 Scenario: Administrator can delete exercises
-  Given I am on exercise "exercise1" page
-  Then I should see a link to delete exercise "exercise1"
+  Given I am on exercise "exercise2" page
+  Then I should see a link to delete exercise "exercise2"
   When I follow this link
   And I press "Delete"
   Then I should be on "/admin/exercise"
-  And I should see a "success" message "Exercise exercise1 deleted"
-  And I should not see a link to exercise "exercise1"
+  And I should see a "success" message "Exercise exercise2 deleted"
+  And I should not see a link to exercise "exercise2"
 
 
 

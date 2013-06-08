@@ -8,7 +8,7 @@ default:
             base_url: 'http://localhost:8000/app_dev.php'
             selenium2: ~
         VIPSoft\DoctrineDataFixturesExtension\Extension:
-              lifetime:    scenario
+              lifetime:    feature
               autoload:    true
               directories: ~
               fixtures:    ~

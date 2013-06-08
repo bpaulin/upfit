@@ -239,4 +239,12 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
     {
         return new Step\Then("I should see \"$texte\" in the \"#notification-area .alert-$type\" element");
     }
+
+    /**
+     * @Given /^I should see "([^"]*)" as "([^"]*)"$/
+     */
+    public function iShouldSeeAs($value, $label)
+    {
+        return new Step\Then("the \".record_properties dd.$label\" element should contain \"$value\"");
+    }
 }

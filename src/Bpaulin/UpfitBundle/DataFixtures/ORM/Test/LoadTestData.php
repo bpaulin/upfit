@@ -1,6 +1,6 @@
 <?php
 
-namespace Bpaulin\UpfitBundle\DataFixtures\ORM;
+namespace Bpaulin\UpfitBundle\DataFixtures\ORM\Test;
 
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -13,7 +13,7 @@ use Bpaulin\UpfitBundle\Entity\Stage;
 use Bpaulin\UpfitBundle\Entity\Club;
 use Bpaulin\UpfitBundle\Entity\Member;
 
-class LoadDemoData implements FixtureInterface, ContainerAwareInterface
+class LoadTestData implements FixtureInterface, ContainerAwareInterface
 {
     /**
      * @var ContainerInterface
@@ -46,6 +46,33 @@ class LoadDemoData implements FixtureInterface, ContainerAwareInterface
             ->setEnabled(true);
         $userManager->updateUser($admin, true);
 
-        $userClub1 = $userManager->createUser();
+        $exercises = array();
+        for ($i=1; $i < 6; $i++) {
+            $exercise = new Exercise();
+            $exercise->setName("exercise$i");
+            $manager->persist($exercise);
+            $exercises[$i] = $exercise;
+        }
+        $manager->flush();
+
+        $programs = array();
+        for ($i=1; $i < 6; $i++) {
+            $program = new Program();
+            $program->setName("program$i");
+            for ($j=1; $j < 6; $j++) {
+                $stage = new Stage();
+                $stage->setExercise($exercises[$j])
+                    ->setPosition($j)
+                    ->setSets($j)
+                    ->setnumber($j)
+                    ->setUnit($j)
+                    ->setDifficulty($j)
+                    ->setDifficultyUnit($j);
+                $program->addStage($stage);
+            }
+            $manager->persist($program);
+            $programs[$i] = $program;
+        }
+        $manager->flush();
     }
 }

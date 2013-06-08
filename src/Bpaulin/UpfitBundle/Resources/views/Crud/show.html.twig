@@ -3,8 +3,8 @@
 {% block content -%}
     <dl class="record_properties">
         {% for label, value in fields %}
-            <dt>{{ label }}</dt>
-            <dd>{{ value }}</dd>
+            <dt class="{{ label }}">{{ label }}</dt>
+            <dd class="{{ label }}">{{ value }}</dd>
         {% endfor %}
     </dl>
 {% endblock %}
