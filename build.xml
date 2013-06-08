@@ -30,6 +30,15 @@
         </exec>
     </target>
 
+    <target name="check:mess">
+        <exec executable="${path.php}" passthru="true" checkreturn="false">
+            <arg value="${path.phpmd}"/>
+            <arg path="${dir.src}"/>
+            <arg value="text"/>
+            <arg value="codesize,unusedcode,naming,design,controversial"/>
+        </exec>
+    </target>
+
     <target name="check:lint"
             depends="check:lint:twig,check:lint:php">
     </target>
@@ -74,14 +83,6 @@
         </SymfonyConsole>
     </target>
 
-    <target name="demo"
-            depends="prod:test">
-        <exec executable="${path.php}" passthru="true" checkreturn="true">
-            <arg value="${path.behat}"/>
-            <arg value="--profile=demo"/>
-        </exec>
-    </target>
-
     <target name="check:behat">
         <exec executable="${path.php}" passthru="true" checkreturn="true">
             <arg value="${path.behat}"/>
@@ -103,8 +104,8 @@
             depends="check:lint,check:test,check:behat:wip">
     </target>
 
-    <target name="check:all"
-            depends="check:lint,check:style,check:base,check:test,check:behat">
+    <target name="check"
+            depends="check:lint,check:style,check:mess,check:base,check:test,check:behat">
     </target>
 
     <target name="prod:test">
@@ -116,13 +117,31 @@
         </SymfonyConsole>
     </target>
 
+    <target name="demo"
+            depends="prod:test">
+        <exec executable="${path.php}" passthru="true" checkreturn="true">
+            <arg value="${path.behat}"/>
+            <arg value="--profile=demo"/>
+        </exec>
+    </target>
+
     <target name="report:behat">
         <mkdir dir="${dir.reports.test.behat}" />
-        <exec executable="${path.php}" passthru="true" checkreturn="true">
+        <exec executable="${path.php}" passthru="true">
             <arg value="${path.behat}"/>
             <arg value="--ansi"/>
             <arg value="--expand"/>
             <arg value="--profile=report"/>
+        </exec>
+    </target>
+
+    <target name="report:mess">
+        <exec executable="${path.php}" passthru="true" checkreturn="false">
+            <arg value="${path.phpmd}"/>
+            <arg path="${dir.src}"/>
+            <arg value="html"/>
+            <arg value="codesize,unusedcode,naming,design,controversial"/>
+            <arg line="--reportfile ${dir.reports}/mess.html"/>
         </exec>
     </target>
 
@@ -139,7 +158,7 @@
     </target>
 
     <target name="report"
-            depends="report:test">
+            depends="report:mess,report:test">
     </target>
 
 </project>

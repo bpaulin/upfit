@@ -30,6 +30,7 @@
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "dev-master",
+        "phpmd/phpmd" : "1.4.*",
         "phpunit/phpunit": "3.7.*",
         "behat/behat":  "2.4.*@dev",
         "behat/mink":   "1.4.*@dev",
