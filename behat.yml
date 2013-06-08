@@ -23,7 +23,7 @@ report:
         parameters:
             output_path: null,build/reports/test/behat,build/reports/test/behat/index.html
 
-ci:
+headless:
     filters:
         tags: "~@javascript"
     formatter:

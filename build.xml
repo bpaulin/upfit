@@ -91,6 +91,15 @@
         </exec>
     </target>
 
+    <target name="check:behat:headless">
+        <exec executable="${path.php}" passthru="true" checkreturn="true">
+            <arg value="${path.behat}"/>
+            <arg value="--ansi"/>
+            <arg value="--expand"/>
+            <arg value="--profile=headless"/>
+        </exec>
+    </target>
+
     <target name="check:behat:wip">
         <exec executable="${path.php}" passthru="true" checkreturn="true">
             <arg value="${path.behat}"/>
@@ -111,8 +120,16 @@
         </exec>
     </target>
 
+    <target name="check:common"
+            depends="base:test:reset,check:lint,check:style,check:mess,check:base,check:test,check:behat:headless">
+    </target>
+
+    <target name="check:headless"
+            depends="check:common,check:behat:headless">
+    </target>
+
     <target name="check"
-            depends="base:test:reset,check:lint,check:style,check:mess,check:base,check:test,check:behat">
+            depends="check:common,check:behat">
     </target>
 
     <target name="prod:test">
@@ -150,6 +167,7 @@
             <arg value="${path.phpunit}"/>
             <arg value="--testdox-html=${dir.reports.test}/testdox.html"/>
             <arg value="--log-junit=${dir.reports.test}/phpunit.xml"/>
+            <arg value="--coverage-text"/>
             <arg value="--coverage-clover=${dir.reports.test}/clover.xml"/>
             <arg value="--coverage-html=${dir.reports.test}/coverage"/>
             <arg value="--configuration=app"/>
