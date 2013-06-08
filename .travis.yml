@@ -11,7 +11,7 @@ matrix:
 
 before_script:
     - wget http://getcomposer.org/composer.phar
-    - php composer.phar install -n
+    - php composer.phar install --no-dev -n
     - ./bin/phing base:test:reset
 
 script: ./bin/phing check:headless
