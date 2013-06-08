@@ -63,6 +63,7 @@
 
     <target name="check:base:schema">
         <SymfonyConsole checkreturn="true" command="doctrine:schema:validate">
+            <arg value="--env=test"/>
         </SymfonyConsole>
     </target>
 
