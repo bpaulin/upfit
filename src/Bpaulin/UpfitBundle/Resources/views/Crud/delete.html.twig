@@ -3,6 +3,9 @@
     <form action="{{ action }}" method="post">
         <input type="hidden" name="_method" value="DELETE" />
         {{ form_widget(delete_form) }}
-        <button type="submit">Delete</button>
+        <button type="submit" class="btn btn-danger">
+            <i class="icon-minus"></i>
+            Delete
+        </button>
     </form>
 {% endblock %}

@@ -1,7 +1,7 @@
 <ul class="breadcrumb">
     {% if breadcrumbs is defined %}
         <li>
-            <a href="{{app.request.baseurl}}"><i class="icon-home"></i></a>
+            <a href="{{path('upfit_index')}}"><i class="icon-home"></i></a>
             <span class="divider">/</span>
         </li>
         {% for label, route in breadcrumbs %}
