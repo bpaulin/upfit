@@ -104,8 +104,15 @@
             depends="check:lint,check:test,check:behat:wip">
     </target>
 
+    <target name="check:visual">
+        <exec executable="${path.php}" passthru="true" checkreturn="true">
+            <arg value="${path.behat}"/>
+            <arg value="--profile=demo"/>
+        </exec>
+    </target>
+
     <target name="check"
-            depends="check:lint,check:style,check:mess,check:base,check:test,check:behat">
+            depends="base:test:reset,check:lint,check:style,check:mess,check:base,check:test,check:behat">
     </target>
 
     <target name="prod:test">
@@ -115,14 +122,6 @@
         <SymfonyConsole command="cache:clear">
             <arg value="--env=prod"/>
         </SymfonyConsole>
-    </target>
-
-    <target name="demo"
-            depends="prod:test">
-        <exec executable="${path.php}" passthru="true" checkreturn="true">
-            <arg value="${path.behat}"/>
-            <arg value="--profile=demo"/>
-        </exec>
     </target>
 
     <target name="report:behat">
@@ -158,7 +157,7 @@
     </target>
 
     <target name="report"
-            depends="report:mess,report:test">
+            depends="base:test:reset,report:mess,report:test">
     </target>
 
     <target name="base:test:drop">

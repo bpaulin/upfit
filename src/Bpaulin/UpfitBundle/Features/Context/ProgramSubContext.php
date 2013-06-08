@@ -90,6 +90,9 @@ class ProgramSubContext extends BehatContext
     {
         $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
         $program = $em->getRepository('BpaulinUpfitBundle:Program')->findOneByName($name);
+        if (!$program) {
+            throw new \Exception('program not found');
+        }
         return new Step\Then("I should see a link to \"/admin/program/".$program->getId()."\"");
     }
 
