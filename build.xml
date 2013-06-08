@@ -53,7 +53,7 @@
     </target>
 
     <target name="check:base:schema">
-        <SymfonyConsole command="doctrine:schema:validate">
+        <SymfonyConsole checkreturn="true" command="doctrine:schema:validate">
         </SymfonyConsole>
     </target>
 

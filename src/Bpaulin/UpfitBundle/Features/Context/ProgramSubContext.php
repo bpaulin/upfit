@@ -40,7 +40,6 @@ class ProgramSubContext extends BehatContext
         $className = $em->getRepository('BpaulinUpfitBundle:Stage')->getClassName();
 
         $hash = $table->getHash();
-        $steps  = array();
         foreach ($hash as $position => $row) {
             $exercise = $this->getMainContext()->getSubcontext('exercise')->anExerciseNamed($row['exercise']);
 
@@ -72,7 +71,7 @@ class ProgramSubContext extends BehatContext
     }
 
     /**
-     * @Then /^I should see a link to following programs$/
+     * @Then /^I should see a link to following programs:$/
      */
     public function iShouldSeeALinkToFollowingPrograms(TableNode $table)
     {
@@ -145,5 +144,20 @@ class ProgramSubContext extends BehatContext
         foreach ($table->getRowsHash() as $field => $value) {
             $this->getMainContext()->fillField($form.$field, $value);
         }
+    }
+
+    /**
+     * @Given /^I should see the following stages:$/
+     */
+    public function iShouldSeeTheFollowingStages(TableNode $table)
+    {
+        $hash = $table->getHash();
+        $steps  = array();
+        foreach ($hash as $position => $row) {
+            $steps[] = new Step\Then(
+                "the \".record_properties dd.stages\" element should contain \"".$row['stages']."\""
+            );
+        }
+        return $steps;
     }
 }

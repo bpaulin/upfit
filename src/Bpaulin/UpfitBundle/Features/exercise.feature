@@ -1,4 +1,3 @@
-@wip
 Feature: Exercise management
   In order to manage exercises
   As an administator
@@ -11,7 +10,7 @@ Scenario: Administrator can read exercises
   Given I am on "admin" homepage
   Then I should see a link to "/admin/exercise" in "actions" area
   When I follow this link
-  Then I should see a link to following exercises
+  Then I should see a link to following exercises:
     | exercise  |
     | exercise1 |
     | exercise2 |

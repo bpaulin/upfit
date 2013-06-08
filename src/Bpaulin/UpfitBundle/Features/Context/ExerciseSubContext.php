@@ -43,7 +43,7 @@ class ExerciseSubContext extends BehatContext
     }
 
     /**
-     * @Then /^I should see a link to following exercises$/
+     * @Then /^I should see a link to following exercises:$/
      */
     public function iShouldSeeALinkToFollowingExercises(TableNode $table)
     {

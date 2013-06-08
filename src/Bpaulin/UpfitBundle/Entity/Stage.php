@@ -23,7 +23,7 @@ class Stage
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Exercise")
+     * @ORM\ManyToOne(targetEntity="Exercise", inversedBy="stages")
      */
     protected $exercise;
 
@@ -48,7 +48,7 @@ class Stage
     protected $number;
 
     /**
-     * @ORM\Column(type="smallint")
+     * @ORM\Column(type="string", type="string", length=20 )
      */
     protected $unit;
 
@@ -58,7 +58,7 @@ class Stage
     protected $difficulty;
 
     /**
-     * @ORM\Column(type="smallint")
+     * @ORM\Column(type="string", type="string", length=20 )
      */
     protected $difficultyUnit;
 
@@ -213,7 +213,7 @@ class Stage
     /**
      * Set difficulty
      *
-     * @param integer $difficulty
+     * @param string $difficulty
      * @return Stage
      */
     public function setDifficulty($difficulty)
@@ -226,7 +226,7 @@ class Stage
     /**
      * Get difficulty
      *
-     * @return integer
+     * @return string
      */
     public function getDifficulty()
     {
@@ -236,7 +236,7 @@ class Stage
     /**
      * Set difficultyUnit
      *
-     * @param integer $difficultyUnit
+     * @param string $difficultyUnit
      * @return Stage
      */
     public function setDifficultyUnit($difficultyUnit)
@@ -249,7 +249,7 @@ class Stage
     /**
      * Get difficultyUnit
      *
-     * @return integer
+     * @return string
      */
     public function getDifficultyUnit()
     {

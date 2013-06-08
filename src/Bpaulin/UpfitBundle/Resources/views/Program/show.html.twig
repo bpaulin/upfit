@@ -29,11 +29,23 @@
         },
     }
 %}
+{% import _self as macros %}
 {%
     set fields = {
-        'Id' : entity.id,
-        'Name' : entity.name,
+        'id' : entity.id,
+        'name' : entity.name,
+        'stages' : macros.stagesList(entity),
     }
 %}
 
 {% block h1 %}Program <small>{{ entity.name }}</small>{% endblock %}
+
+{% macro stagesList(program) %}
+    <ol>
+        {% for stage in program.stages %}
+            <li>
+                {{ stage.exercise.name }} ({{ stage.sets }}*{{ stage.number }} {{ stage.unit }} with {{ stage.difficulty }} {{ stage.difficultyUnit }})
+            </li>
+        {% endfor %}
+    </ol>
+{% endmacro %}

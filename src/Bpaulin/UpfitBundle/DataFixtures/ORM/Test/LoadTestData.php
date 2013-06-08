@@ -64,7 +64,7 @@ class LoadTestData implements FixtureInterface, ContainerAwareInterface
                 $stage->setExercise($exercises[$j])
                     ->setPosition($j)
                     ->setSets($j)
-                    ->setnumber($j)
+                    ->setNumber($j)
                     ->setUnit($j)
                     ->setDifficulty($j)
                     ->setDifficultyUnit($j);
