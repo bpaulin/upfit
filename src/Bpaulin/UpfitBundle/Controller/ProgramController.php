@@ -180,7 +180,7 @@ class ProgramController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function deleteAction(Request $request, Program $entity)
+    public function deleteAction(Program $entity)
     {
         $deleteForm = $this->createDeleteForm($entity->getId());
 

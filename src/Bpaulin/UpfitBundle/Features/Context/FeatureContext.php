@@ -63,52 +63,17 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
         return $this->kernel;
     }
 
-    /** @beforeScenario */
-    public function setup($event)
-    {
-
-        // $em = $this->kernel->getContainer()->get('doctrine')->getManager();
-        // $em->getConnection()->query(
-        //     'START TRANSACTION;SET FOREIGN_KEY_CHECKS=0; TRUNCATE TABLE exercise; SET FOREIGN_KEY_CHECKS=1; COMMIT;'
-        // );
-        // $em->getConnection()->query(
-        //     'START TRANSACTION;SET FOREIGN_KEY_CHECKS=0; TRUNCATE TABLE program; SET FOREIGN_KEY_CHECKS=1; COMMIT;'
-        // );
-
-        // $userManager = $this->kernel->getContainer()->get('fos_user.user_manager');
-
-        // // Pour récupérer la liste de tous les utilisateurs
-        // foreach ($userManager->findUsers() as $user) {
-        //     // Pour supprimer un utilisateur
-        //     $userManager->deleteUser($user);
-        // };
-        // $application = new Application($this->kernel);
-        // $application->run(
-        //     new ArrayInput(
-        //         array(
-        //             'command' => 'doctrine:fixtures:load',
-        //             '--no-interaction' => null,
-        //         )
-        //     )
-        // );
-    }
-
-    /** @AfterScenario */
-    public function teardown($event)
-    {
-    }
-
     /**
      * @Given /^a administrator named "([^"]*)"$/
      */
-    public function aAdministratorNamed($arg1)
+    public function aAdministratorNamed($name)
     {
         $userManager = $this->kernel->getContainer()->get('fos_user.user_manager');
 
         $user = $userManager->createUser();
-        $user->setUsername("admin")
-            ->setEmail("admin@upfit.com")
-            ->setPlainPassword("admin")
+        $user->setUsername($name)
+            ->setEmail("$name@upfit.com")
+            ->setPlainPassword($name)
             ->setRoles(array('ROLE_ADMIN'))
             ->setEnabled(true);
 
@@ -118,14 +83,14 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
     /**
      * @Given /^a member named "([^"]*)"$/
      */
-    public function aMemberNamed($arg1)
+    public function aMemberNamed($name)
     {
         $userManager = $this->kernel->getContainer()->get('fos_user.user_manager');
 
         $user = $userManager->createUser();
-        $user->setUsername("member")
-            ->setEmail("member@upfit.com")
-            ->setPlainPassword("member")
+        $user->setUsername("$name")
+            ->setEmail("$name@upfit.com")
+            ->setPlainPassword("$name")
             ->setRoles(array('ROLE_USER'))
             ->setEnabled(true);
 

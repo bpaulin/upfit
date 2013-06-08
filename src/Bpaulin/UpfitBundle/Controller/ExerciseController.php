@@ -180,7 +180,7 @@ class ExerciseController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function deleteAction(Request $request, Exercise $entity)
+    public function deleteAction(Exercise $entity)
     {
         $deleteForm = $this->createDeleteForm($entity->getId());
 

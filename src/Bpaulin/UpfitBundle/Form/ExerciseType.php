@@ -8,6 +8,9 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class ExerciseType extends AbstractType
 {
+    /** 
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder

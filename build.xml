@@ -31,11 +31,11 @@
     </target>
 
     <target name="check:mess">
-        <exec executable="${path.php}" passthru="true" checkreturn="false">
+        <exec executable="${path.php}" passthru="true" checkreturn="true">
             <arg value="${path.phpmd}"/>
             <arg path="${dir.src}"/>
             <arg value="text"/>
-            <arg value="codesize,unusedcode,naming,design,controversial"/>
+            <arg value="app/phpmd_rules.xml"/>
         </exec>
     </target>
 

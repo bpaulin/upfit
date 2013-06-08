@@ -153,7 +153,7 @@ class ProgramSubContext extends BehatContext
     {
         $hash = $table->getHash();
         $steps  = array();
-        foreach ($hash as $position => $row) {
+        foreach ($hash as $row) {
             $steps[] = new Step\Then(
                 "the \".record_properties dd.stages\" element should contain \"".$row['stages']."\""
             );
