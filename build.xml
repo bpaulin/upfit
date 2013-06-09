@@ -88,6 +88,7 @@
         <exec executable="${path.php}" passthru="true" checkreturn="true">
             <arg value="${path.behat}"/>
             <arg value="--ansi"/>
+            <arg value="--strict"/>
             <arg value="--expand"/>
         </exec>
     </target>
@@ -96,6 +97,7 @@
         <exec executable="${path.php}" passthru="true" checkreturn="true">
             <arg value="${path.behat}"/>
             <arg value="--ansi"/>
+            <arg value="--strict"/>
             <arg value="--expand"/>
             <arg value="--profile=headless"/>
         </exec>
@@ -105,6 +107,7 @@
         <exec executable="${path.php}" passthru="true" checkreturn="true">
             <arg value="${path.behat}"/>
             <arg value="--ansi"/>
+            <arg value="--strict"/>
             <arg value="--expand"/>
             <arg value="--profile=wip"/>
         </exec>
@@ -122,7 +125,7 @@
     </target>
 
     <target name="check:common"
-            depends="base:test:reset,check:lint,check:style,check:mess,check:base,check:test,check:behat:headless">
+            depends="base:test:reset,check:lint,check:style,check:mess,check:base,check:test">
     </target>
 
     <target name="check:headless"
