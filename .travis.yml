@@ -15,7 +15,7 @@ before_script:
     - ./bin/phing base:test:reset
     - "sh -e /etc/init.d/xvfb start"
     - "export DISPLAY=:99.0"
-    - "java -jar java -jar vendor/selenium/standalone-server/selenium-server-standalone-2.*.jar > /dev/null &"
+    - "java -jar vendor/selenium/standalone-server/selenium-server-standalone-2.*.jar > /dev/null &"
     - sleep 5
 
 script: ./bin/phing check
