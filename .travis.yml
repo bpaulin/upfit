@@ -13,5 +13,9 @@ before_script:
     - wget http://getcomposer.org/composer.phar
     - php composer.phar install --prefer-source -n
     - ./bin/phing base:test:reset
+    - "sh -e /etc/init.d/xvfb start"
+    - "export DISPLAY=:99.0"
+    - "sh selenium-server.sh"
+    - sleep 5
 
-script: ./bin/phing check:headless
+script: ./bin/phing check
