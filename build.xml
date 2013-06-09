@@ -75,15 +75,6 @@
         </exec>
     </target>
 
-    <target name="prod:test">
-        <SymfonyConsole command="assetic:dump">
-            <arg value="--env=prod"/>
-        </SymfonyConsole>
-        <SymfonyConsole command="cache:clear">
-            <arg value="--env=prod"/>
-        </SymfonyConsole>
-    </target>
-
     <target name="check:behat">
         <exec executable="${path.php}" passthru="true" checkreturn="true">
             <arg value="${path.behat}"/>
