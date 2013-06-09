@@ -1,7 +1,6 @@
 language: php
 
 php:
-  - 5.3
   - 5.4
   - 5.5
 
@@ -12,6 +11,7 @@ matrix:
 before_script:
     - wget http://getcomposer.org/composer.phar
     - php composer.phar install --prefer-source -n
+    - "php app/console server:run > /dev/null &"
     - ./bin/phing base:test:reset
     - "sh -e /etc/init.d/xvfb start"
     - "export DISPLAY=:99.0"
