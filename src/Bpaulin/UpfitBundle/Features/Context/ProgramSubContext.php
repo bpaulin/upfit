@@ -163,4 +163,13 @@ class ProgramSubContext extends BehatContext
         }
         return $steps;
     }
+
+    /**
+     * @Given /^I follow "([^"]*)" for stage "([^"]*)"$/
+     */
+    public function iFollowForStage($arg1, $arg2)
+    {
+        throw new PendingException();
+    }
+
 }

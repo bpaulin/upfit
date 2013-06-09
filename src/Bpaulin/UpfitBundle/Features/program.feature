@@ -1,4 +1,3 @@
-@wip
 Feature: program management
   In order to manage programs
   As an administator
@@ -78,6 +77,7 @@ Scenario: Administrator can delete programs
   And I should see a "success" message "program program2 deleted"
   And I should not see a link to program "program2"
 
+@javascript @wip
 Scenario: Administrator can delete stage
   Given I am on program "program3" page
   Then I should see a link to edit program "program3"
