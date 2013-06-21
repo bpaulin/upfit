@@ -127,10 +127,32 @@ class ProgramController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+
+        $originalStages = array();
+
+        // Create an array of the current Stage objects in the database
+        foreach ($entity->getStages() as $stage) {
+            $originalStages[] = $stage;
+        }
+
         $editForm = $this->createForm(new ProgramType(), $entity);
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
+            // filter $originalStages to contain stages no longer present
+            foreach ($entity->getStages() as $stage) {
+                foreach ($originalStages as $key => $toDel) {
+                    if ($toDel->getId() === $stage->getId()) {
+                        unset($originalStages[$key]);
+                    }
+                }
+            }
+
+            // remove the relationship between the stage and the Task
+            foreach ($originalStages as $stage) {
+                $em->remove($stage);
+            }
+
             $em = $this->getDoctrine()->getManager();
 
             $em->persist($entity);

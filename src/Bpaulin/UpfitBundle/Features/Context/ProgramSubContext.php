@@ -5,6 +5,7 @@ namespace Bpaulin\UpfitBundle\Features\Context;
 use Behat\Behat\Context\BehatContext;
 use Behat\Gherkin\Node\TableNode;
 use Behat\Behat\Context\Step;
+use Behat\Behat\Exception\PendingException;
 
 class ProgramSubContext extends BehatContext
 {
@@ -165,11 +166,27 @@ class ProgramSubContext extends BehatContext
     }
 
     /**
-     * @Given /^I follow "([^"]*)" for stage "([^"]*)"$/
+     * @Given /^I should not see the following stages:$/
      */
-    public function iFollowForStage($arg1, $arg2)
+    public function iShouldNotSeeTheFollowingStages(TableNode $table)
     {
-        throw new PendingException();
+        $hash = $table->getHash();
+        $steps  = array();
+        foreach ($hash as $row) {
+            $steps[] = new Step\Then(
+                "the \".record_properties dd.stages\" element should not contain \"".$row['stages']."\""
+            );
+        }
+        return $steps;
     }
 
+    /**
+     * @Given /^I click delete on stage "([^"]*)"$/
+     */
+    public function iClickDeleteOnStage($indexStage)
+    {
+        $stages = $this->getMainContext()->getSession()->getPage()->findAll('css', '.sf2fc-item');
+        $stage = $stages[$indexStage];
+        $stage->find('css', 'a')->click();
+    }
 }

@@ -82,7 +82,7 @@ Scenario: Administrator can delete stage
   Given I am on program "program3" page
   Then I should see a link to edit program "program3"
   When I follow this link
-  And I follow "Delete this stage" for stage "2"
+  And I click delete on stage "2"
   And I press "Edit"
   Then I should be on "/admin/program"
   And I should see a "success" message "program program3 updated"
@@ -90,8 +90,11 @@ Scenario: Administrator can delete stage
   When I follow this link
   Then I should see "program3" as "name"
   And I should see the following stages:
-  | stages |
+    | stages |
     | exercise1 (1*1 1 with 1 1) |
     | exercise2 (2*2 2 with 2 2) |
     | exercise4 (4*4 4 with 4 4) |
     | exercise5 (5*5 5 with 5 5) |
+  And I should not see the following stages:
+    | stages |
+    | exercise3 (3*3 3 with 3 3) |

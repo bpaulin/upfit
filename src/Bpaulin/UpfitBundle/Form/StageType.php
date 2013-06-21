@@ -8,7 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class StageType extends AbstractType
 {
-    /** 
+    /**
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -26,7 +26,8 @@ class StageType extends AbstractType
             ->add('number')
             ->add('unit')
             ->add('difficulty')
-            ->add('difficultyUnit');
+            ->add('difficultyUnit')
+            ;
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
