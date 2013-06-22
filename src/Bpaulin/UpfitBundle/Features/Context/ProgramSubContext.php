@@ -187,6 +187,14 @@ class ProgramSubContext extends BehatContext
     {
         $stages = $this->getMainContext()->getSession()->getPage()->findAll('css', '.sf2fc-item');
         $stage = $stages[$indexStage];
-        $stage->find('css', 'a')->click();
+        $stage->find('css', '.sf2fc-remove')->click();
+    }
+
+    /**
+     * @Given /^I click on add a stage$/
+     */
+    public function iClickOnAddAStage()
+    {
+        $this->getMainContext()->getSession()->getPage()->find('css', '.sf2fc-add')->click();
     }
 }

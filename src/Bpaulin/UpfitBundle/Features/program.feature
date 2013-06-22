@@ -42,14 +42,14 @@ Scenario: Administrator can update programs
   When I follow this link
   Then I should see "program6" as "name"
 
-@javascript
+@javascript @wip
 Scenario: Administrator can create programs
   Given I am on "/admin/program"
   Then I should see a link to create program
   When I follow this link
   And I fill in "program" form with the following:
     | name | program7 |
-  And I follow "Add a stage"
+  And I click on add a stage
   And I fill in last stage form with the following:
     | exercise       | exercise1   |
     | position       | 1           |
@@ -77,7 +77,7 @@ Scenario: Administrator can delete programs
   And I should see a "success" message "program program2 deleted"
   And I should not see a link to program "program2"
 
-@javascript @wip
+@javascript
 Scenario: Administrator can delete stage
   Given I am on program "program3" page
   Then I should see a link to edit program "program3"

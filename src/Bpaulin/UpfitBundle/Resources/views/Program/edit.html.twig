@@ -29,6 +29,7 @@
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts #}
     {% javascripts
+        '../vendor/jquery-ui/js/jquery-ui.js'
         '@BpaulinUpfitBundle/Resources/public/js/collections.js'
     %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
@@ -37,9 +38,11 @@
     $().ready(function(){
         $('#bpaulin_upfitbundle_programtype_stages').sf2FormCollection(
             {
-              'addItem': '<a class="btn btn-success" href="#">Add a stage</a>',
-              'removeItem': '<a class="btn btn-danger" href="#">Remove this item</a>',
-              'tokenIndex': '__name__'
+              'addItem': '<span class="btn btn-success btn-small" href="#"><i class="icon-plus"></i> Add a stage</span>',
+              'removeItem': '<span class="btn btn-danger btn-small" href="#"><i class="icon-remove"></i> Remove this stage</span>',
+              'tokenIndex': '__name__',
+              'sortable': true,
+              'sortItem': '<span class="btn btn-info btn-small"><i class="icon-move icon-white"></i> sort</span>',
             }
         );
     });
