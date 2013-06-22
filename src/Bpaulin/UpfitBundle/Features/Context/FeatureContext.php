@@ -64,40 +64,6 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
     }
 
     /**
-     * @Given /^a administrator named "([^"]*)"$/
-     */
-    public function aAdministratorNamed($name)
-    {
-        $userManager = $this->kernel->getContainer()->get('fos_user.user_manager');
-
-        $user = $userManager->createUser();
-        $user->setUsername($name)
-            ->setEmail("$name@upfit.com")
-            ->setPlainPassword($name)
-            ->setRoles(array('ROLE_ADMIN'))
-            ->setEnabled(true);
-
-        $userManager->updateUser($user, true);
-    }
-
-    /**
-     * @Given /^a member named "([^"]*)"$/
-     */
-    public function aMemberNamed($name)
-    {
-        $userManager = $this->kernel->getContainer()->get('fos_user.user_manager');
-
-        $user = $userManager->createUser();
-        $user->setUsername("$name")
-            ->setEmail("$name@upfit.com")
-            ->setPlainPassword("$name")
-            ->setRoles(array('ROLE_USER'))
-            ->setEnabled(true);
-
-        $userManager->updateUser($user, true);
-    }
-
-    /**
      * @Then /^I should see a link to "([^"]*)"$/
      */
     public function iShouldSeeALinkTo($url)

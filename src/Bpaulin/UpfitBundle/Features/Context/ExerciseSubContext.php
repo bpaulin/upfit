@@ -14,23 +14,6 @@ class ExerciseSubContext extends BehatContext
     }
 
     /**
-     * @Given /^an exercise named "([^"]*)"$/
-     */
-    public function anExerciseNamed($name)
-    {
-        $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
-        $className = $em->getRepository('BpaulinUpfitBundle:Exercise')->getClassName();
-
-        $exercise = new $className;
-        $exercise->setName($name);
-
-        $em->persist($exercise);
-        $em->flush();
-
-        return $exercise;
-    }
-
-    /**
      * @Given /^I am on exercise "([^"]*)" page$/
      */
     public function iAmOnExercisePage($name)
