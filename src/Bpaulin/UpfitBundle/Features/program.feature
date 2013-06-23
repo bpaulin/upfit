@@ -42,7 +42,7 @@ Scenario: Administrator can update programs
   When I follow this link
   Then I should see "program6" as "name"
 
-@javascript @wip
+@javascript
 Scenario: Administrator can create programs
   Given I am on "/admin/program"
   Then I should see a link to create program

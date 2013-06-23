@@ -40,6 +40,19 @@ class ProgramSubContext extends BehatContext
     }
 
     /**
+     * @Then /^I should see a link to consult following programs:$/
+     */
+    public function iShouldSeeALinkToConsultFollowingPrograms(TableNode $table)
+    {
+        $hash = $table->getHash();
+        $steps  = array();
+        foreach ($hash as $row) {
+            $steps[] = new Step\Then("I should see a link to consult program \"".$row['program']."\"");
+        }
+        return $steps;
+    }
+
+    /**
      * @Then /^I should see a link to program "([^"]*)"$/
      */
     public function iShouldSeeALinkToProgram($name)
@@ -50,6 +63,19 @@ class ProgramSubContext extends BehatContext
             throw new \Exception('program not found');
         }
         return new Step\Then("I should see a link to \"/admin/program/".$program->getId()."\"");
+    }
+
+    /**
+     * @Then /^I should see a link to consult program "([^"]*)"$/
+     */
+    public function iShouldSeeALinkToConsultProgram($name)
+    {
+        $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
+        $program = $em->getRepository('BpaulinUpfitBundle:Program')->findOneByName($name);
+        if (!$program) {
+            throw new \Exception('program not found');
+        }
+        return new Step\Then("I should see a link to \"/member/program/".$program->getId()."\"");
     }
 
     /**

@@ -68,12 +68,13 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
      */
     public function iShouldSeeALinkTo($url)
     {
+        $result = $this->assertElementOnPage("a[href$='".$url."']");
         $this->lastLink  = $this->getMink()
                                 ->getSession()
                                 ->getPage()
                                 ->find('css', "a[href$='".$url."']")
                                 ->getAttribute('href');
-        return $this->assertElementOnPage("a[href$='".$url."']");
+        return $result;
     }
 
     /**
@@ -119,13 +120,30 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
     }
 
     /**
+     * @Then /^I should not see a link to any page for "([^"]*)"$/
+     */
+    public function iShouldNotSeeALinkToAnyPageFor($user)
+    {
+        return $this->assertElementNotOnPage("a[href^='/".$user."']");
+    }
+
+
+    /**
      * @Given /^I am admin$/
      */
     public function iAmAdmin()
     {
         return array(
-            // new Step\Given("a administrator named \"admin\""),
             new Step\Given("I am \"admin\"")
+        );
+    }
+    /**
+     * @Given /^I am member$/
+     */
+    public function iAmMember()
+    {
+        return array(
+            new Step\Given("I am \"member\"")
         );
     }
 

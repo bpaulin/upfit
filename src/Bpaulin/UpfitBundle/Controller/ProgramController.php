@@ -13,7 +13,6 @@ use Bpaulin\UpfitBundle\Form\ProgramType;
 /**
  * Program controller.
  *
- * @Route("/admin/program")
  */
 class ProgramController extends Controller
 {
@@ -21,7 +20,8 @@ class ProgramController extends Controller
     /**
      * Lists all Program entities.
      *
-     * @Route("", name="admin_program")
+     * @Route("/admin/program", name="admin_program")
+     * @Route("/member/program", name="member_program")
      * @Method("GET")
      * @Template()
      */
@@ -38,7 +38,7 @@ class ProgramController extends Controller
     /**
      * Creates a new Program entity.
      *
-     * @Route("/", name="admin_program_create")
+     * @Route("/admin/program/", name="admin_program_create")
      * @Method("POST")
      * @Template("BpaulinUpfitBundle:Program:new.html.twig")
      */
@@ -70,7 +70,7 @@ class ProgramController extends Controller
     /**
      * Displays a form to create a new Program entity.
      *
-     * @Route("/new", name="admin_program_new")
+     * @Route("/admin/program/new", name="admin_program_new")
      * @Method("GET")
      * @Template()
      */
@@ -88,7 +88,8 @@ class ProgramController extends Controller
     /**
      * Finds and displays a Program entity.
      *
-     * @Route("/{id}", name="admin_program_show")
+     * @Route("/admin/program/{id}", name="admin_program_show")
+     * @Route("/member/program/{id}", name="member_program_show")
      * @Method("GET")
      * @Template()
      */
@@ -102,7 +103,7 @@ class ProgramController extends Controller
     /**
      * Displays a form to edit an existing Program entity.
      *
-     * @Route("/{id}/edit", name="admin_program_edit")
+     * @Route("/admin/program/{id}/edit", name="admin_program_edit")
      * @Method("GET")
      * @Template()
      */
@@ -119,7 +120,7 @@ class ProgramController extends Controller
     /**
      * Edits an existing Program entity.
      *
-     * @Route("/{id}", name="admin_program_update")
+     * @Route("/admin/program/{id}", name="admin_program_update")
      * @Method("PUT")
      * @Template("BpaulinUpfitBundle:Program:edit.html.twig")
      */
@@ -174,7 +175,7 @@ class ProgramController extends Controller
     /**
      * Deletes a Program entity.
      *
-     * @Route("/{id}", name="admin_program_delete_confirm")
+     * @Route("/admin/program/{id}", name="admin_program_delete_confirm")
      * @Method("DELETE")
      */
     public function confirmDeleteAction(Request $request, Program $entity)
@@ -198,7 +199,7 @@ class ProgramController extends Controller
     /**
      * Deletes a Program entity.
      *
-     * @Route("/{id}/delete", name="admin_program_delete")
+     * @Route("/admin/program/{id}/delete", name="admin_program_delete")
      * @Method("GET")
      * @Template()
      */
