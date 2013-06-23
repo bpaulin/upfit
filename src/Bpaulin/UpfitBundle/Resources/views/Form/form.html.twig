@@ -1,0 +1,61 @@
+{% block form_row %}
+{% spaceless %}
+    <div class="control-group{% if errors|length > 0 %} error{% endif %}">
+            {{ form_label(form, label|default(null), { 'label_attr': { 'class': 'control-label' }}) }}
+        <div class="controls">
+            {{ form_widget(form) }}
+            {{ form_errors(form) }}
+        </div>
+    </div>
+{% endspaceless %}
+{% endblock form_row %}
+
+{% block collection_widget %}
+{% spaceless %}
+    <div class="collection">
+        {% if prototype is defined %}
+            {% set attr = attr|merge({'data-prototype': block('collection_item_widget') }) %}
+        {% endif %}
+        <div {{ block('widget_container_attributes') }}>
+            {{ form_errors(form) }}
+            {% for rows in form %}
+                <span class="form-inline">
+                    {{ form_widget(rows.position) }}
+                    {{ form_widget(rows.exercise, {'attr': {'class': 'span2'}}) }}
+                    (
+                    {{ form_widget(rows.sets, {'attr': {'size': '3', 'style': 'width:auto'}}) }}
+                    *
+                    {{ form_widget(rows.number, {'attr': {'size': '3', 'style': 'width:auto'}}) }}
+                    {{ form_widget(rows.unit, {'attr': {'size': '15', 'style': 'width:auto'}}) }}
+                    with
+                    {{ form_widget(rows.difficulty, {'attr': {'size': '3', 'style': 'width:auto'}}) }}
+                    {{ form_widget(rows.difficultyUnit, {'attr': {'size': '15', 'style': 'width:auto'}}) }}
+                    )
+                    {{ form_rest(rows) }}
+                </span>
+            {% endfor %}
+            {{ form_rest(form) }}
+        </div>
+    </div>
+    <div class="clear"></div>
+{% endspaceless %}
+{% endblock collection_widget %}
+
+{% block collection_item_widget %}
+{% spaceless %}
+    <span class="form-inline">
+        {{ form_widget(prototype.position) }}
+        {{ form_widget(prototype.exercise, {'attr': {'class': 'span2'}}) }}
+        (
+        {{ form_widget(prototype.sets, {'attr': {'size': '3', 'style': 'width:auto'}}) }}
+        *
+        {{ form_widget(prototype.number, {'attr': {'size': '3', 'style': 'width:auto'}}) }}
+        {{ form_widget(prototype.unit, {'attr': {'size': '15', 'style': 'width:auto'}}) }}
+        with
+        {{ form_widget(prototype.difficulty, {'attr': {'size': '3', 'style': 'width:auto'}}) }}
+        {{ form_widget(prototype.difficultyUnit, {'attr': {'size': '15', 'style': 'width:auto'}}) }}
+        )
+        {{ form_rest(prototype) }}
+    </span>
+{% endspaceless %}
+{% endblock collection_item_widget %}

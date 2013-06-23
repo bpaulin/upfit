@@ -1,4 +1,3 @@
-@wip
 Feature: program management
   In order to manage programs
   As an administator
@@ -50,10 +49,9 @@ Scenario: Administrator can create programs
   When I follow this link
   And I fill in "program" form with the following:
     | name | program7 |
-  And I follow "Add a stage"
+  And I click on add a stage
   And I fill in last stage form with the following:
     | exercise       | exercise1   |
-    | position       | 1           |
     | sets           | 5           |
     | number         | 15          |
     | unit           | repetitions |
@@ -78,5 +76,44 @@ Scenario: Administrator can delete programs
   And I should see a "success" message "program program2 deleted"
   And I should not see a link to program "program2"
 
+@javascript
+Scenario: Administrator can delete stage
+  Given I am on program "program3" page
+  Then I should see a link to edit program "program3"
+  When I follow this link
+  And I click delete on stage "2"
+  And I press "Edit"
+  Then I should be on "/admin/program"
+  And I should see a "success" message "program program3 updated"
+  And I should see a link to program "program3"
+  When I follow this link
+  Then I should see "program3" as "name"
+  And I should see the following stages:
+    | stages |
+    | exercise1 (1*1 1 with 1 1) |
+    | exercise2 (2*2 2 with 2 2) |
+    | exercise4 (4*4 4 with 4 4) |
+    | exercise5 (5*5 5 with 5 5) |
+  And I should not see the following stages:
+    | stages |
+    | exercise3 (3*3 3 with 3 3) |
 
-
+@javascript
+Scenario: Administrator can sort stages
+  Given I am on program "program4" page
+  Then I should see a link to edit program "program4"
+  When I follow this link
+  And I drag stage "0" down "2" position
+  And I press "Edit"
+  Then I should be on "/admin/program"
+  And I should see a "success" message "program program4 updated"
+  And I should see a link to program "program4"
+  When I follow this link
+  Then I should see "program4" as "name"
+  And I should see the following stages:
+    | stages |
+    | exercise2 (2*2 2 with 2 2) |
+    | exercise3 (3*3 3 with 3 3) |
+    | exercise1 (1*1 1 with 1 1) |
+    | exercise4 (4*4 4 with 4 4) |
+    | exercise5 (5*5 5 with 5 5) |
