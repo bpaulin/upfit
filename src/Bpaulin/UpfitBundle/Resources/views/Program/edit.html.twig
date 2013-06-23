@@ -45,6 +45,11 @@
               'sortItem': '<span class="btn btn-info btn-small"><i class="icon-move icon-white"></i> sort</span>',
             }
         );
+        $('button[type=submit]').click(function (event) {
+            $('.sf2fc-item').each(function(index) {
+                $(this).find('input[id*=position]').val(index);
+            });
+        });
     });
     </script>
 {% endblock %}

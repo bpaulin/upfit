@@ -137,13 +137,17 @@ class ProgramSubContext extends BehatContext
     public function iShouldSeeTheFollowingStages(TableNode $table)
     {
         $hash = $table->getHash();
-        $steps  = array();
-        foreach ($hash as $row) {
-            $steps[] = new Step\Then(
-                "the \".record_properties dd.stages\" element should contain \"".$row['stages']."\""
-            );
+        $lis = $this->getMainContext()->getMink()
+                                ->getSession()
+                                ->getPage()
+                                ->findAll('css', ".record_properties dd.stages ol li");
+        foreach ($hash as $index => $row) {
+            $element = trim($lis[$index]->getHtml());
+
+            if ($element != $row['stages']) {
+                throw new \Exception($element.' is not expected '.$row['stages']);
+            }
         }
-        return $steps;
     }
 
     /**
@@ -177,5 +181,21 @@ class ProgramSubContext extends BehatContext
     public function iClickOnAddAStage()
     {
         $this->getMainContext()->getSession()->getPage()->find('css', '.sf2fc-add')->click();
+    }
+
+    /**
+     * @Given /^I drag stage "([^"]*)" down "([^"]*)" position$/
+     */
+    public function iDragStageDownPosition($origin, $destination)
+    {
+        $this->getMainContext()->getSession()->executeScript(
+            "
+$.getScript(
+'https://raw.github.com/mattheworiordan/jquery.simulate.drag-sortable.js/master/jquery.simulate.drag-sortable.js',
+    function() {
+  $('.sf2fc-sort').eq($origin).parent().simulateDragSortable({ move: $destination, handle: '.sf2fc-sort'})
+})
+            "
+        );
     }
 }

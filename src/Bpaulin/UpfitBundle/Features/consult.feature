@@ -1,4 +1,3 @@
-@wip
 Feature: members can consult programs
   In order to choose a program
   As an member
@@ -7,7 +6,7 @@ Feature: members can consult programs
 Background:
   Given I am member
 
-Scenario: Memeber can read programs
+Scenario: Member can read programs
   Given I am on "member" homepage
   Then I should see a link to "/member/program" in "actions" area
   When I follow this link

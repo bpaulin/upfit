@@ -98,3 +98,23 @@ Scenario: Administrator can delete stage
   And I should not see the following stages:
     | stages |
     | exercise3 (3*3 3 with 3 3) |
+
+@javascript @wip
+Scenario: Administrator can sort stages
+  Given I am on program "program4" page
+  Then I should see a link to edit program "program4"
+  When I follow this link
+  And I drag stage "0" down "2" position
+  And I press "Edit"
+  Then I should be on "/admin/program"
+  And I should see a "success" message "program program4 updated"
+  And I should see a link to program "program4"
+  When I follow this link
+  Then I should see "program4" as "name"
+  And I should see the following stages:
+    | stages |
+    | exercise2 (2*2 2 with 2 2) |
+    | exercise3 (3*3 3 with 3 3) |
+    | exercise1 (1*1 1 with 1 1) |
+    | exercise4 (4*4 4 with 4 4) |
+    | exercise5 (5*5 5 with 5 5) |

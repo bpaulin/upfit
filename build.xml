@@ -151,7 +151,7 @@
             <arg value="${path.phpmd}"/>
             <arg path="${dir.src}"/>
             <arg value="html"/>
-            <arg value="codesize,unusedcode,naming,design,controversial"/>
+            <arg value="app/phpmd_rules.xml"/>
             <arg line="--reportfile ${dir.reports}/mess.html"/>
         </exec>
     </target>
