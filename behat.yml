@@ -31,7 +31,7 @@ headless:
 
 wip:
     filters:
-        tags: "@wip"
+        tags: "~@skip&&@wip"
     formatter:
         name: pretty
 
