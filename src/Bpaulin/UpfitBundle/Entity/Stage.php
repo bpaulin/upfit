@@ -39,11 +39,13 @@ class Stage
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\Range(min = "0", max = "999")
      */
     protected $sets;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\Range(min = "0", max = "999")
      */
     protected $number;
 
@@ -54,6 +56,7 @@ class Stage
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\Range(min = "0", max = "999")
      */
     protected $difficulty;
 

@@ -20,8 +20,7 @@
             {{ form_errors(form) }}
             {% for rows in form %}
                 <span class="form-inline">
-                    {{ form_widget(rows.position, {'attr': {'size': '3', 'style': 'width:auto'}}) }}
-                    .
+                    {{ form_widget(rows.position) }}
                     {{ form_widget(rows.exercise, {'attr': {'class': 'span2'}}) }}
                     (
                     {{ form_widget(rows.sets, {'attr': {'size': '3', 'style': 'width:auto'}}) }}
@@ -45,8 +44,7 @@
 {% block collection_item_widget %}
 {% spaceless %}
     <span class="form-inline">
-        {{ form_widget(prototype.position, {'attr': {'size': '3', 'style': 'width:auto'}}) }}
-        .
+        {{ form_widget(prototype.position) }}
         {{ form_widget(prototype.exercise, {'attr': {'class': 'span2'}}) }}
         (
         {{ form_widget(prototype.sets, {'attr': {'size': '3', 'style': 'width:auto'}}) }}

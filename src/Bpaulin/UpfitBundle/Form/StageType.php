@@ -14,7 +14,7 @@ class StageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('position')
+            ->add('position', 'hidden')
             ->add(
                 'exercise',
                 null,
@@ -22,10 +22,37 @@ class StageType extends AbstractType
                     'property'=> 'name'
                 )
             )
-            ->add('sets')
-            ->add('number')
+            ->add(
+                'sets',
+                null,
+                array(
+                    'attr' => array(
+                        'min'=> 0,
+                        'max'=> 999,
+                    )
+                )
+            )
+            ->add(
+                'number',
+                null,
+                array(
+                    'attr' => array(
+                        'min'=> 0,
+                        'max'=> 999,
+                    )
+                )
+            )
             ->add('unit')
-            ->add('difficulty')
+            ->add(
+                'difficulty',
+                null,
+                array(
+                    'attr' => array(
+                        'min'=> 0,
+                        'max'=> 999,
+                    )
+                )
+            )
             ->add('difficultyUnit')
             ;
     }

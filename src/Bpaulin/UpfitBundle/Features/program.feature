@@ -52,7 +52,6 @@ Scenario: Administrator can create programs
   And I click on add a stage
   And I fill in last stage form with the following:
     | exercise       | exercise1   |
-    | position       | 1           |
     | sets           | 5           |
     | number         | 15          |
     | unit           | repetitions |
@@ -99,7 +98,7 @@ Scenario: Administrator can delete stage
     | stages |
     | exercise3 (3*3 3 with 3 3) |
 
-@javascript @wip
+@javascript
 Scenario: Administrator can sort stages
   Given I am on program "program4" page
   Then I should see a link to edit program "program4"
