@@ -5,57 +5,13 @@ namespace Bpaulin\UpfitBundle\Features\Context;
 use Behat\Behat\Context\BehatContext;
 use Behat\Gherkin\Node\TableNode;
 use Behat\Behat\Context\Step;
+use Behat\Behat\Exception\PendingException;
 
 class ProgramSubContext extends BehatContext
 {
     public function __construct()
     {
         // do subcontext initialization
-    }
-
-    /**
-     * @Given /^a program named "([^"]*)"$/
-     */
-    public function aProgramNamed($name)
-    {
-        $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
-        $className = $em->getRepository('BpaulinUpfitBundle:Program')->getClassName();
-
-        $program = new $className;
-        $program->setName($name);
-
-        $em->persist($program);
-        $em->flush();
-
-        return $program;
-    }
-
-    /**
-     * @Given /^a program named "([^"]*)" with following stages:$/
-     */
-    public function aProgramNamedWithFollowingStages($name, TableNode $table)
-    {
-        $program = $this->aProgramNamed($name);
-        $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
-        $className = $em->getRepository('BpaulinUpfitBundle:Stage')->getClassName();
-
-        $hash = $table->getHash();
-        foreach ($hash as $position => $row) {
-            $exercise = $this->getMainContext()->getSubcontext('exercise')->anExerciseNamed($row['exercise']);
-
-            $stage = new $className;
-            $stage->setProgram($program)
-                ->setExercise($exercise)
-                ->setPosition($position)
-                ->setSets($row['sets'])
-                ->setNumber($row['number'])
-                ->setUnit($row['unit'])
-                ->setDifficulty($row['difficulty'])
-                ->setDifficultyUnit($row['unit']);
-
-            $em->persist($stage);
-        }
-        $em->flush();
     }
 
     /**
@@ -84,6 +40,19 @@ class ProgramSubContext extends BehatContext
     }
 
     /**
+     * @Then /^I should see a link to consult following programs:$/
+     */
+    public function iShouldSeeALinkToConsultFollowingPrograms(TableNode $table)
+    {
+        $hash = $table->getHash();
+        $steps  = array();
+        foreach ($hash as $row) {
+            $steps[] = new Step\Then("I should see a link to consult program \"".$row['program']."\"");
+        }
+        return $steps;
+    }
+
+    /**
      * @Then /^I should see a link to program "([^"]*)"$/
      */
     public function iShouldSeeALinkToProgram($name)
@@ -94,6 +63,19 @@ class ProgramSubContext extends BehatContext
             throw new \Exception('program not found');
         }
         return new Step\Then("I should see a link to \"/admin/program/".$program->getId()."\"");
+    }
+
+    /**
+     * @Then /^I should see a link to consult program "([^"]*)"$/
+     */
+    public function iShouldSeeALinkToConsultProgram($name)
+    {
+        $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
+        $program = $em->getRepository('BpaulinUpfitBundle:Program')->findOneByName($name);
+        if (!$program) {
+            throw new \Exception('program not found');
+        }
+        return new Step\Then("I should see a link to \"/member/program/".$program->getId()."\"");
     }
 
     /**
@@ -155,12 +137,65 @@ class ProgramSubContext extends BehatContext
     public function iShouldSeeTheFollowingStages(TableNode $table)
     {
         $hash = $table->getHash();
+        $lis = $this->getMainContext()->getMink()
+                                ->getSession()
+                                ->getPage()
+                                ->findAll('css', ".record_properties dd.stages ol li");
+        foreach ($hash as $index => $row) {
+            $element = trim($lis[$index]->getHtml());
+
+            if ($element != $row['stages']) {
+                throw new \Exception($element.' is not expected '.$row['stages']);
+            }
+        }
+    }
+
+    /**
+     * @Given /^I should not see the following stages:$/
+     */
+    public function iShouldNotSeeTheFollowingStages(TableNode $table)
+    {
+        $hash = $table->getHash();
         $steps  = array();
         foreach ($hash as $row) {
             $steps[] = new Step\Then(
-                "the \".record_properties dd.stages\" element should contain \"".$row['stages']."\""
+                "the \".record_properties dd.stages\" element should not contain \"".$row['stages']."\""
             );
         }
         return $steps;
+    }
+
+    /**
+     * @Given /^I click delete on stage "([^"]*)"$/
+     */
+    public function iClickDeleteOnStage($indexStage)
+    {
+        $stages = $this->getMainContext()->getSession()->getPage()->findAll('css', '.sf2fc-item');
+        $stage = $stages[$indexStage];
+        $stage->find('css', '.sf2fc-remove')->click();
+    }
+
+    /**
+     * @Given /^I click on add a stage$/
+     */
+    public function iClickOnAddAStage()
+    {
+        $this->getMainContext()->getSession()->getPage()->find('css', '.sf2fc-add')->click();
+    }
+
+    /**
+     * @Given /^I drag stage "([^"]*)" down "([^"]*)" position$/
+     */
+    public function iDragStageDownPosition($origin, $destination)
+    {
+        $this->getMainContext()->getSession()->executeScript(
+            "
+$.getScript(
+'https://raw.github.com/mattheworiordan/jquery.simulate.drag-sortable.js/master/jquery.simulate.drag-sortable.js',
+    function() {
+  $('.sf2fc-sort').eq($origin).parent().simulateDragSortable({ move: $destination, handle: '.sf2fc-sort'})
+})
+            "
+        );
     }
 }

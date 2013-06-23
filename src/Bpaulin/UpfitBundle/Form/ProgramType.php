@@ -8,7 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class ProgramType extends AbstractType
 {
-    /** 
+    /**
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -19,8 +19,9 @@ class ProgramType extends AbstractType
                 'stages',
                 'collection',
                 array(
-                    'type' => new StageType(),
+                    'type'         => new StageType(),
                     'allow_add'    => true,
+                    'allow_delete' => true,
                     'by_reference' => false,
                 )
             );

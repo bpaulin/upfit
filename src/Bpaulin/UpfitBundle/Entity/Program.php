@@ -32,6 +32,7 @@ class Program
     /**
      * @ORM\OneToMany(targetEntity="Stage", mappedBy="program", cascade={"remove", "persist"})
      * @Assert\Count(min = "1")
+     * @ORM\OrderBy({"position" = "ASC"})
      */
     protected $stages;
 

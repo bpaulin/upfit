@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "7f57528860a3ce7d8825e38a7cb89692",
+    "hash": "26420c72c10495772f600b0258c7a0ee",
     "packages": [
         {
             "name": "bootstrap/js",
@@ -676,6 +676,17 @@
                 "sql"
             ],
             "time": "2013-04-26 18:42:52"
+        },
+        {
+            "name": "jquery-ui/js",
+            "version": "1",
+            "dist": {
+                "type": "file",
+                "url": "http://code.jquery.com/ui/1.10.3/jquery-ui.js",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "library"
         },
         {
             "name": "jquery/jquery",

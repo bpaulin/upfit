@@ -75,19 +75,11 @@
         </exec>
     </target>
 
-    <target name="prod:test">
-        <SymfonyConsole command="assetic:dump">
-            <arg value="--env=prod"/>
-        </SymfonyConsole>
-        <SymfonyConsole command="cache:clear">
-            <arg value="--env=prod"/>
-        </SymfonyConsole>
-    </target>
-
     <target name="check:behat">
         <exec executable="${path.php}" passthru="true" checkreturn="true">
             <arg value="${path.behat}"/>
             <arg value="--ansi"/>
+            <arg value="--strict"/>
             <arg value="--expand"/>
         </exec>
     </target>
@@ -96,6 +88,7 @@
         <exec executable="${path.php}" passthru="true" checkreturn="true">
             <arg value="${path.behat}"/>
             <arg value="--ansi"/>
+            <arg value="--strict"/>
             <arg value="--expand"/>
             <arg value="--profile=headless"/>
         </exec>
@@ -105,6 +98,7 @@
         <exec executable="${path.php}" passthru="true" checkreturn="true">
             <arg value="${path.behat}"/>
             <arg value="--ansi"/>
+            <arg value="--strict"/>
             <arg value="--expand"/>
             <arg value="--profile=wip"/>
         </exec>
@@ -157,7 +151,7 @@
             <arg value="${path.phpmd}"/>
             <arg path="${dir.src}"/>
             <arg value="html"/>
-            <arg value="codesize,unusedcode,naming,design,controversial"/>
+            <arg value="app/phpmd_rules.xml"/>
             <arg line="--reportfile ${dir.reports}/mess.html"/>
         </exec>
     </target>
