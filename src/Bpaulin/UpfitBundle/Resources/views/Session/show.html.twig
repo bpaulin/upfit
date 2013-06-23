@@ -1,0 +1,9 @@
+{% extends "BpaulinUpfitBundle:Crud:show.html.twig" %}
+{%
+    set fields = {
+        'id' : entity.id,
+        'name' : entity.name,
+    }
+%}
+
+{% block h1 %}Session <small>{{ entity.name }}</small>{% endblock %}

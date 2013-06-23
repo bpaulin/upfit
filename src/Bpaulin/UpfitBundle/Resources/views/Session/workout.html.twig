@@ -1,0 +1,8 @@
+{% extends "BpaulinUpfitBundle::layout.html.twig" %}
+
+{% block content %}
+<span id="exercise-name">{{session.nextWorkout.exercise.name}}</span>
+<a href="{{ path('member_session_workout_abandon', {'id':session.id}) }}">Abandon</a>
+<a href="{{ path('member_session_workout_pass', {'id':session.id}) }}">Pass</a>
+<a href="{{ path('member_session_workout_done', {'id':session.id}) }}">Done</a>
+{% endblock %}

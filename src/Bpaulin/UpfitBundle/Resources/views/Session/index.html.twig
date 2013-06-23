@@ -1,0 +1,26 @@
+{% extends "BpaulinUpfitBundle:Crud:index.html.twig" %}
+{% set route_show = 'member_program_show' %}
+{%
+    set breadcrumbs = {
+        'Member' : {
+            'route': path('upfit_member'),
+            'icon': 'gamepad',
+        },
+        'Programs' : {
+            'route': path('member_program'),
+        },
+    }
+%}
+{%
+    set fields = {
+        'Id' : 'id',
+        'Name' : 'name',
+    }
+%}
+
+{% block h1 %}Sessions{% endblock %}
+
+{% block row %}
+    <td>{{ entity.id }}</td>
+    <td><a href="{{ path('member_session_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
+{% endblock %}

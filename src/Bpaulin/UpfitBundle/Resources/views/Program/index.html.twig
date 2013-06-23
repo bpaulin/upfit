@@ -46,4 +46,5 @@
 {% block row %}
     <td>{{ entity.id }}</td>
     <td><a href="{{ path(route_show, { 'id': entity.id }) }}">{{ entity.name }}</a></td>
+    <td><a href="{{ path('member_session_new', { 'follow': 'program', 'id': entity.id }) }}">Begin a session</a></td>
 {% endblock %}

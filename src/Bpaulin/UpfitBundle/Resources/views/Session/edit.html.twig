@@ -1,0 +1,18 @@
+{% extends "BpaulinUpfitBundle:Crud:edit.html.twig" %}
+{%
+    set breadcrumbs = {
+        'Admin' : {
+            'route': path('upfit_admin'),
+            'icon': 'briefcase',
+        },
+        'Programs' : {
+            'route': path('admin_program'),
+            'icon': 'list',
+        }
+    }
+%}
+{%
+    set action = path('member_session_update', { 'id': entity.id })
+%}
+
+{% block h1 %}Session <small>{{ entity.name }}</small>{% endblock %}
