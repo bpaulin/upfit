@@ -65,8 +65,30 @@ class SessionSubContext extends BehatContext
         $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
         $session = $em->getRepository('BpaulinUpfitBundle:Session')->findOneByName($name);
         if (!$session) {
-            return true;
+            throw new \Exception();
         }
         return new Step\Then("I should see a link to \"/member/session/".$session->getId()."\"");
     }
+
+    /**
+     * @Then /^I should not have access to other users session$/
+     */
+    public function iShouldNotHaveAccessToOtherUsersSession()
+    {
+        $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
+        $session = $em->getRepository('BpaulinUpfitBundle:Session')->findOneByName('wrong_user');
+        if (!$session) {
+            throw new \Exception();
+        }
+        return array(
+            new Step\Given('I am on "/member/session/'.$session->GetId().'"'),
+            new Step\Then('I should see "Forbidden"'),
+            new Step\Given('I am on "/member/session/'.$session->GetId().'/show"'),
+            new Step\Then('I should see "Forbidden"'),
+            new Step\Given('I am on "/member/session/'.$session->GetId().'/edit"'),
+            new Step\Then('I should see "Forbidden"'),
+        );
+    }
+
+
 }

@@ -59,6 +59,7 @@ class Session
             $workout = $stage->createWorkout();
             $this->addWorkout($workout);
         }
+        return $this;
     }
 
     public function getNextWorkout()
