@@ -169,8 +169,16 @@
         </exec>
     </target>
 
+    <target name="report:doc">
+        <exec executable="${path.phpdoc}" passthru="true">
+            <arg value="--ansi"/>
+            <arg line="-d ${dir.src}"/>
+            <arg line="-t ${dir.reports.docs}"/>
+        </exec>
+    </target>
+
     <target name="report"
-            depends="base:test:reset,report:mess,report:test">
+            depends="base:test:reset,report:mess,report:test, report:doc">
     </target>
 
     <target name="base:test:drop">
