@@ -19,7 +19,7 @@
         <div {{ block('widget_container_attributes') }}>
             {{ form_errors(form) }}
             {% for rows in form %}
-                <div class="form-inline">
+                <span class="form-inline">
                     {{ form_widget(rows.position, {'attr': {'size': '3', 'style': 'width:auto'}}) }}
                     .
                     {{ form_widget(rows.exercise, {'attr': {'class': 'span2'}}) }}
@@ -33,7 +33,7 @@
                     {{ form_widget(rows.difficultyUnit, {'attr': {'size': '15', 'style': 'width:auto'}}) }}
                     )
                     {{ form_rest(rows) }}
-                </div>
+                </span>
             {% endfor %}
             {{ form_rest(form) }}
         </div>
@@ -44,7 +44,7 @@
 
 {% block collection_item_widget %}
 {% spaceless %}
-    <div class="form-inline">
+    <span class="form-inline">
         {{ form_widget(prototype.position, {'attr': {'size': '3', 'style': 'width:auto'}}) }}
         .
         {{ form_widget(prototype.exercise, {'attr': {'class': 'span2'}}) }}
@@ -58,5 +58,6 @@
         {{ form_widget(prototype.difficultyUnit, {'attr': {'size': '15', 'style': 'width:auto'}}) }}
         )
         {{ form_rest(prototype) }}
+    </span>
 {% endspaceless %}
 {% endblock collection_item_widget %}
