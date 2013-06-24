@@ -37,7 +37,7 @@ wip:
 
 demo:
     formatter:
-        name: progress
+        name: pretty
     extensions:
         Behat\MinkExtension\Extension:
             default_session: 'selenium2'

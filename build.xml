@@ -111,7 +111,9 @@
     <target name="check:visual">
         <exec executable="${path.php}" passthru="true" checkreturn="true">
             <arg value="${path.behat}"/>
+            <arg value="--ansi"/>
             <arg value="--profile=demo"/>
+            <arg value="--no-paths"/>
         </exec>
     </target>
 
