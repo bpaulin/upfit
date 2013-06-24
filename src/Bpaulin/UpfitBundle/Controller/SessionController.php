@@ -59,19 +59,26 @@ class SessionController extends Controller
      */
     public function newAction($follow, $id)
     {
-        if ($follow != 'program') {
+        if ($follow != 'program' && $follow != 'session') {
             throw new Exception();
         }
         $em = $this->getDoctrine()->getManager();
-
-        $program = $em->getRepository('BpaulinUpfitBundle:Program')->find($id);
-        if (!$program) {
-            throw new NotFoundException('program not found');
-        }
-
         $session = new Session();
         $session->setUser($this->get('security.context')->getToken()->getUser());
-        $session->initWithProgram($program);
+
+        if ($follow == 'program') {
+            $program = $em->getRepository('BpaulinUpfitBundle:Program')->find($id);
+            if (!$program) {
+                throw new NotFoundException('program not found');
+            }
+            $session->initWithProgram($program);
+        } elseif ($follow == 'session') {
+            $session = $em->getRepository('BpaulinUpfitBundle:Session')->find($id);
+            if (!$session) {
+                throw new NotFoundException('session not found');
+            }
+            $session->initWithSession($session);
+        }
         $em->persist($session);
         $em->flush();
 
@@ -87,7 +94,7 @@ class SessionController extends Controller
         if ($session->getUser() != $this->get('security.context')->getToken()->getUser()) {
             throw new AccessDeniedException('');
         }
-        
+
         $next = $session->getNextWorkout();
         if (!$next) {
 
@@ -111,7 +118,7 @@ class SessionController extends Controller
         if ($session->getUser() != $this->get('security.context')->getToken()->getUser()) {
             throw new AccessDeniedException('');
         }
-        
+
         $em = $this->getDoctrine()->getManager();
         $next = $session->getNextWorkout();
 
@@ -137,7 +144,7 @@ class SessionController extends Controller
         if ($session->getUser() != $this->get('security.context')->getToken()->getUser()) {
             throw new AccessDeniedException('');
         }
-        
+
 
         $em = $this->getDoctrine()->getManager();
         $next = $session->getNextWorkout();
@@ -165,7 +172,7 @@ class SessionController extends Controller
         if ($session->getUser() != $this->get('security.context')->getToken()->getUser()) {
             throw new AccessDeniedException('');
         }
-        
+
 
         $em = $this->getDoctrine()->getManager();
 
@@ -186,7 +193,7 @@ class SessionController extends Controller
         if ($session->getUser() != $this->get('security.context')->getToken()->getUser()) {
             throw new AccessDeniedException('');
         }
-        
+
         $editForm = $this->createForm(new SessionType(), $session);
 
         return array(

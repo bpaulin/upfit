@@ -23,4 +23,5 @@
 {% block row %}
     <td>{{ entity.id }}</td>
     <td><a href="{{ path('member_session_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
+    <td><a href="{{ path('member_session_new', { 'follow': 'session', 'id': entity.id }) }}">Begin a session</a></td>
 {% endblock %}

@@ -19,15 +19,16 @@ class SessionSubContext extends BehatContext
      */
     public function iShouldSeeALinkToBeginSessionFollowing($type, $name)
     {
-        if ($type != 'program') {
-            throw new \Exception('only available for program');
+        if ($type != 'program' && $type != 'session') {
+            throw new \Exception('only available for program or session');
         }
         $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
-        $program = $em->getRepository('BpaulinUpfitBundle:Program')->findOneByName($name);
-        if (!$program) {
-            throw new \Exception('program not found');
+        $class = 'BpaulinUpfitBundle:'.ucwords($type);
+        $entity = $em->getRepository($class)->findOneByName($name);
+        if (!$entity) {
+            throw new \Exception("$type not found");
         }
-        return new Step\Then("I should see a link to \"/member/session/new/program/".$program->getId()."\"");
+        return new Step\Then("I should see a link to \"/member/session/new/$type/".$entity->getId()."\"");
     }
 
     /**

@@ -58,11 +58,28 @@ class Session
     {
         $this->setName($program->getName());
         $this->setDifficulty(0);
-        $this->setName($program->getName());
         $this->setComment($program->getName());
         foreach ($program->getStages() as $stage) {
             $workout = $stage->createWorkout();
             $this->addWorkout($workout);
+        }
+        return $this;
+    }
+
+    /**
+     * Duplicate session workouts into this session
+     */
+    public function initWithSession(\Bpaulin\UpfitBundle\Entity\Session $session)
+    {
+        $this->setName($session->getName());
+        $this->setDifficulty(0);
+        $this->setComment($session->getComment());
+        foreach ($session->getWorkouts() as $workout) {
+            if ($workout->isDone() === true) {
+                $copy = clone $workout;
+                $copy->setDone(null);
+                $this->addWorkout($copy);
+            }
         }
         return $this;
     }
@@ -230,14 +247,14 @@ class Session
     public function setUser(\Bpaulin\UpfitBundle\Entity\User $user = null)
     {
         $this->user = $user;
-    
+
         return $this;
     }
 
     /**
      * Get user
      *
-     * @return \Bpaulin\UpfitBundle\Entity\User 
+     * @return \Bpaulin\UpfitBundle\Entity\User
      */
     public function getUser()
     {
