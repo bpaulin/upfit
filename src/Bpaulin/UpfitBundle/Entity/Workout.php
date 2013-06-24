@@ -38,6 +38,12 @@ class Workout extends ExerciseSettings
     protected $done;
 
     /**
+     * @ORM\Column(type="smallint", nullable=true)
+     * @Assert\Range(min = "-2", max = "2")
+     */
+    protected $grade = 0;
+
+    /**
      * Set session
      *
      * @param \Bpaulin\UpfitBundle\Entity\Session $session
@@ -81,5 +87,28 @@ class Workout extends ExerciseSettings
     public function isDone()
     {
         return $this->done;
+    }
+
+    /**
+     * Set grade
+     *
+     * @param integer $grade
+     * @return Workout
+     */
+    public function setGrade($grade)
+    {
+        $this->grade = $grade;
+
+        return $this;
+    }
+
+    /**
+     * Get grade
+     *
+     * @return integer
+     */
+    public function getGrade()
+    {
+        return $this->grade;
     }
 }

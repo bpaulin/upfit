@@ -15,17 +15,57 @@ Scenario: Member can begin a session from program list
   When I follow this link
   Then I should see a link to begin session following "program" "program1"
   When I follow this link
-  And I do the followings workouts:
-    | exercise  | action  | difficulty  |
-    | exercise1 | Abandon | 0           |
-    | exercise2 | Pass    | 0           |
-    | exercise3 | Done    | 0           |
-    | exercise4 | Done    | 0           |
-    | exercise5 | Done    | 0           |
-    | exercise2 | Done    | 0           |
+  Then I should be on "exercise1" workout page
+  When I press "Abandon"
+  Then I should see a "info" message "exercise1 abandoned"
+  And I should be on "exercise2" workout page
+  When I press "Pass"
+  Then I should see a "info" message "exercise2 passed"
+  And I should be on "exercise3" workout page
+  When I fill in workout form with the following:
+    | grade | 1 |
+  And I press "Done"
+  Then I should be on "exercise4" workout page
+  And I should see following workouts:
+    | exercise  | status      | grade |
+    | exercise1 | Abandoned   | 0     |
+    | exercise3 | Done        | 1     |
+    | exercise4 | Current     | 0     |
+    | exercise5 | Todo        | 0     |
+    | exercise2 | Todo        | 0     |
+  When I press "Done"
+  Then I should be on "exercise5" workout page
+  And I should see following workouts:
+    | exercise  | status      | grade |
+    | exercise1 | Abandoned   | 0     |
+    | exercise3 | Done        | 1     |
+    | exercise4 | Done        | 0     |
+    | exercise5 | Current     | 0     |
+    | exercise2 | Todo        | 0     |
+  When I fill in workout form with the following:
+    | grade | -1 |
+  And I press "Done"
+  Then I should be on "exercise2" workout page
+  And I should see following workouts:
+    | exercise  | status      | grade |
+    | exercise1 | Abandoned   | 0     |
+    | exercise3 | Done        | 1     |
+    | exercise4 | Done        | 0     |
+    | exercise5 | Done        | -1    |
+    | exercise2 | Current     | 0     |
+  When I fill in workout form with the following:
+    | grade | 2 |
+  And I press "Done"
   # Then I should be on "/member/session/edit"
-  And I should see a "success" message "session finished"
-    And I fill in session form with the following:
+  Then I should see a "success" message "session finished"
+  And I should see following workouts:
+    | exercise  | status      | grade |
+    | exercise1 | Abandoned   | 0     |
+    | exercise3 | Done        | 1     |
+    | exercise4 | Done        | 0     |
+    | exercise5 | Done        | -1    |
+    | exercise2 | Done        | 2     |
+  When I fill in session form with the following:
     | name       | session1 |
     | comment    | comment1 |
     | difficulty | 1        |
@@ -41,7 +81,7 @@ Scenario: Member can begin a session from session list
   Then I should see a link to begin session following "session" "session1"
   When I follow this link
   And I do the followings workouts:
-    | exercise  | action  | difficulty  |
+    | exercise  | action  | grade  |
     | exercise3 | Done    | 0           |
     | exercise4 | Done    | 0           |
     | exercise5 | Done    | 0           |

@@ -11,6 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Bpaulin\UpfitBundle\Entity\Program;
 use Bpaulin\UpfitBundle\Entity\Session;
 use Bpaulin\UpfitBundle\Form\SessionType;
+use Bpaulin\UpfitBundle\Form\WorkoutType;
 
 /**
  * Program controller.
@@ -89,7 +90,7 @@ class SessionController extends Controller
      * @Route("/member/session/{id}/workout", name="member_session_workout")
      * @Template()
      */
-    public function workoutAction(Session $session)
+    public function workoutAction(Request $request, Session $session)
     {
         if ($session->getUser() != $this->get('security.context')->getToken()->getUser()) {
             throw new AccessDeniedException('');
@@ -103,8 +104,35 @@ class SessionController extends Controller
             );
             return $this->redirect($this->generateUrl('member_session_edit', array('id' => $session->getId())));
         }
+
+        $form   = $this->createForm(new WorkoutType(), $next);
+
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            if ($form->get('Done')->isClicked()) {
+                $session->doneWorkout();
+            } elseif ($form->get('Pass')->isClicked()) {
+                $session->passWorkout();
+                $this->get('session')->getFlashBag()->add(
+                    'info',
+                    $next->getExercise()->getName().' passed'
+                );
+            } elseif ($form->get('Abandon')->isClicked()) {
+                $session->abandonWorkout();
+                $this->get('session')->getFlashBag()->add(
+                    'info',
+                    $next->getExercise()->getName().' abandoned'
+                );
+            }
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($session);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('member_session_workout', array('id' => $session->getId())));
+        }
         return array(
-            'entity' => $session
+            'entity' => $session,
+            'form'   => $form->createView()
         );
     }
 
