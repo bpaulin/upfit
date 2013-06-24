@@ -20,11 +20,6 @@ class ExerciseSettings
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Exercise", inversedBy="stages")
-     */
-    protected $exercise;
-
-    /**
      * @ORM\Column(type="smallint")
      */
     protected $position;

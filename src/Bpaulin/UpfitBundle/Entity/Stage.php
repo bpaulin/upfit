@@ -23,6 +23,11 @@ class Stage extends ExerciseSettings
     protected $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Exercise", inversedBy="stages")
+     */
+    protected $exercise;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Program", inversedBy="stages")
      */
     protected $program;

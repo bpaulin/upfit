@@ -83,12 +83,8 @@ class SessionSubContext extends BehatContext
         return array(
             new Step\Given('I am on "/member/session/'.$session->GetId().'"'),
             new Step\Then('I should see "Forbidden"'),
-            new Step\Given('I am on "/member/session/'.$session->GetId().'/show"'),
-            new Step\Then('I should see "Forbidden"'),
             new Step\Given('I am on "/member/session/'.$session->GetId().'/edit"'),
             new Step\Then('I should see "Forbidden"'),
         );
     }
-
-
 }

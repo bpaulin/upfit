@@ -3,6 +3,7 @@
 namespace Bpaulin\UpfitBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -26,7 +27,9 @@ class SessionController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('BpaulinUpfitBundle:Session')->findAll();
+        $entities = $em->getRepository('BpaulinUpfitBundle:Session')->findByUser(
+            $this->get('security.context')->getToken()->getUser()
+        );
 
         return array(
             'entities' => $entities,
@@ -42,6 +45,9 @@ class SessionController extends Controller
      */
     public function showAction(Session $entity)
     {
+        if ($entity->getUser() != $this->get('security.context')->getToken()->getUser()) {
+            throw new AccessDeniedException('');
+        }
         return array(
             'entity'      => $entity,
         );
@@ -64,6 +70,7 @@ class SessionController extends Controller
         }
 
         $session = new Session();
+        $session->setUser($this->get('security.context')->getToken()->getUser());
         $session->initWithProgram($program);
         $em->persist($session);
         $em->flush();
@@ -77,6 +84,10 @@ class SessionController extends Controller
      */
     public function workoutAction(Session $session)
     {
+        if ($session->getUser() != $this->get('security.context')->getToken()->getUser()) {
+            throw new AccessDeniedException('');
+        }
+        
         $next = $session->getNextWorkout();
         if (!$next) {
 
@@ -97,6 +108,10 @@ class SessionController extends Controller
      */
     public function workoutAbandonAction(Session $session)
     {
+        if ($session->getUser() != $this->get('security.context')->getToken()->getUser()) {
+            throw new AccessDeniedException('');
+        }
+        
         $em = $this->getDoctrine()->getManager();
         $next = $session->getNextWorkout();
 
@@ -119,6 +134,11 @@ class SessionController extends Controller
      */
     public function workoutPassAction(Session $session)
     {
+        if ($session->getUser() != $this->get('security.context')->getToken()->getUser()) {
+            throw new AccessDeniedException('');
+        }
+        
+
         $em = $this->getDoctrine()->getManager();
         $next = $session->getNextWorkout();
 
@@ -142,6 +162,11 @@ class SessionController extends Controller
      */
     public function workoutDoneAction(Session $session)
     {
+        if ($session->getUser() != $this->get('security.context')->getToken()->getUser()) {
+            throw new AccessDeniedException('');
+        }
+        
+
         $em = $this->getDoctrine()->getManager();
 
         $session->doneWorkout();
@@ -158,6 +183,10 @@ class SessionController extends Controller
      */
     public function editAction(Session $session)
     {
+        if ($session->getUser() != $this->get('security.context')->getToken()->getUser()) {
+            throw new AccessDeniedException('');
+        }
+        
         $editForm = $this->createForm(new SessionType(), $session);
 
         return array(
@@ -175,6 +204,9 @@ class SessionController extends Controller
      */
     public function updateAction(Request $request, Session $entity)
     {
+        if ($entity->getUser() != $this->get('security.context')->getToken()->getUser()) {
+            throw new AccessDeniedException('');
+        }
         $em = $this->getDoctrine()->getManager();
 
         $editForm = $this->createForm(new SessionType(), $entity);

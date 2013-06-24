@@ -23,6 +23,11 @@ class Workout extends ExerciseSettings
     protected $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Exercise", inversedBy="workouts")
+     */
+    protected $exercise;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Session", inversedBy="workouts")
      */
     protected $session;

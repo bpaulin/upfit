@@ -47,6 +47,11 @@ class Session
     protected $workouts;
 
     /**
+     * @ORM\ManyToOne(targetEntity="User")
+     */
+    protected $user;
+
+    /**
      * Duplicate program stages into this session
      */
     public function initWithProgram(\Bpaulin\UpfitBundle\Entity\Program $program)
@@ -214,5 +219,28 @@ class Session
     public function getDifficulty()
     {
         return $this->difficulty;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Bpaulin\UpfitBundle\Entity\User $user
+     * @return Session
+     */
+    public function setUser(\Bpaulin\UpfitBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+    
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Bpaulin\UpfitBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

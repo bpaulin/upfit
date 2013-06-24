@@ -1,3 +1,4 @@
+@wip
 Feature: session management
   In order to practice
   As an member
@@ -35,7 +36,6 @@ Scenario: Member can begin a session from program list
   And I should see a "success" message "session1 updated"
   And I should see a link to session "session1"
 
-@wip
 Scenario: Member can only manage their own sessions
   Then I should not have access to other users session
 
