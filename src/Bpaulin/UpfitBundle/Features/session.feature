@@ -8,7 +8,9 @@ Background:
   Given I am member
 
 Scenario: Member can begin a session from program list
-  Given I am on "/member/program"
+  Given I am on "member" homepage
+  Then I should see a link to "/member/program" in "actions" area
+  When I follow this link
   Then I should see a link to begin session following "program" "program1"
   When I follow this link
   Then I should be on "exercise1" workout page
@@ -40,7 +42,9 @@ Scenario: Member can only manage their own sessions
   Then I should not have access to other users session
 
 Scenario: Member can begin a session from session list
-  Given I am on "/member/session"
+  Given I am on "member" homepage
+  Then I should see a link to "/member/session" in "actions" area
+  When I follow this link
   Then I should see a link to begin session following "session" "session1"
   When I follow this link
   Then I should be on "exercise3" workout page
