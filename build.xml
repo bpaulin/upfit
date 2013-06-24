@@ -108,7 +108,8 @@
             depends="check:lint,check:test,check:behat:wip">
     </target>
 
-    <target name="check:visual">
+    <target name="check:visual"
+            depends="base:test:reset">
         <exec executable="${path.php}" passthru="true" checkreturn="true">
             <arg value="${path.behat}"/>
             <arg value="--ansi"/>

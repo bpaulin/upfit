@@ -30,9 +30,9 @@ Scenario: Member can begin a session from program list
   # Then I should be on "/member/session/edit"
   And I should see a "success" message "session finished"
     And I fill in session form with the following:
-    | name       | session1   |
-    | comment    | comment1   |
-    | difficulty | 1          |
+    | name       | session1 |
+    | comment    | comment1 |
+    | difficulty | 1        |
   And I press "Edit"
   Then I should be on "/member/session"
   And I should see a "success" message "session1 updated"
@@ -58,9 +58,9 @@ Scenario: Member can begin a session from session list
   # Then I should be on "/member/session/save"
   And I should see a "success" message "session finished"
     And I fill in session form with the following:
-    | name       | session-copy   |
-    | comment    | comment1   |
-    | difficulty | 1          |
+    | name       | session-copy |
+    | comment    | comment1     |
+    | difficulty | 1            |
   And I press "Edit"
   Then I should be on "/member/session"
   And I should see a "success" message "session-copy updated"

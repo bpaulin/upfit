@@ -97,7 +97,6 @@ class SessionController extends Controller
 
         $next = $session->getNextWorkout();
         if (!$next) {
-
             $this->get('session')->getFlashBag()->add(
                 'success',
                 'session finished'
