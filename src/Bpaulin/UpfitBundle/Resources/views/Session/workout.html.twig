@@ -1,8 +1,46 @@
-{% extends "BpaulinUpfitBundle::layout.html.twig" %}
+{% extends "BpaulinUpfitBundle:Crud:show.html.twig" %}
+{%
+    set breadcrumbs =
+    {
+        'Member' : {
+            'route': path('upfit_member'),
+            'icon': 'gamepad',
+        },
+        'Sessions' : {
+            'route': path('member_session'),
+            'icon': 'list',
+        },
+        (entity.name) : {
+            'route': path('member_session_workout', { 'id': entity.id }),
+        },
+    }
+%}
+{%
+    set actions = {
+        'Done' : {
+            'route': path('member_session_workout_done', {'id':entity.id}),
+            'icon': 'trophy',
+            'class': 'primary'
+        },
+        'Pass' : {
+            'route': path('member_session_workout_pass', {'id':entity.id}),
+            'icon': 'step-forward',
+            'class': 'warning'
+        },
+        'Abandon' : {
+            'route': path('member_session_workout_abandon', {'id':entity.id}),
+            'icon': 'remove',
+            'class': 'danger'
+        },
+    }
+%}
 
-{% block content %}
-<span id="exercise-name">{{session.nextWorkout.exercise.name}}</span>
-<a href="{{ path('member_session_workout_abandon', {'id':session.id}) }}">Abandon</a>
-<a href="{{ path('member_session_workout_pass', {'id':session.id}) }}">Pass</a>
-<a href="{{ path('member_session_workout_done', {'id':session.id}) }}">Done</a>
-{% endblock %}
+{%
+    set fields = {
+        'id' : entity.nextWorkout.exercise.id,
+        'name' : entity.nextWorkout.exercise.name,
+    }
+%}
+
+{% block h1 %}Session <small>{{ entity.name }}</small>{% endblock %}
+

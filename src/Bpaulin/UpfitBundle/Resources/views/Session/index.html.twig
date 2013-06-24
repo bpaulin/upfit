@@ -1,13 +1,13 @@
 {% extends "BpaulinUpfitBundle:Crud:index.html.twig" %}
-{% set route_show = 'member_program_show' %}
 {%
-    set breadcrumbs = {
+    set breadcrumbs =
+    {
         'Member' : {
             'route': path('upfit_member'),
             'icon': 'gamepad',
         },
-        'Programs' : {
-            'route': path('member_program'),
+        'Sessions' : {
+            'route': path('member_session'),
         },
     }
 %}

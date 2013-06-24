@@ -104,7 +104,7 @@ class SessionController extends Controller
             return $this->redirect($this->generateUrl('member_session_edit', array('id' => $session->getId())));
         }
         return array(
-            'session' => $session
+            'entity' => $session
         );
     }
 
