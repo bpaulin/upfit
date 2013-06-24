@@ -73,11 +73,11 @@ class SessionController extends Controller
             }
             $session->initWithProgram($program);
         } elseif ($follow == 'session') {
-            $session = $em->getRepository('BpaulinUpfitBundle:Session')->find($id);
-            if (!$session) {
+            $origin = $em->getRepository('BpaulinUpfitBundle:Session')->find($id);
+            if (!$origin) {
                 throw new NotFoundException('session not found');
             }
-            $session->initWithSession($session);
+            $session->initWithSession($origin);
         }
         $em->persist($session);
         $em->flush();

@@ -64,4 +64,5 @@ Scenario: Member can begin a session from session list
   And I press "Edit"
   Then I should be on "/member/session"
   And I should see a "success" message "session-copy updated"
+  And I should see a link to session "session1"
   And I should see a link to session "session-copy"
