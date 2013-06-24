@@ -88,4 +88,31 @@ class SessionSubContext extends BehatContext
             new Step\Then('I should see "Forbidden"'),
         );
     }
+
+    /**
+     * @Given /^I do the followings workouts:$/
+     */
+    public function iDoTheFollowingsWorkouts(TableNode $table)
+    {
+        $hash = $table->getHash();
+        $steps = array();
+        foreach ($hash as $row) {
+            $steps[] = new Step\Then('I should be on "'.$row['exercise'].'" workout page');
+            $steps[] = new Step\When('I follow "'.$row['action'].'"');
+            switch ($row['action']) {
+                case 'Abandon':
+                    $steps[] = new Step\When('I should see a "info" message "'.$row['exercise'].' abandonned"');
+                    break;
+                case 'Pass':
+                    $steps[] = new Step\When('I should see a "info" message "'.$row['exercise'].' passed"');
+                    # code...
+                    break;
+                case 'Done':
+                    break;
+                default:
+                    break;
+            }
+        }
+        return $steps;
+    }
 }
