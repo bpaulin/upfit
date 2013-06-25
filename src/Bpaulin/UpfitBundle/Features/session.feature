@@ -1,3 +1,4 @@
+@wip
 Feature: session management
   In order to practice
   As an member
@@ -56,7 +57,6 @@ Scenario: Member can begin a session from program list
   When I fill in workout form with the following:
     | grade | 2 |
   And I press "Done"
-  # Then I should be on "/member/session/edit"
   Then I should see a "success" message "session finished"
   And I should see following workouts:
     | exercise  | status      | grade |
@@ -82,12 +82,17 @@ Scenario: Member can begin a session from session list
   When I follow this link
   And I do the followings workouts:
     | exercise  | action  | grade  |
-    | exercise3 | Done    | 0           |
-    | exercise4 | Done    | 0           |
-    | exercise5 | Done    | 0           |
-    | exercise2 | Done    | 0           |
-  # Then I should be on "/member/session/save"
+    | exercise3 | Done    | 0      |
+    | exercise4 | Done    | 0      |
+    | exercise5 | Done    | 0      |
+    | exercise2 | Done    | 0      |
   And I should see a "success" message "session finished"
+  And I should see following workouts:
+    | exercise  | status      | grade |
+    | exercise3 | Done        | 0     |
+    | exercise4 | Done        | 0     |
+    | exercise5 | Done        | 0     |
+    | exercise2 | Done        | 0     |
     And I fill in session form with the following:
     | name       | session-copy |
     | comment    | comment1     |

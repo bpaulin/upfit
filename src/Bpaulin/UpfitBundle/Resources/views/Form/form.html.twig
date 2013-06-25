@@ -1,3 +1,19 @@
+{% block form_start %}
+{% spaceless %}
+    {% set method = method|upper %}
+    {% if method in ["GET", "POST"] %}
+        {% set form_method = method %}
+    {% else %}
+        {% set form_method = "POST" %}
+    {% endif %}
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-horizontal')|trim}) %}
+    <form method="{{ form_method|lower }}" action="{{ action }}"{% for attrname, attrvalue in attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}{% if multipart %} enctype="multipart/form-data"{% endif %}>
+    {% if form_method != method %}
+        <input type="hidden" name="_method" value="{{ method }}" />
+    {% endif %}
+{% endspaceless %}
+{% endblock form_start %}
+
 {% block form_row %}
 {% spaceless %}
     <div class="control-group{% if errors|length > 0 %} error{% endif %}">

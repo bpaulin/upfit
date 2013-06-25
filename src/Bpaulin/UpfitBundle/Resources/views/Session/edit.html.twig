@@ -1,14 +1,18 @@
 {% extends "BpaulinUpfitBundle:Crud:edit.html.twig" %}
 {%
-    set breadcrumbs = {
-        'Admin' : {
-            'route': path('upfit_admin'),
-            'icon': 'briefcase',
+    set breadcrumbs =
+    {
+        'Member' : {
+            'route': path('upfit_member'),
+            'icon': 'gamepad',
         },
-        'Programs' : {
-            'route': path('admin_program'),
+        'Sessions' : {
+            'route': path('member_session'),
             'icon': 'list',
-        }
+        },
+        (entity.name) : {
+            'route': path('member_session_workout', { 'id': entity.id }),
+        },
     }
 %}
 {%

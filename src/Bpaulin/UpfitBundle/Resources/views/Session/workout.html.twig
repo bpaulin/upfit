@@ -45,7 +45,7 @@
 {% block h1 %}Session <small>{{ entity.name }}</small>{% endblock %}
 
 {% block content %}
-<ul class='workouts'>
+<ul class='workouts well'>
     {% for workout in entity.workouts %}
         <li>
             <span class='exercise'>{{ workout.exercise.name}}</span>
