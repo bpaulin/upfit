@@ -35,7 +35,7 @@ class Session
     private $comment;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="smallint", nullable=true)
      */
     private $difficulty;
 
@@ -56,7 +56,7 @@ class Session
      */
     public function initWithProgram(\Bpaulin\UpfitBundle\Entity\Program $program)
     {
-        $this->setName($program->getName());
+        $this->setName('following '.$program->getName());
         $this->setDifficulty(0);
         $this->setComment($program->getName());
         foreach ($program->getStages() as $stage) {
@@ -71,7 +71,7 @@ class Session
      */
     public function initWithSession(\Bpaulin\UpfitBundle\Entity\Session $session)
     {
-        $this->setName($session->getName());
+        $this->setName('following '.$session->getName());
         $this->setDifficulty(0);
         $this->setComment($session->getComment());
         foreach ($session->getWorkouts() as $workout) {
@@ -116,6 +116,24 @@ class Session
     {
         $next = $this->getNextWorkout();
         $next->setDone(true);
+    }
+
+    public function setDifficultyToAverage()
+    {
+        $sum = 0;
+        $nb = 0;
+        foreach ($this->getWorkouts() as $workout) {
+            if ($workout->isDone()) {
+                $sum += $workout->getGrade();
+                $nb++;
+            }
+        }
+        if ($nb>0) {
+            $avg = round($sum/$nb);
+        } else {
+            $avg = 2;
+        }
+        return $this->setDifficulty($avg);
     }
 
     /**

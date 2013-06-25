@@ -221,6 +221,9 @@ class SessionController extends Controller
             throw new AccessDeniedException('');
         }
 
+        if (!$session->getDifficulty()) {
+            $session->setDifficultyToAverage();
+        }
         $editForm = $this->createForm(new SessionType(), $session);
 
         return array(

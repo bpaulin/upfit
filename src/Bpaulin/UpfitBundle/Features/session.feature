@@ -65,6 +65,8 @@ Scenario: Member can begin a session from program list
     | exercise4 | Done        | 0     |
     | exercise5 | Done        | -1    |
     | exercise2 | Done        | 2     |
+  Then the "bpaulin_upfitbundle_sessiontype_name" field should contain "following program1"
+  Then the "bpaulin_upfitbundle_sessiontype_difficulty" field should contain "1"
   When I fill in session form with the following:
     | name       | session1 |
     | comment    | comment1 |
@@ -82,19 +84,21 @@ Scenario: Member can begin a session from session list
   When I follow this link
   And I do the followings workouts:
     | exercise  | action  | grade  |
-    | exercise3 | Abandon | 0      |
-    | exercise4 | Pass    | 0      |
-    | exercise5 | Done    | 0      |
-    | exercise2 | Done    | 0      |
-    | exercise4 | Done    | 0      |
+    | exercise3 | Abandon | -1     |
+    | exercise4 | Pass    | -1     |
+    | exercise5 | Done    | -1     |
+    | exercise2 | Done    | -1     |
+    | exercise4 | Done    | -1     |
   And I should see a "success" message "session finished"
   And I should see following workouts:
     | exercise  | status     | grade |
-    | exercise3 | Abandoned  | 0     |
-    | exercise5 | Done       | 0     |
-    | exercise2 | Done       | 0     |
-    | exercise4 | Done       | 0     |
-    And I fill in session form with the following:
+    | exercise3 | Abandoned  | -1    |
+    | exercise5 | Done       | -1    |
+    | exercise2 | Done       | -1    |
+    | exercise4 | Done       | -1    |
+  Then the "bpaulin_upfitbundle_sessiontype_name" field should contain "following session1"
+  Then the "bpaulin_upfitbundle_sessiontype_difficulty" field should contain "-1"
+  And I fill in session form with the following:
     | name       | session-copy |
     | comment    | comment1     |
     | difficulty | 1            |
