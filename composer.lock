@@ -338,12 +338,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineMigrationsBundle.git",
-                "reference": "6891b8595a003afce8040dd794e6e9f379bbfafc"
+                "reference": "5fc1167039950f4f9b7f846f61698f262f052fb6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineMigrationsBundle/zipball/6891b8595a003afce8040dd794e6e9f379bbfafc",
-                "reference": "6891b8595a003afce8040dd794e6e9f379bbfafc",
+                "url": "https://api.github.com/repos/doctrine/DoctrineMigrationsBundle/zipball/5fc1167039950f4f9b7f846f61698f262f052fb6",
+                "reference": "5fc1167039950f4f9b7f846f61698f262f052fb6",
                 "shasum": ""
             },
             "require": {
@@ -383,7 +383,7 @@
                 "migrations",
                 "schema"
             ],
-            "time": "2013-04-27 11:57:31"
+            "time": "2013-06-24 10:27:32"
         },
         {
             "name": "doctrine/migrations",
@@ -2431,12 +2431,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "363cadec12b11583a10293dbd463db8fe60c54ed"
+                "reference": "afa9112f5eaf83f62b891bab1b7a81f6e004020a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/363cadec12b11583a10293dbd463db8fe60c54ed",
-                "reference": "363cadec12b11583a10293dbd463db8fe60c54ed",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/afa9112f5eaf83f62b891bab1b7a81f6e004020a",
+                "reference": "afa9112f5eaf83f62b891bab1b7a81f6e004020a",
                 "shasum": ""
             },
             "require": {
@@ -2494,7 +2494,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2013-06-19 06:48:01"
+            "time": "2013-06-25 06:05:58"
         },
         {
             "name": "vipsoft/doctrine-data-fixtures-extension",
