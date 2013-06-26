@@ -41,7 +41,14 @@
         "behat/mink-browserkit-driver":  "*@dev",
         "behat/mink-selenium2-driver" :   "*@dev",
         "vipsoft/doctrine-data-fixtures-extension": "*",
-        "selenium/standalone-server"  : "*"
+        "selenium/standalone-server"  : "*",
+        "leafo/lessphp": "0.3.*@dev",
+        "twitter/bootstrap": "v2.3.2",
+        "components/font-awesome": "3.2.*@dev",
+        "components/jqueryui": "1.*",
+        "components/jquery": "1.*"
+
+
     },
     "scripts": {
         "post-install-cmd": [
@@ -60,7 +67,8 @@
         ]
     },
     "config": {
-        "bin-dir": "bin"
+        "bin-dir": "bin",
+        "component-dir": "vendor/components"
     },
     "minimum-stability": "stable",
     "extra": {
