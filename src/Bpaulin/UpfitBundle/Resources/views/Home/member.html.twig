@@ -7,11 +7,18 @@
         },
     }
 %}
-{% set
-    actions = {
-        'program' : path('member_program')
+{%
+    set actions = {
+        'Programs' : {
+            'route': path('member_program'),
+            'icon': 'tasks',
+        },
+        'Sessions' : {
+            'route': path('member_session'),
+            'icon': 'trophy',
+            'class': 'primary'
+        },
     }
 %}
-
 {% block content %}
 {% endblock %}
