@@ -14,10 +14,19 @@ class WorkoutType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('grade')
-            ->add('Done', 'submit')
-            ->add('Pass', 'submit')
-            ->add('Abandon', 'submit');
+            ->add(
+                'grade',
+                null,
+                array(
+                    'attr' => array(
+                        'min'=> -2,
+                        'max'=> 2,
+                    )
+                )
+            )
+            ->add('done', 'submit')
+            ->add('pass', 'submit')
+            ->add('abandon', 'submit');
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

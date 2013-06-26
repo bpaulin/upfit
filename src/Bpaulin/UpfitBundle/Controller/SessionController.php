@@ -109,15 +109,15 @@ class SessionController extends Controller
 
         $form->handleRequest($request);
         if ($form->isValid()) {
-            if ($form->get('Done')->isClicked()) {
+            if ($form->get('done')->isClicked()) {
                 $session->doneWorkout();
-            } elseif ($form->get('Pass')->isClicked()) {
+            } elseif ($form->get('pass')->isClicked()) {
                 $session->passWorkout();
                 $this->get('session')->getFlashBag()->add(
                     'info',
                     $next->getExercise()->getName().' passed'
                 );
-            } elseif ($form->get('Abandon')->isClicked()) {
+            } elseif ($form->get('abandon')->isClicked()) {
                 $session->abandonWorkout();
                 $this->get('session')->getFlashBag()->add(
                     'info',
@@ -134,81 +134,6 @@ class SessionController extends Controller
             'entity' => $session,
             'form'   => $form->createView()
         );
-    }
-
-    /**
-     * @Route("/member/session/{id}/workout/abandon", name="member_session_workout_abandon")
-     * @Template()
-     */
-    public function workoutAbandonAction(Session $session)
-    {
-        if ($session->getUser() != $this->get('security.context')->getToken()->getUser()) {
-            throw new AccessDeniedException('');
-        }
-
-        $em = $this->getDoctrine()->getManager();
-        $next = $session->getNextWorkout();
-
-        $session->abandonWorkout();
-
-        $em->persist($session);
-        $em->flush();
-
-        $this->get('session')->getFlashBag()->add(
-            'info',
-            $next->getExercise()->getName().' abandonned'
-        );
-
-        return $this->redirect($this->generateUrl('member_session_workout', array('id' => $session->getId())));
-    }
-
-    /**
-     * @Route("/member/session/{id}/workout/pass", name="member_session_workout_pass")
-     * @Template()
-     */
-    public function workoutPassAction(Session $session)
-    {
-        if ($session->getUser() != $this->get('security.context')->getToken()->getUser()) {
-            throw new AccessDeniedException('');
-        }
-
-
-        $em = $this->getDoctrine()->getManager();
-        $next = $session->getNextWorkout();
-
-        $session->passWorkout();
-
-        $em->persist($session);
-        $em->flush();
-
-        $this->get('session')->getFlashBag()->add(
-            'info',
-            $next->getExercise()->getName().' passed'
-        );
-
-
-        return $this->redirect($this->generateUrl('member_session_workout', array('id' => $session->getId())));
-    }
-
-    /**
-     * @Route("/member/session/{id}/workout/done", name="member_session_workout_done")
-     * @Template()
-     */
-    public function workoutDoneAction(Session $session)
-    {
-        if ($session->getUser() != $this->get('security.context')->getToken()->getUser()) {
-            throw new AccessDeniedException('');
-        }
-
-
-        $em = $this->getDoctrine()->getManager();
-
-        $session->doneWorkout();
-
-        $em->persist($session);
-        $em->flush();
-
-        return $this->redirect($this->generateUrl('member_session_workout', array('id' => $session->getId())));
     }
 
     /**

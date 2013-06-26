@@ -14,6 +14,11 @@
 
     <target name="composer:install"
             depends="composer:self-update">
+        <composer command="install" composer="${path.composer}" php="${path.php}"/>
+    </target>
+
+    <target name="composer:deploy"
+            depends="composer:self-update">
         <composer command="install" composer="${path.composer}" php="${path.php}">
             <arg value="--no-dev" />
             <arg value="--optimize-autoloader" />
@@ -39,10 +44,6 @@
         </exec>
     </target>
 
-    <target name="check:lint"
-            depends="check:lint:twig,check:lint:php">
-    </target>
-
     <target name="check:lint:twig">
         <SymfonyConsole command="twig:lint">
             <arg value="${bundle}" quotes="true"/>
@@ -55,6 +56,10 @@
                 <include name="**/*.php"/>
             </fileset>
         </phplint>
+    </target>
+
+    <target name="check:lint"
+            depends="check:lint:twig,check:lint:php">
     </target>
 
     <target name="check:base"

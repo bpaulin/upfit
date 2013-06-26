@@ -42,7 +42,7 @@ class SessionSubContext extends BehatContext
             throw new \Exception('exercise not found');
         }
         return array(
-            new Step\Then("the \".record_properties dd.name\" element should contain \"".$exercise->getName()."\""),
+            new Step\Then("the \".record_properties dd.exercise\" element should contain \"".$exercise->getName()."\""),
         );
     }
 

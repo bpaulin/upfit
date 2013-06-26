@@ -16,11 +16,32 @@
     }
 %}
 {%
+    set actions = {
+        'Begin a session' : {
+            'route': path('member_session_new', { 'follow': 'session', 'id': entity.id }),
+            'icon': 'play',
+            'class': 'primary'
+        }
+    }
+%}
+{% import _self as macros %}
+{%
     set fields =
     {
-        'id' : entity.id,
         'name' : entity.name,
+        'stages' : macros.workoutsList(entity),
     }
 %}
 
 {% block h1 %}Session <small>{{ entity.name }}</small>{% endblock %}
+
+{% macro workoutsList(session) %}
+    <ol>
+        {% for workout in session.workouts %}
+            <li>
+                {{ workout.exercise.name }} ({{ workout.sets }}*{{ workout.number }} {{ workout.unit }}
+                with {{ workout.difficulty }} {{ workout.difficultyUnit }})
+            </li>
+        {% endfor %}
+    </ol>
+{% endmacro %}

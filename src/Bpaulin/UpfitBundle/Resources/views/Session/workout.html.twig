@@ -37,36 +37,49 @@
 
 {%
     set fields = {
-        'id' : entity.nextWorkout.exercise.id,
-        'name' : entity.nextWorkout.exercise.name,
+        'exercise' : entity.nextWorkout.exercise.name,
+        'sets': (entity.nextWorkout.sets ~ '*' ~ entity.nextWorkout.number ~ ' ' ~ entity.nextWorkout.unit),
+        'difficulty': (entity.nextWorkout.difficulty ~ ' ' ~ entity.nextWorkout.difficultyUnit)
     }
 %}
 
 {% block h1 %}Session <small>{{ entity.name }}</small>{% endblock %}
 
 {% block content %}
-<ul class='workouts well'>
+<ul class='nav workouts well'>
     {% for workout in entity.workouts %}
-        <li>
-            <span class='exercise'>{{ workout.exercise.name}}</span>
-            <span class='status'>
-                {% if workout.done is not null %}
-                    {% if workout.done %}
-                        Done
+        <li class="{{ workout != entity.nextWorkout? 'disabled' }}">
+            <a href="#">
+                <span class='exercise'>{{ workout.exercise.name}}</span>
+                <span class='status'>
+                    {% if workout.done is not null %}
+                        {% if workout.done %}
+                            <span class="label label-success">Done</span>
+                        {% else %}
+                            <span class="label label-important">Abandoned</span>
+                        {% endif %}
+                    {% elseif workout == entity.nextWorkout %}
+                        Current
                     {% else %}
-                        Abandoned
+                        <span class="label label-warning">Todo</span>
                     {% endif %}
-                {% elseif workout == entity.nextWorkout %}
-                    Current
-                {% else %}
-                    Todo
-                {% endif %}
-            </span>
-            <span class='grade'>{{ workout.grade}}</span>
+                </span>
+                <span class='grade'>{{ workout.grade}}</span>
+            </a>
         </li>
     {% endfor %}
 </ul>
 {{ parent() }}
-{{ form(form) }}
+{{ form_start(form) }}
+    {{ form_row(form.grade) }}
+    <div class="control-group">
+        <div class="controls">
+            {{ form_widget(form.done, {'attr': {'class': 'btn-primary'}}) }}
+            {{ form_widget(form.pass, {'attr': {'class': 'btn-warning'}}) }}
+            {{ form_widget(form.abandon, {'attr': {'class': 'btn-danger'}}) }}
+        </div>
+    </div>
+    {{ form_rest(form) }}
+{{ form_end(form) }}
 {% endblock %}
 
