@@ -34,6 +34,11 @@ class Exercise
      */
     protected $stages;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Workout", mappedBy="exercise", cascade={"remove"})
+     */
+    protected $workouts;
+
 
     /**
      * Get id

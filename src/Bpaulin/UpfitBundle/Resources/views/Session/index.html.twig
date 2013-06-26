@@ -1,0 +1,40 @@
+{% extends "BpaulinUpfitBundle:Crud:index.html.twig" %}
+{%
+    set breadcrumbs =
+    {
+        'Member' : {
+            'route': path('upfit_member'),
+            'icon': 'gamepad',
+        },
+        'Sessions' : {
+            'route': path('member_session'),
+        },
+    }
+%}
+{%
+    set fields = {
+        'Name' : 'name',
+    }
+%}
+
+{% block h1 %}Sessions{% endblock %}
+
+{% block row %}
+    <td>
+        <a href="{{ path('member_session_show', { 'id': entity.id }) }}">{{ entity.name }}</a>
+        <ol>
+            {% for workout in entity.workouts %}
+                <li>
+                    {{ workout.exercise.name }} ({{ workout.sets }}*{{ workout.number }} {{ workout.unit }}
+                    with {{ workout.difficulty }} {{ workout.difficultyUnit }})
+                </li>
+            {% endfor %}
+        </ol>
+    </td>
+    <td>
+        <a class="btn btn-mini btn-primary" href="{{ path('member_session_new', { 'follow': 'session', 'id': entity.id }) }}">
+            <i class="icon-play"></i>
+            Begin a session
+        </a>
+</td>
+{% endblock %}

@@ -31,13 +31,13 @@ headless:
 
 wip:
     filters:
-        tags: "@wip"
+        tags: "~@skip&&@wip"
     formatter:
         name: pretty
 
 demo:
     formatter:
-        name: progress
+        name: pretty
     extensions:
         Behat\MinkExtension\Extension:
             default_session: 'selenium2'

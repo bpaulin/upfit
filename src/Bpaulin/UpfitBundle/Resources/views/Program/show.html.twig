@@ -17,6 +17,11 @@
     %}
     {%
         set actions = {
+            'Begin a session' : {
+                'route': path('member_session_new', { 'follow': 'program', 'id': entity.id }),
+                'icon': 'play',
+                'class': 'primary'
+            },
             'Edit' : {
                 'route': path('admin_program_edit', { 'id': entity.id }),
                 'icon': 'edit',
@@ -45,12 +50,20 @@
             },
         }
     %}
+    {%
+        set actions = {
+            'Begin a session' : {
+                'route': path('member_session_new', { 'follow': 'program', 'id': entity.id }),
+                'icon': 'play',
+                'class': 'primary'
+            },
+        }
+    %}
 {% endif %}
 
 {% import _self as macros %}
 {%
     set fields = {
-        'id' : entity.id,
         'name' : entity.name,
         'stages' : macros.stagesList(entity),
     }

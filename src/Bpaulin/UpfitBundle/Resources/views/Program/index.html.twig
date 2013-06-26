@@ -36,7 +36,6 @@
 {% endif %}
 {%
     set fields = {
-        'Id' : 'id',
         'Name' : 'name',
     }
 %}
@@ -44,6 +43,20 @@
 {% block h1 %}Programs{% endblock %}
 
 {% block row %}
-    <td>{{ entity.id }}</td>
-    <td><a href="{{ path(route_show, { 'id': entity.id }) }}">{{ entity.name }}</a></td>
+    <td>
+        <a href="{{ path(route_show, { 'id': entity.id }) }}">{{ entity.name }}</a>
+        <ol>
+            {% for stage in entity.stages %}
+                <li>
+                    {{ stage.exercise.name }} ({{ stage.sets }}*{{ stage.number }} {{ stage.unit }} with {{ stage.difficulty }} {{ stage.difficultyUnit }})
+                </li>
+            {% endfor %}
+        </ol>
+    </td>
+    <td>
+        <a class="btn btn-mini btn-primary" href="{{ path('member_session_new', { 'follow': 'program', 'id': entity.id }) }}">
+            <i class="icon-play"></i>
+            Begin a session
+        </a>
+    </td>
 {% endblock %}

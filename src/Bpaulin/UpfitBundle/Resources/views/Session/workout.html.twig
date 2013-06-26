@@ -1,0 +1,85 @@
+{% extends "BpaulinUpfitBundle:Crud:show.html.twig" %}
+{%
+    set breadcrumbs =
+    {
+        'Member' : {
+            'route': path('upfit_member'),
+            'icon': 'gamepad',
+        },
+        'Sessions' : {
+            'route': path('member_session'),
+            'icon': 'list',
+        },
+        (entity.name) : {
+            'route': path('member_session_workout', { 'id': entity.id }),
+        },
+    }
+%}
+{#%
+    set actions = {
+        'Done' : {
+            'route': path('member_session_workout_done', {'id':entity.id}),
+            'icon': 'trophy',
+            'class': 'primary'
+        },
+        'Pass' : {
+            'route': path('member_session_workout_pass', {'id':entity.id}),
+            'icon': 'step-forward',
+            'class': 'warning'
+        },
+        'Abandon' : {
+            'route': path('member_session_workout_abandon', {'id':entity.id}),
+            'icon': 'remove',
+            'class': 'danger'
+        },
+    }
+%#}
+
+{%
+    set fields = {
+        'exercise' : entity.nextWorkout.exercise.name,
+        'sets': (entity.nextWorkout.sets ~ '*' ~ entity.nextWorkout.number ~ ' ' ~ entity.nextWorkout.unit),
+        'difficulty': (entity.nextWorkout.difficulty ~ ' ' ~ entity.nextWorkout.difficultyUnit)
+    }
+%}
+
+{% block h1 %}Session <small>{{ entity.name }}</small>{% endblock %}
+
+{% block content %}
+<ul class='nav workouts well'>
+    {% for workout in entity.workouts %}
+        <li class="{{ workout != entity.nextWorkout? 'disabled' }}">
+            <a href="#">
+                <span class='exercise'>{{ workout.exercise.name}}</span>
+                <span class='status'>
+                    {% if workout.done is not null %}
+                        {% if workout.done %}
+                            <span class="label label-success">Done</span>
+                        {% else %}
+                            <span class="label label-important">Abandoned</span>
+                        {% endif %}
+                    {% elseif workout == entity.nextWorkout %}
+                        Current
+                    {% else %}
+                        <span class="label label-warning">Todo</span>
+                    {% endif %}
+                </span>
+                <span class='grade'>{{ workout.grade}}</span>
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+{{ parent() }}
+{{ form_start(form) }}
+    {{ form_row(form.grade) }}
+    <div class="control-group">
+        <div class="controls">
+            {{ form_widget(form.done, {'attr': {'class': 'btn-primary'}}) }}
+            {{ form_widget(form.pass, {'attr': {'class': 'btn-warning'}}) }}
+            {{ form_widget(form.abandon, {'attr': {'class': 'btn-danger'}}) }}
+        </div>
+    </div>
+    {{ form_rest(form) }}
+{{ form_end(form) }}
+{% endblock %}
+
