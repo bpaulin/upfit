@@ -47,8 +47,6 @@
         "components/font-awesome": "3.2.*@dev",
         "components/jqueryui": "1.*",
         "components/jquery": "1.*"
-
-
     },
     "scripts": {
         "post-install-cmd": [
