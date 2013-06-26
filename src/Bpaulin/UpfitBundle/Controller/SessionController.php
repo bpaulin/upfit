@@ -20,6 +20,8 @@ use Bpaulin\UpfitBundle\Form\WorkoutType;
 class SessionController extends Controller
 {
     /**
+     * List user's sessions
+     *
      * @Route("/member/session", name="member_session")
      * @Method("GET")
      * @Template()
@@ -55,6 +57,8 @@ class SessionController extends Controller
     }
 
     /**
+     * Start a new session
+     *
      * @Route("/member/session/new/{follow}/{id}", name="member_session_new")
      * @Template()
      */
@@ -87,6 +91,8 @@ class SessionController extends Controller
     }
 
     /**
+     * Display or save next workout
+     *
      * @Route("/member/session/{id}/workout", name="member_session_workout")
      * @Template()
      */
@@ -137,6 +143,8 @@ class SessionController extends Controller
     }
 
     /**
+     * Edit session's details
+     *
      * @Route("/member/session/{id}/edit", name="member_session_edit")
      * @Template()
      */
@@ -158,7 +166,7 @@ class SessionController extends Controller
     }
 
     /**
-     * Edits an existing Program entity.
+     * Update session's details
      *
      * @Route("/member/session/{id}", name="member_session_update")
      * @Method("PUT")

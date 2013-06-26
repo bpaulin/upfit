@@ -14,6 +14,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Program
 {
     /**
+     * Id
+     *
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -23,6 +25,8 @@ class Program
     private $id;
 
     /**
+     * Name
+     *
      * @var string
      * @Assert\NotBlank()
      * @ORM\Column(name="name", type="string", length=150)
@@ -30,6 +34,8 @@ class Program
     private $name;
 
     /**
+     * Stages
+     *
      * @ORM\OneToMany(targetEntity="Stage", mappedBy="program", cascade={"remove", "persist"})
      * @Assert\Count(min = "1")
      * @ORM\OrderBy({"position" = "ASC"})

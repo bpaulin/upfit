@@ -145,6 +145,17 @@
             depends="check:common,check:behat">
     </target>
 
+    <target name="check:doc">
+        <exec executable="${path.phpdoc}" passthru="true" checkreturn="true">
+            <arg value="--ansi"/>
+            <arg value="--force"/>
+            <arg line="-d ${dir.src}"/>
+            <arg line="-t ${dir.reports.docs}"/>
+            <arg line="-i *Test.php,*Features/Context/*"/>
+            <arg line="--template checkstyle"/>
+        </exec>
+    </target>
+
     <target name="prod:test">
         <SymfonyConsole command="assetic:dump">
             <arg value="--env=prod"/>
@@ -201,6 +212,7 @@
     <target name="report:doc">
         <exec executable="${path.phpdoc}" passthru="true">
             <arg value="--ansi"/>
+            <arg line="-i *Test.php,*Features/Context/*"/>
             <arg line="-d ${dir.src}"/>
             <arg line="-t ${dir.reports.docs}"/>
         </exec>
