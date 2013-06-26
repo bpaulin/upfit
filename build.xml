@@ -44,6 +44,16 @@
         </exec>
     </target>
 
+    <target name="check:cpd">
+        <exec executable="${path.php}" passthru="true" checkreturn="true">
+            <arg value="${path.phpcpd}"/>
+            <arg line="--names *.php,*.twig"/>
+            <arg line="--min-lines 5"/>
+            <arg line="--min-tokens 70"/>
+            <arg path="${dir.src}"/>
+        </exec>
+    </target>
+
     <target name="check:lint:twig">
         <SymfonyConsole command="twig:lint">
             <arg value="${bundle}" quotes="true"/>
@@ -124,7 +134,7 @@
     </target>
 
     <target name="check:common"
-            depends="base:test:reset,check:lint,check:style,check:mess,check:base,check:test">
+            depends="base:test:reset,check:lint,check:style,check:mess,check:cpd,check:base,check:test">
     </target>
 
     <target name="check:headless"
@@ -161,6 +171,17 @@
             <arg value="html"/>
             <arg value="app/phpmd_rules.xml"/>
             <arg line="--reportfile ${dir.reports}/mess.html"/>
+        </exec>
+    </target>
+
+    <target name="report:cpd">
+        <exec executable="${path.php}" passthru="true" checkreturn="true">
+            <arg value="${path.phpcpd}"/>
+            <arg line="--names *.php,*.twig"/>
+            <arg line="--min-lines 5"/>
+            <arg line="--min-tokens 70"/>
+            <arg line="--log-pmd ${dir.reports}/cpd.xml"/>
+            <arg path="${dir.src}"/>
         </exec>
     </target>
 
@@ -203,9 +224,8 @@
     </target>
 
     <target name="base:test:update">
-        <SymfonyConsole command="doctrine:schema:update" checkreturn="true">
+        <SymfonyConsole command="doctrine:schema:create" checkreturn="true">
             <arg value="--env=test"/>
-            <arg value="--force"/>
         </SymfonyConsole>
     </target>
 
@@ -244,7 +264,7 @@
         <SymfonyConsole command="doctrine:fixtures:load" checkreturn="true">
             <arg value="--env=dev"/>
             <arg value="--no-interaction"/>
-            <arg value="--fixtures=${dir.bundle}/DataFixtures/ORM/Dev"/>
+            <arg value="--fixtures=${dir.bundle}/DataFixtures/ORM/Test"/>
         </SymfonyConsole>
     </target>
 

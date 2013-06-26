@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "26420c72c10495772f600b0258c7a0ee",
+    "hash": "3d4588ee2d3e1899599e28bfef3271bc",
     "packages": [
         {
             "name": "bootstrap/js",
@@ -2415,6 +2415,128 @@
             "time": "2013-01-13 10:24:48"
         },
         {
+            "name": "sebastian/finder-facade",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/finder-facade.git",
+                "reference": "1.1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/finder-facade/zipball/1.1.0",
+                "reference": "1.1.0",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/finder": ">=2.2.0",
+                "theseer/fdomdocument": ">=1.3.1"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian Bergmann",
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
+                }
+            ],
+            "description": "FinderFacade is a convenience wrapper for Symfony's Finder component.",
+            "homepage": "https://github.com/sebastianbergmann/finder-facade",
+            "time": "2013-05-28 06:10:03"
+        },
+        {
+            "name": "sebastian/phpcpd",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/phpcpd.git",
+                "reference": "105262ad7c0e1d3cbe688c4312f4c06fce6d7ec8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpcpd/zipball/105262ad7c0e1d3cbe688c4312f4c06fce6d7ec8",
+                "reference": "105262ad7c0e1d3cbe688c4312f4c06fce6d7ec8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "phpunit/php-timer": ">=1.0.4,<1.1.0",
+                "sebastian/finder-facade": ">=1.1,<2.0",
+                "sebastian/version": ">=1.0.0",
+                "symfony/finder": ">=2.1.2",
+                "theseer/fdomdocument": ">=1.3,<2.0",
+                "zetacomponents/base": ">=1.8",
+                "zetacomponents/console-tools": ">=1.6"
+            },
+            "bin": [
+                "composer/bin/phpcpd"
+            ],
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian Bergmann",
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
+                }
+            ],
+            "description": "Copy/Paste Detector (CPD) for PHP code.",
+            "homepage": "https://github.com/sebastianbergmann/phpcpd",
+            "time": "2013-06-07 08:26:26"
+        },
+        {
+            "name": "sebastian/version",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/version.git",
+                "reference": "1.0.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/version/zipball/1.0.1",
+                "reference": "1.0.1",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian Bergmann",
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
+                }
+            ],
+            "description": "Library that helps with managing the version number of Git-hosted PHP projects",
+            "homepage": "https://github.com/sebastianbergmann/version",
+            "time": "2013-05-29 10:02:00"
+        },
+        {
             "name": "selenium/standalone-server",
             "version": "2.33",
             "dist": {
@@ -2497,6 +2619,46 @@
             "time": "2013-06-25 06:05:58"
         },
         {
+            "name": "theseer/fdomdocument",
+            "version": "1.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/theseer/fDOMDocument.git",
+                "reference": "Release-1.4.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/theseer/fDOMDocument/zipball/Release-1.4.1",
+                "reference": "Release-1.4.1",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "lib-libxml": "*",
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Arne Blankerts",
+                    "email": "arne@blankerts.de",
+                    "role": "lead"
+                }
+            ],
+            "description": "The classes contained within this repository extend the standard DOM to use exceptions at all occasions of errors instead of PHP warnings or notices. They also add various custom methods and shortcuts for convinience and to simplify the usage of DOM.",
+            "homepage": "https://github.com/theseer/fDOMDocument",
+            "time": "2013-04-27 20:25:08"
+        },
+        {
             "name": "vipsoft/doctrine-data-fixtures-extension",
             "version": "v0.9.15",
             "source": {
@@ -2544,6 +2706,126 @@
                 "doctrine"
             ],
             "time": "2013-03-12 22:54:20"
+        },
+        {
+            "name": "zetacomponents/base",
+            "version": "1.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zetacomponents/Base.git",
+                "reference": "1.8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/zetacomponents/Base/zipball/1.8",
+                "reference": "1.8",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "apache2"
+            ],
+            "authors": [
+                {
+                    "name": "Sergey Alexeev"
+                },
+                {
+                    "name": "Sebastian Bergmann"
+                },
+                {
+                    "name": "Jan Borsodi"
+                },
+                {
+                    "name": "Raymond Bosman"
+                },
+                {
+                    "name": "Frederik Holljen"
+                },
+                {
+                    "name": "Kore Nordmann"
+                },
+                {
+                    "name": "Derick Rethans"
+                },
+                {
+                    "name": "Vadym Savchuk"
+                },
+                {
+                    "name": "Tobias Schlitt"
+                },
+                {
+                    "name": "Alexandru Stanoi"
+                }
+            ],
+            "description": "The Base package provides the basic infrastructure that all packages rely on. Therefore every component relies on this package.",
+            "homepage": "https://github.com/zetacomponents",
+            "time": "2009-12-21 04:14:16"
+        },
+        {
+            "name": "zetacomponents/console-tools",
+            "version": "1.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zetacomponents/ConsoleTools.git",
+                "reference": "1.6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/zetacomponents/ConsoleTools/zipball/1.6",
+                "reference": "1.6",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "apache2"
+            ],
+            "authors": [
+                {
+                    "name": "Sergey Alexeev"
+                },
+                {
+                    "name": "Sebastian Bergmann"
+                },
+                {
+                    "name": "Jan Borsodi"
+                },
+                {
+                    "name": "Raymond Bosman"
+                },
+                {
+                    "name": "Frederik Holljen"
+                },
+                {
+                    "name": "Kore Nordmann"
+                },
+                {
+                    "name": "Derick Rethans"
+                },
+                {
+                    "name": "Vadym Savchuk"
+                },
+                {
+                    "name": "Tobias Schlitt"
+                },
+                {
+                    "name": "Alexandru Stanoi"
+                }
+            ],
+            "description": "A set of classes to do different actions with the console (also called shell). It can render a progress bar, tables and a status bar and contains a class for parsing command line options.",
+            "homepage": "https://github.com/zetacomponents",
+            "time": "2009-12-21 04:19:33"
         }
     ],
     "aliases": [
@@ -2557,6 +2839,7 @@
         "doctrine/migrations": 20,
         "doctrine/doctrine-migrations-bundle": 20,
         "squizlabs/php_codesniffer": 20,
+        "sebastian/phpcpd": 20,
         "behat/behat": 20,
         "behat/mink": 20,
         "behat/symfony2-extension": 20,
