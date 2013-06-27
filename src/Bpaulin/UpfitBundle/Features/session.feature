@@ -66,11 +66,11 @@ Scenario: Member can begin a session from program list
     | exercise5 | Done        | -1    |
     | exercise2 | Done        | 2     |
   Then the "bpaulin_upfitbundle_sessiontype_name" field should contain "following program1"
-  Then the "bpaulin_upfitbundle_sessiontype_difficulty" field should contain "1"
+  Then the "bpaulin_upfitbundle_sessiontype_grade" field should contain "1"
   When I fill in session form with the following:
-    | name       | session1 |
-    | comment    | comment1 |
-    | difficulty | 1        |
+    | name    | session1 |
+    | comment | comment1 |
+    | grade   | 1        |
   And I press "Edit"
   Then I should be on "/member/session"
   And I should see a "success" message "session1 updated"
@@ -97,11 +97,11 @@ Scenario: Member can begin a session from session list
     | exercise2 | Done       | -1    |
     | exercise4 | Done       | -1    |
   Then the "bpaulin_upfitbundle_sessiontype_name" field should contain "following session1"
-  Then the "bpaulin_upfitbundle_sessiontype_difficulty" field should contain "-1"
+  Then the "bpaulin_upfitbundle_sessiontype_grade" field should contain "-1"
   And I fill in session form with the following:
-    | name       | session-copy |
-    | comment    | comment1     |
-    | difficulty | 1            |
+    | name    | session-copy |
+    | comment | comment1     |
+    | grade   | 1            |
   And I press "Edit"
   Then I should be on "/member/session"
   And I should see a "success" message "session-copy updated"

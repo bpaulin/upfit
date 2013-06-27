@@ -10,26 +10,26 @@ class TestCase extends \PHPUnit_Framework_TestCase
     public function testCalculateAverageGrade()
     {
         $session = new Session();
-        $session->setDifficultyToAverage();
-        $this->assertEquals(0, $session->getDifficulty());
+        $session->setGradeToAverage();
+        $this->assertEquals(0, $session->getGrade());
 
         $workout = new Workout();
         $session->addWorkout($workout->setGrade(2));
-        $session->setDifficultyToAverage();
-        $this->assertEquals(0, $session->getDifficulty());
+        $session->setGradeToAverage();
+        $this->assertEquals(0, $session->getGrade());
 
         $workout->setDone(true);
-        $session->setDifficultyToAverage();
-        $this->assertEquals(2, $session->getDifficulty());
+        $session->setGradeToAverage();
+        $this->assertEquals(2, $session->getGrade());
 
         $workout = new Workout();
         $session->addWorkout($workout->setGrade(1)->setDone(true));
-        $session->setDifficultyToAverage();
-        $this->assertEquals(2, $session->getDifficulty());
+        $session->setGradeToAverage();
+        $this->assertEquals(2, $session->getGrade());
 
         $workout = new Workout();
         $session->addWorkout($workout->setGrade(1)->setDone(true));
-        $session->setDifficultyToAverage();
-        $this->assertEquals(1, $session->getDifficulty());
+        $session->setGradeToAverage();
+        $this->assertEquals(1, $session->getGrade());
     }
 }

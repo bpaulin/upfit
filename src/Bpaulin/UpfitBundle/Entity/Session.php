@@ -36,8 +36,9 @@ class Session
 
     /**
      * @ORM\Column(type="smallint", nullable=true)
+     * @Assert\Range(min = "-2", max = "2")
      */
-    private $difficulty;
+    protected $grade = 0;
 
     /**
      * @ORM\OneToMany(targetEntity="Workout", mappedBy="session", cascade={"persist"})
@@ -57,7 +58,7 @@ class Session
     public function initWithProgram(\Bpaulin\UpfitBundle\Entity\Program $program)
     {
         $this->setName('following '.$program->getName());
-        $this->setDifficulty(0);
+        $this->setGrade(0);
         $this->setComment($program->getName());
         foreach ($program->getStages() as $stage) {
             $workout = $stage->createWorkout();
@@ -73,7 +74,7 @@ class Session
     public function initWithSession(\Bpaulin\UpfitBundle\Entity\Session $session)
     {
         $this->setName('following '.$session->getName());
-        $this->setDifficulty(0);
+        $this->setGrade(0);
         $this->setComment($session->getComment());
         foreach ($session->getWorkouts() as $workout) {
             if ($workout->isDone() === true) {
@@ -122,7 +123,7 @@ class Session
         $next->setDone(true);
     }
 
-    public function setDifficultyToAverage()
+    public function setGradeToAverage()
     {
         $sum = 0;
         $nb = 0;
@@ -138,7 +139,7 @@ class Session
             $avg = 0;
         }
 
-        return $this->setDifficulty($avg);
+        return $this->setGrade($avg);
     }
 
     /**
@@ -239,26 +240,26 @@ class Session
     }
 
     /**
-     * Set difficulty
+     * Set grade
      *
-     * @param  integer $difficulty
+     * @param  integer $grade
      * @return Session
      */
-    public function setDifficulty($difficulty)
+    public function setGrade($grade)
     {
-        $this->difficulty = $difficulty;
+        $this->grade = $grade;
 
         return $this;
     }
 
     /**
-     * Get difficulty
+     * Get grade
      *
      * @return integer
      */
-    public function getDifficulty()
+    public function getGrade()
     {
-        return $this->difficulty;
+        return $this->grade;
     }
 
     /**
