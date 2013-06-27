@@ -51,7 +51,7 @@ class Session
     /**
      * workouts
      *
-     * @ORM\OneToMany(targetEntity="Workout", mappedBy="session", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Workout", mappedBy="session", cascade={"remove", "persist"})
      * @Assert\Count(min = "1")
      * @ORM\OrderBy({"position" = "ASC"})
      */

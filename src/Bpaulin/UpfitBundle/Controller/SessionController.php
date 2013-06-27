@@ -210,6 +210,60 @@ class SessionController extends Controller
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
         );
+    }
 
+    /**
+     * Deletes a Session entity.
+     *
+     * @Route("/member/session/{id}/delete", name="member_session_delete")
+     * @Method("GET")
+     * @Template()
+     */
+    public function deleteAction(Session $entity)
+    {
+        $deleteForm = $this->createDeleteForm($entity->getId());
+
+        return array(
+            'entity'      => $entity,
+            'delete_form' => $deleteForm->createView(),
+        );
+    }
+
+    /**
+     * Deletes a Session entity.
+     *
+     * @Route("/member/session//{id}", name="member_session_delete_confirm")
+     * @Method("DELETE")
+     */
+    public function confirmDeleteAction(Request $request, Session $entity)
+    {
+        $form = $this->createDeleteForm($entity->getid());
+        $form->bind($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($entity);
+            $em->flush();
+            $this->get('session')->getFlashBag()->add(
+                'success',
+                $this->get('translator')->trans('Session '.$entity->getName().' deleted')
+            );
+        }
+
+        return $this->redirect($this->generateUrl('member_session'));
+    }
+
+    /**
+     * Creates a form to delete a Session entity by id.
+     *
+     * @param mixed $id The entity id
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createDeleteForm($id)
+    {
+        return $this->createFormBuilder(array('id' => $id))
+            ->add('id', 'hidden')
+            ->getForm();
     }
 }

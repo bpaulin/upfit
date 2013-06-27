@@ -40,3 +40,12 @@ Scenario: Members can update sessions
   And I should see a link to session "session6"
   When I follow this link
   Then I should see "session6" as "name"
+
+Scenario: Members can delete sessions
+  Given I am on session "session1" page
+  Then I should see a link to delete session "session1"
+  When I follow this link
+  And I press "Delete"
+  Then I should be on "/member/session"
+  And I should see a "success" message "Session session1 deleted"
+  And I should not see a link to session "session1"

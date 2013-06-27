@@ -1,0 +1,26 @@
+{% extends "BpaulinUpfitBundle:Crud:delete.html.twig" %}
+{%
+    set breadcrumbs =
+    {
+        'Member' : {
+            'route': path('upfit_member'),
+            'icon': 'gamepad',
+        },
+        'Sessions' : {
+            'route': path('member_session'),
+            'icon': 'list',
+        },
+        (entity.name) : {
+            'route': path('member_session', { 'id': entity.id }),
+        },
+        'Delete' : {
+            'route': path('member_session_delete', { 'id': entity.id }),
+            'icon': 'minus',
+        },
+    }
+%}
+{%
+    set action = path('member_session_delete_confirm', { 'id': entity.id })
+%}
+
+{% block h1 %}Session <small>{{ entity.name }}</small>{% endblock %}

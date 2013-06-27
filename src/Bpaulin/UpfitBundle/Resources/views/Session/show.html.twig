@@ -29,6 +29,11 @@
             'route': path('member_session_edit', {'id': entity.id }),
             'icon': 'edit',
             'class': 'primary'
+        },
+        'Delete' : {
+            'route': path('member_session_delete', {'id': entity.id }),
+            'icon': 'minus',
+            'class': 'danger'
         }
     }
 %}
