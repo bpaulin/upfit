@@ -5,7 +5,7 @@ namespace Bpaulin\UpfitBundle\Tests\Entity;
 use Bpaulin\UpfitBundle\Entity\Session;
 use Bpaulin\UpfitBundle\Entity\Workout;
 
-class TestCase extends \PHPUnit_Framework_TestCase
+class SessionTest extends \PHPUnit_Framework_TestCase
 {
     public function testCalculateAverageGrade()
     {
