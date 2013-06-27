@@ -39,7 +39,6 @@ class Exercise
      */
     protected $workouts;
 
-
     /**
      * Get id
      *
@@ -53,7 +52,7 @@ class Exercise
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string   $name
      * @return Exercise
      */
     public function setName($name)

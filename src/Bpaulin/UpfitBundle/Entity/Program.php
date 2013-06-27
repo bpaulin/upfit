@@ -14,6 +14,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Program
 {
     /**
+     * Id
+     *
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -23,6 +25,8 @@ class Program
     private $id;
 
     /**
+     * Name
+     *
      * @var string
      * @Assert\NotBlank()
      * @ORM\Column(name="name", type="string", length=150)
@@ -30,12 +34,13 @@ class Program
     private $name;
 
     /**
+     * Stages
+     *
      * @ORM\OneToMany(targetEntity="Stage", mappedBy="program", cascade={"remove", "persist"})
      * @Assert\Count(min = "1")
      * @ORM\OrderBy({"position" = "ASC"})
      */
     protected $stages;
-
 
     /**
      * Get id
@@ -50,7 +55,7 @@ class Program
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string  $name
      * @return Program
      */
     public function setName($name)
@@ -80,13 +85,14 @@ class Program
     /**
      * Add stages
      *
-     * @param \Bpaulin\UpfitBundle\Entity\Stage $stages
+     * @param  \Bpaulin\UpfitBundle\Entity\Stage $stages
      * @return Program
      */
     public function addStage(\Bpaulin\UpfitBundle\Entity\Stage $stages)
     {
         $this->stages[] = $stages;
         $stages->setProgram($this);
+
         return $this;
     }
 

@@ -25,12 +25,20 @@
         </composer>
     </target>
 
-    <target name="check:style">
+    <target name="fix:style">
+        <exec executable="${path.php}" passthru="true">
+            <arg value="${path.phpcsfixer}"/>
+            <arg value="fix"/>
+            <arg path="${dir.src}"/>
+        </exec>
+    </target>
+
+    <target name="check:style"
+            depends="fix:style">
         <exec executable="${path.php}" passthru="true" checkreturn="true">
             <arg value="${path.phpcs}"/>
             <arg value="-p"/>
             <arg value="--standard=PSR2"/>
-            <arg value="--extensions=php"/>
             <arg path="${dir.src}"/>
         </exec>
     </target>
@@ -41,6 +49,16 @@
             <arg path="${dir.src}"/>
             <arg value="text"/>
             <arg value="app/phpmd_rules.xml"/>
+        </exec>
+    </target>
+
+    <target name="check:cpd">
+        <exec executable="${path.php}" passthru="true" checkreturn="true">
+            <arg value="${path.phpcpd}"/>
+            <arg line="--names *.php,*.twig"/>
+            <arg line="--min-lines 5"/>
+            <arg line="--min-tokens 70"/>
+            <arg path="${dir.src}"/>
         </exec>
     </target>
 
@@ -60,16 +78,6 @@
 
     <target name="check:lint"
             depends="check:lint:twig,check:lint:php">
-    </target>
-
-    <target name="check:base"
-            depends="check:base:schema">
-    </target>
-
-    <target name="check:base:schema">
-        <SymfonyConsole checkreturn="true" command="doctrine:schema:validate">
-            <arg value="--env=test"/>
-        </SymfonyConsole>
     </target>
 
     <target name="check:test">
@@ -124,7 +132,7 @@
     </target>
 
     <target name="check:common"
-            depends="base:test:reset,check:lint,check:style,check:mess,check:base,check:test">
+            depends="base:test:reset,check:lint,check:style,check:mess,check:cpd,check:test">
     </target>
 
     <target name="check:headless"
@@ -133,6 +141,17 @@
 
     <target name="check"
             depends="check:common,check:behat">
+    </target>
+
+    <target name="check:doc">
+        <exec executable="${path.phpdoc}" passthru="true" checkreturn="true">
+            <arg value="--ansi"/>
+            <arg value="--force"/>
+            <arg line="-d ${dir.src}"/>
+            <arg line="-t ${dir.reports.docs}"/>
+            <arg line="-i *Test.php,*Features/Context/*"/>
+            <arg line="--template checkstyle"/>
+        </exec>
     </target>
 
     <target name="prod:test">
@@ -164,6 +183,17 @@
         </exec>
     </target>
 
+    <target name="report:cpd">
+        <exec executable="${path.php}" passthru="true" checkreturn="true">
+            <arg value="${path.phpcpd}"/>
+            <arg line="--names *.php,*.twig"/>
+            <arg line="--min-lines 5"/>
+            <arg line="--min-tokens 70"/>
+            <arg line="--log-pmd ${dir.reports}/cpd.xml"/>
+            <arg path="${dir.src}"/>
+        </exec>
+    </target>
+
     <target name="report:test">
         <mkdir dir="${dir.reports.test.behat}" />
         <exec executable="${path.php}" passthru="true">
@@ -180,6 +210,7 @@
     <target name="report:doc">
         <exec executable="${path.phpdoc}" passthru="true">
             <arg value="--ansi"/>
+            <arg line="-i *Test.php,*Features/Context/*"/>
             <arg line="-d ${dir.src}"/>
             <arg line="-t ${dir.reports.docs}"/>
         </exec>
@@ -203,9 +234,8 @@
     </target>
 
     <target name="base:test:update">
-        <SymfonyConsole command="doctrine:schema:update" checkreturn="true">
+        <SymfonyConsole command="doctrine:schema:create" checkreturn="true">
             <arg value="--env=test"/>
-            <arg value="--force"/>
         </SymfonyConsole>
     </target>
 
@@ -244,10 +274,48 @@
         <SymfonyConsole command="doctrine:fixtures:load" checkreturn="true">
             <arg value="--env=dev"/>
             <arg value="--no-interaction"/>
-            <arg value="--fixtures=${dir.bundle}/DataFixtures/ORM/Dev"/>
+            <arg value="--fixtures=${dir.bundle}/DataFixtures/ORM/Test"/>
         </SymfonyConsole>
     </target>
 
     <target name="base:dev:reset"
             depends="base:dev:drop,base:dev:create,base:dev:update,base:dev:fill"/>
+
+    <target name="base:prod:dump">
+        <exec executable="${path.php}">
+            <arg value="dumpsf2.php"/>
+        </exec>
+    </target>
+
+    <target name="base:prod:create">
+        <SymfonyConsole command="doctrine:database:create" checkreturn="true">
+            <arg value="--env=prod"/>
+        </SymfonyConsole>
+        <SymfonyConsole command="doctrine:migrations:migrate" checkreturn="true">
+            <arg value="--env=prod"/>
+            <arg value="--no-interaction"/>
+        </SymfonyConsole>
+        <SymfonyConsole command="doctrine:fixtures:load" checkreturn="true">
+            <arg value="--env=prod"/>
+            <arg value="--no-interaction"/>
+            <arg value="--fixtures=${dir.bundle}/DataFixtures/ORM/Prod"/>
+        </SymfonyConsole>
+    </target>
+
+    <target name="base:prod:update"
+            depends="base:prod:dump">
+        <SymfonyConsole command="doctrine:migrations:migrate" checkreturn="true">
+            <arg value="--env=prod"/>
+            <arg value="--no-interaction"/>
+        </SymfonyConsole>
+    </target>
+
+    <target name="asset:generate">
+        <SymfonyConsole command="cache:clear" checkreturn="true">
+            <arg value="--env=prod"/>
+        </SymfonyConsole>
+        <SymfonyConsole command="assetic:dump" checkreturn="true">
+            <arg value="--env=prod"/>
+        </SymfonyConsole>
+    </target>
 </project>

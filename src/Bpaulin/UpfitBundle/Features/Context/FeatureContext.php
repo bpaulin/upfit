@@ -2,18 +2,11 @@
 
 namespace Bpaulin\UpfitBundle\Features\Context;
 
-
-use Symfony\Bundle\FrameworkBundle\Console\Application;
-use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Behat\Symfony2Extension\Context\KernelAwareInterface;
 use Behat\MinkExtension\Context\MinkContext;
 
-use Behat\Behat\Context\BehatContext;
-use Behat\Behat\Exception\PendingException;
-use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
-use Behat\Behat\Event\ScenarioEvent;
 use Behat\Behat\Context\Step;
 
 //
@@ -75,6 +68,7 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
                                 ->getPage()
                                 ->find('css', "a[href$='".$url."']")
                                 ->getAttribute('href');
+
         return $result;
     }
 
@@ -88,6 +82,7 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
                                 ->getPage()
                                 ->find('css', "#".$area."-area a[href$='".$url."']")
                                 ->getAttribute('href');
+
         return $this->assertElementOnPage("#".$area."-area a[href$='".$url."']");
     }
 

@@ -5,7 +5,6 @@ namespace Bpaulin\UpfitBundle\Features\Context;
 use Behat\Behat\Context\BehatContext;
 use Behat\Gherkin\Node\TableNode;
 use Behat\Behat\Context\Step;
-use Behat\Behat\Exception\PendingException;
 
 class SessionSubContext extends BehatContext
 {
@@ -28,6 +27,7 @@ class SessionSubContext extends BehatContext
         if (!$entity) {
             throw new \Exception("$type not found");
         }
+
         return new Step\Then("I should see a link to \"/member/session/new/$type/".$entity->getId()."\"");
     }
 
@@ -41,6 +41,7 @@ class SessionSubContext extends BehatContext
         if (!$exercise) {
             throw new \Exception('exercise not found');
         }
+
         return array(
             new Step\Then("the \".record_properties dd.exercise\" element should contain \"".$exercise->getName()."\""),
         );
@@ -68,6 +69,7 @@ class SessionSubContext extends BehatContext
         if (!$session) {
             throw new \Exception();
         }
+
         return new Step\Then("I should see a link to \"/member/session/".$session->getId()."\"");
     }
 
@@ -81,6 +83,7 @@ class SessionSubContext extends BehatContext
         if (!$session) {
             throw new \Exception();
         }
+
         return array(
             new Step\Given('I am on "/member/session/'.$session->GetId().'"'),
             new Step\Then('I should see "Forbidden"'),
@@ -114,6 +117,7 @@ class SessionSubContext extends BehatContext
                     break;
             }
         }
+
         return $steps;
     }
 

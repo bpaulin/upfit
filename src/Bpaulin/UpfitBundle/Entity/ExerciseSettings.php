@@ -65,7 +65,7 @@ class ExerciseSettings
     /**
      * Set position
      *
-     * @param integer $position
+     * @param  integer          $position
      * @return ExerciseSettings
      */
     public function setPosition($position)
@@ -88,7 +88,7 @@ class ExerciseSettings
     /**
      * Set exercise
      *
-     * @param \Bpaulin\UpfitBundle\Entity\Exercise $exercise
+     * @param  \Bpaulin\UpfitBundle\Entity\Exercise $exercise
      * @return ExerciseSettings
      */
     public function setExercise(\Bpaulin\UpfitBundle\Entity\Exercise $exercise = null)
@@ -111,7 +111,7 @@ class ExerciseSettings
     /**
      * Set sets
      *
-     * @param integer $sets
+     * @param  integer          $sets
      * @return ExerciseSettings
      */
     public function setSets($sets)
@@ -134,7 +134,7 @@ class ExerciseSettings
     /**
      * Set number
      *
-     * @param integer $number
+     * @param  integer          $number
      * @return ExerciseSettings
      */
     public function setNumber($number)
@@ -157,7 +157,7 @@ class ExerciseSettings
     /**
      * Set unit
      *
-     * @param integer $unit
+     * @param  integer          $unit
      * @return ExerciseSettings
      */
     public function setUnit($unit)
@@ -180,7 +180,7 @@ class ExerciseSettings
     /**
      * Set difficulty
      *
-     * @param string $difficulty
+     * @param  string           $difficulty
      * @return ExerciseSettings
      */
     public function setDifficulty($difficulty)
@@ -203,7 +203,7 @@ class ExerciseSettings
     /**
      * Set difficultyUnit
      *
-     * @param string $difficultyUnit
+     * @param  string           $difficultyUnit
      * @return ExerciseSettings
      */
     public function setDifficultyUnit($difficultyUnit)

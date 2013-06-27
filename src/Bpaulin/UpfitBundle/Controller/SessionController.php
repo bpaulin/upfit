@@ -20,6 +20,8 @@ use Bpaulin\UpfitBundle\Form\WorkoutType;
 class SessionController extends Controller
 {
     /**
+     * List user's sessions
+     *
      * @Route("/member/session", name="member_session")
      * @Method("GET")
      * @Template()
@@ -49,12 +51,15 @@ class SessionController extends Controller
         if ($entity->getUser() != $this->get('security.context')->getToken()->getUser()) {
             throw new AccessDeniedException('');
         }
+
         return array(
             'entity'      => $entity,
         );
     }
 
     /**
+     * Start a new session
+     *
      * @Route("/member/session/new/{follow}/{id}", name="member_session_new")
      * @Template()
      */
@@ -87,6 +92,8 @@ class SessionController extends Controller
     }
 
     /**
+     * Display or save next workout
+     *
      * @Route("/member/session/{id}/workout", name="member_session_workout")
      * @Template()
      */
@@ -102,6 +109,7 @@ class SessionController extends Controller
                 'success',
                 'session finished'
             );
+
             return $this->redirect($this->generateUrl('member_session_edit', array('id' => $session->getId())));
         }
 
@@ -130,6 +138,7 @@ class SessionController extends Controller
 
             return $this->redirect($this->generateUrl('member_session_workout', array('id' => $session->getId())));
         }
+
         return array(
             'entity' => $session,
             'form'   => $form->createView()
@@ -137,6 +146,8 @@ class SessionController extends Controller
     }
 
     /**
+     * Edit session's details
+     *
      * @Route("/member/session/{id}/edit", name="member_session_edit")
      * @Template()
      */
@@ -158,7 +169,7 @@ class SessionController extends Controller
     }
 
     /**
-     * Edits an existing Program entity.
+     * Update session's details
      *
      * @Route("/member/session/{id}", name="member_session_update")
      * @Method("PUT")
@@ -184,6 +195,7 @@ class SessionController extends Controller
                 'success',
                 $this->get('translator')->trans('Session '.$entity->getName().' updated')
             );
+
             return $this->redirect($this->generateUrl('member_session'));
         }
 

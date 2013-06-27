@@ -1,20 +1,14 @@
 {% extends "::base.html.twig" %}
 
 {% block stylesheets_global %}
-    {% stylesheets
-        '@BpaulinUpfitBundle/Resources/public/css/bootstrap-combined.no-icons.min.css'
-        '@BpaulinUpfitBundle/Resources/public/css/font-awesome.min.css'
-    %}
+    {% stylesheets '@common_css' %}
         <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
     {% block stylesheets %}{% endblock %}
 {% endblock %}
 
 {% block javascripts_global %}
-    {% javascripts
-        '../vendor/jquery/jquery/jquery-latest.js'
-        '../vendor/bootstrap/js/bootstrap.min.js'
-    %}
+    {% javascripts'@common_js' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
     {% block javascripts %}{% endblock %}

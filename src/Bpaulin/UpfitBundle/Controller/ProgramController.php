@@ -128,7 +128,6 @@ class ProgramController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-
         $originalStages = array();
 
         // Create an array of the current Stage objects in the database
@@ -163,6 +162,7 @@ class ProgramController extends Controller
                 'success',
                 $this->get('translator')->trans('Program '.$entity->getName().' updated')
             );
+
             return $this->redirect($this->generateUrl('admin_program'));
         }
 
