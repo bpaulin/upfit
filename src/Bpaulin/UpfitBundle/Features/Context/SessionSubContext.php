@@ -191,4 +191,42 @@ class SessionSubContext extends BehatContext
             $this->getMainContext()->fillField($form.$field, $value);
         }
     }
+
+    /**
+     * @Given /^I am on session "([^"]*)" page$/
+     */
+    public function iAmOnSessionPage($name)
+    {
+        $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
+        $session = $em->getRepository('BpaulinUpfitBundle:Session')->findOneByName($name);
+
+        return $this->getMainContext()->getMink()
+            ->getSession()
+            ->visit($this->getMainContext()->locatePath("/member/session/".$session->getId()));
+    }
+
+    /**
+     * @Then /^I should see a link to edit session "([^"]*)"$/
+     */
+    public function iShouldSeeALinkToEditSession($name)
+    {
+        $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
+        $session = $em->getRepository('BpaulinUpfitBundle:Session')->findOneByName($name);
+
+        return new Step\Then("I should see a link to \"/member/session/".$session->getId()."/edit\"");
+    }
+
+    /**
+     * @Given /^I should not see a link to session "([^"]*)"$/
+     */
+    public function iShouldNotSeeALinkToSession($name)
+    {
+        $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
+        $session = $em->getRepository('BpaulinUpfitBundle:Session')->findOneByName($name);
+        if (!$session) {
+            return true;
+        }
+
+        return new Step\Then("I should not see a link to \"/member/session/".$session->getId()."\"");
+    }
 }

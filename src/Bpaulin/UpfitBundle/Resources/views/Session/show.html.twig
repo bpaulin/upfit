@@ -18,10 +18,16 @@
     }
 %}
 {%
-    set actions = {
+    set actions =
+    {
         'Begin a session' : {
             'route': path('member_session_new', { 'follow': 'session', 'id': entity.id }),
             'icon': 'play',
+            'class': 'primary'
+        },
+        'Edit' : {
+            'route': path('member_session_edit', {'id': entity.id }),
+            'icon': 'edit',
             'class': 'primary'
         }
     }
