@@ -273,6 +273,35 @@
     <target name="base:dev:reset"
             depends="base:dev:drop,base:dev:create,base:dev:update,base:dev:fill"/>
 
+    <target name="base:prod:dump">
+        <exec executable="${path.php}">
+            <arg value="dumpsf2.php"/>
+        </exec>
+    </target>
+
+    <target name="base:prod:create">
+        <SymfonyConsole command="doctrine:database:create" checkreturn="true">
+            <arg value="--env=prod"/>
+        </SymfonyConsole>
+        <SymfonyConsole command="doctrine:migrations:migrate" checkreturn="true">
+            <arg value="--env=prod"/>
+            <arg value="--no-interaction"/>
+        </SymfonyConsole>
+        <SymfonyConsole command="doctrine:fixtures:load" checkreturn="true">
+            <arg value="--env=prod"/>
+            <arg value="--no-interaction"/>
+            <arg value="--fixtures=${dir.bundle}/DataFixtures/ORM/Prod"/>
+        </SymfonyConsole>
+    </target>
+
+    <target name="base:prod:update"
+            depends="base:prod:dump">
+        <SymfonyConsole command="doctrine:migrations:migrate" checkreturn="true">
+            <arg value="--env=prod"/>
+            <arg value="--no-interaction"/>
+        </SymfonyConsole>
+    </target>
+
     <target name="asset:generate">
         <SymfonyConsole command="cache:clear" checkreturn="true">
             <arg value="--env=prod"/>

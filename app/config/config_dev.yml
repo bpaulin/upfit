@@ -27,5 +27,11 @@ monolog:
 assetic:
     use_controller: true
 
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        dbname:   %database_dev%
+
 #swiftmailer:
 #    delivery_address: me@example.com

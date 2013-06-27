@@ -25,3 +25,9 @@ monolog:
 
 assetic:
     use_controller: true
+
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        dbname:   %database_prod%
