@@ -5,7 +5,6 @@ namespace Bpaulin\UpfitBundle\Features\Context;
 use Behat\Behat\Context\BehatContext;
 use Behat\Gherkin\Node\TableNode;
 use Behat\Behat\Context\Step;
-use Behat\Behat\Exception\PendingException;
 
 class ProgramSubContext extends BehatContext
 {
@@ -21,6 +20,7 @@ class ProgramSubContext extends BehatContext
     {
         $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
         $program = $em->getRepository('BpaulinUpfitBundle:Program')->findOneByName($name);
+
         return $this->getMainContext()->getMink()
             ->getSession()
             ->visit($this->getMainContext()->locatePath("/admin/program/".$program->getId()));
@@ -36,6 +36,7 @@ class ProgramSubContext extends BehatContext
         foreach ($hash as $row) {
             $steps[] = new Step\Then("I should see a link to program \"".$row['program']."\"");
         }
+
         return $steps;
     }
 
@@ -49,6 +50,7 @@ class ProgramSubContext extends BehatContext
         foreach ($hash as $row) {
             $steps[] = new Step\Then("I should see a link to consult program \"".$row['program']."\"");
         }
+
         return $steps;
     }
 
@@ -62,6 +64,7 @@ class ProgramSubContext extends BehatContext
         if (!$program) {
             throw new \Exception('program not found');
         }
+
         return new Step\Then("I should see a link to \"/admin/program/".$program->getId()."\"");
     }
 
@@ -75,6 +78,7 @@ class ProgramSubContext extends BehatContext
         if (!$program) {
             throw new \Exception('program not found');
         }
+
         return new Step\Then("I should see a link to \"/member/program/".$program->getId()."\"");
     }
 
@@ -88,6 +92,7 @@ class ProgramSubContext extends BehatContext
         if (!$program) {
             return true;
         }
+
         return new Step\Then("I should not see a link to \"/admin/program/".$program->getId()."\"");
     }
 
@@ -98,6 +103,7 @@ class ProgramSubContext extends BehatContext
     {
         $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
         $program = $em->getRepository('BpaulinUpfitBundle:Program')->findOneByName($name);
+
         return new Step\Then("I should see a link to \"/admin/program/".$program->getId()."/edit\"");
     }
 
@@ -108,6 +114,7 @@ class ProgramSubContext extends BehatContext
     {
         $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
         $program = $em->getRepository('BpaulinUpfitBundle:Program')->findOneByName($name);
+
         return new Step\Then("I should see a link to \"/admin/program/".$program->getId()."/delete\"");
     }
 
@@ -162,6 +169,7 @@ class ProgramSubContext extends BehatContext
                 "the \".record_properties dd.stages\" element should not contain \"".$row['stages']."\""
             );
         }
+
         return $steps;
     }
 

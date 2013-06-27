@@ -46,7 +46,7 @@ class Workout extends ExerciseSettings
     /**
      * Set session
      *
-     * @param \Bpaulin\UpfitBundle\Entity\Session $session
+     * @param  \Bpaulin\UpfitBundle\Entity\Session $session
      * @return Stage
      */
     public function setSession(\Bpaulin\UpfitBundle\Entity\Session $session = null)
@@ -69,7 +69,7 @@ class Workout extends ExerciseSettings
     /**
      * Set done
      *
-     * @param boolean $done
+     * @param  boolean $done
      * @return Workout
      */
     public function setDone($done)
@@ -92,7 +92,7 @@ class Workout extends ExerciseSettings
     /**
      * Set grade
      *
-     * @param integer $grade
+     * @param  integer $grade
      * @return Workout
      */
     public function setGrade($grade)

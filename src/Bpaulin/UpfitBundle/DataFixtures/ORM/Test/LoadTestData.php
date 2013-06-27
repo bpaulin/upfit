@@ -6,12 +6,10 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Bpaulin\UpfitBundle\Entity\Muscle;
 use Bpaulin\UpfitBundle\Entity\Exercise;
 use Bpaulin\UpfitBundle\Entity\Session;
 use Bpaulin\UpfitBundle\Entity\Program;
 use Bpaulin\UpfitBundle\Entity\Stage;
-use Bpaulin\UpfitBundle\Entity\Club;
 use Bpaulin\UpfitBundle\Entity\Member;
 
 class LoadTestData implements FixtureInterface, ContainerAwareInterface

@@ -140,6 +140,7 @@ class ExerciseController extends Controller
                 'success',
                 $this->get('translator')->trans('Exercise '.$entity->getName().' updated')
             );
+
             return $this->redirect($this->generateUrl('admin_exercise'));
         }
 

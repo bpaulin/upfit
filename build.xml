@@ -25,12 +25,20 @@
         </composer>
     </target>
 
-    <target name="check:style">
+    <target name="fix:style">
+        <exec executable="${path.php}" passthru="true">
+            <arg value="${path.phpcsfixer}"/>
+            <arg value="fix"/>
+            <arg path="${dir.src}"/>
+        </exec>
+    </target>
+
+    <target name="check:style"
+            depends="fix:style">
         <exec executable="${path.php}" passthru="true" checkreturn="true">
             <arg value="${path.phpcs}"/>
             <arg value="-p"/>
             <arg value="--standard=PSR2"/>
-            <arg value="--extensions=php"/>
             <arg path="${dir.src}"/>
         </exec>
     </target>

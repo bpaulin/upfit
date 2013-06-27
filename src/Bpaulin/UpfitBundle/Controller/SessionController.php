@@ -51,6 +51,7 @@ class SessionController extends Controller
         if ($entity->getUser() != $this->get('security.context')->getToken()->getUser()) {
             throw new AccessDeniedException('');
         }
+
         return array(
             'entity'      => $entity,
         );
@@ -108,6 +109,7 @@ class SessionController extends Controller
                 'success',
                 'session finished'
             );
+
             return $this->redirect($this->generateUrl('member_session_edit', array('id' => $session->getId())));
         }
 
@@ -136,6 +138,7 @@ class SessionController extends Controller
 
             return $this->redirect($this->generateUrl('member_session_workout', array('id' => $session->getId())));
         }
+
         return array(
             'entity' => $session,
             'form'   => $form->createView()
@@ -192,6 +195,7 @@ class SessionController extends Controller
                 'success',
                 $this->get('translator')->trans('Session '.$entity->getName().' updated')
             );
+
             return $this->redirect($this->generateUrl('member_session'));
         }
 

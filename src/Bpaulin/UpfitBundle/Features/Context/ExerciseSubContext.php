@@ -20,6 +20,7 @@ class ExerciseSubContext extends BehatContext
     {
         $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
         $exercise = $em->getRepository('BpaulinUpfitBundle:Exercise')->findOneByName($name);
+
         return $this->getMainContext()->getMink()
             ->getSession()
             ->visit($this->getMainContext()->locatePath("/admin/exercise/".$exercise->getId()));
@@ -35,6 +36,7 @@ class ExerciseSubContext extends BehatContext
         foreach ($hash as $row) {
             $steps[] = new Step\Then("I should see a link to exercise \"".$row['exercise']."\"");
         }
+
         return $steps;
     }
 
@@ -45,6 +47,7 @@ class ExerciseSubContext extends BehatContext
     {
         $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
         $exercise = $em->getRepository('BpaulinUpfitBundle:Exercise')->findOneByName($name);
+
         return new Step\Then("I should see a link to \"/admin/exercise/".$exercise->getId()."\"");
     }
 
@@ -58,6 +61,7 @@ class ExerciseSubContext extends BehatContext
         if (!$exercise) {
             return true;
         }
+
         return new Step\Then("I should not see a link to \"/admin/exercise/".$exercise->getId()."\"");
     }
 
@@ -68,6 +72,7 @@ class ExerciseSubContext extends BehatContext
     {
         $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
         $exercise = $em->getRepository('BpaulinUpfitBundle:Exercise')->findOneByName($name);
+
         return new Step\Then("I should see a link to \"/admin/exercise/".$exercise->getId()."/edit\"");
     }
 
@@ -78,6 +83,7 @@ class ExerciseSubContext extends BehatContext
     {
         $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
         $exercise = $em->getRepository('BpaulinUpfitBundle:Exercise')->findOneByName($name);
+
         return new Step\Then("I should see a link to \"/admin/exercise/".$exercise->getId()."/delete\"");
     }
 

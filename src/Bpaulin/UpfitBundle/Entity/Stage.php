@@ -3,7 +3,6 @@
 namespace Bpaulin\UpfitBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Stage
@@ -50,7 +49,7 @@ class Stage extends ExerciseSettings
     /**
      * Set program
      *
-     * @param \Bpaulin\UpfitBundle\Entity\Program $program
+     * @param  \Bpaulin\UpfitBundle\Entity\Program $program
      * @return Stage
      */
     public function setProgram(\Bpaulin\UpfitBundle\Entity\Program $program = null)

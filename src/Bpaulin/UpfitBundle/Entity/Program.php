@@ -42,7 +42,6 @@ class Program
      */
     protected $stages;
 
-
     /**
      * Get id
      *
@@ -56,7 +55,7 @@ class Program
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string  $name
      * @return Program
      */
     public function setName($name)
@@ -86,13 +85,14 @@ class Program
     /**
      * Add stages
      *
-     * @param \Bpaulin\UpfitBundle\Entity\Stage $stages
+     * @param  \Bpaulin\UpfitBundle\Entity\Stage $stages
      * @return Program
      */
     public function addStage(\Bpaulin\UpfitBundle\Entity\Stage $stages)
     {
         $this->stages[] = $stages;
         $stages->setProgram($this);
+
         return $this;
     }
 
