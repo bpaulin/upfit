@@ -14,6 +14,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Workout extends ExerciseSettings
 {
     /**
+     * id
+     *
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -23,21 +25,29 @@ class Workout extends ExerciseSettings
     protected $id;
 
     /**
+     * exercise
+     *
      * @ORM\ManyToOne(targetEntity="Exercise", inversedBy="workouts")
      */
     protected $exercise;
 
     /**
+     * session
+     *
      * @ORM\ManyToOne(targetEntity="Session", inversedBy="workouts")
      */
     protected $session;
 
     /**
+     * done
+     *
      * @ORM\Column(type="boolean", nullable=true)
      */
     protected $done;
 
     /**
+     * grade
+     *
      * @ORM\Column(type="smallint", nullable=true)
      * @Assert\Range(min = "-2", max = "2")
      */

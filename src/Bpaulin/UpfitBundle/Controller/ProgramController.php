@@ -12,7 +12,6 @@ use Bpaulin\UpfitBundle\Form\ProgramType;
 
 /**
  * Program controller.
- *
  */
 class ProgramController extends Controller
 {

@@ -11,6 +11,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 class ExerciseSettings
 {
     /**
+     * id
+     *
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -20,34 +22,46 @@ class ExerciseSettings
     protected $id;
 
     /**
+     * position
+     *
      * @ORM\Column(type="smallint")
      */
     protected $position;
 
     /**
+     * sets
+     *
      * @ORM\Column(type="smallint")
      * @Assert\Range(min = "0", max = "999")
      */
     protected $sets;
 
     /**
+     * number
+     *
      * @ORM\Column(type="smallint")
      * @Assert\Range(min = "0", max = "999")
      */
     protected $number;
 
     /**
+     * unit
+     *
      * @ORM\Column(type="string", type="string", length=20 )
      */
     protected $unit;
 
     /**
+     * difficulty
+     *
      * @ORM\Column(type="smallint")
      * @Assert\Range(min = "0", max = "999")
      */
     protected $difficulty;
 
     /**
+     * difficulty Unit
+     *
      * @ORM\Column(type="string", type="string", length=20 )
      */
     protected $difficultyUnit;

@@ -14,6 +14,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Session
 {
     /**
+     * id
+     *
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -23,6 +25,8 @@ class Session
     private $id;
 
     /**
+     * name
+     *
      * @var string
      * @Assert\NotBlank()
      * @ORM\Column(name="name", type="string", length=150)
@@ -30,17 +34,23 @@ class Session
     private $name;
 
     /**
+     * comment
+     *
      * @ORM\Column(type="text")
      */
     private $comment;
 
     /**
+     * grade
+     *
      * @ORM\Column(type="smallint", nullable=true)
      * @Assert\Range(min = "-2", max = "2")
      */
     protected $grade = 0;
 
     /**
+     * workouts
+     *
      * @ORM\OneToMany(targetEntity="Workout", mappedBy="session", cascade={"persist"})
      * @Assert\Count(min = "1")
      * @ORM\OrderBy({"position" = "ASC"})
@@ -48,12 +58,17 @@ class Session
     protected $workouts;
 
     /**
+     * user
+     *
      * @ORM\ManyToOne(targetEntity="User")
      */
     protected $user;
 
     /**
-     * Duplicate program stages into this session
+     * Duplicate program stages and details into this session
+     *
+     * @param  \Bpaulin\UpfitBundle\Entity\Program $program origin
+     * @return \Bpaulin\UpfitBundle\Entity\Session
      */
     public function initWithProgram(\Bpaulin\UpfitBundle\Entity\Program $program)
     {
@@ -70,6 +85,9 @@ class Session
 
     /**
      * Duplicate session workouts into this session
+     *
+     * @param  \Bpaulin\UpfitBundle\Entity\Session $session origin
+     * @return \Bpaulin\UpfitBundle\Entity\Session
      */
     public function initWithSession(\Bpaulin\UpfitBundle\Entity\Session $session)
     {
@@ -88,6 +106,11 @@ class Session
         return $this;
     }
 
+    /**
+     * Return the next workout to do
+     *
+     * @return boolean|\Bpaulin\UpfitBundle\Entity\Session
+     */
     public function getNextWorkout()
     {
         foreach ($this->getWorkouts() as $workout) {
@@ -99,12 +122,24 @@ class Session
         return false;
     }
 
+    /**
+     * Abandon the next workout to do
+     *
+     * @return \Bpaulin\UpfitBundle\Entity\Session
+     */
     public function abandonWorkout()
     {
         $next = $this->getNextWorkout();
         $next->setDone(false);
+
+        return $this;
     }
 
+    /**
+     * Pass the next workout to do
+     *
+     * @return \Bpaulin\UpfitBundle\Entity\Session
+     */
     public function passWorkout()
     {
         $max = 0;
@@ -115,14 +150,28 @@ class Session
         }
         $next = $this->getNextWorkout();
         $next->setPosition($max+1);
+
+        return $this;
     }
 
+    /**
+     * Mark as done the next workout to do
+     *
+     * @return \Bpaulin\UpfitBundle\Entity\Session
+     */
     public function doneWorkout()
     {
         $next = $this->getNextWorkout();
         $next->setDone(true);
+
+        return $this;
     }
 
+    /**
+     * Set grade to workouts average
+     *
+     * @return \Bpaulin\UpfitBundle\Entity\Session
+     */
     public function setGradeToAverage()
     {
         $sum = 0;

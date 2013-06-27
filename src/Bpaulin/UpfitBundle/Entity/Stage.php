@@ -13,6 +13,8 @@ use Doctrine\ORM\Mapping as ORM;
 class Stage extends ExerciseSettings
 {
     /**
+     * id
+     *
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -22,15 +24,24 @@ class Stage extends ExerciseSettings
     protected $id;
 
     /**
+     * exercise
+     *
      * @ORM\ManyToOne(targetEntity="Exercise", inversedBy="stages")
      */
     protected $exercise;
 
     /**
+     * program
+     *
      * @ORM\ManyToOne(targetEntity="Program", inversedBy="stages")
      */
     protected $program;
 
+    /**
+     * return a new workout created with this stage properties
+     *
+     * @return \Bpaulin\UpfitBundle\Entity\Workout new workout
+     */
     public function createWorkout()
     {
         $workout = new \Bpaulin\UpfitBundle\Entity\Workout();
