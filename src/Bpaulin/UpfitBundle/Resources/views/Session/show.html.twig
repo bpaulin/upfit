@@ -1,4 +1,6 @@
 {% extends "BpaulinUpfitBundle:Crud:show.html.twig" %}
+{% import "BpaulinUpfitBundle::macro.html.twig" as macros %}
+
 {%
     set breadcrumbs =
     {
@@ -24,7 +26,6 @@
         }
     }
 %}
-{% import _self as macros %}
 {%
     set fields =
     {
@@ -34,14 +35,3 @@
 %}
 
 {% block h1 %}Session <small>{{ entity.name }}</small>{% endblock %}
-
-{% macro workoutsList(session) %}
-    <ol>
-        {% for workout in session.workouts %}
-            <li>
-                {{ workout.exercise.name }} ({{ workout.sets }}*{{ workout.number }} {{ workout.unit }}
-                with {{ workout.difficulty }} {{ workout.difficultyUnit }})
-            </li>
-        {% endfor %}
-    </ol>
-{% endmacro %}

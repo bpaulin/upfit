@@ -1,4 +1,6 @@
 {% extends "BpaulinUpfitBundle:Crud:index.html.twig" %}
+{% import "BpaulinUpfitBundle::macro.html.twig" as macros %}
+
 {% if is_granted('ROLE_ADMIN') %}
     {% set route_show = 'admin_program_show' %}
     {%
@@ -45,13 +47,7 @@
 {% block row %}
     <td>
         <a href="{{ path(route_show, { 'id': entity.id }) }}">{{ entity.name }}</a>
-        <ol>
-            {% for stage in entity.stages %}
-                <li>
-                    {{ stage.exercise.name }} ({{ stage.sets }}*{{ stage.number }} {{ stage.unit }} with {{ stage.difficulty }} {{ stage.difficultyUnit }})
-                </li>
-            {% endfor %}
-        </ol>
+        {{ macros.stagesList(entity) }}
     </td>
     <td>
         <a class="btn btn-mini btn-primary" href="{{ path('member_session_new', { 'follow': 'program', 'id': entity.id }) }}">

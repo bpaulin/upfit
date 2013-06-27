@@ -1,0 +1,21 @@
+{% macro stagesList(program) %}
+    {% import _self as macros %}
+    <ol>
+        {% for stage in program.stages %}
+            <li>{{ macros.exerciseSettingsLine(stage) }}</li>
+        {% endfor %}
+    </ol>
+{% endmacro %}
+
+{% macro workoutsList(session) %}
+    {% import _self as macros %}
+    <ol>
+        {% for workout in session.workouts %}
+            <li>{{ macros.exerciseSettingsLine(workout) }}</li>
+        {% endfor %}
+    </ol>
+{% endmacro %}
+
+{% macro exerciseSettingsLine(settings) %}
+    {{ settings.exercise.name }} ({{ settings.sets }}*{{ settings.number }} {{ settings.unit }} with {{ settings.difficulty }} {{ settings.difficultyUnit }})
+{% endmacro %}

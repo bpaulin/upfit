@@ -1,4 +1,5 @@
 {% extends "BpaulinUpfitBundle:Crud:index.html.twig" %}
+{% import "BpaulinUpfitBundle::macro.html.twig" as macros %}
 {%
     set breadcrumbs =
     {
@@ -22,14 +23,7 @@
 {% block row %}
     <td>
         <a href="{{ path('member_session_show', { 'id': entity.id }) }}">{{ entity.name }}</a>
-        <ol>
-            {% for workout in entity.workouts %}
-                <li>
-                    {{ workout.exercise.name }} ({{ workout.sets }}*{{ workout.number }} {{ workout.unit }}
-                    with {{ workout.difficulty }} {{ workout.difficultyUnit }})
-                </li>
-            {% endfor %}
-        </ol>
+        {{ macros.workoutsList(entity) }}
     </td>
     <td>
         <a class="btn btn-mini btn-primary" href="{{ path('member_session_new', { 'follow': 'session', 'id': entity.id }) }}">

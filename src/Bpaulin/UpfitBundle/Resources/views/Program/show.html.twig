@@ -1,4 +1,6 @@
 {% extends "BpaulinUpfitBundle:Crud:show.html.twig" %}
+{% import "BpaulinUpfitBundle::macro.html.twig" as macros %}
+
 {% if is_granted('ROLE_ADMIN') %}
     {%
         set breadcrumbs = {
@@ -61,7 +63,6 @@
     %}
 {% endif %}
 
-{% import _self as macros %}
 {%
     set fields = {
         'name' : entity.name,
@@ -70,13 +71,3 @@
 %}
 
 {% block h1 %}Program <small>{{ entity.name }}</small>{% endblock %}
-
-{% macro stagesList(program) %}
-    <ol>
-        {% for stage in program.stages %}
-            <li>
-                {{ stage.exercise.name }} ({{ stage.sets }}*{{ stage.number }} {{ stage.unit }} with {{ stage.difficulty }} {{ stage.difficultyUnit }})
-            </li>
-        {% endfor %}
-    </ol>
-{% endmacro %}
