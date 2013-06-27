@@ -8,7 +8,7 @@ default:
             base_url: 'http://localhost:8000/app_test.php'
             selenium2: ~
         VIPSoft\DoctrineDataFixturesExtension\Extension:
-              lifetime:    feature
+              lifetime:    scenario
               autoload:    false
               directories:
                 - src/Bpaulin/UpfitBundle/DataFixtures/ORM/Test

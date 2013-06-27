@@ -1,6 +1,6 @@
 {% macro stagesList(program) %}
     {% import _self as macros %}
-    <ol>
+    <ol class='stages'>
         {% for stage in program.stages %}
             <li>{{ macros.exerciseSettingsLine(stage) }}</li>
         {% endfor %}
@@ -9,13 +9,27 @@
 
 {% macro workoutsList(session) %}
     {% import _self as macros %}
-    <ol>
+    <ol class='workouts'>
         {% for workout in session.workouts %}
-            <li>{{ macros.exerciseSettingsLine(workout) }}</li>
+            <li>
+                {{ macros.exerciseSettingsLine(workout) }}
+                <span class="status">
+                {% if workout.done is not null %}
+                    {% if workout.done %}
+                        <span class="label label-success">Done</span>
+                    {% else %}
+                        <span class="label label-important">Abandoned</span>
+                    {% endif %}
+                {% else %}
+                    <span class="label label-warning">Todo</span>
+                {% endif %}
+                </span>
+                <span class="grade">{{ workout.grade }}</span>
+            </li>
         {% endfor %}
     </ol>
 {% endmacro %}
 
 {% macro exerciseSettingsLine(settings) %}
-    {{ settings.exercise.name }} ({{ settings.sets }}*{{ settings.number }} {{ settings.unit }} with {{ settings.difficulty }} {{ settings.difficultyUnit }})
+    <span class="exercise">{{ settings.exercise.name }}</span> ({{ settings.sets }}*{{ settings.number }} {{ settings.unit }} with {{ settings.difficulty }} {{ settings.difficultyUnit }})
 {% endmacro %}

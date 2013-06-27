@@ -26,9 +26,11 @@
         {{ macros.workoutsList(entity) }}
     </td>
     <td>
-        <a class="btn btn-mini btn-primary" href="{{ path('member_session_new', { 'follow': 'session', 'id': entity.id }) }}">
-            <i class="icon-play"></i>
-            Begin a session
-        </a>
+        {% if not entity.nextWorkout %}
+            <a class="btn btn-mini btn-primary" href="{{ path('member_session_new', { 'follow': 'session', 'id': entity.id }) }}">
+                <i class="icon-play"></i>
+                Begin a session
+            </a>
+        {% endif %}
 </td>
 {% endblock %}

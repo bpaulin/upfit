@@ -20,7 +20,7 @@ Scenario: Administrator can read programs
   When I follow the last link
   Then I should see "program5" as "name"
   And I should see the following stages:
-  | stages |
+    | stages |
     | exercise1 (1*1 1 with 1 1) |
     | exercise2 (2*2 2 with 2 2) |
     | exercise3 (3*3 3 with 3 3) |

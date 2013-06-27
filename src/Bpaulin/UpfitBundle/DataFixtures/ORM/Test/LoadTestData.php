@@ -88,6 +88,12 @@ class LoadTestData implements FixtureInterface, ContainerAwareInterface
         $manager->persist($session);
         $manager->flush();
 
+        $unfinished = new Session();
+        $unfinished->initWithProgram($programs[1])
+                ->setName('session unfinished')
+                ->setUser($member);
+        $manager->persist($unfinished);
+
         $session = new Session();
         $session->initWithProgram($programs[1])
                 ->setName('session1')

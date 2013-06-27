@@ -14,6 +14,20 @@ class SessionSubContext extends BehatContext
     }
 
     /**
+     * @Then /^I should see a link to following sessions:$/
+     */
+    public function iShouldSeeALinkToFollowingSessions(TableNode $table)
+    {
+        $hash = $table->getHash();
+        $steps  = array();
+        foreach ($hash as $row) {
+            $steps[] = new Step\Then("I should see a link to session \"".$row['session']."\"");
+        }
+
+        return $steps;
+    }
+
+    /**
      * @Then /^I should see a link to begin session following "([^"]*)" "([^"]*)"$/
      */
     public function iShouldSeeALinkToBeginSessionFollowing($type, $name)
@@ -29,6 +43,24 @@ class SessionSubContext extends BehatContext
         }
 
         return new Step\Then("I should see a link to \"/member/session/new/$type/".$entity->getId()."\"");
+    }
+
+    /**
+     * @Then /^I should not see a link to begin session following "([^"]*)" "([^"]*)"$/
+     */
+    public function iShouldNotSeeALinkToBeginSessionFollowing($type, $name)
+    {
+        if ($type != 'program' && $type != 'session') {
+            throw new \Exception('only available for program or session');
+        }
+        $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
+        $class = 'BpaulinUpfitBundle:'.ucwords($type);
+        $entity = $em->getRepository($class)->findOneByName($name);
+        if (!$entity) {
+            throw new \Exception("$type not found");
+        }
+
+        return new Step\Then("I should not see a link to \"/member/session/new/$type/".$entity->getId()."\"");
     }
 
     /**
@@ -131,7 +163,7 @@ class SessionSubContext extends BehatContext
         $lis = $this->getMainContext()->getMink()
                                 ->getSession()
                                 ->getPage()
-                                ->findAll('css', "ul.workouts li");
+                                ->findAll('css', ".workouts li");
         foreach ($hash as $index => $row) {
             $exercise = $lis[$index]->find('css', '.exercise')->getText();
             if ($exercise != $row['exercise']) {

@@ -149,7 +149,7 @@ class ProgramSubContext extends BehatContext
                                 ->getPage()
                                 ->findAll('css', ".record_properties dd.stages ol li");
         foreach ($hash as $index => $row) {
-            $element = trim($lis[$index]->getHtml());
+            $element = trim($lis[$index]->getText());
 
             if ($element != $row['stages']) {
                 throw new \Exception($element.' is not expected '.$row['stages']);

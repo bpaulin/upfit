@@ -73,6 +73,14 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
     }
 
     /**
+     * @Then /^I should not see a link to "([^"]*)"$/
+     */
+    public function iShouldNotSeeALinkTo($url)
+    {
+        return $this->assertElementNotOnPage("a[href$='".$url."']");
+    }
+
+    /**
      * @Then /^I should see a link to "([^"]*)" in "([^"]*)" area$/
      */
     public function iShouldSeeALinkToInArea($url, $area)

@@ -30,8 +30,10 @@ class SessionController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('BpaulinUpfitBundle:Session')->findByUser(
-            $this->get('security.context')->getToken()->getUser()
+        $entities = $em->getRepository('BpaulinUpfitBundle:Session')->findBy(
+            array(
+                'user' => $this->get('security.context')->getToken()->getUser()
+            )
         );
 
         return array(
