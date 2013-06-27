@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Exercise
  *
  * @ORM\Table("exercise")
- * @ORM\Entity(repositoryClass="Bpaulin\UpfitBundle\Entity\ExerciseRepository")
+ * @ORM\Entity()
  */
 class Exercise
 {
