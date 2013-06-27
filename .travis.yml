@@ -12,7 +12,6 @@ before_script:
     - wget http://getcomposer.org/composer.phar
     - php composer.phar install --prefer-source -n
     - "php app/console server:run > /dev/null &"
-    - ./bin/phing base:test:reset
     - "sh -e /etc/init.d/xvfb start"
     - "export DISPLAY=:99.0"
     - "java -jar vendor/selenium/standalone-server/selenium-server-standalone-2.*.jar > /dev/null &"

@@ -72,16 +72,6 @@
             depends="check:lint:twig,check:lint:php">
     </target>
 
-    <target name="check:base"
-            depends="check:base:schema">
-    </target>
-
-    <target name="check:base:schema">
-        <SymfonyConsole checkreturn="true" command="doctrine:schema:validate">
-            <arg value="--env=test"/>
-        </SymfonyConsole>
-    </target>
-
     <target name="check:test">
         <exec executable="${path.php}" passthru="true" checkreturn="true">
             <arg value="${path.phpunit}"/>
@@ -134,7 +124,7 @@
     </target>
 
     <target name="check:common"
-            depends="base:test:reset,check:lint,check:style,check:mess,check:cpd,check:base,check:test">
+            depends="base:test:reset,check:lint,check:style,check:mess,check:cpd,check:test">
     </target>
 
     <target name="check:headless"
