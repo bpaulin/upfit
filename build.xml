@@ -154,10 +154,8 @@
         </exec>
     </target>
 
-    <target name="prod:test">
-        <SymfonyConsole command="assetic:dump">
-            <arg value="--env=prod"/>
-        </SymfonyConsole>
+    <target name="deploy:prod"
+            depends="composer:deploy, base:prod:update">
         <SymfonyConsole command="cache:clear">
             <arg value="--env=prod"/>
         </SymfonyConsole>
