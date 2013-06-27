@@ -94,11 +94,12 @@ class Session
         $this->setName('following '.$session->getName());
         $this->setGrade(0);
         $this->setComment($session->getComment());
-        foreach ($session->getWorkouts() as $workout) {
+        foreach ($session->getWorkouts() as $index => $workout) {
             if ($workout->isDone() === true) {
                 $copy = clone $workout;
                 $copy->setDone(null);
                 $copy->setGrade(null);
+                $copy->setPosition($index);
                 $this->addWorkout($copy);
             }
         }

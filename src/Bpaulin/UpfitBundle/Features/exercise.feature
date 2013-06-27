@@ -17,7 +17,7 @@ Scenario: Administrator can read exercises
     | exercise3 |
     | exercise4 |
     | exercise5 |
-  When I follow this link
+  When I follow the last link
   Then I should see a link to "/admin/exercise"
   And I should see "exercise5" as "name"
 

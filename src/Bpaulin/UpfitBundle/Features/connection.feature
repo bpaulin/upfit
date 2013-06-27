@@ -25,7 +25,6 @@ Scenario Outline: Visitor should be able to login and logout to access member se
     | admin  |
 
 Scenario: Administator should be able to access administration section
-  Given I am on homepage
   Given I am "admin"
    When I go to homepage
    Then I should see a link to "/admin"

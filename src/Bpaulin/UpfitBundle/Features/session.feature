@@ -68,13 +68,13 @@ Scenario: Member can begin a session from program list
   Then the "bpaulin_upfitbundle_sessiontype_name" field should contain "following program1"
   Then the "bpaulin_upfitbundle_sessiontype_grade" field should contain "1"
   When I fill in session form with the following:
-    | name    | session1 |
-    | comment | comment1 |
-    | grade   | 1        |
+    | name    | session new |
+    | comment | comment new |
+    | grade   | 1           |
   And I press "Edit"
   Then I should be on "/member/session"
-  And I should see a "success" message "session1 updated"
-  And I should see a link to session "session1"
+  And I should see a "success" message "session new updated"
+  And I should see a link to session "session new"
 
 Scenario: Member can begin a session from session list
   Given I am on "member" homepage
@@ -84,18 +84,20 @@ Scenario: Member can begin a session from session list
   When I follow this link
   And I do the followings workouts:
     | exercise  | action  | grade  |
-    | exercise3 | Abandon | -1     |
-    | exercise4 | Pass    | -1     |
+    | exercise1 | Abandon | -1     |
+    | exercise2 | Pass    | -1     |
+    | exercise3 | Done    | -1     |
+    | exercise4 | Done    | -1     |
     | exercise5 | Done    | -1     |
     | exercise2 | Done    | -1     |
-    | exercise4 | Done    | -1     |
   And I should see a "success" message "session finished"
   And I should see following workouts:
     | exercise  | status     | grade |
-    | exercise3 | Abandoned  | -1    |
+    | exercise1 | Abandoned  | -1    |
+    | exercise3 | Done       | -1    |
+    | exercise4 | Done       | -1    |
     | exercise5 | Done       | -1    |
     | exercise2 | Done       | -1    |
-    | exercise4 | Done       | -1    |
   Then the "bpaulin_upfitbundle_sessiontype_name" field should contain "following session1"
   Then the "bpaulin_upfitbundle_sessiontype_grade" field should contain "-1"
   And I fill in session form with the following:

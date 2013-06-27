@@ -98,6 +98,14 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
     }
 
     /**
+     * @When /^I follow the last link$/
+     */
+    public function iFollowTheLastLink()
+    {
+        return $this->iFollowThisLink();
+    }
+
+    /**
      * @Then /^I should be on "([^"]*)" homepage$/
      */
     public function iShouldBeOnHomepage($role)

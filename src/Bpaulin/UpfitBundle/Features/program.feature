@@ -17,7 +17,7 @@ Scenario: Administrator can read programs
     | program3 |
     | program4 |
     | program5 |
-  When I follow this link
+  When I follow the last link
   Then I should see "program5" as "name"
   And I should see the following stages:
   | stages |
