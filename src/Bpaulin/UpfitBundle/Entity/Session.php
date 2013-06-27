@@ -63,6 +63,7 @@ class Session
             $workout = $stage->createWorkout();
             $this->addWorkout($workout);
         }
+
         return $this;
     }
 
@@ -82,6 +83,7 @@ class Session
                 $this->addWorkout($copy);
             }
         }
+
         return $this;
     }
 
@@ -92,6 +94,7 @@ class Session
                 return $workout;
             }
         }
+
         return false;
     }
 
@@ -132,8 +135,9 @@ class Session
         if ($nb>0) {
             $avg = round($sum/$nb);
         } else {
-            $avg = 2;
+            $avg = 0;
         }
+
         return $this->setDifficulty($avg);
     }
 
@@ -150,7 +154,7 @@ class Session
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string  $name
      * @return Session
      */
     public function setName($name)
@@ -180,7 +184,7 @@ class Session
     /**
      * Add workouts
      *
-     * @param \Bpaulin\UpfitBundle\Entity\Workout $workouts
+     * @param  \Bpaulin\UpfitBundle\Entity\Workout $workouts
      * @return Session
      */
     public function addWorkout(\Bpaulin\UpfitBundle\Entity\Workout $workouts)
@@ -214,7 +218,7 @@ class Session
     /**
      * Set comment
      *
-     * @param string $comment
+     * @param  string  $comment
      * @return Session
      */
     public function setComment($comment)
@@ -237,7 +241,7 @@ class Session
     /**
      * Set difficulty
      *
-     * @param integer $difficulty
+     * @param  integer $difficulty
      * @return Session
      */
     public function setDifficulty($difficulty)
@@ -260,7 +264,7 @@ class Session
     /**
      * Set user
      *
-     * @param \Bpaulin\UpfitBundle\Entity\User $user
+     * @param  \Bpaulin\UpfitBundle\Entity\User $user
      * @return Session
      */
     public function setUser(\Bpaulin\UpfitBundle\Entity\User $user = null)
