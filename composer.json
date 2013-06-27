@@ -19,9 +19,6 @@
         "sensio/framework-extra-bundle": "2.3.*",
         "sensio/generator-bundle": "2.3.*",
         "incenteev/composer-parameter-handler": "~2.0",
-        "jquery/jquery": "*",
-        "jquery-ui/js": "*",
-        "bootstrap/js": "*",
         "phing/phing": "dev-master",
         "doctrine/data-fixtures": "dev-master@dev",
         "doctrine/doctrine-fixtures-bundle": "dev-master",
@@ -80,39 +77,6 @@
         }
     },
     "repositories": [
-        {
-            "type": "package",
-            "package": {
-                "name": "jquery/jquery",
-                "version": "1",
-                "dist": {
-                    "url": "http://code.jquery.com/jquery-latest.js",
-                    "type": "file"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "jquery-ui/js",
-                "version": "1",
-                "dist": {
-                    "url": "http://code.jquery.com/ui/1.10.3/jquery-ui.js",
-                    "type": "file"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "bootstrap/js",
-                "version": "2.3.2",
-                "dist": {
-                    "url": "http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js",
-                    "type": "file"
-                }
-            }
-        },
         {
             "type": "package",
             "package": {

@@ -3,19 +3,8 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "076361dc7eee2fb024f99f7bfaf1b6bd",
+    "hash": "fc187aaa69d3112cc0d538158b3e1428",
     "packages": [
-        {
-            "name": "bootstrap/js",
-            "version": "2.3.2",
-            "dist": {
-                "type": "file",
-                "url": "http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js",
-                "reference": null,
-                "shasum": null
-            },
-            "type": "library"
-        },
         {
             "name": "doctrine/common",
             "version": "2.3.0",
@@ -676,28 +665,6 @@
                 "sql"
             ],
             "time": "2013-04-26 18:42:52"
-        },
-        {
-            "name": "jquery-ui/js",
-            "version": "1",
-            "dist": {
-                "type": "file",
-                "url": "http://code.jquery.com/ui/1.10.3/jquery-ui.js",
-                "reference": null,
-                "shasum": null
-            },
-            "type": "library"
-        },
-        {
-            "name": "jquery/jquery",
-            "version": "1",
-            "dist": {
-                "type": "file",
-                "url": "http://code.jquery.com/jquery-latest.js",
-                "reference": null,
-                "shasum": null
-            },
-            "type": "library"
         },
         {
             "name": "kriswallsmith/assetic",
@@ -2806,12 +2773,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "afa9112f5eaf83f62b891bab1b7a81f6e004020a"
+                "reference": "651a7576ced2438d940b7bcb24f7db4de940fc6f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/afa9112f5eaf83f62b891bab1b7a81f6e004020a",
-                "reference": "afa9112f5eaf83f62b891bab1b7a81f6e004020a",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/651a7576ced2438d940b7bcb24f7db4de940fc6f",
+                "reference": "651a7576ced2438d940b7bcb24f7db4de940fc6f",
                 "shasum": ""
             },
             "require": {
@@ -2869,7 +2836,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2013-06-25 06:05:58"
+            "time": "2013-06-27 06:40:10"
         },
         {
             "name": "theseer/fdomdocument",

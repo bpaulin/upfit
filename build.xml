@@ -282,4 +282,13 @@
 
     <target name="base:dev:reset"
             depends="base:dev:drop,base:dev:create,base:dev:update,base:dev:fill"/>
+
+    <target name="asset:generate">
+        <SymfonyConsole command="cache:clear" checkreturn="true">
+            <arg value="--env=prod"/>
+        </SymfonyConsole>
+        <SymfonyConsole command="assetic:dump" checkreturn="true">
+            <arg value="--env=prod"/>
+        </SymfonyConsole>
+    </target>
 </project>
