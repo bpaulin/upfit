@@ -21,12 +21,12 @@ class StageTest extends \PHPUnit_Framework_TestCase
             ->setDifficultyUnit(6);
 
         $workout = $stage->createWorkout();
-        $this->assertEquals( $stage->getExercise(), $stage->getExercise() );
-        $this->assertEquals( $stage->getPosition(), $stage->getPosition() );
-        $this->assertEquals( $stage->getSets(), $stage->getSets() );
-        $this->assertEquals( $stage->getNumber(), $stage->getNumber() );
-        $this->assertEquals( $stage->getUnit(), $stage->getUnit() );
-        $this->assertEquals( $stage->getDifficulty(), $stage->getDifficulty() );
-        $this->assertEquals( $stage->getDifficultyUnit(), $stage->getDifficultyUnit() );
+        $this->assertEquals($stage->getExercise(), $workout->getExercise());
+        $this->assertEquals($stage->getPosition(), $workout->getPosition());
+        $this->assertEquals($stage->getSets(), $workout->getSets());
+        $this->assertEquals($stage->getNumber(), $workout->getNumber());
+        $this->assertEquals($stage->getUnit(), $workout->getUnit());
+        $this->assertEquals($stage->getDifficulty(), $workout->getDifficulty());
+        $this->assertEquals($stage->getDifficultyUnit(), $workout->getDifficultyUnit());
     }
 }
