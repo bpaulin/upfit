@@ -1,4 +1,3 @@
-@wip
 Feature: session management
   In order to practice
   As an member

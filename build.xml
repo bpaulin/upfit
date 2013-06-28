@@ -1,31 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="Upfit" basedir="." default="check">
 
-    <property file="build.properties" />
+    <property name="path.composer" value="composer.phar" />
+    <property name="path.php" value="php" />
+    <property name="path.phpcsfixer" value="php-cs-fixer.phar" />
+    <property name="path.behat" value="bin/behat" />
+    <property name="path.phpcs" value="bin/phpcs" />
+    <property name="path.phpmd" value="bin/phpmd" />
+    <property name="path.phpcpd" value="bin/phpcpd" />
+    <property name="path.phpunit" value="bin/phpunit" />
+    <property name="path.phpdoc" value="phpdoc" />
+    <property name="dir.src" value="${project.basedir}/src" />
+    <property name="dir.build" value="${project.basedir}/build" />
+    <property name="dir.reports" value="${dir.build}/reports" />
+    <property name="dir.reports.docs" value="${dir.reports}/docs" />
+    <property name="dir.reports.test" value="${dir.reports}/test" />
+    <property name="dir.reports.test.behat" value="${dir.reports.test}/behat" />
+    <property name="bundle" value="@BpaulinUpfitBundle" />
+    <property name="dir.bundle" value="${dir.src}/Bpaulin/UpfitBundle" />
+
+    <property file="build.properties" override="true"/>
 
     <target name="composer:self-update">
         <composer command="self-update" composer="${path.composer}" php="${path.php}"/>
     </target>
 
     <target name="composer:update"
-            depends="composer:self-update">
+            description="update vendor">
         <composer command="update" composer="${path.composer}" php="${path.php}"/>
     </target>
 
     <target name="composer:install"
-            depends="composer:self-update">
+            description="install vendor">
         <composer command="install" composer="${path.composer}" php="${path.php}"/>
     </target>
 
     <target name="composer:deploy"
-            depends="composer:self-update">
+            description="install vendor for prod">
         <composer command="install" composer="${path.composer}" php="${path.php}">
             <arg value="--no-dev" />
             <arg value="--optimize-autoloader" />
         </composer>
     </target>
 
-    <target name="fix:style">
+    <target name="fix:style"
+            description="fix code style">
         <exec executable="${path.php}" passthru="true">
             <arg value="${path.phpcsfixer}"/>
             <arg value="fix"/>
@@ -77,10 +96,12 @@
     </target>
 
     <target name="check:lint"
+            description="check code syntax"
             depends="check:lint:twig,check:lint:php">
     </target>
 
-    <target name="check:test">
+    <target name="check:test"
+            description="unit tests">
         <exec executable="${path.php}" passthru="true" checkreturn="true">
             <arg value="${path.phpunit}"/>
             <arg value="--configuration=app"/>
@@ -88,7 +109,8 @@
         </exec>
     </target>
 
-    <target name="check:behat">
+    <target name="check:behat"
+            description="behat tests">
         <exec executable="${path.php}" passthru="true" checkreturn="true">
             <arg value="${path.behat}"/>
             <arg value="--ansi"/>
@@ -97,17 +119,8 @@
         </exec>
     </target>
 
-    <target name="check:behat:headless">
-        <exec executable="${path.php}" passthru="true" checkreturn="true">
-            <arg value="${path.behat}"/>
-            <arg value="--ansi"/>
-            <arg value="--strict"/>
-            <arg value="--expand"/>
-            <arg value="--profile=headless"/>
-        </exec>
-    </target>
-
-    <target name="check:behat:wip">
+    <target name="check:behat:wip"
+            description="behat tests (only marqued as '@wip')">
         <exec executable="${path.php}" passthru="true" checkreturn="true">
             <arg value="${path.behat}"/>
             <arg value="--ansi"/>
@@ -122,6 +135,7 @@
     </target>
 
     <target name="check:visual"
+            description="behat tests (all executed with selenium)"
             depends="base:test:reset">
         <exec executable="${path.php}" passthru="true" checkreturn="true">
             <arg value="${path.behat}"/>
@@ -135,11 +149,8 @@
             depends="base:test:reset,check:lint,check:style,check:mess,check:cpd,check:test">
     </target>
 
-    <target name="check:headless"
-            depends="check:common,check:behat:headless">
-    </target>
-
     <target name="check"
+            description="check everything"
             depends="check:common,check:behat">
     </target>
 
@@ -152,13 +163,6 @@
             <arg line="-i *Test.php,*Features/Context/*"/>
             <arg line="--template checkstyle"/>
         </exec>
-    </target>
-
-    <target name="deploy:prod"
-            depends="composer:deploy, base:prod:update">
-        <SymfonyConsole command="cache:clear">
-            <arg value="--env=prod"/>
-        </SymfonyConsole>
     </target>
 
     <target name="report:behat">
@@ -215,6 +219,7 @@
     </target>
 
     <target name="report"
+            description="generate all reports"
             depends="base:test:reset,report:mess,report:test, report:doc">
     </target>
 
@@ -246,6 +251,7 @@
     </target>
 
     <target name="base:test:reset"
+            description="reset testing database"
             depends="base:test:drop,base:test:create,base:test:update,base:test:fill"/>
 
     <target name="base:dev:drop">
@@ -277,15 +283,18 @@
     </target>
 
     <target name="base:dev:reset"
+            description="reset dev database"
             depends="base:dev:drop,base:dev:create,base:dev:update,base:dev:fill"/>
 
-    <target name="base:prod:dump">
+    <target name="base:prod:dump"
+            description="dump prod database">
         <exec executable="${path.php}">
             <arg value="dumpsf2.php"/>
         </exec>
     </target>
 
-    <target name="base:prod:create">
+    <target name="base:prod:create"
+            description="init prod database">
         <SymfonyConsole command="doctrine:database:create" checkreturn="true">
             <arg value="--env=prod"/>
         </SymfonyConsole>
@@ -301,6 +310,7 @@
     </target>
 
     <target name="base:prod:update"
+            description="update prod database"
             depends="base:prod:dump">
         <SymfonyConsole command="doctrine:migrations:migrate" checkreturn="true">
             <arg value="--env=prod"/>
@@ -308,7 +318,16 @@
         </SymfonyConsole>
     </target>
 
-    <target name="asset:generate">
+    <target name="deploy:prod"
+            description="magical (?!) deploy command"
+            depends="composer:deploy, base:prod:update">
+        <SymfonyConsole command="cache:clear">
+            <arg value="--env=prod"/>
+        </SymfonyConsole>
+    </target>
+
+    <target name="asset:generate"
+            description="generate assets">
         <SymfonyConsole command="cache:clear" checkreturn="true">
             <arg value="--env=prod"/>
         </SymfonyConsole>
