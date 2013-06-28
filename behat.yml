@@ -23,15 +23,9 @@ report:
         parameters:
             output_path: null,build/reports/test/behat,build/reports/test/behat/index.html
 
-headless:
-    filters:
-        tags: "~@javascript"
-    formatter:
-        name: progress
-
 wip:
     filters:
-        tags: "~@skip&&@wip"
+        tags: "@wip"
     formatter:
         name: pretty
 
