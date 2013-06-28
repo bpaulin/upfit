@@ -111,3 +111,25 @@ Scenario: Member cant begin a session from an unfinished session
   Then I should see a link to "/member/session" in "actions" area
   When I follow this link
   Then I should not see a link to begin session following "session" "session unfinished"
+
+@wip
+Scenario: Members can resume sessions
+  Given I am on "/member/session"
+  Then I should see a link to resume session "session unfinished"
+  When I follow this link
+  And I do the followings workouts:
+    | exercise  | action  | grade  |
+    | exercise1 | Done    | -1     |
+    | exercise2 | Done    | -1     |
+    | exercise3 | Done    | -1     |
+    | exercise4 | Done    | -1     |
+    | exercise5 | Done    | -1     |
+  And I should see a "success" message "session finished"
+  And I fill in session form with the following:
+    | name    | session-finished |
+    | comment | comment1         |
+    | grade   | 1                |
+  And I press "Edit"
+  Then I should be on "/member/session"
+  And I should see a "success" message "session-finished updated"
+  And I should see a link to session "session-finished"

@@ -240,4 +240,15 @@ class SessionSubContext extends BehatContext
 
         return new Step\Then("I should see a link to \"/member/session/".$session->getId()."/delete\"");
     }
+
+    /**
+     * @Then /^I should see a link to resume session "([^"]*)"$/
+     */
+    public function iShouldSeeALinkToResumeSession($name)
+    {
+        $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
+        $session = $em->getRepository('BpaulinUpfitBundle:Session')->findOneByName($name);
+
+        return new Step\Then("I should see a link to \"/member/session/".$session->getId()."/workout\"");
+    }
 }

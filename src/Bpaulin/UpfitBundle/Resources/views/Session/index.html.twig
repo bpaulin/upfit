@@ -27,9 +27,14 @@
     </td>
     <td>
         {% if not entity.nextWorkout %}
-            <a class="btn btn-mini btn-primary" href="{{ path('member_session_new', { 'follow': 'session', 'id': entity.id }) }}">
+            <a class="btn btn-mini" href="{{ path('member_session_new', { 'follow': 'session', 'id': entity.id }) }}">
                 <i class="icon-play"></i>
                 Begin a session
+            </a>
+        {% else %}
+            <a class="btn btn-mini btn-primary" href="{{ path('member_session_workout', { 'id': entity.id }) }}">
+                <i class="icon-play"></i>
+                Resume
             </a>
         {% endif %}
 </td>
