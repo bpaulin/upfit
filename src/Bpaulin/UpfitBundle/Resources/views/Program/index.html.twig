@@ -56,3 +56,7 @@
         </a>
     </td>
 {% endblock %}
+
+{% block messages %}
+    {{ render(controller('BpaulinUpfitBundle:Session:todo')) }}
+{% endblock %}

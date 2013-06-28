@@ -232,7 +232,7 @@ class SessionController extends Controller
     /**
      * Deletes a Session entity.
      *
-     * @Route("/member/session//{id}", name="member_session_delete_confirm")
+     * @Route("/member/session/{id}", name="member_session_delete_confirm")
      * @Method("DELETE")
      */
     public function confirmDeleteAction(Request $request, Session $entity)
@@ -251,6 +251,25 @@ class SessionController extends Controller
         }
 
         return $this->redirect($this->generateUrl('member_session'));
+    }
+
+    /**
+     * Display unfinished sessions
+     * @Method("GET")
+     */
+    public function todoAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $entities = $em->getRepository('BpaulinUpfitBundle:Session')->findUnfinishedByUser(
+            $this->get('security.context')->getToken()->getUser()
+        );
+
+        return $this->render(
+            'BpaulinUpfitBundle:Session:todo.html.twig',
+            array(
+                'sessions' => $entities
+            )
+        );
     }
 
     /**

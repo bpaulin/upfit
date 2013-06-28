@@ -45,7 +45,7 @@ class HomeController extends Controller
      */
     public function adminAction()
     {
-        return array('name' => 'Bruno');
+        return array();
     }
 
     /**
@@ -56,6 +56,6 @@ class HomeController extends Controller
      */
     public function memberAction()
     {
-        return array('name' => 'Bruno');
+        return array();
     }
 }

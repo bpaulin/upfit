@@ -112,7 +112,6 @@ Scenario: Member cant begin a session from an unfinished session
   When I follow this link
   Then I should not see a link to begin session following "session" "session unfinished"
 
-@wip
 Scenario: Members can resume sessions
   Given I am on "/member/session"
   Then I should see a link to resume session "session unfinished"
@@ -133,3 +132,4 @@ Scenario: Members can resume sessions
   Then I should be on "/member/session"
   And I should see a "success" message "session-finished updated"
   And I should see a link to session "session-finished"
+  Then I should not see a link to resume session "session unfinished" in "message" area

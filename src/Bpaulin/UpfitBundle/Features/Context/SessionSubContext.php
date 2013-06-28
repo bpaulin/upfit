@@ -251,4 +251,31 @@ class SessionSubContext extends BehatContext
 
         return new Step\Then("I should see a link to \"/member/session/".$session->getId()."/workout\"");
     }
+
+    /**
+     * @Then /^I should see a link to resume session "([^"]*)" in "([^"]*)" area$/
+     */
+    public function iShouldSeeALinkToResumeSessionInArea($name, $area)
+    {
+        $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
+        $session = $em->getRepository('BpaulinUpfitBundle:Session')->findOneByName($name);
+
+        return new Step\Then(
+            "I should see a link to \"/member/session/".$session->getId()."/workout\" in \"$area\" area"
+        );
+    }
+
+    /**
+     * @Then /^I should not see a link to resume session "([^"]*)" in "([^"]*)" area$/
+     */
+    public function iShouldNotSeeALinkToResumeSessionInArea($name, $area)
+    {
+        $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
+        $session = $em->getRepository('BpaulinUpfitBundle:Session')->findOneByName($name);
+        if (!$session) {
+            return true;
+        }
+
+        return new Step\Then("I should not see a link to \"/member/session/".$session->getId()."\" in \"$area\" area");
+    }
 }

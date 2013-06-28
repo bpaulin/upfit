@@ -85,13 +85,12 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
      */
     public function iShouldSeeALinkToInArea($url, $area)
     {
+        $this->assertElementOnPage("#".$area."-area a[href$='".$url."']");
         $this->lastLink  = $this->getMink()
                                 ->getSession()
                                 ->getPage()
                                 ->find('css', "#".$area."-area a[href$='".$url."']")
                                 ->getAttribute('href');
-
-        return $this->assertElementOnPage("#".$area."-area a[href$='".$url."']");
     }
 
     /**

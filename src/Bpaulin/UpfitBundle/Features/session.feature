@@ -48,3 +48,12 @@ Scenario: Members can delete sessions
   Then I should be on "/member/session"
   And I should see a "success" message "Session session1 deleted"
   And I should not see a link to session "session1"
+
+Scenario: Members should be warned if they have unfinished sessions
+  Given I am on "member" homepage
+  Then I should see a link to resume session "session unfinished" in "message" area
+  Given I am on "member/program"
+  Then I should see a link to resume session "session unfinished" in "message" area
+  Given I am on "member/session"
+  Then I should see a link to resume session "session unfinished" in "message" area
+

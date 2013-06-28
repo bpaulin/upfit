@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Session
  *
  * @ORM\Table("session")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="Bpaulin\UpfitBundle\Entity\SessionRepository")
  */
 class Session
 {
