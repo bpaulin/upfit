@@ -134,6 +134,22 @@
             depends="check:lint,check:test,check:behat:wip">
     </target>
 
+    <target name="check:base"
+            depends="base:dev:drop,base:dev:create,base:dev:update,base:dev:fill">
+        <SymfonyConsole command="doctrine:schema:validate" checkreturn="true">
+            <arg value="--env=test"/>
+        </SymfonyConsole>
+    </target>
+
+    <target name="check:common"
+            depends="check:base,check:lint,check:style,check:mess,check:cpd,check:test">
+    </target>
+
+    <target name="check"
+            description="check everything"
+            depends="check:common,check:behat">
+    </target>
+
     <target name="check:visual"
             description="behat tests (all executed with selenium)"
             depends="base:test:reset">
@@ -143,15 +159,6 @@
             <arg value="--profile=demo"/>
             <arg value="--no-paths"/>
         </exec>
-    </target>
-
-    <target name="check:common"
-            depends="base:test:reset,check:lint,check:style,check:mess,check:cpd,check:test">
-    </target>
-
-    <target name="check"
-            description="check everything"
-            depends="check:common,check:behat">
     </target>
 
     <target name="check:doc">
@@ -237,8 +244,9 @@
     </target>
 
     <target name="base:test:update">
-        <SymfonyConsole command="doctrine:schema:create" checkreturn="true">
+        <SymfonyConsole command="doctrine:migrations:migrate" checkreturn="true">
             <arg value="--env=test"/>
+            <arg value="--no-interaction"/>
         </SymfonyConsole>
     </target>
 
