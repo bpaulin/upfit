@@ -135,7 +135,7 @@
     </target>
 
     <target name="check:base"
-            depends="base:dev:drop,base:dev:create,base:dev:update,base:dev:fill">
+            depends="base:test:drop,base:test:create,base:test:update,base:test:fill">
         <SymfonyConsole command="doctrine:schema:validate" checkreturn="true">
             <arg value="--env=test"/>
         </SymfonyConsole>
