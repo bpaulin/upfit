@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table("session")
  * @ORM\Entity(repositoryClass="Bpaulin\UpfitBundle\Entity\SessionRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Session
 {
@@ -49,6 +50,13 @@ class Session
     protected $grade = 0;
 
     /**
+     * beginning time
+     *
+     * @ORM\Column(type="datetime")
+     */
+    protected $beginning;
+
+    /**
      * workouts
      *
      * @ORM\OneToMany(targetEntity="Workout", mappedBy="session", cascade={"remove", "persist"})
@@ -63,6 +71,14 @@ class Session
      * @ORM\ManyToOne(targetEntity="User")
      */
     protected $user;
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+        $this->beginning = new \DateTime();
+    }
 
     /**
      * Duplicate program stages and details into this session
@@ -333,5 +349,28 @@ class Session
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set beginning
+     *
+     * @param  \DateTime $beginning
+     * @return Session
+     */
+    public function setBeginning($beginning)
+    {
+        $this->beginning = $beginning;
+
+        return $this;
+    }
+
+    /**
+     * Get beginning
+     *
+     * @return \DateTime
+     */
+    public function getBeginning()
+    {
+        return $this->beginning;
     }
 }
