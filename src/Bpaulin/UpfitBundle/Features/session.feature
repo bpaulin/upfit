@@ -9,6 +9,7 @@ Background:
 Scenario: Member can only manage their sessions
   Then I should not have access to other users session
 
+@wip
 Scenario: Members can read their old sessions
   Given I am on "member" homepage
   Then I should see a link to "/member/session" in "actions" area

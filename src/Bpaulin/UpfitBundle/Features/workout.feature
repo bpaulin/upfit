@@ -7,9 +7,7 @@ Background:
   Given I am member
 
 Scenario: Member can begin a session from program list
-  Given I am on "member" homepage
-  Then I should see a link to "/member/program" in "actions" area
-  When I follow this link
+  Given I am on "/member/program"
   Then I should see a link to begin session following "program" "program1"
   When I follow this link
   Then I should be on "exercise1" workout page
@@ -73,9 +71,7 @@ Scenario: Member can begin a session from program list
   And I should see a link to session "session new"
 
 Scenario: Member can begin a session from session list
-  Given I am on "member" homepage
-  Then I should see a link to "/member/session" in "actions" area
-  When I follow this link
+  Given I am on "/member/session"
   Then I should see a link to begin session following "session" "session1"
   When I follow this link
   And I do the followings workouts:
