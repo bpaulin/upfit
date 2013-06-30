@@ -1,3 +1,4 @@
+@wip
 Feature: program management
   In order to manage programs
   As an administator
@@ -13,19 +14,12 @@ Scenario: Administrator can read programs
   Then I should see a link to following programs:
     | program  |
     | program1 |
-    | program2 |
-    | program3 |
-    | program4 |
-    | program5 |
   When I follow the last link
-  Then I should see "program5" as "name"
+  Then I should see "program1" as "name"
   And I should see the following stages:
     | stages |
     | exercise1 (1*1 1 with 1 1) |
     | exercise2 (2*2 2 with 2 2) |
-    | exercise3 (3*3 3 with 3 3) |
-    | exercise4 (4*4 4 with 4 4) |
-    | exercise5 (5*5 5 with 5 5) |
   Then I should see a link to "/admin/program"
 
 Scenario: Administrator can update programs
@@ -68,52 +62,46 @@ Scenario: Administrator can create programs
     | exercise1 (5*15 repetitions with 5 kilos) |
 
 Scenario: Administrator can delete programs
-  Given I am on program "program2" page
-  Then I should see a link to delete program "program2"
+  Given I am on program "program1" page
+  Then I should see a link to delete program "program1"
   When I follow this link
   And I press "Delete"
   Then I should be on "/admin/program"
-  And I should see a "success" message "program program2 deleted"
-  And I should not see a link to program "program2"
+  And I should see a "success" message "program program1 deleted"
+  And I should not see a link to program "program1"
 
 @javascript
 Scenario: Administrator can delete stage
-  Given I am on program "program3" page
-  Then I should see a link to edit program "program3"
+  Given I am on program "program1" page
+  Then I should see a link to edit program "program1"
   When I follow this link
-  And I click delete on stage "2"
+  And I click delete on stage "1"
   And I press "Edit"
   Then I should be on "/admin/program"
-  And I should see a "success" message "program program3 updated"
-  And I should see a link to program "program3"
+  And I should see a "success" message "program program1 updated"
+  And I should see a link to program "program1"
   When I follow this link
-  Then I should see "program3" as "name"
+  Then I should see "program1" as "name"
   And I should see the following stages:
     | stages |
     | exercise1 (1*1 1 with 1 1) |
-    | exercise2 (2*2 2 with 2 2) |
-    | exercise4 (4*4 4 with 4 4) |
-    | exercise5 (5*5 5 with 5 5) |
   And I should not see the following stages:
     | stages |
-    | exercise3 (3*3 3 with 3 3) |
+    | exercise2 (2*2 2 with 2 2) |
 
 @javascript
 Scenario: Administrator can sort stages
-  Given I am on program "program4" page
-  Then I should see a link to edit program "program4"
+  Given I am on program "program1" page
+  Then I should see a link to edit program "program1"
   When I follow this link
   And I drag stage "0" down "2" position
   And I press "Edit"
   Then I should be on "/admin/program"
-  And I should see a "success" message "program program4 updated"
-  And I should see a link to program "program4"
+  And I should see a "success" message "program program1 updated"
+  And I should see a link to program "program1"
   When I follow this link
-  Then I should see "program4" as "name"
+  Then I should see "program1" as "name"
   And I should see the following stages:
     | stages |
     | exercise2 (2*2 2 with 2 2) |
-    | exercise3 (3*3 3 with 3 3) |
     | exercise1 (1*1 1 with 1 1) |
-    | exercise4 (4*4 4 with 4 4) |
-    | exercise5 (5*5 5 with 5 5) |

@@ -27,7 +27,7 @@ class LoadTestData implements FixtureInterface, ContainerAwareInterface
     public function load(ObjectManager $manager)
     {
         $exercises = array();
-        for ($i=1; $i < 6; $i++) {
+        for ($i=1; $i < 3; $i++) {
             $exercise = new Exercise();
             $exercise->setName("exercise$i");
             $manager->persist($exercise);
@@ -36,10 +36,10 @@ class LoadTestData implements FixtureInterface, ContainerAwareInterface
         $manager->flush();
 
         $programs = array();
-        for ($i=1; $i < 6; $i++) {
+        for ($i=1; $i < 2; $i++) {
             $program = new Program();
             $program->setName("program$i");
-            for ($j=1; $j < 6; $j++) {
+            for ($j=1; $j < 3; $j++) {
                 $stage = new Stage();
                 $stage->setExercise($exercises[$j])
                     ->setPosition($j)

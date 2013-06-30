@@ -12,14 +12,11 @@ Scenario: Administrator can read exercises
   When I follow this link
   Then I should see a link to following exercises:
     | exercise  |
-    | exercise1 |
     | exercise2 |
-    | exercise3 |
-    | exercise4 |
-    | exercise5 |
+    | exercise1 |
   When I follow the last link
   Then I should see a link to "/admin/exercise"
-  And I should see "exercise5" as "name"
+  And I should see "exercise1" as "name"
 
 Scenario: Administrator can update exercises
   Given I am on exercise "exercise1" page
@@ -52,13 +49,13 @@ Scenario: Administrator can create exercises
   Then I should see "exercise7" as "name"
 
 Scenario: Administrator can delete exercises
-  Given I am on exercise "exercise2" page
-  Then I should see a link to delete exercise "exercise2"
+  Given I am on exercise "exercise1" page
+  Then I should see a link to delete exercise "exercise1"
   When I follow this link
   And I press "Delete"
   Then I should be on "/admin/exercise"
-  And I should see a "success" message "Exercise exercise2 deleted"
-  And I should not see a link to exercise "exercise2"
+  And I should see a "success" message "Exercise exercise1 deleted"
+  And I should not see a link to exercise "exercise1"
 
 
 

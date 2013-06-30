@@ -19,9 +19,6 @@ Scenario: Members can read their old sessions
     | exercise  | status     | grade |
     | exercise1 | Current    |       |
     | exercise2 | Todo       |       |
-    | exercise3 | Todo       |       |
-    | exercise4 | Todo       |       |
-    | exercise5 | Todo       |       |
 
 Scenario: Members can update sessions
   Given I am on session "session1" page

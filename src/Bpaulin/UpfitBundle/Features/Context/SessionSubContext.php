@@ -293,5 +293,4 @@ class SessionSubContext extends BehatContext
             "I should see a link to \"/member/session/".$session->getId()."\" in \"$area\" area"
         );
     }
-
 }
