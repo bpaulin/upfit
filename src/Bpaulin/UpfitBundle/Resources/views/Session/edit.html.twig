@@ -1,4 +1,5 @@
 {% extends "BpaulinUpfitBundle:Crud:edit.html.twig" %}
+{% import "BpaulinUpfitBundle::macro.html.twig" as macros %}
 {%
     set breadcrumbs =
     {
@@ -11,7 +12,11 @@
             'icon': 'list',
         },
         (entity.name) : {
-            'route': path('member_session_workout', { 'id': entity.id }),
+            'route': path('member_session_show', { 'id': entity.id }),
+        },
+        'Edit' : {
+            'route': path('member_session_edit', { 'id': entity.id }),
+            'icon': 'edit',
         },
     }
 %}
@@ -22,26 +27,11 @@
 {% block h1 %}Session <small>{{ entity.name }}</small>{% endblock %}
 
 {% block content %}
-<ul class='workouts'>
-    {% for workout in entity.workouts %}
-        <li>
-            <span class='exercise'>{{ workout.exercise.name}}</span>
-            <span class='status'>
-                {% if workout.done is not null %}
-                    {% if workout.done %}
-                        Done
-                    {% else %}
-                        Abandoned
-                    {% endif %}
-                {% elseif workout == entity.nextWorkout %}
-                    Current
-                {% else %}
-                    Todo
-                {% endif %}
-            </span>
-            <span class='grade'>{{ workout.grade}}</span>
-        </li>
-    {% endfor %}
-</ul>
-{{ parent() }}
+    <dl>
+        <dt>begin</dt>
+        <dd>{{ entity.beginning|date("m/d/Y H:m") }}</dd>
+        <dt>workouts</dt>
+        <dd>{{ macros.workoutsList(entity) }}</dd>
+    </dl>
+    {{ parent() }}
 {% endblock %}

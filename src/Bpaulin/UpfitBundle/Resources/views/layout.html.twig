@@ -1,7 +1,7 @@
 {% extends "::base.html.twig" %}
 
 {% block stylesheets_global %}
-    {% stylesheets '@common_css' %}
+    {% stylesheets '@common_css' '@BpaulinUpfitBundle/Resources/public/less/upfit.less' %}
         <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
     {% block stylesheets %}{% endblock %}

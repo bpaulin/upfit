@@ -5,7 +5,7 @@
             <ul>
             {% for session in sessions %}
                 <li class="unfinished-sessions">
-                    <a href="{{ path('member_session_workout', { 'id': session.id }) }}">{{ session.name }}</a>
+                    <a href="{{ path('member_session_show', { 'id': session.id }) }}">{{ session.name }}</a>
                 </li>
             {% endfor %}
             </ul>

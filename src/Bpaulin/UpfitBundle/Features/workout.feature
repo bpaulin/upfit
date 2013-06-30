@@ -6,6 +6,7 @@ Feature: workout management
 Background:
   Given I am member
 
+@wip
 Scenario: Member can begin a session from program list
   Given I am on "/member/program"
   Then I should see a link to begin session following "program" "program1"
@@ -23,40 +24,40 @@ Scenario: Member can begin a session from program list
   Then I should be on "exercise4" workout page
   And I should see following workouts:
     | exercise  | status      | grade |
-    | exercise1 | Abandoned   | 0     |
+    | exercise1 | Abandoned   |       |
     | exercise3 | Done        | 1     |
-    | exercise4 | Current     | 0     |
-    | exercise5 | Todo        | 0     |
-    | exercise2 | Todo        | 0     |
+    | exercise4 | Current     |       |
+    | exercise5 | Todo        |       |
+    | exercise2 | Todo        |       |
   When I press "Done"
   Then I should be on "exercise5" workout page
   And I should see following workouts:
     | exercise  | status      | grade |
-    | exercise1 | Abandoned   | 0     |
+    | exercise1 | Abandoned   |       |
     | exercise3 | Done        | 1     |
-    | exercise4 | Done        | 0     |
-    | exercise5 | Current     | 0     |
-    | exercise2 | Todo        | 0     |
+    | exercise4 | Done        |       |
+    | exercise5 | Current     |       |
+    | exercise2 | Todo        |       |
   When I fill in workout form with the following:
     | grade | -1 |
   And I press "Done"
   Then I should be on "exercise2" workout page
   And I should see following workouts:
     | exercise  | status      | grade |
-    | exercise1 | Abandoned   | 0     |
+    | exercise1 | Abandoned   |       |
     | exercise3 | Done        | 1     |
-    | exercise4 | Done        | 0     |
+    | exercise4 | Done        |       |
     | exercise5 | Done        | -1    |
-    | exercise2 | Current     | 0     |
+    | exercise2 | Current     |       |
   When I fill in workout form with the following:
     | grade | 2 |
   And I press "Done"
   Then I should see a "success" message "session finished"
   And I should see following workouts:
     | exercise  | status      | grade |
-    | exercise1 | Abandoned   | 0     |
+    | exercise1 | Abandoned   |       |
     | exercise3 | Done        | 1     |
-    | exercise4 | Done        | 0     |
+    | exercise4 | Done        |       |
     | exercise5 | Done        | -1    |
     | exercise2 | Done        | 2     |
   Then the "bpaulin_upfitbundle_sessiontype_name" field should contain "following program1"
@@ -78,15 +79,15 @@ Scenario: Member can begin a session from session list
     | exercise  | action  | grade  |
     | exercise1 | Abandon | -1     |
     | exercise2 | Pass    | -1     |
-    | exercise3 | Done    | -1     |
+    | exercise3 | Done    |  1     |
     | exercise4 | Done    | -1     |
     | exercise5 | Done    | -1     |
     | exercise2 | Done    | -1     |
   And I should see a "success" message "session finished"
   And I should see following workouts:
     | exercise  | status     | grade |
-    | exercise1 | Abandoned  | -1    |
-    | exercise3 | Done       | -1    |
+    | exercise1 | Abandoned  |       |
+    | exercise3 | Done       |  1    |
     | exercise4 | Done       | -1    |
     | exercise5 | Done       | -1    |
     | exercise2 | Done       | -1    |

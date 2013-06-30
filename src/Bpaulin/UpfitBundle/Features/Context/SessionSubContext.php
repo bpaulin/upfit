@@ -163,7 +163,7 @@ class SessionSubContext extends BehatContext
         $lis = $this->getMainContext()->getMink()
                                 ->getSession()
                                 ->getPage()
-                                ->findAll('css', ".workouts li");
+                                ->findAll('css', ".workouts .workout");
         foreach ($hash as $index => $row) {
             $exercise = $lis[$index]->find('css', '.exercise')->getText();
             if ($exercise != $row['exercise']) {
@@ -173,9 +173,11 @@ class SessionSubContext extends BehatContext
             if ($status != $row['status']) {
                 throw new \Exception($status.' is not expected, '.$row['status'].' wanted ');
             }
-            $grade = $lis[$index]->find('css', '.grade')->getText();
-            if ($grade != $row['grade']) {
-                throw new \Exception($grade.' is not expected, '.$row['grade'].' wanted ');
+            if ($row['grade']) {
+                $grade = $lis[$index]->find('css', '.grade')->getAttribute('data-grade');
+                if ($grade != $row['grade']) {
+                    throw new \Exception($grade.' is not expected, '.$row['grade'].' wanted ');
+                }
             }
         }
     }
@@ -278,4 +280,18 @@ class SessionSubContext extends BehatContext
 
         return new Step\Then("I should not see a link to \"/member/session/".$session->getId()."\" in \"$area\" area");
     }
+
+    /**
+     * @Then /^I should see a link to session "([^"]*)" in "([^"]*)" area$/
+     */
+    public function iShouldSeeALinkToSessionInArea($name, $area)
+    {
+        $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
+        $session = $em->getRepository('BpaulinUpfitBundle:Session')->findOneByName($name);
+
+        return new Step\Then(
+            "I should see a link to \"/member/session/".$session->getId()."\" in \"$area\" area"
+        );
+    }
+
 }

@@ -6,10 +6,6 @@ Feature: session management
 Background:
   Given I am member
 
-Scenario: Member can only manage their sessions
-  Then I should not have access to other users session
-
-@wip
 Scenario: Members can read their old sessions
   Given I am on "member" homepage
   Then I should see a link to "/member/session" in "actions" area
@@ -21,11 +17,11 @@ Scenario: Members can read their old sessions
   When I follow the last link
   Then I should see following workouts:
     | exercise  | status     | grade |
-    | exercise1 | Todo       | 0     |
-    | exercise2 | Todo       | 0     |
-    | exercise3 | Todo       | 0     |
-    | exercise4 | Todo       | 0     |
-    | exercise5 | Todo       | 0     |
+    | exercise1 | Current    |       |
+    | exercise2 | Todo       |       |
+    | exercise3 | Todo       |       |
+    | exercise4 | Todo       |       |
+    | exercise5 | Todo       |       |
 
 Scenario: Members can update sessions
   Given I am on session "session1" page
@@ -52,9 +48,11 @@ Scenario: Members can delete sessions
 
 Scenario: Members should be warned if they have unfinished sessions
   Given I am on "member" homepage
-  Then I should see a link to resume session "session unfinished" in "message" area
+  Then I should see a link to session "session unfinished" in "message" area
   Given I am on "member/program"
-  Then I should see a link to resume session "session unfinished" in "message" area
+  Then I should see a link to session "session unfinished" in "message" area
   Given I am on "member/session"
-  Then I should see a link to resume session "session unfinished" in "message" area
+  Then I should see a link to session "session unfinished" in "message" area
 
+Scenario: Member can only manage their sessions
+  Then I should not have access to other users session

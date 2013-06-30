@@ -17,32 +17,55 @@
         },
     }
 %}
-{%
-    set actions =
-    {
-        'Begin a session' : {
-            'route': path('member_session_new', { 'follow': 'session', 'id': entity.id }),
-            'icon': 'play',
-            'class': 'primary'
-        },
-        'Edit' : {
-            'route': path('member_session_edit', {'id': entity.id }),
-            'icon': 'edit',
-            'class': 'primary'
-        },
-        'Delete' : {
-            'route': path('member_session_delete', {'id': entity.id }),
-            'icon': 'minus',
-            'class': 'danger'
+{% if entity.nextWorkout %}
+    {%
+        set actions =
+        {
+            'Resume' : {
+                'route': path('member_session_workout', { 'id': entity.id }),
+                'icon': 'play',
+                'class': 'primary'
+            },
         }
-    }
+    %}
+{% else %}
+    {%
+        set actions =
+        {
+            'Follow' : {
+                'route': path('member_session_new', { 'follow': 'session', 'id': entity.id }),
+                'icon': 'repeat'
+            },
+        }
+    %}
+{% endif %}
+{%
+    set actions = actions|merge(
+        {
+            'Edit' : {
+                'route': path('member_session_edit', {'id': entity.id }),
+                'icon': 'edit'
+            },
+            'Delete' : {
+                'route': path('member_session_delete', {'id': entity.id }),
+                'icon': 'minus',
+                'class': 'danger'
+            }
+        }
+    )
 %}
 {%
     set fields =
     {
         'name' : entity.name,
-        'stages' : macros.workoutsList(entity),
+        'begin' : entity.beginning|date("m/d/Y H:m"),
+        'workouts' : macros.workoutsList(entity),
     }
 %}
+{% if not entity.nextWorkout %}
+    {%
+        set fields = {'grade' : macros.longGrade(entity.grade)}|merge(fields)
+    %}
+{% endif %}
 
 {% block h1 %}Session <small>{{ entity.name }}</small>{% endblock %}

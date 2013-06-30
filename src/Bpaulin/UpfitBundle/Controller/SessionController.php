@@ -33,6 +33,9 @@ class SessionController extends Controller
         $entities = $em->getRepository('BpaulinUpfitBundle:Session')->findBy(
             array(
                 'user' => $this->get('security.context')->getToken()->getUser()
+            ),
+            array(
+                'beginning' => 'DESC'
             )
         );
 
