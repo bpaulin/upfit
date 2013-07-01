@@ -207,4 +207,38 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
     {
         return new Step\Then("the \".record_properties dd.$label\" element should contain \"$value\"");
     }
+
+    /**
+     * @Then /^I should see the following breadcrumbs:$/
+     */
+    public function iShouldSeeTheFollowingBreadcrumbs(TableNode $table)
+    {
+        // | icon | label | link |
+        $hash = $table->getHash();
+        $lis = $this->getMainContext()->getMink()
+                                ->getSession()
+                                ->getPage()
+                                ->findAll('css', ".breadcrumb li");
+        if (count($lis) != count($hash)) {
+            throw new \Exception(count($lis).' breadcrumb is not expected, '.count($hash).' wanted ');
+        }
+        foreach ($hash as $index => $row) {
+            if ($row['icon']) {
+                $icon = $lis[$index]->find('css', 'i')->getAttribute('class');
+                if ($icon != 'icon-'.$row['icon']) {
+                    throw new \Exception($icon.' is not expected, icon-'.$row['icon'].' wanted ');
+                }
+            }
+            $label = trim(str_replace('/', '', $lis[$index]->getText()));
+            if ($label != $row['label']) {
+                throw new \Exception($label.' is not expected, '.$row['label'].' wanted ');
+            }
+            if ($row['link']) {
+                $link = $lis[$index]->find('css', 'a')->getAttribute('href');
+                if ($link != $row['link']) {
+                    throw new \Exception($link.' is not expected, '.$row['link'].' wanted ');
+                }
+            }
+        }
+    }
 }

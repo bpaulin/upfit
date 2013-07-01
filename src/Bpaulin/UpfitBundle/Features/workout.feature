@@ -5,11 +5,19 @@ Feature: workout management
 
 Background:
   Given I am member
+
 Scenario: Member can begin a session from program list
   Given I am on "/member/program"
   Then I should see a link to begin session following "program" "program1"
   When I follow this link
   Then I should be on "exercise1" workout page
+  Then I should see the following breadcrumbs:
+    | icon    | label              | link              |
+    | home    |                    | /                 |
+    | gamepad | Member             | /member           |
+    | list    | Sessions           | /member/session   |
+    |         | following program1 | /member/session/4 |
+    |         | Workout            |                   |
   When I press "Pass"
   Then I should see a "info" message "exercise1 passed"
   And I should be on "exercise2" workout page

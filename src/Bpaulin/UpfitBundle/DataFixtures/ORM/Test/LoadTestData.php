@@ -83,6 +83,16 @@ class LoadTestData implements FixtureInterface, ContainerAwareInterface
 
         $session = new Session();
         $session->initWithProgram($programs[1])
+                ->setName('session1')
+                ->setUser($member);
+        foreach ($session->getWorkouts() as $workout) {
+            $workout->setDone(true);
+        }
+        $manager->persist($session);
+        $manager->flush();
+
+        $session = new Session();
+        $session->initWithProgram($programs[1])
                 ->setName('wrong_user')
                 ->setUser($other);
         $manager->persist($session);
@@ -93,15 +103,6 @@ class LoadTestData implements FixtureInterface, ContainerAwareInterface
                 ->setName('session unfinished')
                 ->setUser($member);
         $manager->persist($unfinished);
-
-        $session = new Session();
-        $session->initWithProgram($programs[1])
-                ->setName('session1')
-                ->setUser($member);
-        foreach ($session->getWorkouts() as $workout) {
-            $workout->setDone(true);
-        }
-        $manager->persist($session);
         $manager->flush();
     }
 }

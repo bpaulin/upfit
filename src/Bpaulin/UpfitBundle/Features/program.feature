@@ -1,4 +1,3 @@
-@wip
 Feature: program management
   In order to manage programs
   As an administator

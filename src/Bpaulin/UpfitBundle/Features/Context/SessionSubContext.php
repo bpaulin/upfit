@@ -99,7 +99,7 @@ class SessionSubContext extends BehatContext
         $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
         $session = $em->getRepository('BpaulinUpfitBundle:Session')->findOneByName($name);
         if (!$session) {
-            throw new \Exception();
+            throw new \Exception("session $name not found");
         }
 
         return new Step\Then("I should see a link to \"/member/session/".$session->getId()."\"");
@@ -201,6 +201,9 @@ class SessionSubContext extends BehatContext
     {
         $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
         $session = $em->getRepository('BpaulinUpfitBundle:Session')->findOneByName($name);
+        if (!$session) {
+            throw new \Exception("session $name not found");
+        }
 
         return $this->getMainContext()->getMink()
             ->getSession()
@@ -250,6 +253,9 @@ class SessionSubContext extends BehatContext
     {
         $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
         $session = $em->getRepository('BpaulinUpfitBundle:Session')->findOneByName($name);
+        if (!$session) {
+            throw new \Exception("session $name not found");
+        }
 
         return new Step\Then("I should see a link to \"/member/session/".$session->getId()."/workout\"");
     }
@@ -288,6 +294,9 @@ class SessionSubContext extends BehatContext
     {
         $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
         $session = $em->getRepository('BpaulinUpfitBundle:Session')->findOneByName($name);
+        if (!$session) {
+            throw new \Exception("session $name not found");
+        }
 
         return new Step\Then(
             "I should see a link to \"/member/session/".$session->getId()."\" in \"$area\" area"

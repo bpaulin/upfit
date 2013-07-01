@@ -6,25 +6,45 @@ Feature: session management
 Background:
   Given I am member
 
-Scenario: Members can read their old sessions
+Scenario: Members can list their old sessions
   Given I am on "member" homepage
   Then I should see a link to "/member/session" in "actions" area
   When I follow this link
-  Then I should see a link to following sessions:
+  Then I should see the following breadcrumbs:
+    | icon    | label    | link    |
+    | home    |          | /       |
+    | gamepad | Member   | /member |
+    |         | Sessions |         |
+  And I should see a link to following sessions:
     | session             |
     | session1            |
     | session unfinished  |
-  When I follow the last link
-  Then I should see following workouts:
-    | exercise  | status     | grade |
-    | exercise1 | Current    |       |
-    | exercise2 | Todo       |       |
+
+Scenario: Members can read a session
+  Given I am on session "session unfinished" page
+  Then I should see the following breadcrumbs:
+    | icon    | label              | link            |
+    | home    |                    | /               |
+    | gamepad | Member             | /member         |
+    | list    | Sessions           | /member/session |
+    |         | session unfinished |                 |
+  And I should see following workouts:
+    | exercise  | status  | grade |
+    | exercise1 | Current |       |
+    | exercise2 | Todo    |       |
 
 Scenario: Members can update sessions
   Given I am on session "session1" page
   Then I should see a link to edit session "session1"
   When I follow this link
-  And I fill in "session" form with the following:
+  Then I should see the following breadcrumbs:
+    | icon    | label              | link              |
+    | home    |                    | /                 |
+    | gamepad | Member             | /member           |
+    | list    | Sessions           | /member/session   |
+    |         | session1           | /member/session/1 |
+    |         | Edit               |                   |
+  When I fill in "session" form with the following:
     | name | session6 |
   And I press "Edit"
   Then I should be on "/member/session"
@@ -34,11 +54,19 @@ Scenario: Members can update sessions
   When I follow this link
   Then I should see "session6" as "name"
 
+@wip
 Scenario: Members can delete sessions
   Given I am on session "session1" page
   Then I should see a link to delete session "session1"
   When I follow this link
-  And I press "Delete"
+  Then I should see the following breadcrumbs:
+    | icon    | label              | link              |
+    | home    |                    | /                 |
+    | gamepad | Member             | /member           |
+    | list    | Sessions           | /member/session   |
+    |         | session1           | /member/session/1 |
+    |         | Delete             |                   |
+  When I press "Delete"
   Then I should be on "/member/session"
   And I should see a "success" message "Session session1 deleted"
   And I should not see a link to session "session1"

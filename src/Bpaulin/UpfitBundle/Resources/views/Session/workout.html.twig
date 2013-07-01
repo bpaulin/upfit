@@ -12,6 +12,9 @@
             'icon': 'list',
         },
         (entity.name) : {
+            'route': path('member_session_show', { 'id': entity.id }),
+        },
+        'Workout' : {
             'route': path('member_session_workout', { 'id': entity.id }),
         },
     }
