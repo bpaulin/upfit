@@ -13,6 +13,17 @@ class SessionSubContext extends BehatContext
         // do subcontext initialization
     }
 
+    public function getSessionByName($name)
+    {
+        $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
+        $session = $em->getRepository('BpaulinUpfitBundle:Session')->findOneByName($name);
+        if (!$session) {
+            throw new \Exception("session $name not found");
+        }
+
+        return $session;
+    }
+
     /**
      * @Then /^I should see a link to following sessions:$/
      */
@@ -96,11 +107,7 @@ class SessionSubContext extends BehatContext
      */
     public function iShouldSeeALinkToSession($name)
     {
-        $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
-        $session = $em->getRepository('BpaulinUpfitBundle:Session')->findOneByName($name);
-        if (!$session) {
-            throw new \Exception("session $name not found");
-        }
+        $session = $this->getSessionByName($name);
 
         return new Step\Then("I should see a link to \"/member/session/".$session->getId()."\"");
     }
@@ -199,11 +206,7 @@ class SessionSubContext extends BehatContext
      */
     public function iAmOnSessionPage($name)
     {
-        $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
-        $session = $em->getRepository('BpaulinUpfitBundle:Session')->findOneByName($name);
-        if (!$session) {
-            throw new \Exception("session $name not found");
-        }
+        $session = $this->getSessionByName($name);
 
         return $this->getMainContext()->getMink()
             ->getSession()
@@ -215,8 +218,7 @@ class SessionSubContext extends BehatContext
      */
     public function iShouldSeeALinkToEditSession($name)
     {
-        $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
-        $session = $em->getRepository('BpaulinUpfitBundle:Session')->findOneByName($name);
+        $session = $this->getSessionByName($name);
 
         return new Step\Then("I should see a link to \"/member/session/".$session->getId()."/edit\"");
     }
@@ -226,9 +228,9 @@ class SessionSubContext extends BehatContext
      */
     public function iShouldNotSeeALinkToSession($name)
     {
-        $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
-        $session = $em->getRepository('BpaulinUpfitBundle:Session')->findOneByName($name);
-        if (!$session) {
+        try {
+            $session = $this->getSessionByName($name);
+        } catch (\Exception $e) {
             return true;
         }
 
@@ -240,8 +242,7 @@ class SessionSubContext extends BehatContext
      */
     public function iShouldSeeALinkToDeleteSession($name)
     {
-        $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
-        $session = $em->getRepository('BpaulinUpfitBundle:Session')->findOneByName($name);
+        $session = $this->getSessionByName($name);
 
         return new Step\Then("I should see a link to \"/member/session/".$session->getId()."/delete\"");
     }
@@ -251,11 +252,7 @@ class SessionSubContext extends BehatContext
      */
     public function iShouldSeeALinkToResumeSession($name)
     {
-        $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
-        $session = $em->getRepository('BpaulinUpfitBundle:Session')->findOneByName($name);
-        if (!$session) {
-            throw new \Exception("session $name not found");
-        }
+        $session = $this->getSessionByName($name);
 
         return new Step\Then("I should see a link to \"/member/session/".$session->getId()."/workout\"");
     }
@@ -265,8 +262,7 @@ class SessionSubContext extends BehatContext
      */
     public function iShouldSeeALinkToResumeSessionInArea($name, $area)
     {
-        $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
-        $session = $em->getRepository('BpaulinUpfitBundle:Session')->findOneByName($name);
+        $session = $this->getSessionByName($name);
 
         return new Step\Then(
             "I should see a link to \"/member/session/".$session->getId()."/workout\" in \"$area\" area"
@@ -278,9 +274,9 @@ class SessionSubContext extends BehatContext
      */
     public function iShouldNotSeeALinkToResumeSessionInArea($name, $area)
     {
-        $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
-        $session = $em->getRepository('BpaulinUpfitBundle:Session')->findOneByName($name);
-        if (!$session) {
+        try {
+            $session = $this->getSessionByName($name);
+        } catch (\Exception $e) {
             return true;
         }
 
@@ -292,11 +288,7 @@ class SessionSubContext extends BehatContext
      */
     public function iShouldSeeALinkToSessionInArea($name, $area)
     {
-        $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
-        $session = $em->getRepository('BpaulinUpfitBundle:Session')->findOneByName($name);
-        if (!$session) {
-            throw new \Exception("session $name not found");
-        }
+        $session = $this->getSessionByName($name);
 
         return new Step\Then(
             "I should see a link to \"/member/session/".$session->getId()."\" in \"$area\" area"
