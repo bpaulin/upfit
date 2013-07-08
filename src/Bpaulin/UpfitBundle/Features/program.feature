@@ -10,11 +10,22 @@ Scenario: Administrator can read programs
   Given I am on "admin" homepage
   Then I should see a link to "/admin/program" in "actions" area
   When I follow this link
+  Then I should see the following breadcrumbs:
+    | icon      | label    | link    |
+    | home      |          | /       |
+    | briefcase | Admin    | /admin  |
+    |           | Programs |         |
   Then I should see a link to following programs:
     | program  |
     | program1 |
   When I follow the last link
-  Then I should see "program1" as "name"
+  Then I should see the following breadcrumbs:
+    | icon      | label    | link            |
+    | home      |          | /               |
+    | briefcase | Admin    | /admin          |
+    | list      | Programs | /admin/program  |
+    |           | program1 |                 |
+  And I should see "program1" as "name"
   And I should see the following stages:
     | stages |
     | exercise1 (1*1 1 with 1 1) |
@@ -25,7 +36,14 @@ Scenario: Administrator can update programs
   Given I am on program "program1" page
   Then I should see a link to edit program "program1"
   When I follow this link
-  And I fill in "program" form with the following:
+  Then I should see the following breadcrumbs:
+    | icon      | label    | link             |
+    | home      |          | /                |
+    | briefcase | Admin    | /admin           |
+    | list      | Programs | /admin/program   |
+    |           | program1 | /admin/program/1 |
+    |           | Edit     |                  |
+  When I fill in "program" form with the following:
     | name | program6 |
   And I press "Edit"
   Then I should be on "/admin/program"
@@ -40,7 +58,13 @@ Scenario: Administrator can create programs
   Given I am on "/admin/program"
   Then I should see a link to create program
   When I follow this link
-  And I fill in "program" form with the following:
+  Then I should see the following breadcrumbs:
+    | icon      | label    | link           |
+    | home      |          | /              |
+    | briefcase | Admin    | /admin         |
+    | list      | Programs | /admin/program |
+    |           | New      |                |
+  When I fill in "program" form with the following:
     | name | program7 |
   And I click on add a stage
   And I fill in last stage form with the following:
@@ -64,7 +88,14 @@ Scenario: Administrator can delete programs
   Given I am on program "program1" page
   Then I should see a link to delete program "program1"
   When I follow this link
-  And I press "Delete"
+  Then I should see the following breadcrumbs:
+    | icon      | label    | link             |
+    | home      |          | /                |
+    | briefcase | Admin    | /admin           |
+    | list      | Programs | /admin/program   |
+    |           | program1 | /admin/program/1 |
+    |           | Delete   |                  |
+  When I press "Delete"
   Then I should be on "/admin/program"
   And I should see a "success" message "program program1 deleted"
   And I should not see a link to program "program1"

@@ -224,11 +224,16 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
         }
         foreach ($hash as $index => $row) {
             if ($row['icon']) {
-                $icon = $lis[$index]->find('css', 'i')->getAttribute('class');
+                $icon = $lis[$index]->find('css', 'i');
+                if (!$icon) {
+                    throw new \Exception('icon not found, icon-'.$row['icon'].' wanted ');
+                }
+                $icon = $icon->getAttribute('class');
                 if ($icon != 'icon-'.$row['icon']) {
                     throw new \Exception($icon.' is not expected, icon-'.$row['icon'].' wanted ');
                 }
             }
+            // $row['label'] = ucfirst($row['label']);
             $label = trim($lis[$index]->find('css', 'span.breadcrumb-label')->getHtml());
             if ($row['label'] != $label) {
                 throw new \Exception('"'.$label.'" is not expected, "'.$row['label'].'" wanted ');

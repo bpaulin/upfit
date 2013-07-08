@@ -1,3 +1,4 @@
+@wip
 Feature: workout management
   In order to practice
   As an member
@@ -28,6 +29,13 @@ Scenario: Member can begin a session from program list
     | grade | 1 |
   When I press "Done"
   Then I should see a "success" message "session finished"
+  Then I should see the following breadcrumbs:
+    | icon    | label              | link              |
+    | home    |                    | /                 |
+    | gamepad | Member             | /member           |
+    | list    | Sessions           | /member/session   |
+    |         | following program1 | /member/session/4 |
+    |         | Edit               |                   |
   And I should see following workouts:
     | exercise  | status      | grade |
     | exercise2 | Abandoned   |       |

@@ -10,12 +10,23 @@ Scenario: Member can read programs
   Given I am on "member" homepage
   Then I should see a link to "/member/program" in "actions" area
   When I follow this link
-  Then I should not see a link to any page for "admin"
+  Then I should see the following breadcrumbs:
+    | icon    | label    | link    |
+    | home    |          | /       |
+    | gamepad | Member   | /member |
+    |         | Programs |         |
+  And I should not see a link to any page for "admin"
   And I should see a link to consult following programs:
     | program  |
     | program1 |
   When I follow the last link
-  Then I should see "program1" as "name"
+  Then I should see the following breadcrumbs:
+    | icon    | label    | link            |
+    | home    |          | /               |
+    | gamepad | Member   | /member         |
+    | list    | Programs | /member/program |
+    |         | program1 |                 |
+  And I should see "program1" as "name"
   And I should not see a link to any page for "admin"
   And I should see the following stages:
     | stages |

@@ -5,24 +5,35 @@ Feature: Authentification
 
 Scenario Outline: Visitor should be able to login and logout to access member section
   Given I am on homepage
-   Then I should see a link to "/login" in "connection" area
-   When I follow this link
-    And I fill in the following:
-        | username | <user> |
-        | password | <user> |
-    And I press "Login"
-   Then I should be on "<user>" homepage
-    And I should see "<user>" in "connection" area
-   When I go to homepage
-   Then I should see a link to "/member"
-   When I follow this link
-   Then I should see a link to "/logout" in "connection" area
-   When I follow this link
-   Then I should be on homepage
+  Then I should see the following breadcrumbs:
+    | icon | label | link |
+    | home |       |      |
+  Then I should see a link to "/login" in "connection" area
+  When I follow this link
+  Then I should see the following breadcrumbs:
+    | icon | label | link |
+    | home |       | /    |
+    |      | Login |      |
+  When I fill in the following:
+    | username | <user> |
+    | password | <user> |
+  And I press "Login"
+  Then I should be on "<user>" homepage
+  And I should see "<user>" in "connection" area
+  And I should see the following breadcrumbs:
+    | icon    | label    | link |
+    | home    |          | /    |
+    |         | <role>   |      |
+  When I go to homepage
+  Then I should see a link to "/member"
+  When I follow this link
+  Then I should see a link to "/logout" in "connection" area
+  When I follow this link
+  Then I should be on homepage
   Examples:
-    | user   |
-    | member |
-    | admin  |
+    | user   | role   |
+    | member | Member |
+    | admin  | Admin  |
 
 Scenario: Administator should be able to access administration section
   Given I am "admin"
