@@ -35,4 +35,3 @@ demo:
     extensions:
         Behat\MinkExtension\Extension:
             default_session: 'selenium2'
-            base_url: 'http://localhost:8000/app_test.php'

@@ -22,6 +22,7 @@ Upfit
     check             check everything
     check:behat       behat tests
     check:behat:wip   behat tests (only marqued as '@wip')
+    check:deps        check dependencies
     check:lint        check code syntax
     check:test        unit tests
     check:visual      behat tests (all executed with selenium)
@@ -42,10 +43,10 @@ Upfit
     base:test:drop
     base:test:fill
     base:test:update
+    check:base
     check:common
     check:cpd
     check:doc
-    check:headless
     check:lint:php
     check:lint:twig
     check:mess
@@ -57,3 +58,4 @@ Upfit
     report:doc
     report:mess
     report:test
+

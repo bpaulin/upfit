@@ -9,6 +9,7 @@
     <property name="path.phpmd" value="bin/phpmd" />
     <property name="path.phpcpd" value="bin/phpcpd" />
     <property name="path.phpunit" value="bin/phpunit" />
+    <property name="path.security-checker" value="bin/security-checker" />
     <property name="path.phpdoc" value="phpdoc" />
     <property name="dir.src" value="${project.basedir}/src" />
     <property name="dir.build" value="${project.basedir}/build" />
@@ -16,8 +17,8 @@
     <property name="dir.reports.docs" value="${dir.reports}/docs" />
     <property name="dir.reports.test" value="${dir.reports}/test" />
     <property name="dir.reports.test.behat" value="${dir.reports.test}/behat" />
-    <property name="bundle" value="@BpaulinUpfitBundle" />
-    <property name="dir.bundle" value="${dir.src}/Bpaulin/UpfitBundle" />
+    <property name="bundle" value="@AcmeDemoBundle" />
+    <property name="dir.bundle" value="${dir.src}/Acme/DemoBundle" />
 
     <property file="build.properties" override="true"/>
 
@@ -130,10 +131,6 @@
         </exec>
     </target>
 
-    <target name="check:wip"
-            depends="check:lint,check:test,check:behat:wip">
-    </target>
-
     <target name="check:base"
             depends="base:test:drop,base:test:create,base:test:update,base:test:fill">
         <SymfonyConsole command="doctrine:schema:validate" checkreturn="true">
@@ -141,8 +138,21 @@
         </SymfonyConsole>
     </target>
 
+    <target name="check:deps"
+            description="check dependencies">
+        <exec executable="${path.php}" passthru="true" checkreturn="true">
+            <arg value="${path.security-checker}"/>
+            <arg value="security:check"/>
+            <arg value="--ansi"/>
+        </exec>
+    </target>
+
     <target name="check:common"
             depends="check:base,check:lint,check:style,check:mess,check:cpd,check:test">
+    </target>
+
+    <target name="check:wip"
+            depends="check:lint,check:test,check:behat:wip">
     </target>
 
     <target name="check"
