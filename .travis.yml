@@ -16,5 +16,6 @@ before_script:
     - "export DISPLAY=:99.0"
     - "java -jar vendor/selenium/standalone-server/selenium-server-standalone-2.*.jar > /dev/null &"
     - sleep 5
+    - cp build.properties.dist build.properties
 
 script: ./bin/phing check
