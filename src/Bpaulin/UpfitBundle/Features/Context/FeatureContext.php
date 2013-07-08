@@ -229,13 +229,13 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
                     throw new \Exception($icon.' is not expected, icon-'.$row['icon'].' wanted ');
                 }
             }
-            $label = trim(str_replace('/', '', $lis[$index]->getText()));
-            if ($label != $row['label']) {
-                throw new \Exception($label.' is not expected, '.$row['label'].' wanted ');
+            $label = trim($lis[$index]->find('css', 'span.breadcrumb-label')->getHtml());
+            if ($row['label'] != $label) {
+                throw new \Exception('"'.$label.'" is not expected, "'.$row['label'].'" wanted ');
             }
             if ($row['link']) {
                 $link = $lis[$index]->find('css', 'a')->getAttribute('href');
-                if ($link != $row['link']) {
+                if (null === $lis[$index]->find('css', "a[href$='".$row['link']."']")) {
                     throw new \Exception($link.' is not expected, '.$row['link'].' wanted ');
                 }
             }

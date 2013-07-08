@@ -54,7 +54,6 @@ Scenario: Members can update sessions
   When I follow this link
   Then I should see "session6" as "name"
 
-@wip
 Scenario: Members can delete sessions
   Given I am on session "session1" page
   Then I should see a link to delete session "session1"
