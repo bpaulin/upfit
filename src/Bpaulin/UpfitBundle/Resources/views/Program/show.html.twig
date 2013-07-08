@@ -19,15 +19,14 @@
     %}
     {%
         set actions = {
-            'Begin a session' : {
-                'route': path('member_session_new', { 'follow': 'program', 'id': entity.id }),
-                'icon': 'play',
-                'class': 'primary'
-            },
             'Edit' : {
                 'route': path('admin_program_edit', { 'id': entity.id }),
                 'icon': 'edit',
                 'class': 'primary'
+            },
+            'Follow' : {
+                'route': path('member_session_new', { 'follow': 'program', 'id': entity.id }),
+                'icon': 'play',
             },
             'Delete' : {
                 'route': path('admin_program_delete', { 'id': entity.id }),
@@ -54,7 +53,7 @@
     %}
     {%
         set actions = {
-            'Begin a session' : {
+            'Follow' : {
                 'route': path('member_session_new', { 'follow': 'program', 'id': entity.id }),
                 'icon': 'play',
                 'class': 'primary'

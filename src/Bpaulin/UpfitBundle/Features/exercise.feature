@@ -15,6 +15,9 @@ Scenario: Administrator can read exercises
     | home      |           | /       |
     | briefcase | Admin     | /admin  |
     |           | Exercises |         |
+  And I should see the following actions:
+    | type    | icon      | label     | link                |
+    |         | plus      | Add       | /admin/exercise/new |
   And I should see a link to following exercises:
     | exercise  |
     | exercise2 |
@@ -26,6 +29,10 @@ Scenario: Administrator can read exercises
     | briefcase | Admin     | /admin          |
     | list      | Exercises | /admin/exercise |
     |           | exercise1 |                 |
+  And I should see the following actions:
+    | type    | icon      | label     | link                     |
+    | primary | edit      | Edit      | /admin/exercise/1/edit   |
+    | danger  | minus     | Delete    | /admin/exercise/1/delete |
   Then I should see a link to "/admin/exercise"
   And I should see "exercise1" as "name"
 

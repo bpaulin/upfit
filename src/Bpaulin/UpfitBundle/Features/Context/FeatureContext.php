@@ -57,6 +57,26 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
         return $this->kernel;
     }
 
+    protected function assertElementContainsIcon($element, $iconClass)
+    {
+        $icon = $element->find('css', 'i');
+        if (!$icon) {
+            throw new \Exception('icon not found, icon-'.$icon.' wanted ');
+        }
+        $icon = $icon->getAttribute('class');
+        if ($icon != 'icon-'.$iconClass) {
+            throw new \Exception($icon.' is not expected, icon-'.$iconClass.' wanted ');
+        }
+    }
+
+    protected function assertElementContainsNoIcon($element)
+    {
+        $icon = $element->find('css', "i[class^='icon-']");
+        if ($icon) {
+            throw new \Exception('icon found, none wanted');
+        }
+    }
+
     /**
      * @Then /^I should see a link to "([^"]*)"$/
      */
@@ -220,18 +240,13 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
                                 ->getPage()
                                 ->findAll('css', ".breadcrumb li");
         if (count($lis) != count($hash)) {
-            throw new \Exception(count($lis).' breadcrumb is not expected, '.count($hash).' wanted ');
+            throw new \Exception(count($lis).' breadcrumbs is not expected, '.count($hash).' wanted ');
         }
         foreach ($hash as $index => $row) {
             if ($row['icon']) {
-                $icon = $lis[$index]->find('css', 'i');
-                if (!$icon) {
-                    throw new \Exception('icon not found, icon-'.$row['icon'].' wanted ');
-                }
-                $icon = $icon->getAttribute('class');
-                if ($icon != 'icon-'.$row['icon']) {
-                    throw new \Exception($icon.' is not expected, icon-'.$row['icon'].' wanted ');
-                }
+                $this->assertElementContainsIcon($lis[$index], $row['icon']);
+            } else {
+                $this->assertElementContainsNoIcon($lis[$index]);
             }
             // $row['label'] = ucfirst($row['label']);
             $label = trim($lis[$index]->find('css', 'span.breadcrumb-label')->getHtml());
@@ -242,6 +257,47 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
                 $link = $lis[$index]->find('css', 'a')->getAttribute('href');
                 if (null === $lis[$index]->find('css', "a[href$='".$row['link']."']")) {
                     throw new \Exception($link.' is not expected, '.$row['link'].' wanted ');
+                }
+            }
+        }
+    }
+
+    /**
+     * @Then /^I should see the following actions:$/
+     */
+    public function iShouldSeeTheFollowingActions(TableNode $table)
+    {
+        // | type    | icon      | label     | link                |
+        $hash = $table->getHash();
+        $as = $this->getMainContext()->getMink()
+                                ->getSession()
+                                ->getPage()
+                                ->findAll('css', "#actions-area a");
+        if (count($as) != count($hash)) {
+            throw new \Exception(count($as).' actions is not expected, '.count($hash).' wanted ');
+        } else {
+            foreach ($hash as $index => $row) {
+                if ($row['type']) {
+                    $classes = explode(' ', $as[$index]->getAttribute('class'));
+                    if (!in_array('btn-'.$row['type'], $classes)) {
+                        throw new \Exception('action type is not '.$row['type']);
+                    }
+                }
+                if ($row['icon']) {
+                    $this->assertElementContainsIcon($as[$index], $row['icon']);
+                } else {
+                    $this->assertElementContainsNoIcon($as[$index]);
+                }
+                // $row['label'] = ucfirst($row['label']);
+                $label = trim($as[$index]->getText());
+                if ($row['label'] != $label) {
+                    throw new \Exception('"'.$label.'" is not expected, "'.$row['label'].'" wanted ');
+                }
+                if ($row['link']) {
+                    $link = $as[$index]->find('css', 'a')->getAttribute('href');
+                    if (null === $as[$index]->find('css', "a[href$='".$row['link']."']")) {
+                        throw new \Exception($link.' is not expected, '.$row['link'].' wanted ');
+                    }
                 }
             }
         }

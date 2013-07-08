@@ -1,4 +1,3 @@
-@wip
 Feature: workout management
   In order to practice
   As an member

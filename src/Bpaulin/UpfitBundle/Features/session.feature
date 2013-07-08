@@ -20,6 +20,7 @@ Scenario: Members can list their old sessions
     | session1            |
     | session unfinished  |
 
+@wip
 Scenario: Members can read a session
   Given I am on session "session unfinished" page
   Then I should see the following breadcrumbs:
@@ -28,10 +29,21 @@ Scenario: Members can read a session
     | gamepad | Member             | /member         |
     | list    | Sessions           | /member/session |
     |         | session unfinished |                 |
+  And I should see the following actions:
+    | type    | icon      | label  | link                          |
+    | primary | play      | Resume | /member/session/3/workout     |
+    |         | edit      | Edit   | /member/session/3/edit        |
+    | danger  | minus     | Delete | /member/session/3/delete      |
   And I should see following workouts:
     | exercise  | status  | grade |
     | exercise1 | Current |       |
     | exercise2 | Todo    |       |
+  Given I am on session "session1" page
+  And I should see the following actions:
+    | type    | icon      | label  | link                          |
+    | primary | edit      | Edit   | /member/session/1/edit        |
+    |         | repeat    | Follow | /member/session/new/session/1 |
+    | danger  | minus     | Delete | /member/session/1/delete      |
 
 Scenario: Members can update sessions
   Given I am on session "session1" page

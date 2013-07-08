@@ -26,12 +26,21 @@
                 'icon': 'play',
                 'class': 'primary'
             },
+            'Edit' : {
+                'route': path('member_session_edit', {'id': entity.id }),
+                'icon': 'edit'
+            },
         }
     %}
 {% else %}
     {%
         set actions =
         {
+            'Edit' : {
+                'route': path('member_session_edit', {'id': entity.id }),
+                'icon': 'edit',
+                'class': 'primary'
+            },
             'Follow' : {
                 'route': path('member_session_new', { 'follow': 'session', 'id': entity.id }),
                 'icon': 'repeat'
@@ -42,10 +51,6 @@
 {%
     set actions = actions|merge(
         {
-            'Edit' : {
-                'route': path('member_session_edit', {'id': entity.id }),
-                'icon': 'edit'
-            },
             'Delete' : {
                 'route': path('member_session_delete', {'id': entity.id }),
                 'icon': 'minus',

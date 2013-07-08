@@ -15,6 +15,9 @@ Scenario: Administrator can read programs
     | home      |          | /       |
     | briefcase | Admin    | /admin  |
     |           | Programs |         |
+  And I should see the following actions:
+    | type    | icon      | label     | link               |
+    |         | plus      | Add       | /admin/program/new |
   Then I should see a link to following programs:
     | program  |
     | program1 |
@@ -25,6 +28,11 @@ Scenario: Administrator can read programs
     | briefcase | Admin    | /admin          |
     | list      | Programs | /admin/program  |
     |           | program1 |                 |
+  And I should see the following actions:
+    | type    | icon      | label     | link                          |
+    | primary | edit      | Edit      | /admin/program/1/edit         |
+    |         | play      | Follow    | /member/session/new/program/1 |
+    | danger  | minus     | Delete    | /admin/program/1/delete       |
   And I should see "program1" as "name"
   And I should see the following stages:
     | stages |
