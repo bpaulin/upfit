@@ -6,7 +6,6 @@ Feature: members can consult programs
 Background:
   Given I am member
 
-@wip
 Scenario: Member can read programs
   Given I am on "member" homepage
   Then I should see a link to "/member/program" in "actions" area

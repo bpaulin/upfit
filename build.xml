@@ -117,7 +117,7 @@
 
     <target name="check"
             description="check code quality"
-            depends="check:syntax,check:style,check:mess,check:cpd,check:doc,check:deps">
+            depends="check:syntax,check:style,check:mess,check:cpd,check:debug,check:doc">
     </target>
 
     <target name="check:syntax"
@@ -138,8 +138,7 @@
         </phplint>
     </target>
 
-    <target name="check:style"
-            depends="fix:style">
+    <target name="check:style">
         <exec executable="${path.php}" passthru="true" checkreturn="true">
             <arg value="${path.phpcs}"/>
             <arg value="-p"/>
@@ -168,7 +167,7 @@
     </target>
 
     <target name="check:doc">
-        <exec executable="${path.phpdoc}" passthru="true" checkreturn="false">
+        <exec executable="${path.phpdoc}" passthru="true">
             <arg value="--ansi"/>
             <arg value="--force"/>
             <arg line="-d ${dir.src}"/>
@@ -184,6 +183,10 @@
             <arg value="security:check"/>
             <arg value="--ansi"/>
         </exec>
+    </target>
+
+    <target name="check:debug">
+        <exec command="! grep -n '@wip' ${dir.bundle}/Features/*.feature" passthru="true" checkreturn="true"/>
     </target>
 
     <!-- ================================================================== -->

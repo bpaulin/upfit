@@ -20,7 +20,6 @@ Scenario: Members can list their old sessions
     | session1            |
     | session unfinished  |
 
-@wip
 Scenario: Members can read a session
   Given I am on session "session unfinished" page
   Then I should see the following breadcrumbs:
