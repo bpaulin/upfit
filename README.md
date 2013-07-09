@@ -9,29 +9,29 @@ Upfit
 
 ### Default target:
 
-    check             check everything
+    run:ci            continuous integration
 
 ### Main targets:
 
-    asset:generate    generate assets
     base:dev:reset    reset dev database
     base:prod:create  init prod database
     base:prod:dump    dump prod database
     base:prod:update  update prod database
     base:test:reset   reset testing database
-    check             check everything
-    check:behat       behat tests
-    check:behat:wip   behat tests (only marqued as '@wip')
-    check:deps        check dependencies
-    check:lint        check code syntax
-    check:test        unit tests
-    check:visual      behat tests (all executed with selenium)
-    composer:deploy   install vendor for prod
-    composer:install  install vendor
-    composer:update   update vendor
-    deploy:prod       magical (?!) deploy command
+    check             check code quality
+    composer:deploy   install dependencies for prod
+    composer:install  install dependencies
+    composer:update   update dependencies
     fix:style         fix code style
     report            generate all reports
+    run:assets        generate assets
+    run:ci            continuous integration
+    run:demo          behat tests (all executed with selenium)
+    run:deploy        magical (?!) deploy command
+    test              run all tests
+    test:behat        behat tests
+    test:behat:wip    behat tests (only marqued as '@wip')
+    test:unit         unit tests
 
 ### Subtargets:
 
@@ -43,19 +43,20 @@ Upfit
     base:test:drop
     base:test:fill
     base:test:update
-    check:base
-    check:common
+    cache:clear:test
     check:cpd
+    check:deps
     check:doc
-    check:lint:php
-    check:lint:twig
     check:mess
     check:style
-    check:wip
+    check:syntax
+    check:syntax:php
+    check:syntax:twig
     composer:self-update
     report:behat
-    report:cpd
     report:doc
-    report:mess
+    report:loc
     report:test
+    test:base
+
 

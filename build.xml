@@ -1,50 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="Upfit" basedir="." default="check">
+<project name="Upfit" basedir="." default="run:ci">
 
-    <property name="path.composer" value="composer.phar" />
-    <property name="path.php" value="php" />
-    <property name="path.phpcsfixer" value="php-cs-fixer.phar" />
-    <property name="path.behat" value="bin/behat" />
-    <property name="path.phpcs" value="bin/phpcs" />
-    <property name="path.phpmd" value="bin/phpmd" />
-    <property name="path.phpcpd" value="bin/phpcpd" />
-    <property name="path.phpunit" value="bin/phpunit" />
-    <property name="path.phploc" value="bin/phploc" />
-    <property name="path.security-checker" value="bin/security-checker" />
-    <property name="path.phpdoc" value="phpdoc" />
-    <property name="dir.src" value="${project.basedir}/src" />
-    <property name="dir.build" value="${project.basedir}/build" />
-    <property name="dir.reports" value="${dir.build}/reports" />
-    <property name="dir.reports.docs" value="${dir.reports}/docs" />
-    <property name="dir.reports.test" value="${dir.reports}/test" />
+    <!-- ================================================================== -->
+    <!-- Properties                                                         -->
+    <!-- ================================================================== -->
+
+    <!-- General properties -->
+    <property name="path.composer"          value="composer.phar" />
+    <property name="path.php"               value="php" />
+    <property name="path.phpcsfixer"        value="php-cs-fixer.phar" />
+    <property name="path.behat"             value="bin/behat" />
+    <property name="path.phpcs"             value="bin/phpcs" />
+    <property name="path.phpmd"             value="bin/phpmd" />
+    <property name="path.phpcpd"            value="bin/phpcpd" />
+    <property name="path.phpunit"           value="bin/phpunit" />
+    <property name="path.phploc"            value="bin/phploc" />
+    <property name="path.security-checker"  value="bin/security-checker" />
+    <property name="path.phpdoc"            value="phpdoc" />
+    <property name="dir.src"                value="${project.basedir}/src" />
+    <property name="dir.build"              value="${project.basedir}/build" />
+    <property name="dir.reports"            value="${dir.build}/reports" />
+    <property name="dir.reports.docs"       value="${dir.reports}/docs" />
+    <property name="dir.reports.test"       value="${dir.reports}/test" />
     <property name="dir.reports.test.behat" value="${dir.reports.test}/behat" />
-    <property name="bundle" value="@AcmeDemoBundle" />
-    <property name="dir.bundle" value="${dir.src}/Acme/DemoBundle" />
+    <property name="bundle"                 value="@AcmeDemoBundle" />
+    <property name="dir.bundle"             value="${dir.src}/Acme/DemoBundle" />
 
+    <!-- Custom properties -->
     <property file="build.properties" override="true"/>
 
+    <!-- ================================================================== -->
+    <!-- Build                                                              -->
+    <!-- ================================================================== -->
+
+    <target name="run:demo"
+            description="behat tests (all executed with selenium)"
+            depends="base:test:reset">
+        <exec executable="${path.php}" passthru="true" checkreturn="true">
+            <arg value="${path.behat}"/>
+            <arg value="--ansi"/>
+            <arg value="--profile=demo"/>
+            <arg value="--no-paths"/>
+        </exec>
+    </target>
+
+    <target name="run:ci"
+            description="continuous integration"
+            depends="test, check">
+    </target>
+
+    <target name="run:deploy"
+            description="magical (?!) deploy command"
+            depends="composer:deploy, base:prod:update">
+        <SymfonyConsole command="cache:clear">
+            <arg value="--env=prod"/>
+        </SymfonyConsole>
+    </target>
+
+    <target name="run:assets"
+            description="generate assets">
+        <SymfonyConsole command="cache:clear" checkreturn="true">
+            <arg value="--env=prod"/>
+        </SymfonyConsole>
+        <SymfonyConsole command="assetic:dump" checkreturn="true">
+            <arg value="--env=prod"/>
+        </SymfonyConsole>
+    </target>
+
+    <!-- ================================================================== -->
+    <!-- Composer                                                           -->
+    <!-- ================================================================== -->
+
     <target name="composer:self-update">
-        <composer command="self-update" composer="${path.composer}" php="${path.php}"/>
+        <composer command="self-update"
+                  composer="${path.composer}"
+                  php="${path.php}"/>
     </target>
 
     <target name="composer:update"
-            description="update vendor">
-        <composer command="update" composer="${path.composer}" php="${path.php}"/>
+            description="update dependencies">
+        <composer command="update"
+                  composer="${path.composer}"
+                  php="${path.php}"/>
     </target>
 
     <target name="composer:install"
-            description="install vendor">
+            description="install dependencies">
         <composer command="install" composer="${path.composer}" php="${path.php}"/>
     </target>
 
     <target name="composer:deploy"
-            description="install vendor for prod">
+            description="install dependencies for prod">
         <composer command="install" composer="${path.composer}" php="${path.php}">
             <arg value="--no-dev" />
             <arg value="--optimize-autoloader" />
         </composer>
         <exec command="find ./vendor -name '.git' -exec rm -rf {} \;" passthru="true"/>
     </target>
+
+    <!-- ================================================================== -->
+    <!-- Fixing                                                           -->
+    <!-- ================================================================== -->
 
     <target name="fix:style"
             description="fix code style">
@@ -53,6 +109,33 @@
             <arg value="fix"/>
             <arg path="${dir.src}"/>
         </exec>
+    </target>
+
+    <!-- ================================================================== -->
+    <!-- Checks                                                             -->
+    <!-- ================================================================== -->
+
+    <target name="check"
+            description="check code quality"
+            depends="check:syntax,check:style,check:mess,check:cpd,check:doc,check:deps">
+    </target>
+
+    <target name="check:syntax"
+            depends="check:syntax:twig,check:syntax:php">
+    </target>
+
+    <target name="check:syntax:twig">
+        <SymfonyConsole command="twig:lint">
+            <arg value="${bundle}" quotes="true"/>
+        </SymfonyConsole>
+    </target>
+
+    <target name="check:syntax:php">
+        <phplint interpreter="${path.php}" haltonfailure="true">
+            <fileset dir="${dir.src}">
+                <include name="**/*.php"/>
+            </fileset>
+        </phplint>
     </target>
 
     <target name="check:style"
@@ -84,26 +167,42 @@
         </exec>
     </target>
 
-    <target name="check:lint:twig">
-        <SymfonyConsole command="twig:lint">
-            <arg value="${bundle}" quotes="true"/>
+    <target name="check:doc">
+        <exec executable="${path.phpdoc}" passthru="true" checkreturn="false">
+            <arg value="--ansi"/>
+            <arg value="--force"/>
+            <arg line="-d ${dir.src}"/>
+            <arg line="-t ${dir.reports.docs}"/>
+            <arg line="-i *Test.php,*Features/Context/*"/>
+            <arg line="--template checkstyle"/>
+        </exec>
+    </target>
+
+    <target name="check:deps">
+        <exec executable="${path.php}" passthru="true" checkreturn="false">
+            <arg value="${path.security-checker}"/>
+            <arg value="security:check"/>
+            <arg value="--ansi"/>
+        </exec>
+    </target>
+
+    <!-- ================================================================== -->
+    <!-- Tests                                                              -->
+    <!-- ================================================================== -->
+
+    <target name="test"
+            description="run all tests"
+            depends="test:base,test:unit,test:behat">
+    </target>
+
+    <target name="test:base"
+            depends="base:test:drop,base:test:create,base:test:update,base:test:fill">
+        <SymfonyConsole command="doctrine:schema:validate" checkreturn="true">
+            <arg value="--env=test"/>
         </SymfonyConsole>
     </target>
 
-    <target name="check:lint:php">
-        <phplint interpreter="${path.php}" haltonfailure="true">
-            <fileset dir="${dir.src}">
-                <include name="**/*.php"/>
-            </fileset>
-        </phplint>
-    </target>
-
-    <target name="check:lint"
-            description="check code syntax"
-            depends="check:lint:twig,check:lint:php">
-    </target>
-
-    <target name="check:test"
+    <target name="test:unit"
             description="unit tests">
         <exec executable="${path.php}" passthru="true" checkreturn="true">
             <arg value="${path.phpunit}"/>
@@ -112,7 +211,7 @@
         </exec>
     </target>
 
-    <target name="check:behat"
+    <target name="test:behat"
             description="behat tests">
         <exec executable="${path.php}" passthru="true" checkreturn="true">
             <arg value="${path.behat}"/>
@@ -122,7 +221,7 @@
         </exec>
     </target>
 
-    <target name="check:behat:wip"
+    <target name="test:behat:wip"
             description="behat tests (only marqued as '@wip')">
         <exec executable="${path.php}" passthru="true" checkreturn="true">
             <arg value="${path.behat}"/>
@@ -133,61 +232,13 @@
         </exec>
     </target>
 
-    <target name="check:base"
-            depends="base:test:drop,base:test:create,base:test:update,base:test:fill">
-        <SymfonyConsole command="doctrine:schema:validate" checkreturn="true">
-            <arg value="--env=test"/>
-        </SymfonyConsole>
-    </target>
+    <!-- ================================================================== -->
+    <!-- Reports                                                            -->
+    <!-- ================================================================== -->
 
-    <target name="check:deps"
-            description="check dependencies">
-        <exec executable="${path.php}" passthru="true" checkreturn="true">
-            <arg value="${path.security-checker}"/>
-            <arg value="security:check"/>
-            <arg value="--ansi"/>
-        </exec>
-    </target>
-
-    <target name="check:common"
-            depends="check:base,check:lint,check:style,check:mess,check:cpd,check:test">
-    </target>
-
-    <target name="check:wip"
-            depends="check:lint,check:test,check:behat:wip">
-    </target>
-
-    <target name="check"
-            description="check everything"
-            depends="check:common,check:behat">
-    </target>
-
-    <target name="check:visual"
-            description="behat tests (all executed with selenium)"
-            depends="base:test:reset">
-        <exec executable="${path.php}" passthru="true" checkreturn="true">
-            <arg value="${path.behat}"/>
-            <arg value="--ansi"/>
-            <arg value="--profile=demo"/>
-            <arg value="--no-paths"/>
-        </exec>
-    </target>
-
-    <target name="check:doc">
-        <exec executable="${path.phpdoc}" passthru="true" checkreturn="true">
-            <arg value="--ansi"/>
-            <arg value="--force"/>
-            <arg line="-d ${dir.src}"/>
-            <arg line="-t ${dir.reports.docs}"/>
-            <arg line="-i *Test.php,*Features/Context/*"/>
-            <arg line="--template checkstyle"/>
-        </exec>
-    </target>
-
-    <target name="cache:clear:test">
-        <SymfonyConsole command="cache:clear" checkreturn="true">
-            <arg value="--env=test"/>
-        </SymfonyConsole>
+    <target name="report"
+            description="generate all reports"
+            depends="report:test, report:behat, report:doc, report:loc">
     </target>
 
     <target name="report:behat">
@@ -209,6 +260,7 @@
             <arg value="--coverage-text"/>
             <arg value="--coverage-clover=${dir.reports.test}/clover.xml"/>
             <arg value="--coverage-html=${dir.reports.test}/coverage"/>
+            <arg line="--exclude-group behat"/>
             <arg value="--configuration=app"/>
         </exec>
     </target>
@@ -230,10 +282,14 @@
         </exec>
     </target>
 
-    <target name="report"
-            description="generate all reports"
-            depends="report:test, report:doc, report:loc">
-    </target>
+    <!-- ================================================================== -->
+    <!-- Database                                                           -->
+    <!-- ================================================================== -->
+
+    <!-- test db -->
+    <target name="base:test:reset"
+            description="reset testing database"
+            depends="base:test:drop,base:test:create,base:test:update,base:test:fill"/>
 
     <target name="base:test:drop">
         <SymfonyConsole command="doctrine:database:drop">
@@ -263,9 +319,10 @@
         </SymfonyConsole>
     </target>
 
-    <target name="base:test:reset"
-            description="reset testing database"
-            depends="base:test:drop,base:test:create,base:test:update,base:test:fill"/>
+    <!-- dev db -->
+    <target name="base:dev:reset"
+            description="reset dev database"
+            depends="base:dev:drop,base:dev:create,base:dev:update,base:dev:fill"/>
 
     <target name="base:dev:drop">
         <SymfonyConsole command="doctrine:database:drop">
@@ -295,10 +352,7 @@
         </SymfonyConsole>
     </target>
 
-    <target name="base:dev:reset"
-            description="reset dev database"
-            depends="base:dev:drop,base:dev:create,base:dev:update,base:dev:fill"/>
-
+    <!-- prod db -->
     <target name="base:prod:dump"
             description="dump prod database">
         <exec executable="${path.php}">
@@ -331,21 +385,13 @@
         </SymfonyConsole>
     </target>
 
-    <target name="deploy:prod"
-            description="magical (?!) deploy command"
-            depends="composer:deploy, base:prod:update">
-        <SymfonyConsole command="cache:clear">
-            <arg value="--env=prod"/>
-        </SymfonyConsole>
-    </target>
+    <!-- ================================================================== -->
+    <!-- Misc                                                               -->
+    <!-- ================================================================== -->
 
-    <target name="asset:generate"
-            description="generate assets">
+    <target name="cache:clear:test">
         <SymfonyConsole command="cache:clear" checkreturn="true">
-            <arg value="--env=prod"/>
-        </SymfonyConsole>
-        <SymfonyConsole command="assetic:dump" checkreturn="true">
-            <arg value="--env=prod"/>
+            <arg value="--env=test"/>
         </SymfonyConsole>
     </target>
 </project>
