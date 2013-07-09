@@ -29,6 +29,8 @@
     "require-dev": {
         "sensiolabs/security-checker": "*",
         "squizlabs/php_codesniffer": "dev-master",
+        "zetacomponents/console-tools": "dev-master",
+        "phploc/phploc": "dev-master",
         "phpmd/phpmd" : "1.4.*",
         "sebastian/phpcpd": "dev-master",
         "phpunit/phpunit": "3.7.*",

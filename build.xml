@@ -9,6 +9,7 @@
     <property name="path.phpmd" value="bin/phpmd" />
     <property name="path.phpcpd" value="bin/phpcpd" />
     <property name="path.phpunit" value="bin/phpunit" />
+    <property name="path.phploc" value="bin/phploc" />
     <property name="path.security-checker" value="bin/security-checker" />
     <property name="path.phpdoc" value="phpdoc" />
     <property name="dir.src" value="${project.basedir}/src" />
@@ -42,6 +43,7 @@
             <arg value="--no-dev" />
             <arg value="--optimize-autoloader" />
         </composer>
+        <exec command="find ./vendor -name '.git' -exec rm -rf {} \;" passthru="true"/>
     </target>
 
     <target name="fix:style"
@@ -182,6 +184,12 @@
         </exec>
     </target>
 
+    <target name="cache:clear:test">
+        <SymfonyConsole command="cache:clear" checkreturn="true">
+            <arg value="--env=test"/>
+        </SymfonyConsole>
+    </target>
+
     <target name="report:behat">
         <mkdir dir="${dir.reports.test.behat}" />
         <exec executable="${path.php}" passthru="true">
@@ -189,27 +197,6 @@
             <arg value="--ansi"/>
             <arg value="--expand"/>
             <arg value="--profile=report"/>
-        </exec>
-    </target>
-
-    <target name="report:mess">
-        <exec executable="${path.php}" passthru="true" checkreturn="false">
-            <arg value="${path.phpmd}"/>
-            <arg path="${dir.src}"/>
-            <arg value="html"/>
-            <arg value="app/phpmd_rules.xml"/>
-            <arg line="--reportfile ${dir.reports}/mess.html"/>
-        </exec>
-    </target>
-
-    <target name="report:cpd">
-        <exec executable="${path.php}" passthru="true" checkreturn="true">
-            <arg value="${path.phpcpd}"/>
-            <arg line="--names *.php,*.twig"/>
-            <arg line="--min-lines 5"/>
-            <arg line="--min-tokens 70"/>
-            <arg line="--log-pmd ${dir.reports}/cpd.xml"/>
-            <arg path="${dir.src}"/>
         </exec>
     </target>
 
@@ -227,7 +214,8 @@
     </target>
 
     <target name="report:doc">
-        <exec executable="${path.phpdoc}" passthru="true">
+        <exec executable="${path.php}" passthru="true">
+            <arg value="${path.phpdoc}"/>
             <arg value="--ansi"/>
             <arg line="-i *Test.php,*Features/Context/*"/>
             <arg line="-d ${dir.src}"/>
@@ -235,9 +223,16 @@
         </exec>
     </target>
 
+    <target name="report:loc">
+        <exec executable="${path.php}" passthru="true" output="${dir.reports}/loc.txt">
+            <arg value="${path.phploc}"/>
+            <arg line="${dir.src}"/>
+        </exec>
+    </target>
+
     <target name="report"
             description="generate all reports"
-            depends="base:test:reset,report:mess,report:test, report:doc">
+            depends="report:test, report:doc, report:loc">
     </target>
 
     <target name="base:test:drop">
