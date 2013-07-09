@@ -1,4 +1,3 @@
-@wip
 Feature: program management
   In order to manage programs
   As an administator
@@ -11,29 +10,48 @@ Scenario: Administrator can read programs
   Given I am on "admin" homepage
   Then I should see a link to "/admin/program" in "actions" area
   When I follow this link
+  Then I should see the following breadcrumbs:
+    | icon      | label    | link    |
+    | home      |          | /       |
+    | briefcase | Admin    | /admin  |
+    |           | Programs |         |
+  And I should see the following actions:
+    | type    | icon      | label     | link               |
+    |         | plus      | Add       | /admin/program/new |
   Then I should see a link to following programs:
     | program  |
     | program1 |
-    | program2 |
-    | program3 |
-    | program4 |
-    | program5 |
-  When I follow this link
-  Then I should see "program5" as "name"
+  When I follow the last link
+  Then I should see the following breadcrumbs:
+    | icon      | label    | link            |
+    | home      |          | /               |
+    | briefcase | Admin    | /admin          |
+    | list      | Programs | /admin/program  |
+    |           | program1 |                 |
+  And I should see the following actions:
+    | type    | icon      | label     | link                          |
+    | primary | edit      | Edit      | /admin/program/1/edit         |
+    |         | play      | Follow    | /member/session/new/program/1 |
+    | danger  | minus     | Delete    | /admin/program/1/delete       |
+  And I should see "program1" as "name"
   And I should see the following stages:
-  | stages |
+    | stages |
     | exercise1 (1*1 1 with 1 1) |
     | exercise2 (2*2 2 with 2 2) |
-    | exercise3 (3*3 3 with 3 3) |
-    | exercise4 (4*4 4 with 4 4) |
-    | exercise5 (5*5 5 with 5 5) |
   Then I should see a link to "/admin/program"
 
 Scenario: Administrator can update programs
   Given I am on program "program1" page
   Then I should see a link to edit program "program1"
   When I follow this link
-  And I fill in "program" form with the following:
+  Then I should see the following breadcrumbs:
+    | icon      | label    | link             |
+    | home      |          | /                |
+    | briefcase | Admin    | /admin           |
+    | list      | Programs | /admin/program   |
+    |           | program1 | /admin/program/1 |
+    |           | Edit     |                  |
+  When I fill in "program" form with the following:
     | name | program6 |
   And I press "Edit"
   Then I should be on "/admin/program"
@@ -48,12 +66,17 @@ Scenario: Administrator can create programs
   Given I am on "/admin/program"
   Then I should see a link to create program
   When I follow this link
-  And I fill in "program" form with the following:
+  Then I should see the following breadcrumbs:
+    | icon      | label    | link           |
+    | home      |          | /              |
+    | briefcase | Admin    | /admin         |
+    | list      | Programs | /admin/program |
+    |           | New      |                |
+  When I fill in "program" form with the following:
     | name | program7 |
-  And I follow "Add a stage"
+  And I click on add a stage
   And I fill in last stage form with the following:
     | exercise       | exercise1   |
-    | position       | 1           |
     | sets           | 5           |
     | number         | 15          |
     | unit           | repetitions |
@@ -70,13 +93,53 @@ Scenario: Administrator can create programs
     | exercise1 (5*15 repetitions with 5 kilos) |
 
 Scenario: Administrator can delete programs
-  Given I am on program "program2" page
-  Then I should see a link to delete program "program2"
+  Given I am on program "program1" page
+  Then I should see a link to delete program "program1"
   When I follow this link
-  And I press "Delete"
+  Then I should see the following breadcrumbs:
+    | icon      | label    | link             |
+    | home      |          | /                |
+    | briefcase | Admin    | /admin           |
+    | list      | Programs | /admin/program   |
+    |           | program1 | /admin/program/1 |
+    |           | Delete   |                  |
+  When I press "Delete"
   Then I should be on "/admin/program"
-  And I should see a "success" message "program program2 deleted"
-  And I should not see a link to program "program2"
+  And I should see a "success" message "program program1 deleted"
+  And I should not see a link to program "program1"
 
+@javascript
+Scenario: Administrator can delete stage
+  Given I am on program "program1" page
+  Then I should see a link to edit program "program1"
+  When I follow this link
+  And I click delete on stage "1"
+  And I press "Edit"
+  Then I should be on "/admin/program"
+  And I should see a "success" message "program program1 updated"
+  And I should see a link to program "program1"
+  When I follow this link
+  Then I should see "program1" as "name"
+  And I should see the following stages:
+    | stages |
+    | exercise1 (1*1 1 with 1 1) |
+  And I should not see the following stages:
+    | stages |
+    | exercise2 (2*2 2 with 2 2) |
 
-
+@javascript
+Scenario: Administrator can sort stages
+  Given I am on program "program1" page
+  Then I should see a link to edit program "program1"
+  When I follow this link
+  And I drag stage "0" down "2" position
+  And I press "Edit"
+  Then I should be on "/admin/program"
+  And I should see a "success" message "program program1 updated"
+  And I should see a link to program "program1"
+  When I follow this link
+  Then I should see "program1" as "name"
+  And I should see the following stages:
+    | stages |
+    | exercise2 (2*2 2 with 2 2) |
+    | exercise1 (1*1 1 with 1 1) |

@@ -7,6 +7,22 @@
         },
     }
 %}
-
+{%
+    set actions = {
+        'Programs' : {
+            'route': path('member_program'),
+            'icon': 'tasks',
+        },
+        'Sessions' : {
+            'route': path('member_session'),
+            'icon': 'trophy',
+            'class': 'primary'
+        },
+    }
+%}
 {% block content %}
+{% endblock %}
+
+{% block messages %}
+    {{ render(controller('BpaulinUpfitBundle:Session:todo')) }}
 {% endblock %}

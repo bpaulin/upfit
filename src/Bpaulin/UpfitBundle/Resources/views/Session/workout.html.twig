@@ -1,0 +1,49 @@
+{% extends "BpaulinUpfitBundle:Crud:show.html.twig" %}
+{% import "BpaulinUpfitBundle::macro.html.twig" as macros %}
+{%
+    set breadcrumbs =
+    {
+        'Member' : {
+            'route': path('upfit_member'),
+            'icon': 'gamepad',
+        },
+        'Sessions' : {
+            'route': path('member_session'),
+            'icon': 'list',
+        },
+        (entity.name) : {
+            'route': path('member_session_show', { 'id': entity.id }),
+        },
+        'Workout' : {
+            'route': path('member_session_workout', { 'id': entity.id }),
+        },
+    }
+%}
+
+{%
+    set fields = {
+        'exercise' : entity.nextWorkout.exercise.name,
+        'sets': (entity.nextWorkout.sets ~ '*' ~ entity.nextWorkout.number ~ ' ' ~ entity.nextWorkout.unit),
+        'difficulty': (entity.nextWorkout.difficulty ~ ' ' ~ entity.nextWorkout.difficultyUnit)
+    }
+%}
+
+{% block h1 %}Session <small>{{ entity.name }}</small>{% endblock %}
+
+{% block content %}
+<div class="nav well">
+    {{ macros.workoutsList(entity) }}
+</div>
+{{ parent() }}
+{{ form_start(form) }}
+    {{ form_row(form.grade) }}
+    <div class="control-group">
+        <div class="controls">
+            {{ form_widget(form.done, {'attr': {'class': 'btn-primary'}}) }}
+            {{ form_widget(form.pass, {'attr': {'class': 'btn-warning'}}) }}
+            {{ form_widget(form.abandon, {'attr': {'class': 'btn-danger'}}) }}
+        </div>
+    </div>
+    {{ form_rest(form) }}
+{{ form_end(form) }}
+{% endblock %}

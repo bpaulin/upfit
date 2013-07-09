@@ -2,18 +2,11 @@
 
 namespace Bpaulin\UpfitBundle\Features\Context;
 
-
-use Symfony\Bundle\FrameworkBundle\Console\Application;
-use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Behat\Symfony2Extension\Context\KernelAwareInterface;
 use Behat\MinkExtension\Context\MinkContext;
 
-use Behat\Behat\Context\BehatContext;
-use Behat\Behat\Exception\PendingException;
-use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
-use Behat\Behat\Event\ScenarioEvent;
 use Behat\Behat\Context\Step;
 
 //
@@ -42,6 +35,7 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
         $this->parameters = $parameters;
         $this->useContext('program', new ProgramSubContext());
         $this->useContext('exercise', new ExerciseSubContext());
+        $this->useContext('session', new SessionSubContext());
     }
 
     /**
@@ -63,38 +57,24 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
         return $this->kernel;
     }
 
-    /**
-     * @Given /^a administrator named "([^"]*)"$/
-     */
-    public function aAdministratorNamed($name)
+    protected function assertElementContainsIcon($element, $iconClass)
     {
-        $userManager = $this->kernel->getContainer()->get('fos_user.user_manager');
-
-        $user = $userManager->createUser();
-        $user->setUsername($name)
-            ->setEmail("$name@upfit.com")
-            ->setPlainPassword($name)
-            ->setRoles(array('ROLE_ADMIN'))
-            ->setEnabled(true);
-
-        $userManager->updateUser($user, true);
+        $icon = $element->find('css', 'i');
+        if (!$icon) {
+            throw new \Exception('icon not found, icon-'.$icon.' wanted ');
+        }
+        $icon = $icon->getAttribute('class');
+        if ($icon != 'icon-'.$iconClass) {
+            throw new \Exception($icon.' is not expected, icon-'.$iconClass.' wanted ');
+        }
     }
 
-    /**
-     * @Given /^a member named "([^"]*)"$/
-     */
-    public function aMemberNamed($name)
+    protected function assertElementContainsNoIcon($element)
     {
-        $userManager = $this->kernel->getContainer()->get('fos_user.user_manager');
-
-        $user = $userManager->createUser();
-        $user->setUsername("$name")
-            ->setEmail("$name@upfit.com")
-            ->setPlainPassword("$name")
-            ->setRoles(array('ROLE_USER'))
-            ->setEnabled(true);
-
-        $userManager->updateUser($user, true);
+        $icon = $element->find('css', "i[class^='icon-']");
+        if ($icon) {
+            throw new \Exception('icon found, none wanted');
+        }
     }
 
     /**
@@ -102,12 +82,22 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
      */
     public function iShouldSeeALinkTo($url)
     {
+        $result = $this->assertElementOnPage("a[href$='".$url."']");
         $this->lastLink  = $this->getMink()
                                 ->getSession()
                                 ->getPage()
                                 ->find('css', "a[href$='".$url."']")
                                 ->getAttribute('href');
-        return $this->assertElementOnPage("a[href$='".$url."']");
+
+        return $result;
+    }
+
+    /**
+     * @Then /^I should not see a link to "([^"]*)"$/
+     */
+    public function iShouldNotSeeALinkTo($url)
+    {
+        return $this->assertElementNotOnPage("a[href$='".$url."']");
     }
 
     /**
@@ -115,12 +105,12 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
      */
     public function iShouldSeeALinkToInArea($url, $area)
     {
+        $this->assertElementOnPage("#".$area."-area a[href$='".$url."']");
         $this->lastLink  = $this->getMink()
                                 ->getSession()
                                 ->getPage()
                                 ->find('css', "#".$area."-area a[href$='".$url."']")
                                 ->getAttribute('href');
-        return $this->assertElementOnPage("#".$area."-area a[href$='".$url."']");
     }
 
     /**
@@ -132,6 +122,14 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
             ->getSession()
             ->visit($this->lastLink);
         //return new Step\Then("the response status code should be 200");
+    }
+
+    /**
+     * @When /^I follow the last link$/
+     */
+    public function iFollowTheLastLink()
+    {
+        return $this->iFollowThisLink();
     }
 
     /**
@@ -153,13 +151,30 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
     }
 
     /**
+     * @Then /^I should not see a link to any page for "([^"]*)"$/
+     */
+    public function iShouldNotSeeALinkToAnyPageFor($user)
+    {
+        return $this->assertElementNotOnPage("a[href^='/".$user."']");
+    }
+
+
+    /**
      * @Given /^I am admin$/
      */
     public function iAmAdmin()
     {
         return array(
-            // new Step\Given("a administrator named \"admin\""),
             new Step\Given("I am \"admin\"")
+        );
+    }
+    /**
+     * @Given /^I am member$/
+     */
+    public function iAmMember()
+    {
+        return array(
+            new Step\Given("I am \"member\"")
         );
     }
 
@@ -211,5 +226,80 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
     public function iShouldSeeAs($value, $label)
     {
         return new Step\Then("the \".record_properties dd.$label\" element should contain \"$value\"");
+    }
+
+    /**
+     * @Then /^I should see the following breadcrumbs:$/
+     */
+    public function iShouldSeeTheFollowingBreadcrumbs(TableNode $table)
+    {
+        // | icon | label | link |
+        $hash = $table->getHash();
+        $lis = $this->getMainContext()->getMink()
+                                ->getSession()
+                                ->getPage()
+                                ->findAll('css', ".breadcrumb li");
+        if (count($lis) != count($hash)) {
+            throw new \Exception(count($lis).' breadcrumbs is not expected, '.count($hash).' wanted ');
+        }
+        foreach ($hash as $index => $row) {
+            if ($row['icon']) {
+                $this->assertElementContainsIcon($lis[$index], $row['icon']);
+            } else {
+                $this->assertElementContainsNoIcon($lis[$index]);
+            }
+            // $row['label'] = ucfirst($row['label']);
+            $label = trim($lis[$index]->find('css', 'span.breadcrumb-label')->getHtml());
+            if ($row['label'] != $label) {
+                throw new \Exception('"'.$label.'" is not expected, "'.$row['label'].'" wanted ');
+            }
+            if ($row['link']) {
+                $link = $lis[$index]->find('css', 'a')->getAttribute('href');
+                if (null === $lis[$index]->find('css', "a[href$='".$row['link']."']")) {
+                    throw new \Exception($link.' is not expected, '.$row['link'].' wanted ');
+                }
+            }
+        }
+    }
+
+    /**
+     * @Then /^I should see the following actions:$/
+     */
+    public function iShouldSeeTheFollowingActions(TableNode $table)
+    {
+        // | type    | icon      | label     | link                |
+        $hash = $table->getHash();
+        $as = $this->getMainContext()->getMink()
+                                ->getSession()
+                                ->getPage()
+                                ->findAll('css', "#actions-area a");
+        if (count($as) != count($hash)) {
+            throw new \Exception(count($as).' actions is not expected, '.count($hash).' wanted ');
+        } else {
+            foreach ($hash as $index => $row) {
+                if ($row['type']) {
+                    $classes = explode(' ', $as[$index]->getAttribute('class'));
+                    if (!in_array('btn-'.$row['type'], $classes)) {
+                        throw new \Exception('action type is not '.$row['type']);
+                    }
+                }
+                if ($row['icon']) {
+                    $this->assertElementContainsIcon($as[$index], $row['icon']);
+                } else {
+                    $this->assertElementContainsNoIcon($as[$index]);
+                }
+                // $row['label'] = ucfirst($row['label']);
+                $label = trim($as[$index]->getText());
+                if ($row['label'] != $label) {
+                    throw new \Exception('"'.$label.'" is not expected, "'.$row['label'].'" wanted ');
+                }
+                if ($row['link']) {
+                    $link = $as[$index]->find('css', 'a')->getAttribute('href');
+                    if (null === $as[$index]->find('css', "a[href$='".$row['link']."']")) {
+                        throw new \Exception($link.' is not expected, '.$row['link'].' wanted ');
+                    }
+                }
+            }
+        }
     }
 }

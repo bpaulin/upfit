@@ -19,8 +19,6 @@
         "sensio/framework-extra-bundle": "2.3.*",
         "sensio/generator-bundle": "2.3.*",
         "incenteev/composer-parameter-handler": "~2.0",
-        "jquery/jquery": "*",
-        "bootstrap/js": "*",
         "phing/phing": "dev-master",
         "doctrine/data-fixtures": "dev-master@dev",
         "doctrine/doctrine-fixtures-bundle": "dev-master",
@@ -29,8 +27,12 @@
         "friendsofsymfony/user-bundle": "*"
     },
     "require-dev": {
+        "sensiolabs/security-checker": "*",
         "squizlabs/php_codesniffer": "dev-master",
+        "zetacomponents/console-tools": "dev-master",
+        "phploc/phploc": "dev-master",
         "phpmd/phpmd" : "1.4.*",
+        "sebastian/phpcpd": "dev-master",
         "phpunit/phpunit": "3.7.*",
         "behat/behat":  "2.4.*@dev",
         "behat/mink":   "1.4.*@dev",
@@ -39,7 +41,12 @@
         "behat/mink-browserkit-driver":  "*@dev",
         "behat/mink-selenium2-driver" :   "*@dev",
         "vipsoft/doctrine-data-fixtures-extension": "*",
-        "selenium/standalone-server"  : "*"
+        "selenium/standalone-server"  : "*",
+        "leafo/lessphp": "0.3.*@dev",
+        "twitter/bootstrap": "v2.3.2",
+        "components/font-awesome": "3.2.*@dev",
+        "components/jqueryui": "1.*",
+        "components/jquery": "1.*"
     },
     "scripts": {
         "post-install-cmd": [
@@ -58,7 +65,8 @@
         ]
     },
     "config": {
-        "bin-dir": "bin"
+        "bin-dir": "bin",
+        "component-dir": "vendor/components"
     },
     "minimum-stability": "stable",
     "extra": {
@@ -72,28 +80,6 @@
         }
     },
     "repositories": [
-        {
-            "type": "package",
-            "package": {
-                "name": "jquery/jquery",
-                "version": "1",
-                "dist": {
-                    "url": "http://code.jquery.com/jquery-latest.js",
-                    "type": "file"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "bootstrap/js",
-                "version": "2.3.2",
-                "dist": {
-                    "url": "http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js",
-                    "type": "file"
-                }
-            }
-        },
         {
             "type": "package",
             "package": {

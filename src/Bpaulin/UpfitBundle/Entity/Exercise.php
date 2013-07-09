@@ -9,11 +9,13 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Exercise
  *
  * @ORM\Table("exercise")
- * @ORM\Entity(repositoryClass="Bpaulin\UpfitBundle\Entity\ExerciseRepository")
+ * @ORM\Entity()
  */
 class Exercise
 {
     /**
+     * id
+     *
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -23,6 +25,8 @@ class Exercise
     private $id;
 
     /**
+     * name
+     *
      * @var string
      * @Assert\NotBlank()
      * @ORM\Column(name="name", type="string", length=150)
@@ -30,10 +34,18 @@ class Exercise
     private $name;
 
     /**
+     * stages
+     *
      * @ORM\OneToMany(targetEntity="Stage", mappedBy="exercise", cascade={"remove"})
      */
     protected $stages;
 
+    /**
+     * workouts
+     *
+     * @ORM\OneToMany(targetEntity="Workout", mappedBy="exercise", cascade={"remove"})
+     */
+    protected $workouts;
 
     /**
      * Get id
@@ -48,7 +60,7 @@ class Exercise
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string   $name
      * @return Exercise
      */
     public function setName($name)

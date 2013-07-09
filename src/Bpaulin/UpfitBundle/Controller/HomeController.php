@@ -6,18 +6,25 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
+/**
+ * Home Controller
+ */
 class HomeController extends Controller
 {
     /**
+     * landing page
+     *
      * @Route("/", name="upfit_index")
      * @Template()
      */
     public function indexAction()
     {
-        return array('name' => 'Bruno');
+        return array();
     }
 
     /**
+     * generic home page
+     *
      * @Route("/home", name="upfit_home")
      * @Template()
      */
@@ -31,20 +38,24 @@ class HomeController extends Controller
     }
 
     /**
+     * admin home page
+     *
      * @Route("/admin", name="upfit_admin")
      * @Template()
      */
     public function adminAction()
     {
-        return array('name' => 'Bruno');
+        return array();
     }
 
     /**
+     * member home page
+     *
      * @Route("/member", name="upfit_member")
      * @Template()
      */
     public function memberAction()
     {
-        return array('name' => 'Bruno');
+        return array();
     }
 }

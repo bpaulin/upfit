@@ -1,0 +1,62 @@
+{% extends "BpaulinUpfitBundle:Crud:list.html.twig" %}
+{% import "BpaulinUpfitBundle::macro.html.twig" as macros %}
+{%
+    set breadcrumbs =
+    {
+        'Member' : {
+            'route': path('upfit_member'),
+            'icon': 'gamepad',
+        },
+        'Sessions' : {
+            'route': path('member_session'),
+        },
+    }
+%}
+{%
+    set fields = {
+        'Name' : 'name',
+        'Grade' : 'name',
+        'Workouts' : 'name',
+        'Name' : 'name',
+    }
+%}
+
+{% block h1 %}Sessions{% endblock %}
+
+{% block row %}
+    <div class="row record-session">
+        <div class="span6">
+            <small>
+                {% if not entity.nextWorkout %}
+                    {{ macros.longGrade(entity.grade) }}
+                {% endif %}
+                {{ entity.beginning|date("m/d/Y H:m") }}
+            </small>
+            <h4 >
+                <a class="field name" href="{{ path('member_session_show', { 'id': entity.id }) }}"><strong>{{ entity.name }}</strong></a>
+            </h4>
+            <div class="btn-group">
+                {% if not entity.nextWorkout %}
+                    <a class="btn" href="{{ path('member_session_new', { 'follow': 'session', 'id': entity.id }) }}">
+                        <i class="icon-repeat"></i>
+                        <span class="hidden-phone">Follow</span>
+                    </a>
+                {% else %}
+                    <a class="btn btn-primary" href="{{ path('member_session_workout', { 'id': entity.id }) }}">
+                        <i class="icon-play"></i>
+                        <span class="hidden-phone">Resume</span>
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="span6">
+            <div class="field workouts">
+                {{ macros.workoutsList(entity) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block messages %}
+    {{ render(controller('BpaulinUpfitBundle:Session:todo')) }}
+{% endblock %}

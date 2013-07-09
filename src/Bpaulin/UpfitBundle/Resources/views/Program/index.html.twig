@@ -1,26 +1,43 @@
 {% extends "BpaulinUpfitBundle:Crud:index.html.twig" %}
-{%
-    set breadcrumbs = {
-        'Admin' : {
-            'route': path('upfit_admin'),
-            'icon': 'briefcase',
-        },
-        'Programs' : {
-            'route': path('admin_program'),
-        },
-    }
-%}
-{%
-    set actions = {
-        'Add' : {
-            'route': path('admin_program_new'),
-            'icon': 'plus',
-        },
-    }
-%}
+{% import "BpaulinUpfitBundle::macro.html.twig" as macros %}
+
+{% if is_granted('ROLE_ADMIN') %}
+    {% set route_show = 'admin_program_show' %}
+    {%
+        set breadcrumbs = {
+            'Admin' : {
+                'route': path('upfit_admin'),
+                'icon': 'briefcase',
+            },
+            'Programs' : {
+                'route': path('admin_program'),
+            },
+        }
+    %}
+    {%
+        set actions = {
+            'Add' : {
+                'route': path('admin_program_new'),
+                'icon': 'plus',
+            },
+        }
+    %}
+{% else %}
+    {% set route_show = 'member_program_show' %}
+    {%
+        set breadcrumbs = {
+            'Member' : {
+                'route': path('upfit_member'),
+                'icon': 'gamepad',
+            },
+            'Programs' : {
+                'route': path('member_program'),
+            },
+        }
+    %}
+{% endif %}
 {%
     set fields = {
-        'Id' : 'id',
         'Name' : 'name',
     }
 %}
@@ -28,6 +45,18 @@
 {% block h1 %}Programs{% endblock %}
 
 {% block row %}
-    <td>{{ entity.id }}</td>
-    <td><a href="{{ path('admin_program_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
+    <td>
+        <a href="{{ path(route_show, { 'id': entity.id }) }}">{{ entity.name }}</a>
+        {{ macros.stagesList(entity) }}
+    </td>
+    <td>
+        <a class="btn btn-mini btn-primary" href="{{ path('member_session_new', { 'follow': 'program', 'id': entity.id }) }}">
+            <i class="icon-play"></i>
+            Begin a session
+        </a>
+    </td>
+{% endblock %}
+
+{% block messages %}
+    {{ render(controller('BpaulinUpfitBundle:Session:todo')) }}
 {% endblock %}

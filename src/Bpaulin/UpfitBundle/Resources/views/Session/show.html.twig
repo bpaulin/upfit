@@ -1,0 +1,76 @@
+{% extends "BpaulinUpfitBundle:Crud:show.html.twig" %}
+{% import "BpaulinUpfitBundle::macro.html.twig" as macros %}
+
+{%
+    set breadcrumbs =
+    {
+        'Member' : {
+            'route': path('upfit_member'),
+            'icon': 'gamepad',
+        },
+        'Sessions' : {
+            'route': path('member_session'),
+            'icon': 'list',
+        },
+        (entity.name) : {
+            'route': path('member_session_workout', { 'id': entity.id }),
+        },
+    }
+%}
+{% if entity.nextWorkout %}
+    {%
+        set actions =
+        {
+            'Resume' : {
+                'route': path('member_session_workout', { 'id': entity.id }),
+                'icon': 'play',
+                'class': 'primary'
+            },
+            'Edit' : {
+                'route': path('member_session_edit', {'id': entity.id }),
+                'icon': 'edit'
+            },
+        }
+    %}
+{% else %}
+    {%
+        set actions =
+        {
+            'Edit' : {
+                'route': path('member_session_edit', {'id': entity.id }),
+                'icon': 'edit',
+                'class': 'primary'
+            },
+            'Follow' : {
+                'route': path('member_session_new', { 'follow': 'session', 'id': entity.id }),
+                'icon': 'repeat'
+            },
+        }
+    %}
+{% endif %}
+{%
+    set actions = actions|merge(
+        {
+            'Delete' : {
+                'route': path('member_session_delete', {'id': entity.id }),
+                'icon': 'minus',
+                'class': 'danger'
+            }
+        }
+    )
+%}
+{%
+    set fields =
+    {
+        'name' : entity.name,
+        'begin' : entity.beginning|date("m/d/Y H:m"),
+        'workouts' : macros.workoutsList(entity),
+    }
+%}
+{% if not entity.nextWorkout %}
+    {%
+        set fields = {'grade' : macros.longGrade(entity.grade)}|merge(fields)
+    %}
+{% endif %}
+
+{% block h1 %}Session <small>{{ entity.name }}</small>{% endblock %}

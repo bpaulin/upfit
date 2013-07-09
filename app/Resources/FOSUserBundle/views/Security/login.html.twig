@@ -1,4 +1,12 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
+{%
+    set breadcrumbs =
+    {
+        'Login' : {
+            'route': path('fos_user_security_login'),
+        }
+    }
+%}
 
 {% block fos_user_content %}
 {% if error %}

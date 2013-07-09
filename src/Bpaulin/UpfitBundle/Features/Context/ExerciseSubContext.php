@@ -14,29 +14,13 @@ class ExerciseSubContext extends BehatContext
     }
 
     /**
-     * @Given /^an exercise named "([^"]*)"$/
-     */
-    public function anExerciseNamed($name)
-    {
-        $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
-        $className = $em->getRepository('BpaulinUpfitBundle:Exercise')->getClassName();
-
-        $exercise = new $className;
-        $exercise->setName($name);
-
-        $em->persist($exercise);
-        $em->flush();
-
-        return $exercise;
-    }
-
-    /**
      * @Given /^I am on exercise "([^"]*)" page$/
      */
     public function iAmOnExercisePage($name)
     {
         $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
         $exercise = $em->getRepository('BpaulinUpfitBundle:Exercise')->findOneByName($name);
+
         return $this->getMainContext()->getMink()
             ->getSession()
             ->visit($this->getMainContext()->locatePath("/admin/exercise/".$exercise->getId()));
@@ -52,6 +36,7 @@ class ExerciseSubContext extends BehatContext
         foreach ($hash as $row) {
             $steps[] = new Step\Then("I should see a link to exercise \"".$row['exercise']."\"");
         }
+
         return $steps;
     }
 
@@ -62,6 +47,7 @@ class ExerciseSubContext extends BehatContext
     {
         $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
         $exercise = $em->getRepository('BpaulinUpfitBundle:Exercise')->findOneByName($name);
+
         return new Step\Then("I should see a link to \"/admin/exercise/".$exercise->getId()."\"");
     }
 
@@ -75,6 +61,7 @@ class ExerciseSubContext extends BehatContext
         if (!$exercise) {
             return true;
         }
+
         return new Step\Then("I should not see a link to \"/admin/exercise/".$exercise->getId()."\"");
     }
 
@@ -85,6 +72,7 @@ class ExerciseSubContext extends BehatContext
     {
         $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
         $exercise = $em->getRepository('BpaulinUpfitBundle:Exercise')->findOneByName($name);
+
         return new Step\Then("I should see a link to \"/admin/exercise/".$exercise->getId()."/edit\"");
     }
 
@@ -95,6 +83,7 @@ class ExerciseSubContext extends BehatContext
     {
         $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
         $exercise = $em->getRepository('BpaulinUpfitBundle:Exercise')->findOneByName($name);
+
         return new Step\Then("I should see a link to \"/admin/exercise/".$exercise->getId()."/delete\"");
     }
 

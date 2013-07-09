@@ -10,22 +10,44 @@ Scenario: Administrator can read exercises
   Given I am on "admin" homepage
   Then I should see a link to "/admin/exercise" in "actions" area
   When I follow this link
-  Then I should see a link to following exercises:
+  Then I should see the following breadcrumbs:
+    | icon      | label     | link    |
+    | home      |           | /       |
+    | briefcase | Admin     | /admin  |
+    |           | Exercises |         |
+  And I should see the following actions:
+    | type    | icon      | label     | link                |
+    |         | plus      | Add       | /admin/exercise/new |
+  And I should see a link to following exercises:
     | exercise  |
-    | exercise1 |
     | exercise2 |
-    | exercise3 |
-    | exercise4 |
-    | exercise5 |
-  When I follow this link
+    | exercise1 |
+  When I follow the last link
+  Then I should see the following breadcrumbs:
+    | icon      | label     | link            |
+    | home      |           | /               |
+    | briefcase | Admin     | /admin          |
+    | list      | Exercises | /admin/exercise |
+    |           | exercise1 |                 |
+  And I should see the following actions:
+    | type    | icon      | label     | link                     |
+    | primary | edit      | Edit      | /admin/exercise/1/edit   |
+    | danger  | minus     | Delete    | /admin/exercise/1/delete |
   Then I should see a link to "/admin/exercise"
-  And I should see "exercise5" as "name"
+  And I should see "exercise1" as "name"
 
 Scenario: Administrator can update exercises
   Given I am on exercise "exercise1" page
   Then I should see a link to edit exercise "exercise1"
   When I follow this link
-  And I fill in "exercise" form with the following:
+  Then I should see the following breadcrumbs:
+    | icon      | label     | link              |
+    | home      |           | /                 |
+    | briefcase | Admin     | /admin            |
+    | list      | Exercises | /admin/exercise   |
+    |           | exercise1 | /admin/exercise/1 |
+    |           | Edit      |                   |
+  When I fill in "exercise" form with the following:
     | name | exercise6 |
   And I press "Edit"
   Then I should be on "/admin/exercise"
@@ -39,7 +61,13 @@ Scenario: Administrator can create exercises
   Given I am on "/admin/exercise"
   Then I should see a link to create exercise
   When I follow this link
-  And I fill in "exercise" form with the following:
+  Then I should see the following breadcrumbs:
+    | icon      | label     | link            |
+    | home      |           | /               |
+    | briefcase | Admin     | /admin          |
+    | list      | Exercises | /admin/exercise |
+    |           | New       |                 |
+  When  I fill in "exercise" form with the following:
     | name |  |
   And I press "Create"
   And I fill in "exercise" form with the following:
@@ -52,13 +80,20 @@ Scenario: Administrator can create exercises
   Then I should see "exercise7" as "name"
 
 Scenario: Administrator can delete exercises
-  Given I am on exercise "exercise2" page
-  Then I should see a link to delete exercise "exercise2"
+  Given I am on exercise "exercise1" page
+  Then I should see a link to delete exercise "exercise1"
   When I follow this link
-  And I press "Delete"
+  Then I should see the following breadcrumbs:
+    | icon      | label     | link              |
+    | home      |           | /                 |
+    | briefcase | Admin     | /admin            |
+    | list      | Exercises | /admin/exercise   |
+    |           | exercise1 | /admin/exercise/1 |
+    |           | Delete    |                   |
+  When I press "Delete"
   Then I should be on "/admin/exercise"
-  And I should see a "success" message "Exercise exercise2 deleted"
-  And I should not see a link to exercise "exercise2"
+  And I should see a "success" message "Exercise exercise1 deleted"
+  And I should not see a link to exercise "exercise1"
 
 
 

@@ -1,0 +1,37 @@
+{% extends "BpaulinUpfitBundle:Crud:edit.html.twig" %}
+{% import "BpaulinUpfitBundle::macro.html.twig" as macros %}
+{%
+    set breadcrumbs =
+    {
+        'Member' : {
+            'route': path('upfit_member'),
+            'icon': 'gamepad',
+        },
+        'Sessions' : {
+            'route': path('member_session'),
+            'icon': 'list',
+        },
+        (entity.name) : {
+            'route': path('member_session_show', { 'id': entity.id }),
+        },
+        'Edit' : {
+            'route': path('member_session_edit', { 'id': entity.id }),
+            'icon': 'edit',
+        },
+    }
+%}
+{%
+    set action = path('member_session_update', { 'id': entity.id })
+%}
+
+{% block h1 %}Session <small>{{ entity.name }}</small>{% endblock %}
+
+{% block content %}
+    <dl>
+        <dt>begin</dt>
+        <dd>{{ entity.beginning|date("m/d/Y H:m") }}</dd>
+        <dt>workouts</dt>
+        <dd>{{ macros.workoutsList(entity) }}</dd>
+    </dl>
+    {{ parent() }}
+{% endblock %}

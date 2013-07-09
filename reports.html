@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Reports</title>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/latest/css/bootstrap-combined.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <h1>Reports</h1>
+    <div class="tabbable">
+      <ul class="nav nav-tabs">
+        <li class="active">
+          <a href="#tab1" data-toggle="tab">Api Doc</a>
+        </li>
+        <li>
+          <a href="#tab2" data-toggle="tab">Coverage</a>
+        </li>
+        <li>
+          <a href="#tab5" data-toggle="tab">testdox</a>
+        </li>
+        <li>
+          <a href="#tab6" data-toggle="tab">Behat</a>
+        </li>
+        <li>
+          <a href="#tab7" data-toggle="tab">Loc</a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="tab1">
+          <iframe src='build/reports/docs/index.html' width='100%' height='800px'></iframe>
+        </div>
+        <div class="tab-pane" id="tab2">
+          <iframe src='build/reports/test/coverage/index.html' width='100%' height='800px'></iframe>
+        </div>
+        <div class="tab-pane" id="tab5">
+          <iframe src='build/reports/test/testdox.html' width='100%' height='800px'></iframe>
+        </div>
+        <div class="tab-pane" id="tab6">
+          <iframe src='build/reports/test/behat/index.html' width='100%' height='800px'></iframe>
+        </div>
+        <div class="tab-pane" id="tab7">
+          <iframe src='build/reports/loc.txt' width='100%' height='800px'></iframe>
+        </div>
+      </div>
+    </div>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/latest/js/bootstrap.min.js"></script>
+  </body>
+</html>

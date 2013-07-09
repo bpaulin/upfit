@@ -8,24 +8,33 @@
       </button>
       <a class="brand" href="#">Upfit</a>
       <ul class="nav">
-        <li><a href="https://github.com/bpaulin/upfit"><i class="icon-github-sign icon-large"></i></a></li>
-        </ul>
+        <li>
+          <a href="https://github.com/bpaulin/upfit">
+            <i class="icon-github-sign icon-large"></i>
+            <span class="hidden-phone">Github</span>
+          </a>
+        </li>
+      </ul>
       <div class="nav-collapse collapse">
-        <p class="navbar-text pull-right" id="connection-area">
+        <ul class="nav pull-right" id="connection-area">
           {% if app.user.username is defined %}
-            {{ app.user.username }}
-            <a href="{{ path('fos_user_security_logout') }}">
-              {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-            </a>
+            <li class="navbar-text">
+              {{ app.user.username }}
+            </li>
+            <li>
+              <a href="{{ path('fos_user_security_logout') }}">
+                <i class="icon-signout"></i>
+                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+              </a>
+            </li>
           {% else %}
-            <a href="{{ path('fos_user_security_login') }}">
-              {{ 'layout.login'|trans({}, 'FOSUserBundle') }}
-            </a>
+            <li>
+              <a href="{{ path('fos_user_security_login') }}">
+                <i class="icon-signin"></i>
+                {{ 'layout.login'|trans({}, 'FOSUserBundle') }}
+              </a>
+            </li>
           {% endif %}
-        </p>
-        <ul class="nav">
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
         </ul>
       </div><!--/.nav-collapse -->
     </div>
