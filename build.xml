@@ -16,7 +16,7 @@
     <property name="path.phpunit"           value="bin/phpunit" />
     <property name="path.phploc"            value="bin/phploc" />
     <property name="path.security-checker"  value="bin/security-checker" />
-    <property name="path.phpdoc"            value="phpdoc" />
+    <property name="path.phpdoc"            value="bin/phpdoc.php" />
     <property name="dir.src"                value="${project.basedir}/src" />
     <property name="dir.build"              value="${project.basedir}/build" />
     <property name="dir.reports"            value="${dir.build}/reports" />
@@ -241,7 +241,7 @@
 
     <target name="report"
             description="generate all reports"
-            depends="report:test, report:behat, report:doc, report:loc">
+            depends="report:unit, report:behat, report:doc, report:loc">
     </target>
 
     <target name="report:behat">
@@ -254,7 +254,7 @@
         </exec>
     </target>
 
-    <target name="report:test">
+    <target name="report:unit">
         <mkdir dir="${dir.reports.test.behat}" />
         <exec executable="${path.php}" passthru="true">
             <arg value="${path.phpunit}"/>
@@ -281,6 +281,7 @@
     <target name="report:loc">
         <exec executable="${path.php}" passthru="true" output="${dir.reports}/loc.txt">
             <arg value="${path.phploc}"/>
+            <arg value="--count-tests"/>
             <arg line="${dir.src}"/>
         </exec>
     </target>

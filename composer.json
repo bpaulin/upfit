@@ -21,14 +21,14 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "phing/phing": "dev-master",
         "doctrine/data-fixtures": "dev-master@dev",
-        "doctrine/doctrine-fixtures-bundle": "dev-master",
-        "doctrine/migrations": "dev-master@dev",
+        "doctrine/doctrine-fixtures-bundle": "dev-master@dev",
         "doctrine/doctrine-migrations-bundle": "dev-master@dev",
         "friendsofsymfony/user-bundle": "*"
     },
     "require-dev": {
         "sensiolabs/security-checker": "*",
         "squizlabs/php_codesniffer": "dev-master",
+        "phpdocumentor/phpdocumentor": "dev-release-2.0",
         "zetacomponents/console-tools": "dev-master",
         "phploc/phploc": "dev-master",
         "phpmd/phpmd" : "1.4.*",
@@ -68,7 +68,8 @@
         "bin-dir": "bin",
         "component-dir": "vendor/components"
     },
-    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "minimum-stability": "dev",
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",
