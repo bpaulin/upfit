@@ -30,6 +30,11 @@
         <whitelist>
             <directory>../src</directory>
             <exclude>
+                <directory>../src/*/*Bundle/Controller</directory>
+                <directory>../src/*/*Bundle/DataFixtures</directory>
+                <directory>../src/*/*Bundle/DependencyInjection</directory>
+                <directory>../src/*/*Bundle/Features</directory>
+
                 <directory>../src/*/*Bundle/Resources</directory>
                 <directory>../src/*/*Bundle/Tests</directory>
                 <directory>../src/*/Bundle/*Bundle/Resources</directory>

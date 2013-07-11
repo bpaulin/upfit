@@ -168,6 +168,9 @@ class Session
         $next = $this->getNextWorkout();
         $next->setPosition($max+1);
 
+        $this->removeWorkout($next);
+        $this->addWorkout($next);
+
         return $this;
     }
 

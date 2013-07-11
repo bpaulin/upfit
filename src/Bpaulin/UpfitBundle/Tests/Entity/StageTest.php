@@ -4,6 +4,7 @@ namespace Bpaulin\UpfitBundle\Tests\Entity;
 
 use Bpaulin\UpfitBundle\Entity\Stage;
 use Bpaulin\UpfitBundle\Entity\Exercise;
+use Bpaulin\UpfitBundle\Entity\Program;
 
 class StageTest extends \PHPUnit_Framework_TestCase
 {
@@ -28,5 +29,13 @@ class StageTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($stage->getUnit(), $workout->getUnit());
         $this->assertEquals($stage->getDifficulty(), $workout->getDifficulty());
         $this->assertEquals($stage->getDifficultyUnit(), $workout->getDifficultyUnit());
+    }
+
+    public function testGetAndSetProgram()
+    {
+        $session = new Stage();
+        $program = new Program();
+        $session->setProgram($program);
+        $this->assertEquals($program, $session->getProgram());
     }
 }
