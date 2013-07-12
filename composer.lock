@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "b4e85ecfa901337c226b40d6d6a1a159",
+    "hash": "589fce4abb097623e829034995be6655",
     "packages": [
         {
             "name": "doctrine/common",
@@ -2633,12 +2633,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "5ccf6196d6925e66568e3b8460c262e9512e4b92"
+                "reference": "f9c3aa2a22498ff4c0db38bae40999cebe60f831"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/5ccf6196d6925e66568e3b8460c262e9512e4b92",
-                "reference": "5ccf6196d6925e66568e3b8460c262e9512e4b92",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/f9c3aa2a22498ff4c0db38bae40999cebe60f831",
+                "reference": "f9c3aa2a22498ff4c0db38bae40999cebe60f831",
                 "shasum": ""
             },
             "require": {
@@ -2669,7 +2669,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2013-05-23 13:17:59"
+            "time": "2013-07-12 23:03:57"
         },
         {
             "name": "pdepend/pdepend",
@@ -2824,12 +2824,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/phpDocumentor2.git",
-                "reference": "c832c76ddd1259a000ecd34f867cf9d99df81923"
+                "reference": "7006b542f772fc6eb0dd4e23f4343e8a86bff11b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/phpDocumentor2/zipball/c832c76ddd1259a000ecd34f867cf9d99df81923",
-                "reference": "c832c76ddd1259a000ecd34f867cf9d99df81923",
+                "url": "https://api.github.com/repos/phpDocumentor/phpDocumentor2/zipball/7006b542f772fc6eb0dd4e23f4343e8a86bff11b",
+                "reference": "7006b542f772fc6eb0dd4e23f4343e8a86bff11b",
                 "shasum": ""
             },
             "require": {
@@ -2891,7 +2891,7 @@
                 "documentation",
                 "phpdoc"
             ],
-            "time": "2013-07-10 20:34:12"
+            "time": "2013-07-12 16:37:11"
         },
         {
             "name": "phpdocumentor/reflection",
@@ -3145,16 +3145,16 @@
         },
         {
             "name": "phpdocumentor/template-responsive-twig",
-            "version": "1.0.3",
+            "version": "1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/template.responsive-twig.git",
-                "reference": "1.0.3"
+                "reference": "1.0.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/template.responsive-twig/zipball/1.0.3",
-                "reference": "1.0.3",
+                "url": "https://api.github.com/repos/phpDocumentor/template.responsive-twig/zipball/1.0.4",
+                "reference": "1.0.4",
                 "shasum": ""
             },
             "require": {
@@ -3172,7 +3172,7 @@
                 "phpdoc",
                 "template"
             ],
-            "time": "2013-06-23 19:50:46"
+            "time": "2013-07-05 14:08:34"
         },
         {
             "name": "phpdocumentor/template-xml",
