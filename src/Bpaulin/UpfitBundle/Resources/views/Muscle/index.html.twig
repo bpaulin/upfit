@@ -1,0 +1,28 @@
+{% extends "BpaulinUpfitBundle:Crud:index.html.twig" %}
+{% import "BpaulinUpfitBundle::macro.html.twig" as macros %}
+{%
+    set breadcrumbs =
+    {
+        'Member' : {
+            'route': path('upfit_member'),
+            'icon': 'gamepad',
+        },
+        'Muscles' : {
+            'route': path('member_session'),
+        },
+    }
+%}
+{%
+    set fields = {
+        'Name' : 'name',
+        'Id' : 'id',
+    }
+%}
+
+{% block h1 %}Muscles{% endblock %}
+
+{% block row %}
+    <td>{{ entity.id }}</td>
+    <td><a href="{{ path('member_muscle_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
+{% endblock %}
+

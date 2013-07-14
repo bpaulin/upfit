@@ -10,6 +10,7 @@ use Bpaulin\UpfitBundle\Entity\Exercise;
 use Bpaulin\UpfitBundle\Entity\Session;
 use Bpaulin\UpfitBundle\Entity\Program;
 use Bpaulin\UpfitBundle\Entity\Stage;
+use Bpaulin\UpfitBundle\Entity\Muscle;
 use Bpaulin\UpfitBundle\Entity\Member;
 
 class LoadTestData implements FixtureInterface, ContainerAwareInterface
@@ -26,6 +27,15 @@ class LoadTestData implements FixtureInterface, ContainerAwareInterface
 
     public function load(ObjectManager $manager)
     {
+        $muscles = array();
+        for ($i=1; $i < 3; $i++) {
+            $muscle = new Muscle();
+            $muscle->setName("muscle$i");
+            $manager->persist($muscle);
+            $muscles[$i] = $muscle;
+        }
+        $manager->flush();
+
         $exercises = array();
         for ($i=1; $i < 3; $i++) {
             $exercise = new Exercise();
