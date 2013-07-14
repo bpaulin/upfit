@@ -67,6 +67,13 @@ class ExerciseSettings
     protected $difficultyUnit;
 
     /**
+     * Resting Time
+     *
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $rest;
+
+    /**
      * Get id
      *
      * @return integer
@@ -74,6 +81,29 @@ class ExerciseSettings
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set rest
+     *
+     * @param integer $rest
+     * @return Stage
+     */
+    public function setRest($rest)
+    {
+        $this->rest = $rest;
+
+        return $this;
+    }
+
+    /**
+     * Get rest
+     *
+     * @return integer
+     */
+    public function getRest()
+    {
+        return $this->rest;
     }
 
     /**

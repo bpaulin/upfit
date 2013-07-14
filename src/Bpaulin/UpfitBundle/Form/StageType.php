@@ -54,7 +54,16 @@ class StageType extends AbstractType
                 )
             )
             ->add('difficultyUnit')
-            ;
+            ->add(
+                'rest',
+                null,
+                array(
+                    'attr' => array(
+                        'min'=> 0,
+                        'max'=> 999,
+                    )
+                )
+            );
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

@@ -79,4 +79,37 @@ class Stage extends ExerciseSettings
     {
         return $this->program;
     }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set exercise
+     *
+     * @param \Bpaulin\UpfitBundle\Entity\Exercise $exercise
+     * @return Stage
+     */
+    public function setExercise(\Bpaulin\UpfitBundle\Entity\Exercise $exercise = null)
+    {
+        $this->exercise = $exercise;
+
+        return $this;
+    }
+
+    /**
+     * Get exercise
+     *
+     * @return \Bpaulin\UpfitBundle\Entity\Exercise
+     */
+    public function getExercise()
+    {
+        return $this->exercise;
+    }
 }

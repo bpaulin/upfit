@@ -82,6 +82,7 @@ Scenario: Administrator can create programs
     | unit           | repetitions |
     | difficulty     | 5           |
     | difficultyUnit | kilos       |
+    | rest           | 60          |
   And I press "Create"
   Then I should be on "/admin/program"
   And I should see a "success" message "program program7 created"
@@ -90,7 +91,7 @@ Scenario: Administrator can create programs
   Then I should see "program7" as "name"
   And I should see the following stages:
   | stages |
-    | exercise1 (5*15 repetitions with 5 kilos) |
+    | exercise1 (5*15 repetitions with 5 kilos), 60s |
 
 Scenario: Administrator can delete programs
   Given I am on program "program1" page
