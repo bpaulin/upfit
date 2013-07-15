@@ -67,6 +67,11 @@
         </SymfonyConsole>
     </target>
 
+    <target name="run:install"
+            description="install deps and dev db"
+            depends="composer:install, base:dev:reset">
+    </target>
+
     <!-- ================================================================== -->
     <!-- Composer                                                           -->
     <!-- ================================================================== -->
