@@ -290,6 +290,18 @@
     <!-- Database                                                           -->
     <!-- ================================================================== -->
 
+    <target name="base:migrate:diff"
+            description="generate and apply a new migration to dev db">
+        <SymfonyConsole command="doctrine:migrations:diff" checkreturn="true">
+            <arg value="--env=dev"/>
+            <arg value="--no-interaction"/>
+        </SymfonyConsole>
+        <SymfonyConsole command="doctrine:migrations:migrate" checkreturn="true">
+            <arg value="--env=dev"/>
+            <arg value="--no-interaction"/>
+        </SymfonyConsole>
+    </target>
+
     <!-- test db -->
     <target name="base:test:reset"
             description="reset testing database"
