@@ -67,9 +67,32 @@
         </SymfonyConsole>
     </target>
 
-    <target name="run:install"
-            description="install deps and dev db"
-            depends="composer:install, base:dev:reset">
+    <!-- ================================================================== -->
+    <!-- CI                                                                 -->
+    <!-- ================================================================== -->
+
+    <target name="ci:travis"
+            description="continuous integration"
+            depends="test, check">
+    </target>
+
+    <target name="ci:jenkins"
+            description="continuous integration"
+            depends="test, check, report">
+    </target>
+
+    <!-- ================================================================== -->
+    <!-- Install                                                            -->
+    <!-- ================================================================== -->
+
+    <target name="install:ci"
+            description="install deps and testing db"
+            depends="composer:install, base:test:reset">
+    </target>
+
+    <target name="install:dev"
+            description="let's code!"
+            depends="install:ci, base:dev:reset">
     </target>
 
     <!-- ================================================================== -->
@@ -219,14 +242,29 @@
         </exec>
     </target>
 
-    <target name="test:behat"
-            description="behat tests">
+    <target name="test:behat:no-js">
         <exec executable="${path.php}" passthru="true" checkreturn="true">
             <arg value="${path.behat}"/>
             <arg value="--ansi"/>
             <arg value="--strict"/>
             <arg value="--expand"/>
+            <arg value="--profile=no-js"/>
         </exec>
+    </target>
+
+    <target name="test:behat:js">
+        <exec executable="${path.php}" passthru="true" checkreturn="true">
+            <arg value="${path.behat}"/>
+            <arg value="--ansi"/>
+            <arg value="--strict"/>
+            <arg value="--expand"/>
+            <arg value="--profile=js"/>
+        </exec>
+    </target>
+
+    <target name="test:behat"
+            description="behat tests"
+            depends="test:behat:no-js, test:behat:js">
     </target>
 
     <target name="test:behat:wip"

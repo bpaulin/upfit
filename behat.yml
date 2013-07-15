@@ -23,6 +23,14 @@ report:
         parameters:
             output_path: null,build/reports/test/behat,build/reports/test/behat/index.html
 
+no-js:
+    filters:
+        tags: "~@javascript"
+
+js:
+    filters:
+        tags: "@javascript"
+
 wip:
     filters:
         tags: "@wip"
