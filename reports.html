@@ -9,36 +9,42 @@
     <div class="tabbable">
       <ul class="nav nav-tabs">
         <li class="active">
-          <a href="#tab1" data-toggle="tab">Api Doc</a>
+          <a href="#tab-loc" data-toggle="tab">Loc</a>
         </li>
         <li>
-          <a href="#tab2" data-toggle="tab">Coverage</a>
+          <a href="#tab-behat" data-toggle="tab">Behat</a>
         </li>
         <li>
-          <a href="#tab5" data-toggle="tab">testdox</a>
+          <a href="#tab-behat-coverage" data-toggle="tab">Coverage behat</a>
         </li>
         <li>
-          <a href="#tab6" data-toggle="tab">Behat</a>
+          <a href="#tab-unit" data-toggle="tab">Unit</a>
         </li>
         <li>
-          <a href="#tab7" data-toggle="tab">Loc</a>
+          <a href="#tab-unit-coverage" data-toggle="tab">Coverage unit</a>
+        </li>
+        <li>
+          <a href="#tab-apidoc" data-toggle="tab">Api Doc</a>
         </li>
       </ul>
       <div class="tab-content">
-        <div class="tab-pane active" id="tab1">
+        <div class="tab-pane active" id="tab-loc">
+          <iframe src='build/reports/loc.txt' width='100%' height='800px'></iframe>
+        </div>
+        <div class="tab-pane" id="tab-apidoc">
           <iframe src='build/reports/docs/index.html' width='100%' height='800px'></iframe>
         </div>
-        <div class="tab-pane" id="tab2">
-          <iframe src='build/reports/test/coverage/index.html' width='100%' height='800px'></iframe>
+        <div class="tab-pane" id="tab-unit-coverage">
+          <iframe src='build/reports/test/unit/coverage/index.html' width='100%' height='800px'></iframe>
         </div>
-        <div class="tab-pane" id="tab5">
-          <iframe src='build/reports/test/testdox.html' width='100%' height='800px'></iframe>
+        <div class="tab-pane" id="tab-behat-coverage">
+          <iframe src='build/reports/test/behat/coverage/index.html' width='100%' height='800px'></iframe>
         </div>
-        <div class="tab-pane" id="tab6">
+        <div class="tab-pane" id="tab-unit">
+          <iframe src='build/reports/test/unit/testdox.html' width='100%' height='800px'></iframe>
+        </div>
+        <div class="tab-pane" id="tab-behat">
           <iframe src='build/reports/test/behat/index.html' width='100%' height='800px'></iframe>
-        </div>
-        <div class="tab-pane" id="tab7">
-          <iframe src='build/reports/loc.txt' width='100%' height='800px'></iframe>
         </div>
       </div>
     </div>
