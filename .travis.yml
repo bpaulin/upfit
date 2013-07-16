@@ -18,4 +18,4 @@ before_script:
     - sleep 5
     - cp build.properties.dist build.properties
 
-script: ./bin/phing run:ci
+script: ./bin/phing ci:travis

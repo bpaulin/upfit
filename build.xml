@@ -23,6 +23,7 @@
     <property name="dir.reports.docs"       value="${dir.reports}/docs" />
     <property name="dir.reports.test"       value="${dir.reports}/test" />
     <property name="dir.reports.test.behat" value="${dir.reports.test}/behat" />
+    <property name="dir.reports.test.unit"  value="${dir.reports.test}/unit" />
     <property name="bundle"                 value="@AcmeDemoBundle" />
     <property name="dir.bundle"             value="${dir.src}/Acme/DemoBundle" />
 
@@ -67,9 +68,40 @@
         </SymfonyConsole>
     </target>
 
-    <target name="run:install"
-            description="install deps and dev db"
-            depends="composer:install, base:dev:reset">
+    <!-- ================================================================== -->
+    <!-- CI                                                                 -->
+    <!-- ================================================================== -->
+
+    <target name="ci:travis"
+            description="continuous integration"
+            depends="test, check">
+    </target>
+
+    <target name="ci:jenkins"
+            description="continuous integration"
+            depends="test:no-browser, check, report:no-browser">
+    </target>
+
+    <!-- ================================================================== -->
+    <!-- Clean                                                              -->
+    <!-- ================================================================== -->
+
+    <target name="clean:reports">
+        <delete dir="${dir.reports}"/>
+    </target>
+
+    <!-- ================================================================== -->
+    <!-- Install                                                            -->
+    <!-- ================================================================== -->
+
+    <target name="install:ci"
+            description="install deps and testing db"
+            depends="composer:install, base:test:reset">
+    </target>
+
+    <target name="install:dev"
+            description="let's code!"
+            depends="install:ci, base:dev:reset">
     </target>
 
     <!-- ================================================================== -->
@@ -203,6 +235,11 @@
             depends="test:base,test:unit,test:behat">
     </target>
 
+    <target name="test:no-browser"
+            description="run all tests"
+            depends="test:base,test:unit,test:behat:no-browser">
+    </target>
+
     <target name="test:base"
             depends="base:test:drop,base:test:create,base:test:update,base:test:fill">
         <SymfonyConsole command="doctrine:schema:validate" checkreturn="true">
@@ -219,14 +256,29 @@
         </exec>
     </target>
 
-    <target name="test:behat"
-            description="behat tests">
+    <target name="test:behat:no-browser">
         <exec executable="${path.php}" passthru="true" checkreturn="true">
             <arg value="${path.behat}"/>
             <arg value="--ansi"/>
             <arg value="--strict"/>
             <arg value="--expand"/>
+            <arg value="--tags=~@javascript"/>
         </exec>
+    </target>
+
+    <target name="test:behat:browser">
+        <exec executable="${path.php}" passthru="true" checkreturn="true">
+            <arg value="${path.behat}"/>
+            <arg value="--ansi"/>
+            <arg value="--strict"/>
+            <arg value="--expand"/>
+            <arg value="--tags=@javascript"/>
+        </exec>
+    </target>
+
+    <target name="test:behat"
+            description="behat tests"
+            depends="test:behat:no-browser, test:behat:browser">
     </target>
 
     <target name="test:behat:wip"
@@ -249,25 +301,44 @@
             depends="report:unit, report:behat, report:doc, report:loc">
     </target>
 
+    <target name="report:no-browser"
+            description="generate all reports"
+            depends="report:unit, report:behat:no-browser, report:doc, report:loc">
+    </target>
+
     <target name="report:behat">
         <mkdir dir="${dir.reports.test.behat}" />
         <exec executable="${path.php}" passthru="true">
-            <arg value="${path.behat}"/>
-            <arg value="--ansi"/>
-            <arg value="--expand"/>
-            <arg value="--profile=report"/>
+            <arg value="${path.phpunit}"/>
+            <arg value="--coverage-text"/>
+            <arg value="--coverage-clover=${dir.reports.test.behat}/clover.xml"/>
+            <arg value="--coverage-html=${dir.reports.test.behat}/coverage"/>
+            <arg line="--group behat-with-browser"/>
+            <arg value="--configuration=app/phpunit.xml.behat"/>
+        </exec>
+    </target>
+
+    <target name="report:behat:no-browser">
+        <mkdir dir="${dir.reports.test.behat}" />
+        <exec executable="${path.php}" passthru="true">
+            <arg value="${path.phpunit}"/>
+            <arg value="--coverage-text"/>
+            <arg value="--coverage-clover=${dir.reports.test.behat}/clover.xml"/>
+            <arg value="--coverage-html=${dir.reports.test.behat}/coverage"/>
+            <arg line="--group behat-without-browser"/>
+            <arg value="--configuration=app/phpunit.xml.behat"/>
         </exec>
     </target>
 
     <target name="report:unit">
-        <mkdir dir="${dir.reports.test.behat}" />
+        <mkdir dir="${dir.reports.test.unit}" />
         <exec executable="${path.php}" passthru="true">
             <arg value="${path.phpunit}"/>
-            <arg value="--testdox-html=${dir.reports.test}/testdox.html"/>
-            <arg value="--log-junit=${dir.reports.test}/phpunit.xml"/>
+            <arg value="--testdox-html=${dir.reports.test.unit}/testdox.html"/>
+            <arg value="--log-junit=${dir.reports.test.unit}/phpunit.xml"/>
             <arg value="--coverage-text"/>
-            <arg value="--coverage-clover=${dir.reports.test}/clover.xml"/>
-            <arg value="--coverage-html=${dir.reports.test}/coverage"/>
+            <arg value="--coverage-clover=${dir.reports.test.unit}/clover.xml"/>
+            <arg value="--coverage-html=${dir.reports.test.unit}/coverage"/>
             <arg line="--exclude-group behat"/>
             <arg value="--configuration=app"/>
         </exec>
