@@ -86,7 +86,7 @@ class ExerciseSettings
     /**
      * Set rest
      *
-     * @param integer $rest
+     * @param  integer $rest
      * @return Stage
      */
     public function setRest($rest)

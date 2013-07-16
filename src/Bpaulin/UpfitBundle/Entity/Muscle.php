@@ -28,11 +28,10 @@ class Muscle
      */
     private $name;
 
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -42,23 +41,30 @@ class Muscle
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string $name
      * @return Muscle
      */
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
         return $this->name;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->objectives = new \Doctrine\Common\Collections\ArrayCollection();
     }
 }

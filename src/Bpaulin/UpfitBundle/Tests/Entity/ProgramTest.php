@@ -7,6 +7,12 @@ use Bpaulin\UpfitBundle\Entity\Stage;
 
 class ProgramTest extends \PHPUnit_Framework_TestCase
 {
+    public function testGetId()
+    {
+        $entity = new Program();
+        $this->assertNull($entity->getId());
+    }
+
     public function testGetAndSetName()
     {
         $program = new Program();

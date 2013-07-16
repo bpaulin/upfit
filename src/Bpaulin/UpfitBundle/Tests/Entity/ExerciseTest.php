@@ -6,6 +6,12 @@ use Bpaulin\UpfitBundle\Entity\Exercise;
 
 class ExerciseTest extends \PHPUnit_Framework_TestCase
 {
+    public function testGetId()
+    {
+        $entity = new Exercise();
+        $this->assertNull($entity->getId());
+    }
+
     public function testGetAndSetName()
     {
         $exercise = new Exercise();

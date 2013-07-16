@@ -35,20 +35,27 @@
         <div {{ block('widget_container_attributes') }}>
             {{ form_errors(form) }}
             {% for rows in form %}
-                <span class="form-inline">
-                    {{ form_widget(rows.position) }}
-                    {{ form_widget(rows.exercise, {'attr': {'class': 'span2'}}) }}
-                    (
-                    {{ form_widget(rows.sets, {'attr': {'size': '3', 'style': 'width:auto'}}) }}
-                    *
-                    {{ form_widget(rows.number, {'attr': {'size': '3', 'style': 'width:auto'}}) }}
-                    {{ form_widget(rows.unit, {'attr': {'size': '15', 'style': 'width:auto'}}) }}
-                    with
-                    {{ form_widget(rows.difficulty, {'attr': {'size': '3', 'style': 'width:auto'}}) }}
-                    {{ form_widget(rows.difficultyUnit, {'attr': {'size': '15', 'style': 'width:auto'}}) }}
-                    )
-                    {{ form_rest(rows) }}
-                </span>
+                <div class="form-inline">
+                    {{ form_errors(rows) }}
+                    {% if rows.position is defined %}
+                        {{ form_widget(rows.position) }}
+                        {{ form_widget(rows.exercise, {'attr': {'class': 'span2'}}) }}
+                        (
+                        {{ form_widget(rows.sets, {'attr': {'size': '3', 'style': 'width:auto'}}) }}
+                        *
+                        {{ form_widget(rows.number, {'attr': {'size': '3', 'style': 'width:auto'}}) }}
+                        {{ form_widget(rows.unit, {'attr': {'size': '15', 'style': 'width:auto'}}) }}
+                        with
+                        {{ form_widget(rows.difficulty, {'attr': {'size': '3', 'style': 'width:auto'}}) }}
+                        {{ form_widget(rows.difficultyUnit, {'attr': {'size': '15', 'style': 'width:auto'}}) }}
+                        )
+                        {{ form_widget(rows.rest) }}
+                    {% else %}
+                        {{ form_widget(rows.user) }}
+                        {{ form_widget(rows.muscle) }}
+                        {{ form_widget(rows.will) }}
+                    {% endif %}
+                </div>
             {% endfor %}
             {{ form_rest(form) }}
         </div>
@@ -59,20 +66,27 @@
 
 {% block collection_item_widget %}
 {% spaceless %}
-    <span class="form-inline">
-        {{ form_widget(prototype.position) }}
-        {{ form_widget(prototype.exercise, {'attr': {'class': 'span2'}}) }}
-        (
-        {{ form_widget(prototype.sets, {'attr': {'size': '3', 'style': 'width:auto'}}) }}
-        *
-        {{ form_widget(prototype.number, {'attr': {'size': '3', 'style': 'width:auto'}}) }}
-        {{ form_widget(prototype.unit, {'attr': {'size': '15', 'style': 'width:auto'}}) }}
-        with
-        {{ form_widget(prototype.difficulty, {'attr': {'size': '3', 'style': 'width:auto'}}) }}
-        {{ form_widget(prototype.difficultyUnit, {'attr': {'size': '15', 'style': 'width:auto'}}) }}
-        )
-        {{ form_rest(prototype) }}
-    </span>
+    <div class="form-inline">
+        {{ form_errors(prototype) }}
+        {% if prototype.position is defined %}
+            {{ form_widget(prototype.position) }}
+            {{ form_widget(prototype.exercise, {'attr': {'class': 'span2'}}) }}
+            (
+            {{ form_widget(prototype.sets, {'attr': {'size': '3', 'style': 'width:auto'}}) }}
+            *
+            {{ form_widget(prototype.number, {'attr': {'size': '3', 'style': 'width:auto'}}) }}
+            {{ form_widget(prototype.unit, {'attr': {'size': '15', 'style': 'width:auto'}}) }}
+            with
+            {{ form_widget(prototype.difficulty, {'attr': {'size': '3', 'style': 'width:auto'}}) }}
+            {{ form_widget(prototype.difficultyUnit, {'attr': {'size': '15', 'style': 'width:auto'}}) }}
+            )
+            {{ form_widget(prototype.rest) }}
+        {% else %}
+            {{ form_widget(prototype.user) }}
+            {{ form_widget(prototype.muscle) }}
+            {{ form_widget(prototype.will) }}
+        {% endif %}
+    </div>
 {% endspaceless %}
 {% endblock collection_item_widget %}
 

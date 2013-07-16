@@ -1,0 +1,24 @@
+{% extends "BpaulinUpfitBundle:Crud:edit.html.twig" %}
+{%
+    set breadcrumbs =
+    {
+        'Member' : {
+            'route': path('upfit_member'),
+            'icon': 'gamepad',
+        },
+        'Objectives' : {
+            'route': path('member_objectives'),
+        },
+    }
+%}
+{%
+    set action = ''
+%}
+
+{% block h1 %}Objectives{% endblock %}
+
+{% block content %}
+{{ form_start(edit_form) }}
+    {{ form_rest(edit_form) }}
+{{ form_end(edit_form) }}
+{% endblock %}

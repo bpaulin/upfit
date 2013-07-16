@@ -12,16 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Stage extends ExerciseSettings
 {
-    /**
-     * id
-     *
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    protected $id;
 
     /**
      * exercise
@@ -52,7 +42,8 @@ class Stage extends ExerciseSettings
             ->setNumber($this->getNumber())
             ->setUnit($this->getUnit())
             ->setDifficulty($this->getDifficulty())
-            ->setDifficultyUnit($this->getDifficultyUnit());
+            ->setDifficultyUnit($this->getDifficultyUnit())
+            ->setRest($this->getRest());
 
         return $workout;
     }
@@ -81,19 +72,9 @@ class Stage extends ExerciseSettings
     }
 
     /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
      * Set exercise
      *
-     * @param \Bpaulin\UpfitBundle\Entity\Exercise $exercise
+     * @param  \Bpaulin\UpfitBundle\Entity\Exercise $exercise
      * @return Stage
      */
     public function setExercise(\Bpaulin\UpfitBundle\Entity\Exercise $exercise = null)

@@ -37,4 +37,34 @@ class MuscleSubContext extends BehatContext
 
         return new Step\Then("I should see a link to \"/member/muscle/".$muscle->getId()."\"");
     }
+
+    /**
+     * @When /^I fill in objectives form with the following:$/
+     */
+    public function iFillInObjectivesFormWithTheFollowing(TableNode $table)
+    {
+        foreach ($table->getHash() as $index => $row) {
+            $field = 'bpaulin_upfitbundle_objectivestype_objectives_'.$index.'_will';
+            $this->getMainContext()->fillField($field, $row['will']);
+        }
+    }
+
+    /**
+     * @Given /^objectives form should be filled with the following:$/
+     */
+    public function objectivesFormShouldBeFilledWithTheFollowing(TableNode $table)
+    {
+        foreach ($table->getHash() as $index => $row) {
+            $field = $this->getMainContext()->getMink()
+                            ->getSession()
+                            ->getPage()
+                            ->find('css', '#bpaulin_upfitbundle_objectivestype_objectives_'.$index.'_will');
+            if (!$field) {
+                throw new \Exception('field not found');
+            }
+            if ($field->getAttribute('value') != $row['will']) {
+                throw new \Exception($field->getAttribute('value').' not expected, '.$row['will'].' wanted');
+            }
+        }
+    }
 }

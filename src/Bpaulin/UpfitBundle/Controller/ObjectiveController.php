@@ -8,29 +8,47 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Bpaulin\UpfitBundle\Entity\Muscle;
+use Bpaulin\UpfitBundle\Form\ObjectivesType;
 
 /**
  * Muscle controller.
  *
- * @Route("/member/muscle")
+ * @Route("/member/objectives")
  */
-class MuscleController extends Controller
+class ObjectiveController extends Controller
 {
     /**
-     * List muscles
+     * Display objectives
      *
-     * @Route("", name="member_muscle")
-     * @Method("GET")
+     * @Route("", name="member_objectives")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('BpaulinUpfitBundle:Muscle')->findAll();
+        $user = $this->get('security.context')->getToken()->getUser();
+        $user->FillObjectives($entities);
+
+        $editForm = $this->createForm(new ObjectivesType(), $user);
+
+        $editForm->handleRequest($request);
+
+        if ($editForm->isValid()) {
+            $em->persist($user);
+            $em->flush();
+
+            $this->get('session')->getFlashBag()->add(
+                'success',
+                $this->get('translator')->trans('Objectives updated')
+            );
+
+            return $this->redirect($this->generateUrl('member_objectives'));
+        }
 
         return array(
-            'entities' => $entities,
+            'edit_form'   => $editForm->createView(),
         );
     }
 
