@@ -19,7 +19,6 @@ class ObjectivesType extends AbstractType
                 'collection',
                 array(
                     'type'         => new ObjectiveType(),
-                    'by_reference' => false,
                 )
             )
             ->add('edit', 'submit');

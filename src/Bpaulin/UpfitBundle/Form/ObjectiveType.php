@@ -19,14 +19,8 @@ class ObjectiveType extends AbstractType
                 'muscle',
                 null,
                 array (
-                    'property'=>'name'
-                )
-            )
-            ->add(
-                'user',
-                null,
-                array (
-                    'property'=>'username'
+                    'property'=>'name',
+                    'disabled'=>true
                 )
             )
         ;
