@@ -5,12 +5,12 @@ namespace Bpaulin\UpfitBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Objective
+ * Insentity
  *
  * @ORM\Table()
  * @ORM\Entity
  */
-class Objective
+class Intensity
 {
     /**
      * @var integer
@@ -24,16 +24,16 @@ class Objective
     /**
      * @var integer
      *
-     * @ORM\Column(name="will", type="smallint")
+     * @ORM\Column(name="intensity", type="smallint")
      */
-    private $will;
+    private $intensity;
 
     /**
-     * User
+     * Exercise
      *
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="objectives")
+     * @ORM\ManyToOne(targetEntity="Exercise", inversedBy="intensities")
      */
-    protected $user;
+    protected $exercise;
 
     /**
      * muscle
@@ -53,56 +53,56 @@ class Objective
     }
 
     /**
-     * Set will
+     * Set intensity
      *
-     * @param  integer    $will
-     * @return UserMuscle
+     * @param integer $intensity
+     * @return Intensity
      */
-    public function setWill($will)
+    public function setIntensity($intensity)
     {
-        $this->will = $will;
+        $this->intensity = $intensity;
 
         return $this;
     }
 
     /**
-     * Get will
+     * Get intensity
      *
      * @return integer
      */
-    public function getWill()
+    public function getIntensity()
     {
-        return $this->will;
+        return $this->intensity;
     }
 
     /**
-     * Set user
+     * Set exercise
      *
-     * @param  \Bpaulin\UpfitBundle\Entity\User $user
-     * @return Objective
+     * @param \Bpaulin\UpfitBundle\Entity\Exercise $exercise
+     * @return Intensity
      */
-    public function setUser(\Bpaulin\UpfitBundle\Entity\User $user = null)
+    public function setExercise(\Bpaulin\UpfitBundle\Entity\Exercise $exercise = null)
     {
-        $this->user = $user;
+        $this->exercise = $exercise;
 
         return $this;
     }
 
     /**
-     * Get user
+     * Get exercise
      *
-     * @return \Bpaulin\UpfitBundle\Entity\User
+     * @return \Bpaulin\UpfitBundle\Entity\Exercise
      */
-    public function getUser()
+    public function getExercise()
     {
-        return $this->user;
+        return $this->exercise;
     }
 
     /**
      * Set muscle
      *
-     * @param  \Bpaulin\UpfitBundle\Entity\Muscle $muscle
-     * @return Objective
+     * @param \Bpaulin\UpfitBundle\Entity\Muscle $muscle
+     * @return Intensity
      */
     public function setMuscle(\Bpaulin\UpfitBundle\Entity\Muscle $muscle = null)
     {

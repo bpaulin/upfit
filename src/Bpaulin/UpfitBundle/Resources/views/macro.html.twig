@@ -96,3 +96,13 @@
 {% macro exerciseSettingsLine(settings) %}
     <span class="exercise">{{ settings.exercise.name }}</span> ({{ settings.sets }}*{{ settings.number }} {{ settings.unit }} with {{ settings.difficulty }} {{ settings.difficultyUnit }}){% if settings.rest %}, {{ settings.rest }}s{% endif %}
 {% endmacro %}
+
+{% macro intensitiesList(exercise) %}
+    <ol class='intensities'>
+        {% for entity in exercise.intensities %}
+            {% if entity.intensity %}
+                <li><span class="muscle">{{ entity.muscle.name }}</span> <span class="intensity">{{ entity.intensity }}</span></li>
+            {% endif %}}
+        {% endfor %}
+    </ol>
+{% endmacro %}

@@ -50,9 +50,12 @@
                         {{ form_widget(rows.difficultyUnit, {'attr': {'size': '15', 'style': 'width:auto'}}) }}
                         )
                         {{ form_widget(rows.rest) }}
-                    {% else %}
+                    {% elseif rows.will is defined %}
                         {{ form_widget(rows.muscle) }}
                         {{ form_widget(rows.will) }}
+                    {% elseif rows.intensity is defined %}
+                        {{ form_widget(rows.muscle) }}
+                        {{ form_widget(rows.intensity) }}
                     {% endif %}
                 </div>
             {% endfor %}

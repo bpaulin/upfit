@@ -14,6 +14,7 @@ use Bpaulin\UpfitBundle\Entity\Program;
 use Bpaulin\UpfitBundle\Entity\Stage;
 use Bpaulin\UpfitBundle\Entity\Muscle;
 use Bpaulin\UpfitBundle\Entity\Member;
+use Bpaulin\UpfitBundle\Entity\Intensity;
 
 class LoadTestData extends AbstractFixture implements FixtureInterface, ContainerAwareInterface, OrderedFixtureInterface
 {
@@ -45,6 +46,14 @@ class LoadTestData extends AbstractFixture implements FixtureInterface, Containe
             $manager->persist($exercise);
             $exercises[$i] = $exercise;
         }
+        $manager->flush();
+
+        $intensity = new Intensity();
+        $intensity
+            ->setIntensity(1)
+            ->setMuscle($muscles[1])
+            ->setExercise($exercises[1]);
+        $manager->persist($intensity);
         $manager->flush();
 
         $programs = array();
