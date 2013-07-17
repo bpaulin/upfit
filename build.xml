@@ -45,16 +45,6 @@
         </exec>
     </target>
 
-    <target name="run:ci"
-            description="continuous integration"
-            depends="test, check">
-    </target>
-
-    <target name="run:deploy"
-            description="magical (?!) deploy command"
-            depends="composer:deploy, cache:clear:prod, base:prod:update">
-    </target>
-
     <target name="run:assets"
             description="generate assets"
             depends="cache:clear:prod">
@@ -97,6 +87,11 @@
     <target name="install:dev"
             description="let's code!"
             depends="install:ci, base:dev:reset, cache:clear:test">
+    </target>
+
+    <target name="install:prod"
+            description="magical (?!) deploy command"
+            depends="composer:deploy, cache:clear:prod, base:prod:update">
     </target>
 
     <!-- ================================================================== -->
