@@ -52,17 +52,12 @@
 
     <target name="run:deploy"
             description="magical (?!) deploy command"
-            depends="composer:deploy, base:prod:update">
-        <SymfonyConsole command="cache:clear">
-            <arg value="--env=prod"/>
-        </SymfonyConsole>
+            depends="composer:deploy, cache:clear:prod, base:prod:update">
     </target>
 
     <target name="run:assets"
-            description="generate assets">
-        <SymfonyConsole command="cache:clear" checkreturn="true">
-            <arg value="--env=prod"/>
-        </SymfonyConsole>
+            description="generate assets"
+            depends="cache:clear:prod">
         <SymfonyConsole command="assetic:dump" checkreturn="true">
             <arg value="--env=prod"/>
         </SymfonyConsole>
@@ -101,7 +96,7 @@
 
     <target name="install:dev"
             description="let's code!"
-            depends="install:ci, base:dev:reset">
+            depends="install:ci, base:dev:reset, cache:clear:test">
     </target>
 
     <!-- ================================================================== -->
@@ -501,6 +496,18 @@
     <target name="cache:clear:test">
         <SymfonyConsole command="cache:clear" checkreturn="true">
             <arg value="--env=test"/>
+        </SymfonyConsole>
+    </target>
+
+    <target name="cache:clear:dev">
+        <SymfonyConsole command="cache:clear" checkreturn="true">
+            <arg value="--env=dev"/>
+        </SymfonyConsole>
+    </target>
+
+    <target name="cache:clear:prod">
+        <SymfonyConsole command="cache:clear" checkreturn="true">
+            <arg value="--env=prod"/>
         </SymfonyConsole>
     </target>
 </project>
