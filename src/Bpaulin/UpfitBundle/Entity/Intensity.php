@@ -59,7 +59,7 @@ class Intensity
     /**
      * Set intensity
      *
-     * @param integer $intensity
+     * @param  integer   $intensity
      * @return Intensity
      */
     public function setIntensity($intensity)
@@ -82,7 +82,7 @@ class Intensity
     /**
      * Set exercise
      *
-     * @param \Bpaulin\UpfitBundle\Entity\Exercise $exercise
+     * @param  \Bpaulin\UpfitBundle\Entity\Exercise $exercise
      * @return Intensity
      */
     public function setExercise(\Bpaulin\UpfitBundle\Entity\Exercise $exercise = null)
@@ -105,7 +105,7 @@ class Intensity
     /**
      * Set muscle
      *
-     * @param \Bpaulin\UpfitBundle\Entity\Muscle $muscle
+     * @param  \Bpaulin\UpfitBundle\Entity\Muscle $muscle
      * @return Intensity
      */
     public function setMuscle(\Bpaulin\UpfitBundle\Entity\Muscle $muscle = null)

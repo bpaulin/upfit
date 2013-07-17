@@ -57,7 +57,7 @@ class Exercise
     /**
      * Init missing intensities
      *
-     * @param  Array $muscles
+     * @param  Array    $muscles
      * @return Exercise
      */
     public function fillIntensities($muscles)
@@ -79,7 +79,7 @@ class Exercise
     /**
      * Get intensity for a muscle, return false if not defined
      *
-     * @param  \Bpaulin\UpfitBundle\Entity\Muscle $muscle
+     * @param  \Bpaulin\UpfitBundle\Entity\Muscle            $muscle
      * @return boolean|\Bpaulin\UpfitBundle\Entity\Intensity
      */
     public function getIntensityByMuscle(\Bpaulin\UpfitBundle\Entity\Muscle $muscle)
@@ -138,7 +138,7 @@ class Exercise
     /**
      * Add stages
      *
-     * @param \Bpaulin\UpfitBundle\Entity\Stage $stages
+     * @param  \Bpaulin\UpfitBundle\Entity\Stage $stages
      * @return Exercise
      */
     public function addStage(\Bpaulin\UpfitBundle\Entity\Stage $stages)
@@ -171,7 +171,7 @@ class Exercise
     /**
      * Add workouts
      *
-     * @param \Bpaulin\UpfitBundle\Entity\Workout $workouts
+     * @param  \Bpaulin\UpfitBundle\Entity\Workout $workouts
      * @return Exercise
      */
     public function addWorkout(\Bpaulin\UpfitBundle\Entity\Workout $workouts)
@@ -204,7 +204,7 @@ class Exercise
     /**
      * Add intensities
      *
-     * @param \Bpaulin\UpfitBundle\Entity\Intensity $intensities
+     * @param  \Bpaulin\UpfitBundle\Entity\Intensity $intensities
      * @return Exercise
      */
     public function addIntensity(\Bpaulin\UpfitBundle\Entity\Intensity $intensity)

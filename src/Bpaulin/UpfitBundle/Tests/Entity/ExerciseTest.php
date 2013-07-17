@@ -3,7 +3,6 @@
 namespace Bpaulin\UpfitBundle\Tests\Entity;
 
 use Bpaulin\UpfitBundle\Entity\Exercise;
-use Bpaulin\UpfitBundle\Entity\User;
 use Bpaulin\UpfitBundle\Entity\Intensity;
 use Bpaulin\UpfitBundle\Entity\Workout;
 use Bpaulin\UpfitBundle\Entity\Stage;

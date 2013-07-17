@@ -73,7 +73,7 @@ class User extends BaseUser
     /**
      * Get objective for a muscle, return false if not defined
      *
-     * @param  \Bpaulin\UpfitBundle\Entity\Muscle $muscle
+     * @param  \Bpaulin\UpfitBundle\Entity\Muscle            $muscle
      * @return boolean|\Bpaulin\UpfitBundle\Entity\Objective
      */
     public function getObjectiveByMuscle(\Bpaulin\UpfitBundle\Entity\Muscle $muscle)

@@ -5,7 +5,6 @@ namespace Bpaulin\UpfitBundle\Features\Context;
 use Behat\Behat\Context\BehatContext;
 use Behat\Gherkin\Node\TableNode;
 use Behat\Behat\Context\Step;
-use Behat\Behat\Exception\PendingException;
 
 class ExerciseSubContext extends BehatContext
 {

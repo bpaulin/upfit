@@ -12,7 +12,7 @@ class SessionRepository extends EntityRepository
     /**
      * Return unfinished sessions for a user
      *
-     * @param  \Bpaulin\UpfitBundle\Entity\User $user
+     * @param \Bpaulin\UpfitBundle\Entity\User $user
      */
     public function findUnfinishedByUser(\Bpaulin\UpfitBundle\Entity\User $user)
     {
