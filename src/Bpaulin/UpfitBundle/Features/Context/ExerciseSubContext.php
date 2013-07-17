@@ -115,7 +115,7 @@ class ExerciseSubContext extends BehatContext
         $lis = $this->getMainContext()->getMink()
                                 ->getSession()
                                 ->getPage()
-                                ->findAll('css', ".record_properties dd.intensities ol li");
+                                ->findAll('css', ".record_properties dd.intensities ul li");
         foreach ($hash as $index => $row) {
             if ($lis[$index]->find('css', '.muscle')->getText() != $row['muscle']) {
                 throw new \Exception('not expected: '.$row['muscle']);

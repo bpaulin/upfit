@@ -98,11 +98,11 @@
 {% endmacro %}
 
 {% macro intensitiesList(exercise) %}
-    <ol class='intensities'>
+    <ul class='intensities'>
         {% for entity in exercise.intensities %}
             {% if entity.intensity %}
                 <li><span class="muscle">{{ entity.muscle.name }}</span> <span class="intensity">{{ entity.intensity }}</span></li>
-            {% endif %}}
+            {% endif %}
         {% endfor %}
-    </ol>
+    </ul>
 {% endmacro %}
