@@ -5,6 +5,7 @@ namespace Bpaulin\UpfitBundle\Features\Context;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Behat\Symfony2Extension\Context\KernelAwareInterface;
 use Behat\MinkExtension\Context\MinkContext;
+use Behat\Behat\Exception\PendingException;
 
 use Behat\Gherkin\Node\TableNode;
 use Behat\Behat\Context\Step;
@@ -36,7 +37,7 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
         $this->useContext('program', new ProgramSubContext());
         $this->useContext('exercise', new ExerciseSubContext());
         $this->useContext('session', new SessionSubContext());
-        $this->useContext('muscle', new MuscleSubContext());
+        $this->useContext('objective', new ObjectiveSubContext());
     }
 
     /**

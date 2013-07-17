@@ -6,7 +6,7 @@ use Behat\Behat\Context\BehatContext;
 use Behat\Gherkin\Node\TableNode;
 use Behat\Behat\Context\Step;
 
-class MuscleSubContext extends BehatContext
+class ObjectiveSubContext extends BehatContext
 {
     public function __construct()
     {
