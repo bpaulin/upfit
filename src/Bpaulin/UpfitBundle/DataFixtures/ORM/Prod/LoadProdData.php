@@ -6,6 +6,7 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Bpaulin\UpfitBundle\Entity\Muscle;
 
 class LoadProdData implements FixtureInterface, ContainerAwareInterface
 {
@@ -21,6 +22,28 @@ class LoadProdData implements FixtureInterface, ContainerAwareInterface
 
     public function load(ObjectManager $manager)
     {
+        $muscleNames = array(
+            "Trapezius",
+            "Deltoid",
+            "Biceps",
+            "Triceps",
+            "Forearm",
+            "Pectoral",
+            "Abs",
+            "Oblique Abs",
+            "Dorsal",
+            "Lumbar",
+            "Gluteus",
+            "Adductor",
+            "Quadriceps",
+            "Femoral",
+            "Calf"
+        );
+        foreach ($muscleNames as $name) {
+            $muscle = new Muscle();
+            $muscle->setName($name);
+            $manager->persist($muscle);
+        }
         $manager->flush();
     }
 }

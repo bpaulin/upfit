@@ -11,6 +11,7 @@ default:
               lifetime:    scenario
               autoload:    false
               directories:
+                - src/Bpaulin/UpfitBundle/DataFixtures/ORM/Dev
                 - src/Bpaulin/UpfitBundle/DataFixtures/ORM/Test
     formatter:
         name: progress

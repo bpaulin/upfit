@@ -4,7 +4,9 @@ namespace Bpaulin\UpfitBundle\DataFixtures\ORM\Test;
 
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Bpaulin\UpfitBundle\Entity\Exercise;
 use Bpaulin\UpfitBundle\Entity\Session;
@@ -13,7 +15,7 @@ use Bpaulin\UpfitBundle\Entity\Stage;
 use Bpaulin\UpfitBundle\Entity\Muscle;
 use Bpaulin\UpfitBundle\Entity\Member;
 
-class LoadTestData implements FixtureInterface, ContainerAwareInterface
+class LoadTestData extends AbstractFixture implements FixtureInterface, ContainerAwareInterface, OrderedFixtureInterface
 {
     /**
      * @var ContainerInterface
@@ -65,36 +67,10 @@ class LoadTestData implements FixtureInterface, ContainerAwareInterface
         }
         $manager->flush();
 
-        $userManager = $this->container->get('fos_user.user_manager');
-
-        $member = $userManager->createUser();
-        $member->setUsername("member")
-            ->setEmail("member@upfit.com")
-            ->setPlainPassword("member")
-            ->setRoles(array('ROLE_USER'))
-            ->setEnabled(true);
-        $userManager->updateUser($member, true);
-
-        $other = $userManager->createUser();
-        $other->setUsername("other")
-            ->setEmail("other@upfit.com")
-            ->setPlainPassword("other")
-            ->setRoles(array('ROLE_USER'))
-            ->setEnabled(true);
-        $userManager->updateUser($other, true);
-
-        $admin = $userManager->createUser();
-        $admin->setUsername("admin")
-            ->setEmail("admin@upfit.com")
-            ->setPlainPassword("admin")
-            ->setRoles(array('ROLE_ADMIN'))
-            ->setEnabled(true);
-        $userManager->updateUser($admin, true);
-
         $session = new Session();
         $session->initWithProgram($programs[1])
                 ->setName('session1')
-                ->setUser($member);
+                ->setUser($this->getReference('member'));
         foreach ($session->getWorkouts() as $workout) {
             $workout->setDone(true);
         }
@@ -104,15 +80,23 @@ class LoadTestData implements FixtureInterface, ContainerAwareInterface
         $session = new Session();
         $session->initWithProgram($programs[1])
                 ->setName('wrong_user')
-                ->setUser($other);
+                ->setUser($this->getReference('other'));
         $manager->persist($session);
         $manager->flush();
 
         $unfinished = new Session();
         $unfinished->initWithProgram($programs[1])
                 ->setName('session unfinished')
-                ->setUser($member);
+                ->setUser($this->getReference('member'));
         $manager->persist($unfinished);
         $manager->flush();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getOrder()
+    {
+        return 1;
     }
 }
