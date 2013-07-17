@@ -224,6 +224,7 @@
 
     <target name="check:debug">
         <exec command="! grep -n '@wip' ${dir.bundle}/Features/*.feature" passthru="true" checkreturn="true"/>
+        <exec command="! grep -n '@group wip' ${dir.bundle}/Tests/**/*.php" passthru="true" checkreturn="true"/>
     </target>
 
     <!-- ================================================================== -->
@@ -233,6 +234,11 @@
     <target name="test"
             description="run all tests"
             depends="test:base,test:unit,test:behat">
+    </target>
+
+    <target name="test:wip"
+            description="run all tests"
+            depends="test:unit:wip,test:behat:wip">
     </target>
 
     <target name="test:no-browser"
@@ -253,6 +259,15 @@
             <arg value="${path.phpunit}"/>
             <arg value="--configuration=app"/>
             <arg value="--exclude-group=behat"/>
+        </exec>
+    </target>
+
+    <target name="test:unit:wip"
+            description="unit tests">
+        <exec executable="${path.php}" passthru="true" checkreturn="true">
+            <arg value="${path.phpunit}"/>
+            <arg value="--configuration=app"/>
+            <arg line="--group wip"/>
         </exec>
     </target>
 
