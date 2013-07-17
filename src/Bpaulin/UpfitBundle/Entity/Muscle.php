@@ -13,6 +13,8 @@ use Doctrine\ORM\Mapping as ORM;
 class Muscle
 {
     /**
+     * Id
+     *
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -22,6 +24,8 @@ class Muscle
     private $id;
 
     /**
+     * Name
+     *
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=120)

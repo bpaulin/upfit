@@ -4,9 +4,17 @@ namespace Bpaulin\UpfitBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
+/**
+ * Session repository
+ */
 class SessionRepository extends EntityRepository
 {
-    public function findUnfinishedByUser($user)
+    /**
+     * Return unfinished sessions for a user
+     *
+     * @param  \Bpaulin\UpfitBundle\Entity\User $user
+     */
+    public function findUnfinishedByUser(\Bpaulin\UpfitBundle\Entity\User $user)
     {
         return $this->createQueryBuilder('s')
             ->join('s.workouts', 'w')

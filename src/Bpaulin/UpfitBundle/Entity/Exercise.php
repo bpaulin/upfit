@@ -54,6 +54,12 @@ class Exercise
      */
     protected $intensities;
 
+    /**
+     * Init missing intensities
+     *
+     * @param  Array $muscles
+     * @return Exercise
+     */
     public function fillIntensities($muscles)
     {
         foreach ($muscles as $muscle) {
@@ -70,7 +76,13 @@ class Exercise
         return $this;
     }
 
-    public function getIntensityByMuscle($muscle)
+    /**
+     * Get intensity for a muscle, return false if not defined
+     *
+     * @param  \Bpaulin\UpfitBundle\Entity\Muscle $muscle
+     * @return boolean|\Bpaulin\UpfitBundle\Entity\Intensity
+     */
+    public function getIntensityByMuscle(\Bpaulin\UpfitBundle\Entity\Muscle $muscle)
     {
         foreach ($this->intensities as $intensity) {
             if ($intensity->getMuscle() === $muscle) {

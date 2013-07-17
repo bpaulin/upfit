@@ -133,12 +133,12 @@ class SessionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(count($follow->getWorkouts()), count($session->getWorkouts())-1);
     }
 
-    public function testPrePersist()
+    public function testInitBeginning()
     {
         $session = new Session();
         $this->assertNull($session->getBeginning());
 
-        $session->PrePersist();
+        $session->initBeginning();
         $this->assertInstanceOf('DateTime', $session->getBeginning());
     }
 }

@@ -209,7 +209,7 @@
             <arg value="--force"/>
             <arg line="-d ${dir.src}"/>
             <arg line="-t ${dir.reports.docs}"/>
-            <arg line="-i *Test.php,*Features/Context/*"/>
+            <arg line="-i *Test.php,*Features/Context/*,*Form/*Type.php,*DataFixtures/*"/>
             <arg line="--template checkstyle"/>
         </exec>
     </target>

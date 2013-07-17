@@ -13,6 +13,8 @@ use Doctrine\ORM\Mapping as ORM;
 class Objective
 {
     /**
+     * Id
+     *
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -22,6 +24,8 @@ class Objective
     private $id;
 
     /**
+     * Will
+     *
      * @var integer
      *
      * @ORM\Column(name="will", type="smallint")

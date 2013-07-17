@@ -48,6 +48,12 @@ class User extends BaseUser
         $this->objectives = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+    /**
+     * Init missing objectives
+     *
+     * @param  Array $muscles
+     * @return User
+     */
     public function fillObjectives($muscles)
     {
         foreach ($muscles as $muscle) {
@@ -64,7 +70,13 @@ class User extends BaseUser
         return $this;
     }
 
-    public function getObjectiveByMuscle($muscle)
+    /**
+     * Get objective for a muscle, return false if not defined
+     *
+     * @param  \Bpaulin\UpfitBundle\Entity\Muscle $muscle
+     * @return boolean|\Bpaulin\UpfitBundle\Entity\Objective
+     */
+    public function getObjectiveByMuscle(\Bpaulin\UpfitBundle\Entity\Muscle $muscle)
     {
         foreach ($this->objectives as $objective) {
             if ($objective->getMuscle() === $muscle) {

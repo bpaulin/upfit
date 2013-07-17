@@ -13,6 +13,8 @@ use Doctrine\ORM\Mapping as ORM;
 class Intensity
 {
     /**
+     * Id
+     *
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -22,6 +24,8 @@ class Intensity
     private $id;
 
     /**
+     * intensity
+     *
      * @var integer
      *
      * @ORM\Column(name="intensity", type="smallint")

@@ -73,9 +73,11 @@ class Session
     protected $user;
 
     /**
+     * Set beginning to current time
+     *
      * @ORM\PrePersist
      */
-    public function prePersist()
+    public function initBeginning()
     {
         $this->beginning = new \DateTime();
     }
