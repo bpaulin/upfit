@@ -5,6 +5,8 @@ namespace Bpaulin\UpfitBundle\Tests\Entity;
 use Bpaulin\UpfitBundle\Entity\Exercise;
 use Bpaulin\UpfitBundle\Entity\User;
 use Bpaulin\UpfitBundle\Entity\Intensity;
+use Bpaulin\UpfitBundle\Entity\Workout;
+use Bpaulin\UpfitBundle\Entity\Stage;
 use Bpaulin\UpfitBundle\Entity\Muscle;
 
 class ExerciseTest extends \PHPUnit_Framework_TestCase
@@ -33,6 +35,30 @@ class ExerciseTest extends \PHPUnit_Framework_TestCase
 
         $exercise->removeIntensity($intensity);
         $this->assertNotContains($intensity, $exercise->getIntensities());
+    }
+
+    public function testAddAndRemoveStage()
+    {
+        $exercise = new Exercise();
+        $stage = new Stage();
+
+        $exercise->addStage($stage);
+        $this->assertContains($stage, $exercise->getStages());
+
+        $exercise->removeStage($stage);
+        $this->assertNotContains($stage, $exercise->getStages());
+    }
+
+    public function testAddAndRemoveWorkout()
+    {
+        $exercise = new Exercise();
+        $workout = new Workout();
+
+        $exercise->addWorkout($workout);
+        $this->assertContains($workout, $exercise->getWorkouts());
+
+        $exercise->removeWorkout($workout);
+        $this->assertNotContains($workout, $exercise->getWorkouts());
     }
 
     public function testFillObjectives()
