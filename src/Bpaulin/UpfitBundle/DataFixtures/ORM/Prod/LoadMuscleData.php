@@ -8,7 +8,7 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Bpaulin\UpfitBundle\Entity\Muscle;
 
-class LoadProdData implements FixtureInterface, ContainerAwareInterface
+class LoadMuscleData implements FixtureInterface, ContainerAwareInterface
 {
     /**
      * @var ContainerInterface
