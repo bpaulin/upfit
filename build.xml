@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="Upfit" basedir="." default="run:ci">
+<project name="Upfit" basedir="." default="ci:travis">
 
     <!-- ================================================================== -->
     <!-- Properties                                                         -->
@@ -15,12 +15,14 @@
     <property name="path.phpcpd"            value="bin/phpcpd" />
     <property name="path.phpunit"           value="bin/phpunit" />
     <property name="path.phploc"            value="bin/phploc" />
+    <property name="path.pdepend"           value="bin/pdepend" />
     <property name="path.security-checker"  value="bin/security-checker" />
     <property name="path.phpdoc"            value="bin/phpdoc.php" />
     <property name="dir.src"                value="${project.basedir}/src" />
     <property name="dir.build"              value="${project.basedir}/build" />
     <property name="dir.reports"            value="${dir.build}/reports" />
     <property name="dir.reports.docs"       value="${dir.reports}/docs" />
+    <property name="dir.reports.depend"     value="${dir.reports}/depend" />
     <property name="dir.reports.test"       value="${dir.reports}/test" />
     <property name="dir.reports.test.behat" value="${dir.reports.test}/behat" />
     <property name="dir.reports.test.unit"  value="${dir.reports.test}/unit" />
@@ -58,12 +60,12 @@
     <!-- ================================================================== -->
 
     <target name="ci:travis"
-            description="continuous integration"
+            description="continuous integration (called by travis)"
             depends="test, check">
     </target>
 
     <target name="ci:jenkins"
-            description="continuous integration"
+            description="continuous integration (called by jenkins)"
             depends="test:no-browser, check, report:no-browser">
     </target>
 
@@ -126,7 +128,7 @@
     </target>
 
     <!-- ================================================================== -->
-    <!-- Fixing                                                           -->
+    <!-- Fixing                                                             -->
     <!-- ================================================================== -->
 
     <target name="fix:style"
@@ -227,12 +229,12 @@
     </target>
 
     <target name="test:wip"
-            description="run all tests"
+            description="run all work-in-progress tests"
             depends="test:unit:wip,test:behat:wip">
     </target>
 
     <target name="test:no-browser"
-            description="run all tests"
+            description="run all tests (no browser needed)"
             depends="test:base,test:unit,test:behat:no-browser">
     </target>
 
@@ -253,7 +255,7 @@
     </target>
 
     <target name="test:unit:wip"
-            description="unit tests">
+            description="unit tests (only marqued as '@group wip')">
         <exec executable="${path.php}" passthru="true" checkreturn="true">
             <arg value="${path.phpunit}"/>
             <arg value="--configuration=app"/>
@@ -303,15 +305,36 @@
 
     <target name="report"
             description="generate all reports"
-            depends="report:unit, report:behat, report:doc, report:loc">
+            depends="report:unit, report:behat, report:doc, report:depend, report:loc">
     </target>
 
     <target name="report:no-browser"
-            description="generate all reports"
-            depends="report:unit, report:behat:no-browser, report:doc, report:loc">
+            description="generate all reports (no browser needed)"
+            depends="report:unit, report:behat:no-browser, report:doc, report:depend, report:loc">
     </target>
 
     <target name="report:behat">
+        <mkdir dir="${dir.reports.test.behat}" />
+        <exec executable="${path.php}" passthru="true">
+            <arg value="${path.behat}"/>
+            <arg value="--ansi"/>
+            <arg value="--expand"/>
+            <arg value="--profile=report"/>
+        </exec>
+    </target>
+
+    <target name="report:behat:no-browser">
+        <mkdir dir="${dir.reports.test.behat}" />
+        <exec executable="${path.php}" passthru="true">
+            <arg value="${path.behat}"/>
+            <arg value="--ansi"/>
+            <arg value="--expand"/>
+            <arg value="--profile=report"/>
+            <arg value="--tags=~@javascript"/>
+        </exec>
+    </target>
+
+    <target name="report:behat:clover">
         <mkdir dir="${dir.reports.test.behat}" />
         <exec executable="${path.php}" passthru="true">
             <arg value="${path.phpunit}"/>
@@ -323,7 +346,7 @@
         </exec>
     </target>
 
-    <target name="report:behat:no-browser">
+    <target name="report:behat:clover:no-browser">
         <mkdir dir="${dir.reports.test.behat}" />
         <exec executable="${path.php}" passthru="true">
             <arg value="${path.phpunit}"/>
@@ -346,6 +369,17 @@
             <arg value="--coverage-html=${dir.reports.test.unit}/coverage"/>
             <arg line="--exclude-group behat"/>
             <arg value="--configuration=app"/>
+        </exec>
+    </target>
+
+    <target name="report:depend">
+        <mkdir dir="${dir.reports.depend}" />
+        <exec executable="${path.php}" passthru="true" checkreturn="true">
+            <arg value="${path.pdepend}"/>
+            <arg line="--summary-xml=${dir.reports.depend}/summary.xml"/>
+            <arg line="--jdepend-chart=${dir.reports.depend}/jdepend.svg"/>
+            <arg line="--overview-pyramid=${dir.reports.depend}/pyramid.svg"/>
+            <arg path="${dir.src}"/>
         </exec>
     </target>
 
@@ -485,7 +519,7 @@
     </target>
 
     <!-- ================================================================== -->
-    <!-- Misc                                                               -->
+    <!-- Clear                                                              -->
     <!-- ================================================================== -->
 
     <target name="cache:clear:test">
