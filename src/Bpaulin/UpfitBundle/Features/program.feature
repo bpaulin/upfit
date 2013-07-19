@@ -80,8 +80,8 @@ Scenario: Administrator can create programs
     | sets           | 5           |
     | number         | 15          |
     | unit           | repetitions |
-    | difficulty     | 5           |
-    | difficultyUnit | kilos       |
+    | difficulty     |             |
+    | difficultyUnit |             |
     | rest           | 60          |
   And I press "Create"
   Then I should be on "/admin/program"
@@ -91,7 +91,7 @@ Scenario: Administrator can create programs
   Then I should see "program7" as "name"
   And I should see the following stages:
   | stages |
-    | exercise1 (5*15 repetitions with 5 kilos), 60s |
+    | exercise1 (5*15 repetitions), 60s |
 
 Scenario: Administrator can delete programs
   Given I am on program "program1" page

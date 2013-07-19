@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="Upfit" basedir="." default="run:ci">
+<project name="Upfit" basedir="." default="ci:travis">
 
     <!-- ================================================================== -->
     <!-- Properties                                                         -->
@@ -15,14 +15,17 @@
     <property name="path.phpcpd"            value="bin/phpcpd" />
     <property name="path.phpunit"           value="bin/phpunit" />
     <property name="path.phploc"            value="bin/phploc" />
+    <property name="path.pdepend"           value="bin/pdepend" />
     <property name="path.security-checker"  value="bin/security-checker" />
     <property name="path.phpdoc"            value="bin/phpdoc.php" />
     <property name="dir.src"                value="${project.basedir}/src" />
     <property name="dir.build"              value="${project.basedir}/build" />
     <property name="dir.reports"            value="${dir.build}/reports" />
     <property name="dir.reports.docs"       value="${dir.reports}/docs" />
+    <property name="dir.reports.depend"     value="${dir.reports}/depend" />
     <property name="dir.reports.test"       value="${dir.reports}/test" />
     <property name="dir.reports.test.behat" value="${dir.reports.test}/behat" />
+    <property name="dir.reports.test.unit"  value="${dir.reports.test}/unit" />
     <property name="bundle"                 value="@AcmeDemoBundle" />
     <property name="dir.bundle"             value="${dir.src}/Acme/DemoBundle" />
 
@@ -44,27 +47,53 @@
         </exec>
     </target>
 
-    <target name="run:ci"
-            description="continuous integration"
-            depends="test, check">
-    </target>
-
-    <target name="run:deploy"
-            description="magical (?!) deploy command"
-            depends="composer:deploy, base:prod:update">
-        <SymfonyConsole command="cache:clear">
-            <arg value="--env=prod"/>
-        </SymfonyConsole>
-    </target>
-
     <target name="run:assets"
-            description="generate assets">
-        <SymfonyConsole command="cache:clear" checkreturn="true">
-            <arg value="--env=prod"/>
-        </SymfonyConsole>
+            description="generate assets"
+            depends="cache:clear:prod">
         <SymfonyConsole command="assetic:dump" checkreturn="true">
             <arg value="--env=prod"/>
         </SymfonyConsole>
+    </target>
+
+    <!-- ================================================================== -->
+    <!-- CI                                                                 -->
+    <!-- ================================================================== -->
+
+    <target name="ci:travis"
+            description="continuous integration (called by travis)"
+            depends="test, check">
+    </target>
+
+    <target name="ci:jenkins"
+            description="continuous integration (called by jenkins)"
+            depends="test:no-browser, check, report:no-browser">
+    </target>
+
+    <!-- ================================================================== -->
+    <!-- Clean                                                              -->
+    <!-- ================================================================== -->
+
+    <target name="clean:reports">
+        <delete dir="${dir.reports}"/>
+    </target>
+
+    <!-- ================================================================== -->
+    <!-- Install                                                            -->
+    <!-- ================================================================== -->
+
+    <target name="install:ci"
+            description="install deps and testing db"
+            depends="composer:install, base:test:reset">
+    </target>
+
+    <target name="install:dev"
+            description="let's code!"
+            depends="install:ci, base:dev:reset, cache:clear:test">
+    </target>
+
+    <target name="install:prod"
+            description="magical (?!) deploy command"
+            depends="composer:deploy, cache:clear:prod, base:prod:update">
     </target>
 
     <!-- ================================================================== -->
@@ -99,7 +128,7 @@
     </target>
 
     <!-- ================================================================== -->
-    <!-- Fixing                                                           -->
+    <!-- Fixing                                                             -->
     <!-- ================================================================== -->
 
     <target name="fix:style"
@@ -172,7 +201,7 @@
             <arg value="--force"/>
             <arg line="-d ${dir.src}"/>
             <arg line="-t ${dir.reports.docs}"/>
-            <arg line="-i *Test.php,*Features/Context/*"/>
+            <arg line="-i *Test.php,*Features/Context/*,*Form/*Type.php,*DataFixtures/*"/>
             <arg line="--template checkstyle"/>
         </exec>
     </target>
@@ -187,6 +216,7 @@
 
     <target name="check:debug">
         <exec command="! grep -n '@wip' ${dir.bundle}/Features/*.feature" passthru="true" checkreturn="true"/>
+        <exec command="! grep -n '@group wip' ${dir.bundle}/Tests/**/*.php" passthru="true" checkreturn="true"/>
     </target>
 
     <!-- ================================================================== -->
@@ -196,6 +226,16 @@
     <target name="test"
             description="run all tests"
             depends="test:base,test:unit,test:behat">
+    </target>
+
+    <target name="test:wip"
+            description="run all work-in-progress tests"
+            depends="test:unit:wip,test:behat:wip">
+    </target>
+
+    <target name="test:no-browser"
+            description="run all tests (no browser needed)"
+            depends="test:base,test:unit,test:behat:no-browser">
     </target>
 
     <target name="test:base"
@@ -214,14 +254,38 @@
         </exec>
     </target>
 
-    <target name="test:behat"
-            description="behat tests">
+    <target name="test:unit:wip"
+            description="unit tests (only marqued as '@group wip')">
+        <exec executable="${path.php}" passthru="true" checkreturn="true">
+            <arg value="${path.phpunit}"/>
+            <arg value="--configuration=app"/>
+            <arg line="--group wip"/>
+        </exec>
+    </target>
+
+    <target name="test:behat:no-browser">
         <exec executable="${path.php}" passthru="true" checkreturn="true">
             <arg value="${path.behat}"/>
             <arg value="--ansi"/>
             <arg value="--strict"/>
             <arg value="--expand"/>
+            <arg value="--tags=~@javascript"/>
         </exec>
+    </target>
+
+    <target name="test:behat:browser">
+        <exec executable="${path.php}" passthru="true" checkreturn="true">
+            <arg value="${path.behat}"/>
+            <arg value="--ansi"/>
+            <arg value="--strict"/>
+            <arg value="--expand"/>
+            <arg value="--tags=@javascript"/>
+        </exec>
+    </target>
+
+    <target name="test:behat"
+            description="behat tests"
+            depends="test:behat:no-browser, test:behat:browser">
     </target>
 
     <target name="test:behat:wip"
@@ -241,7 +305,12 @@
 
     <target name="report"
             description="generate all reports"
-            depends="report:unit, report:behat, report:doc, report:loc">
+            depends="report:unit, report:behat, report:doc, report:depend, report:loc">
+    </target>
+
+    <target name="report:no-browser"
+            description="generate all reports (no browser needed)"
+            depends="report:unit, report:behat:no-browser, report:doc, report:depend, report:loc">
     </target>
 
     <target name="report:behat">
@@ -254,17 +323,63 @@
         </exec>
     </target>
 
-    <target name="report:unit">
+    <target name="report:behat:no-browser">
+        <mkdir dir="${dir.reports.test.behat}" />
+        <exec executable="${path.php}" passthru="true">
+            <arg value="${path.behat}"/>
+            <arg value="--ansi"/>
+            <arg value="--expand"/>
+            <arg value="--profile=report"/>
+            <arg value="--tags=~@javascript"/>
+        </exec>
+    </target>
+
+    <target name="report:behat:clover">
         <mkdir dir="${dir.reports.test.behat}" />
         <exec executable="${path.php}" passthru="true">
             <arg value="${path.phpunit}"/>
-            <arg value="--testdox-html=${dir.reports.test}/testdox.html"/>
-            <arg value="--log-junit=${dir.reports.test}/phpunit.xml"/>
             <arg value="--coverage-text"/>
-            <arg value="--coverage-clover=${dir.reports.test}/clover.xml"/>
-            <arg value="--coverage-html=${dir.reports.test}/coverage"/>
+            <arg value="--coverage-clover=${dir.reports.test.behat}/clover.xml"/>
+            <arg value="--coverage-html=${dir.reports.test.behat}/coverage"/>
+            <arg line="--group behat-with-browser"/>
+            <arg value="--configuration=app/phpunit.xml.behat"/>
+        </exec>
+    </target>
+
+    <target name="report:behat:clover:no-browser">
+        <mkdir dir="${dir.reports.test.behat}" />
+        <exec executable="${path.php}" passthru="true">
+            <arg value="${path.phpunit}"/>
+            <arg value="--coverage-text"/>
+            <arg value="--coverage-clover=${dir.reports.test.behat}/clover.xml"/>
+            <arg value="--coverage-html=${dir.reports.test.behat}/coverage"/>
+            <arg line="--group behat-without-browser"/>
+            <arg value="--configuration=app/phpunit.xml.behat"/>
+        </exec>
+    </target>
+
+    <target name="report:unit">
+        <mkdir dir="${dir.reports.test.unit}" />
+        <exec executable="${path.php}" passthru="true">
+            <arg value="${path.phpunit}"/>
+            <arg value="--testdox-html=${dir.reports.test.unit}/testdox.html"/>
+            <arg value="--log-junit=${dir.reports.test.unit}/phpunit.xml"/>
+            <arg value="--coverage-text"/>
+            <arg value="--coverage-clover=${dir.reports.test.unit}/clover.xml"/>
+            <arg value="--coverage-html=${dir.reports.test.unit}/coverage"/>
             <arg line="--exclude-group behat"/>
             <arg value="--configuration=app"/>
+        </exec>
+    </target>
+
+    <target name="report:depend">
+        <mkdir dir="${dir.reports.depend}" />
+        <exec executable="${path.php}" passthru="true" checkreturn="true">
+            <arg value="${path.pdepend}"/>
+            <arg line="--summary-xml=${dir.reports.depend}/summary.xml"/>
+            <arg line="--jdepend-chart=${dir.reports.depend}/jdepend.svg"/>
+            <arg line="--overview-pyramid=${dir.reports.depend}/pyramid.svg"/>
+            <arg path="${dir.src}"/>
         </exec>
     </target>
 
@@ -289,6 +404,18 @@
     <!-- ================================================================== -->
     <!-- Database                                                           -->
     <!-- ================================================================== -->
+
+    <target name="base:migrate:diff"
+            description="generate and apply a new migration to dev db">
+        <SymfonyConsole command="doctrine:migrations:diff" checkreturn="true">
+            <arg value="--env=dev"/>
+            <arg value="--no-interaction"/>
+        </SymfonyConsole>
+        <SymfonyConsole command="doctrine:migrations:migrate" checkreturn="true">
+            <arg value="--env=dev"/>
+            <arg value="--no-interaction"/>
+        </SymfonyConsole>
+    </target>
 
     <!-- test db -->
     <target name="base:test:reset"
@@ -319,6 +446,7 @@
         <SymfonyConsole command="doctrine:fixtures:load" checkreturn="true">
             <arg value="--env=test"/>
             <arg value="--no-interaction"/>
+            <arg value="--fixtures=${dir.bundle}/DataFixtures/ORM/Dev"/>
             <arg value="--fixtures=${dir.bundle}/DataFixtures/ORM/Test"/>
         </SymfonyConsole>
     </target>
@@ -352,7 +480,8 @@
         <SymfonyConsole command="doctrine:fixtures:load" checkreturn="true">
             <arg value="--env=dev"/>
             <arg value="--no-interaction"/>
-            <arg value="--fixtures=${dir.bundle}/DataFixtures/ORM/Test"/>
+            <arg value="--fixtures=${dir.bundle}/DataFixtures/ORM/Dev"/>
+            <arg value="--fixtures=${dir.bundle}/DataFixtures/ORM/Prod"/>
         </SymfonyConsole>
     </target>
 
@@ -390,12 +519,24 @@
     </target>
 
     <!-- ================================================================== -->
-    <!-- Misc                                                               -->
+    <!-- Clear                                                              -->
     <!-- ================================================================== -->
 
     <target name="cache:clear:test">
         <SymfonyConsole command="cache:clear" checkreturn="true">
             <arg value="--env=test"/>
+        </SymfonyConsole>
+    </target>
+
+    <target name="cache:clear:dev">
+        <SymfonyConsole command="cache:clear" checkreturn="true">
+            <arg value="--env=dev"/>
+        </SymfonyConsole>
+    </target>
+
+    <target name="cache:clear:prod">
+        <SymfonyConsole command="cache:clear" checkreturn="true">
+            <arg value="--env=prod"/>
         </SymfonyConsole>
     </target>
 </project>

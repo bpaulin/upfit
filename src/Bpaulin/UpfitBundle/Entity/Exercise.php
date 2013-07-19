@@ -48,6 +48,78 @@ class Exercise
     protected $workouts;
 
     /**
+     * objectives
+     *
+     * @ORM\OneToMany(targetEntity="Intensity", mappedBy="exercise", cascade={"remove", "persist"})
+     */
+    protected $intensities;
+
+    /**
+     * Init missing intensities
+     *
+     * @param  Array    $muscles
+     * @return Exercise
+     */
+    public function fillIntensities($muscles)
+    {
+        foreach ($muscles as $muscle) {
+            if (!$this->getIntensityByMuscle($muscle)) {
+                $intensity = new Intensity();
+                $intensity
+                    ->setExercise($this)
+                    ->setMuscle($muscle)
+                    ->setIntensity(0);
+                $this->addIntensity($intensity);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get intensity for a muscle, return false if not defined
+     *
+     * @param  \Bpaulin\UpfitBundle\Entity\Muscle            $muscle
+     * @return boolean|\Bpaulin\UpfitBundle\Entity\Intensity
+     */
+    public function getIntensityByMuscle(\Bpaulin\UpfitBundle\Entity\Muscle $muscle)
+    {
+        foreach ($this->intensities as $intensity) {
+            if ($intensity->getMuscle() === $muscle) {
+                return $intensity;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Set intensity for a muscle, creating one if not defined
+     *
+     * @param  \Bpaulin\UpfitBundle\Entity\Muscle $muscle
+     * @param  integer                            $value
+     * @return Exercise
+     */
+    public function setIntensityByMuscle(\Bpaulin\UpfitBundle\Entity\Muscle $muscle, $value)
+    {
+        foreach ($this->intensities as $intensity) {
+            if ($intensity->getMuscle() === $muscle) {
+                $intensity->setIntensity($value);
+
+                return $this;
+            }
+        }
+        $intensity = new Intensity();
+        $intensity
+            ->setExercise($this)
+            ->setMuscle($muscle)
+            ->setIntensity($value);
+        $this->addIntensity($intensity);
+
+        return $this;
+    }
+
+    /**
      * Get id
      *
      * @return integer
@@ -78,5 +150,113 @@ class Exercise
     public function getName()
     {
         return $this->name;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->stages = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->workouts = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->intensities = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add stages
+     *
+     * @param  \Bpaulin\UpfitBundle\Entity\Stage $stages
+     * @return Exercise
+     */
+    public function addStage(\Bpaulin\UpfitBundle\Entity\Stage $stages)
+    {
+        $this->stages[] = $stages;
+
+        return $this;
+    }
+
+    /**
+     * Remove stages
+     *
+     * @param \Bpaulin\UpfitBundle\Entity\Stage $stages
+     */
+    public function removeStage(\Bpaulin\UpfitBundle\Entity\Stage $stages)
+    {
+        $this->stages->removeElement($stages);
+    }
+
+    /**
+     * Get stages
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getStages()
+    {
+        return $this->stages;
+    }
+
+    /**
+     * Add workouts
+     *
+     * @param  \Bpaulin\UpfitBundle\Entity\Workout $workouts
+     * @return Exercise
+     */
+    public function addWorkout(\Bpaulin\UpfitBundle\Entity\Workout $workouts)
+    {
+        $this->workouts[] = $workouts;
+
+        return $this;
+    }
+
+    /**
+     * Remove workouts
+     *
+     * @param \Bpaulin\UpfitBundle\Entity\Workout $workouts
+     */
+    public function removeWorkout(\Bpaulin\UpfitBundle\Entity\Workout $workouts)
+    {
+        $this->workouts->removeElement($workouts);
+    }
+
+    /**
+     * Get workouts
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getWorkouts()
+    {
+        return $this->workouts;
+    }
+
+    /**
+     * Add intensities
+     *
+     * @param  \Bpaulin\UpfitBundle\Entity\Intensity $intensities
+     * @return Exercise
+     */
+    public function addIntensity(\Bpaulin\UpfitBundle\Entity\Intensity $intensity)
+    {
+        $this->intensities[] = $intensity;
+
+        return $this;
+    }
+
+    /**
+     * Remove intensities
+     *
+     * @param \Bpaulin\UpfitBundle\Entity\Intensity $intensities
+     */
+    public function removeIntensity(\Bpaulin\UpfitBundle\Entity\Intensity $intensity)
+    {
+        $this->intensities->removeElement($intensity);
+    }
+
+    /**
+     * Get intensities
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getIntensities()
+    {
+        return $this->intensities;
     }
 }

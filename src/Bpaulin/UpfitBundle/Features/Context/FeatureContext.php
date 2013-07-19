@@ -36,6 +36,7 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
         $this->useContext('program', new ProgramSubContext());
         $this->useContext('exercise', new ExerciseSubContext());
         $this->useContext('session', new SessionSubContext());
+        $this->useContext('objective', new ObjectiveSubContext());
     }
 
     /**

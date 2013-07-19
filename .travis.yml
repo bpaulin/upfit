@@ -1,5 +1,10 @@
 language: php
 
+branches:
+  only:
+    - master
+    - develop
+
 php:
   - 5.4
   - 5.5
@@ -18,4 +23,4 @@ before_script:
     - sleep 5
     - cp build.properties.dist build.properties
 
-script: ./bin/phing run:ci
+script: ./bin/phing ci:travis

@@ -1,0 +1,24 @@
+{% extends "BpaulinUpfitBundle:Crud:show.html.twig" %}
+{%
+    set breadcrumbs = {
+        'Member' : {
+            'route': path('upfit_member'),
+            'icon': 'gamepad',
+        },
+        'Muscles' : {
+            'route': path('member_muscle'),
+            'icon': 'list',
+        },
+        (entity.name) : {
+            'route': path('member_session_workout', { 'id': entity.id }),
+        },
+    }
+%}
+{%
+    set fields = {
+        'id' : entity.id,
+        'name' : entity.name,
+    }
+%}
+
+{% block h1 %}Muscle <small>{{ entity.name }}</small>{% endblock %}

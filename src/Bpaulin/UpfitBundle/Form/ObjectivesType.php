@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ExerciseType extends AbstractType
+class ObjectivesType extends AbstractType
 {
     /**
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
@@ -14,27 +14,27 @@ class ExerciseType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
             ->add(
-                'intensities',
+                'objectives',
                 'collection',
                 array(
-                    'type'         => new IntensityType(),
+                    'type'         => new ObjectiveType(),
                 )
-            );
+            )
+            ->add('edit', 'submit');
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(
             array(
-                'data_class' => 'Bpaulin\UpfitBundle\Entity\Exercise'
+            'data_class' => 'Bpaulin\UpfitBundle\Entity\User'
             )
         );
     }
 
     public function getName()
     {
-        return 'bpaulin_upfitbundle_exercisetype';
+        return 'bpaulin_upfitbundle_objectivestype';
     }
 }

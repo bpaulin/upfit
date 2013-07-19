@@ -4,10 +4,12 @@
 /app/cache/*
 /app/config/parameters.yml
 /app/logs/*
+/app/config/master.rb
+/app/config/develop.rb
 /build/
 /vendor/
 /bin/
-/dumps/
+/backups/
 /composer.phar
 /upfit2.sublime-workspace
 /build.properties

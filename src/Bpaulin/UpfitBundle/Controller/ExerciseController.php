@@ -44,7 +44,12 @@ class ExerciseController extends Controller
      */
     public function createAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
         $entity  = new Exercise();
+
+        $entities = $em->getRepository('BpaulinUpfitBundle:Muscle')->findAll();
+        $entity->FillIntensities($entities);
+
         $form = $this->createForm(new ExerciseType(), $entity);
         $form->bind($request);
 
@@ -76,7 +81,11 @@ class ExerciseController extends Controller
      */
     public function newAction()
     {
+        $em = $this->getDoctrine()->getManager();
         $entity = new Exercise();
+
+        $entities = $em->getRepository('BpaulinUpfitBundle:Muscle')->findAll();
+        $entity->FillIntensities($entities);
         $form   = $this->createForm(new ExerciseType(), $entity);
 
         return array(
@@ -108,6 +117,11 @@ class ExerciseController extends Controller
      */
     public function editAction(Exercise $entity)
     {
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('BpaulinUpfitBundle:Muscle')->findAll();
+        $entity->FillIntensities($entities);
+
         $editForm = $this->createForm(new ExerciseType(), $entity);
 
         return array(
@@ -126,6 +140,9 @@ class ExerciseController extends Controller
     public function updateAction(Request $request, Exercise $entity)
     {
         $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('BpaulinUpfitBundle:Muscle')->findAll();
+        $entity->FillIntensities($entities);
 
         $editForm = $this->createForm(new ExerciseType(), $entity);
         $editForm->bind($request);

@@ -10,6 +10,12 @@ use Bpaulin\UpfitBundle\Entity\Stage;
 
 class SessionTest extends \PHPUnit_Framework_TestCase
 {
+    public function testGetId()
+    {
+        $entity = new Session();
+        $this->assertNull($entity->getId());
+    }
+
     public function testCalculateAverageGrade()
     {
         $session = new Session();
@@ -125,5 +131,14 @@ class SessionTest extends \PHPUnit_Framework_TestCase
         $follow = new Session();
         $follow->initWithSession($session);
         $this->assertEquals(count($follow->getWorkouts()), count($session->getWorkouts())-1);
+    }
+
+    public function testInitBeginning()
+    {
+        $session = new Session();
+        $this->assertNull($session->getBeginning());
+
+        $session->initBeginning();
+        $this->assertInstanceOf('DateTime', $session->getBeginning());
     }
 }

@@ -35,6 +35,9 @@ Scenario: Administrator can read exercises
     | danger  | minus     | Delete    | /admin/exercise/1/delete |
   Then I should see a link to "/admin/exercise"
   And I should see "exercise1" as "name"
+  And I should see the following intensities:
+    | muscle | intensity |
+    | muscle1 | 1 |
 
 Scenario: Administrator can update exercises
   Given I am on exercise "exercise1" page
@@ -49,6 +52,10 @@ Scenario: Administrator can update exercises
     |           | Edit      |                   |
   When I fill in "exercise" form with the following:
     | name | exercise6 |
+  When I fill in intensities form with the following:
+    | muscle  | will  |
+    | muscle1 | 0     |
+    | muscle2 | -1    |
   And I press "Edit"
   Then I should be on "/admin/exercise"
   And I should see a "success" message "Exercise exercise6 updated"
@@ -56,6 +63,9 @@ Scenario: Administrator can update exercises
   And I should see a link to exercise "exercise6"
   When I follow this link
   Then I should see "exercise6" as "name"
+  And I should see the following intensities:
+    | muscle | intensity |
+    | muscle2 | -1 |
 
 Scenario: Administrator can create exercises
   Given I am on "/admin/exercise"

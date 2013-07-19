@@ -94,4 +94,35 @@ class ExerciseSubContext extends BehatContext
     {
         return new Step\Then("I should see a link to \"/admin/exercise/new\"");
     }
+
+    /**
+     * @When /^I fill in intensities form with the following:$/
+     */
+    public function iFillInIntensitiesFormWithTheFollowing(TableNode $table)
+    {
+        foreach ($table->getHash() as $index => $row) {
+            $field = 'bpaulin_upfitbundle_exercisetype_intensities_'.$index.'_intensity';
+            $this->getMainContext()->fillField($field, $row['will']);
+        }
+    }
+
+    /**
+     * @Given /^I should see the following intensities:$/
+     */
+    public function iShouldSeeTheFollowingIntensities(TableNode $table)
+    {
+        $hash = $table->getHash();
+        $lis = $this->getMainContext()->getMink()
+                                ->getSession()
+                                ->getPage()
+                                ->findAll('css', ".record_properties dd.intensities ul li");
+        foreach ($hash as $index => $row) {
+            if ($lis[$index]->find('css', '.muscle')->getText() != $row['muscle']) {
+                throw new \Exception('not expected: '.$row['muscle']);
+            }
+            if ($lis[$index]->find('css', '.intensity')->getText() != $row['intensity']) {
+                throw new \Exception('not expected: '.$row['intensity']);
+            }
+        }
+    }
 }

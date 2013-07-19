@@ -1,4 +1,5 @@
 {% extends "BpaulinUpfitBundle:Crud:show.html.twig" %}
+{% import "BpaulinUpfitBundle::macro.html.twig" as macros %}
 {%
     set breadcrumbs = {
         'Admin' : {
@@ -33,6 +34,7 @@
     set fields = {
         'id' : entity.id,
         'name' : entity.name,
+        'intensities' : macros.intensitiesList(entity),
     }
 %}
 

@@ -54,7 +54,7 @@ class ExerciseSettings
     /**
      * difficulty
      *
-     * @ORM\Column(type="smallint")
+     * @ORM\Column(type="smallint", nullable=true)
      * @Assert\Range(min = "0", max = "999")
      */
     protected $difficulty;
@@ -62,7 +62,7 @@ class ExerciseSettings
     /**
      * difficulty Unit
      *
-     * @ORM\Column(type="string", type="string", length=20 )
+     * @ORM\Column(type="string", nullable=true, length=20 )
      */
     protected $difficultyUnit;
 
@@ -86,7 +86,7 @@ class ExerciseSettings
     /**
      * Set rest
      *
-     * @param integer $rest
+     * @param  integer $rest
      * @return Stage
      */
     public function setRest($rest)

@@ -8,6 +8,12 @@ use Bpaulin\UpfitBundle\Entity\Program;
 
 class StageTest extends \PHPUnit_Framework_TestCase
 {
+    public function testGetId()
+    {
+        $entity = new Stage();
+        $this->assertNull($entity->getId());
+    }
+
     public function testCreateWorkout()
     {
         $exercise = new Exercise();
@@ -19,7 +25,8 @@ class StageTest extends \PHPUnit_Framework_TestCase
             ->setNumber(3)
             ->setUnit(4)
             ->setDifficulty(5)
-            ->setDifficultyUnit(6);
+            ->setDifficultyUnit(6)
+            ->setRest(7);
 
         $workout = $stage->createWorkout();
         $this->assertEquals($stage->getExercise(), $workout->getExercise());
@@ -29,6 +36,7 @@ class StageTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($stage->getUnit(), $workout->getUnit());
         $this->assertEquals($stage->getDifficulty(), $workout->getDifficulty());
         $this->assertEquals($stage->getDifficultyUnit(), $workout->getDifficultyUnit());
+        $this->assertEquals($stage->getRest(), $workout->getRest());
     }
 
     public function testGetAndSetProgram()
