@@ -96,4 +96,22 @@ class ExerciseTest extends \PHPUnit_Framework_TestCase
             0
         );
     }
+
+    public function testSetIntensityByMuscle()
+    {
+        $muscle = new Muscle();
+        $exercise = new Exercise();
+
+        $exercise->setIntensityByMuscle($muscle, 1);
+
+        $this->assertNotEquals(
+            $exercise->getIntensityByMuscle($muscle),
+            false
+        );
+
+        $this->assertEquals(
+            $exercise->getIntensityByMuscle($muscle)->getIntensity(),
+            1
+        );
+    }
 }

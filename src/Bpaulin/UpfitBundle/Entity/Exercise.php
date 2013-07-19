@@ -94,6 +94,32 @@ class Exercise
     }
 
     /**
+     * Set intensity for a muscle, creating one if not defined
+     *
+     * @param  \Bpaulin\UpfitBundle\Entity\Muscle $muscle
+     * @param  integer                            $value
+     * @return Exercise
+     */
+    public function setIntensityByMuscle(\Bpaulin\UpfitBundle\Entity\Muscle $muscle, $value)
+    {
+        foreach ($this->intensities as $intensity) {
+            if ($intensity->getMuscle() === $muscle) {
+                $intensity->setIntensity($value);
+
+                return $this;
+            }
+        }
+        $intensity = new Intensity();
+        $intensity
+            ->setExercise($this)
+            ->setMuscle($muscle)
+            ->setIntensity($value);
+        $this->addIntensity($intensity);
+
+        return $this;
+    }
+
+    /**
      * Get id
      *
      * @return integer
