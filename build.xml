@@ -55,6 +55,11 @@
         </SymfonyConsole>
     </target>
 
+    <target name="pre:deploy"
+            description="generate assets"
+            depends="run:assets, composer:update, ci:travis">
+    </target>
+
     <!-- ================================================================== -->
     <!-- CI                                                                 -->
     <!-- ================================================================== -->
@@ -66,7 +71,7 @@
 
     <target name="ci:jenkins"
             description="continuous integration (called by jenkins)"
-            depends="test:no-browser, check, report:no-browser">
+            depends="install:ci, test:no-browser, check, report:no-browser">
     </target>
 
     <!-- ================================================================== -->
