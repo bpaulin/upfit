@@ -1,3 +1,4 @@
+# server "", :app, :web, :primary => true
 # set :domain, ""
 # set :user, ""
 # set :webserver_user, "
@@ -18,9 +19,6 @@ set   :use_composer,     true
 set   :use_composer_tmp, true
 set   :scm,              :git
 set   :model_manager,    "doctrine"
-role  :db,              domain, :primary => true
-role  :web,              domain
-role  :app,             domain, :primary => true
 set   :use_sudo,      false
 set   :shared_files,      ["app/config/parameters.yml"]
 set   :writable_dirs,       ["app/cache", "app/logs"]
