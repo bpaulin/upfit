@@ -7,7 +7,7 @@
 /build/
 /vendor/
 /bin/
-/dumps/
+/backups/
 /composer.phar
 /upfit2.sublime-workspace
 /build.properties
