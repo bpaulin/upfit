@@ -18,12 +18,14 @@ $array = Yaml::parse(file_get_contents('app/config/parameters.yml'));
 $user = $array['parameters']['database_user'];
 $pass = $array['parameters']['database_password'];
 $host = $array['parameters']['database_host'];
-$base = $array['parameters']['database_prod'];
+$base = $array['parameters']['database_name'];
 
-$file = $base . '_' . date("Y-m-d-H-i-s") . '.gz';
-$dir =  __DIR__.'/dumps';
+$file = 'Upfit.local_dump.' . date("ymdHi") . '.sql.gz';
+$dir =  __DIR__.'/backups';
 if (!is_dir($dir)) {
     mkdir($dir);
 }
 $command = "mysqldump --opt -h $host -u $user -p$pass $base | gzip > $dir/$file";
+system($command);
+$command = "ln -s $dir/$file $dir/Upfit.local_dump.latest.sql.gz";
 system($command);
