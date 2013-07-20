@@ -19,7 +19,7 @@ set   :use_composer,     true
 set   :use_composer_tmp, true
 set   :scm,              :git
 set   :model_manager,    "doctrine"
-set   :use_sudo,      false
+set   :use_sudo,      true
 set   :shared_files,      ["app/config/parameters.yml"]
 set   :writable_dirs,       ["app/cache", "app/logs"]
 set   :permission_method,   :acl
@@ -32,3 +32,4 @@ logger.level = Logger::INFO
 set :default_environment, {
   :LANG => 'en_US.UTF-8'
 }
+
