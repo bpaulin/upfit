@@ -58,3 +58,24 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: Bpaulin\UpfitBundle\Entity\User
+
+services:
+    twig.text_extension:
+        class: Twig_Extensions_Extension_Text
+        tags:
+            - name: twig.extension
+
+jms_translation:
+    configs:
+        BpaulinUpfitBundle:
+            dirs: [%kernel.root_dir%, %kernel.root_dir%/../src/Bpaulin/UpfitBundle]
+            output_dir: %kernel.root_dir%/../src/Bpaulin/UpfitBundle/Resources/translations
+            ignored_domains: [routes, FOSUserBundle, validators]
+            excluded_names: [*TestCase.php, *Test.php, *Context.php]
+            excluded_dirs: [cache, data, logs]
+            output-format: xliff
+
+jms_i18n_routing:
+    default_locale: en
+    locales: [de, en, fr, es]
+    strategy: prefix_except_default
