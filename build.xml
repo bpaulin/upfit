@@ -17,7 +17,7 @@
     <property name="path.phploc"            value="bin/phploc" />
     <property name="path.pdepend"           value="bin/pdepend" />
     <property name="path.security-checker"  value="bin/security-checker" />
-    <property name="path.phpdoc"            value="bin/phpdoc.php" />
+    <property name="path.phpdoc"            value="phpdoc" />
     <property name="dir.src"                value="${project.basedir}/src" />
     <property name="dir.build"              value="${project.basedir}/build" />
     <property name="dir.reports"            value="${dir.build}/reports" />
@@ -85,6 +85,11 @@
             depends="install:ci, test:no-browser, check, report:no-browser">
     </target>
 
+    <target name="ci:clean"
+            description="generate assets"
+            depends="install:clean, install:ci, ci:travis">
+    </target>
+
     <!-- ================================================================== -->
     <!-- Clean                                                              -->
     <!-- ================================================================== -->
@@ -104,12 +109,21 @@
 
     <target name="install:dev"
             description="let's code!"
-            depends="install:ci, base:dev:reset, cache:clear:test">
+            depends="install:ci, base:dev:reset, ci:travis">
     </target>
 
     <target name="install:prod"
             description="magical (?!) deploy command"
             depends="composer:deploy, cache:clear:prod, base:prod:update">
+    </target>
+
+    <target name="install:clean">
+        <exec executable="git" passthru="true" checkreturn="true">
+            <arg value="clean"/>
+            <arg value="-fdx"/>
+            <arg line="-e develop.rb -e master.rb -e parameters.yml -e build.properties -e composer.phar -e php-cs-fixer.phar"/>
+        </exec>
+        <delete dir="vendor/"/>
     </target>
 
     <!-- ================================================================== -->
