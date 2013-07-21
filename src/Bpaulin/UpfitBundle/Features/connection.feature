@@ -27,7 +27,13 @@ Scenario Outline: Visitor should be able to login and logout to access member se
   When I go to homepage
   Then I should see a link to "/member"
   When I follow this link
-  Then I should see a link to "/logout" in "connection" area
+  And I should see the following actions:
+    | type    | icon      | label       | link                |
+    | primary | tasks     | Programs    | /member/program     |
+    |         | trophy    | Sessions    | /member/session     |
+    |         | user      | Objectives  | /member/objectives  |
+
+  And I should see a link to "/logout" in "connection" area
   When I follow this link
   Then I should be on homepage
   Examples:
