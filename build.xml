@@ -55,9 +55,20 @@
         </SymfonyConsole>
     </target>
 
+    <target name="run:lang"
+            description="generate assets"
+            depends="cache:clear:prod">
+        <SymfonyConsole command="translation:extract" checkreturn="true">
+            <arg value="--ansi"/>
+            <arg value="--env=prod"/>
+            <arg value="--config=BpaulinUpfitBundle"/>
+            <arg value="en de es fr"/>
+        </SymfonyConsole>
+    </target>
+
     <target name="pre:deploy"
             description="generate assets"
-            depends="run:assets, composer:update, ci:travis">
+            depends="run:lang, run:assets, composer:update, ci:travis">
     </target>
 
     <!-- ================================================================== -->
