@@ -23,12 +23,15 @@
         "doctrine/data-fixtures": "dev-master@dev",
         "doctrine/doctrine-fixtures-bundle": "dev-master@dev",
         "doctrine/doctrine-migrations-bundle": "dev-master@dev",
-        "friendsofsymfony/user-bundle": "*"
+        "friendsofsymfony/user-bundle": "*",
+        "jms/translation-bundle": "1.1.*",
+        "jms/i18n-routing-bundle": "1.1.*@dev"
     },
     "require-dev": {
         "sensiolabs/security-checker": "*",
+        "jms/di-extra-bundle": "1.4.*@dev",
+        "twig/extensions": "1.0.*@dev",
         "squizlabs/php_codesniffer": "dev-master",
-        "phpdocumentor/phpdocumentor": "dev-release-2.0",
         "zetacomponents/console-tools": "dev-master",
         "phploc/phploc": "dev-master",
         "phpmd/phpmd" : "1.4.*",
