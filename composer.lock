@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "427175419f4ef52500aff923d2026eb6",
+    "hash": "0ff236e63c945914c026804a50ab5429",
     "packages": [
         {
             "name": "doctrine/common",
@@ -2378,6 +2378,50 @@
             "time": "2013-01-12 18:59:04"
         },
         {
+            "name": "ezyang/htmlpurifier",
+            "version": "v4.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ezyang/htmlpurifier.git",
+                "reference": "v4.5.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ezyang/htmlpurifier/zipball/v4.5.0",
+                "reference": "v4.5.0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "HTMLPurifier": "library/"
+                },
+                "files": [
+                    "library/HTMLPurifier.composer.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL"
+            ],
+            "authors": [
+                {
+                    "name": "Edward Z. Yang",
+                    "email": "admin@htmlpurifier.org",
+                    "homepage": "http://ezyang.com"
+                }
+            ],
+            "description": "Standards compliant HTML filter written in PHP",
+            "homepage": "http://htmlpurifier.org/",
+            "keywords": [
+                "html"
+            ],
+            "time": "2013-02-18 00:04:08"
+        },
+        {
             "name": "instaclick/php-webdriver",
             "version": "1.0.14",
             "source": {
@@ -2824,17 +2868,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/phpDocumentor2.git",
-                "reference": "f5b6f5a4743458a79e128aea8c9f9067aa7ba10f"
+                "reference": "2f0b5da8adadce1070f4dff73ee55618094cef08"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/phpDocumentor2/zipball/f5b6f5a4743458a79e128aea8c9f9067aa7ba10f",
-                "reference": "f5b6f5a4743458a79e128aea8c9f9067aa7ba10f",
+                "url": "https://api.github.com/repos/phpDocumentor/phpDocumentor2/zipball/2f0b5da8adadce1070f4dff73ee55618094cef08",
+                "reference": "2f0b5da8adadce1070f4dff73ee55618094cef08",
                 "shasum": ""
             },
             "require": {
                 "cilex/cilex": "1.*@dev",
                 "dflydev/markdown": "1.0.*@stable",
+                "ezyang/htmlpurifier": "v4.5.0",
                 "jms/serializer": "0.12.*@dev",
                 "monolog/monolog": "1.4.*@stable",
                 "php": ">=5.3.3",
@@ -2847,7 +2892,7 @@
                 "phpdocumentor/template-old-ocean": ">=1.1.0@stable",
                 "phpdocumentor/template-responsive": ">=1.1.0@stable",
                 "phpdocumentor/template-responsive-twig": "1.*@stable",
-                "phpdocumentor/template-xml": "1.0.*@stable",
+                "phpdocumentor/template-xml": ">=1.1.0@stable",
                 "phpdocumentor/template-zend": ">=1.1.0@stable",
                 "phpdocumentor/unified-asset-installer": "1.*@beta",
                 "symfony/event-dispatcher": "~2.1@stable",
@@ -2891,20 +2936,20 @@
                 "documentation",
                 "phpdoc"
             ],
-            "time": "2013-07-15 06:18:43"
+            "time": "2013-07-21 12:03:56"
         },
         {
             "name": "phpdocumentor/reflection",
-            "version": "0.1.7",
+            "version": "0.1.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/Reflection.git",
-                "reference": "0.1.7"
+                "reference": "0.1.9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/Reflection/zipball/0.1.7",
-                "reference": "0.1.7",
+                "url": "https://api.github.com/repos/phpDocumentor/Reflection/zipball/0.1.9",
+                "reference": "0.1.9",
                 "shasum": ""
             },
             "require": {
@@ -2939,7 +2984,7 @@
                 "reflection",
                 "static analysis"
             ],
-            "time": "2013-06-30 20:08:05"
+            "time": "2013-07-15 18:50:38"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
@@ -2984,21 +3029,20 @@
         },
         {
             "name": "phpdocumentor/template-abstract",
-            "version": "1.0.3",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/template.abstract.git",
-                "reference": "1.0.3"
+                "reference": "1.1.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/template.abstract/zipball/1.0.3",
-                "reference": "1.0.3",
+                "url": "https://api.github.com/repos/phpDocumentor/template.abstract/zipball/1.1.1",
+                "reference": "1.1.1",
                 "shasum": ""
             },
             "require": {
-                "ext-xsl": "*",
-                "phpdocumentor/unified-asset-installer": "1.*"
+                "ext-xsl": "*"
             },
             "type": "phpdocumentor-template",
             "notification-url": "https://packagist.org/downloads/",
@@ -3012,25 +3056,24 @@
                 "phpdoc",
                 "template"
             ],
-            "time": "2013-06-23 06:08:34"
+            "time": "2013-07-21 05:29:17"
         },
         {
             "name": "phpdocumentor/template-checkstyle",
-            "version": "1.0.1",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/template.checkstyle.git",
-                "reference": "1.0.1"
+                "reference": "1.1.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/phpDocumentor/template.checkstyle/zipball/1.0.1",
-                "reference": "1.0.1",
+                "url": "https://api.github.com/repos/phpDocumentor/template.checkstyle/zipball/1.1.1",
+                "reference": "1.1.1",
                 "shasum": ""
             },
             "require": {
-                "ext-xsl": "*",
-                "phpdocumentor/unified-asset-installer": "1.*"
+                "ext-xsl": "*"
             },
             "type": "phpdocumentor-template",
             "notification-url": "https://packagist.org/downloads/",
@@ -3044,26 +3087,25 @@
                 "phpdoc",
                 "template"
             ],
-            "time": "2012-08-14 13:16:25"
+            "time": "2013-07-21 05:30:11"
         },
         {
             "name": "phpdocumentor/template-new-black",
-            "version": "1.1.1",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/template.new_black.git",
-                "reference": "1.1.1"
+                "reference": "1.2.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/template.new_black/zipball/1.1.1",
-                "reference": "1.1.1",
+                "url": "https://api.github.com/repos/phpDocumentor/template.new_black/zipball/1.2.0",
+                "reference": "1.2.0",
                 "shasum": ""
             },
             "require": {
                 "ext-xsl": "*",
-                "phpdocumentor/template-abstract": "1.*",
-                "phpdocumentor/unified-asset-installer": "1.*"
+                "phpdocumentor/template-abstract": "1.*"
             },
             "type": "phpdocumentor-template",
             "notification-url": "https://packagist.org/downloads/",
@@ -3077,7 +3119,7 @@
                 "phpdoc",
                 "template"
             ],
-            "time": "2013-06-23 18:54:02"
+            "time": "2013-07-20 21:07:43"
         },
         {
             "name": "phpdocumentor/template-old-ocean",
@@ -3113,21 +3155,20 @@
         },
         {
             "name": "phpdocumentor/template-responsive",
-            "version": "1.1.1",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/template.responsive.git",
-                "reference": "1.1.1"
+                "reference": "1.2.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/template.responsive/zipball/1.1.1",
-                "reference": "1.1.1",
+                "url": "https://api.github.com/repos/phpDocumentor/template.responsive/zipball/1.2.1",
+                "reference": "1.2.1",
                 "shasum": ""
             },
             "require": {
-                "ext-xsl": "*",
-                "phpdocumentor/unified-asset-installer": "1.*"
+                "ext-xsl": "*"
             },
             "type": "phpdocumentor-template",
             "notification-url": "https://packagist.org/downloads/",
@@ -3141,24 +3182,21 @@
                 "phpdoc",
                 "template"
             ],
-            "time": "2013-06-23 20:30:54"
+            "time": "2013-07-21 05:31:14"
         },
         {
             "name": "phpdocumentor/template-responsive-twig",
-            "version": "1.0.4",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/template.responsive-twig.git",
-                "reference": "1.0.4"
+                "reference": "1.1.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/template.responsive-twig/zipball/1.0.4",
-                "reference": "1.0.4",
+                "url": "https://api.github.com/repos/phpDocumentor/template.responsive-twig/zipball/1.1.0",
+                "reference": "1.1.0",
                 "shasum": ""
-            },
-            "require": {
-                "phpdocumentor/unified-asset-installer": "1.*"
             },
             "type": "phpdocumentor-template",
             "notification-url": "https://packagist.org/downloads/",
@@ -3172,24 +3210,21 @@
                 "phpdoc",
                 "template"
             ],
-            "time": "2013-07-05 14:08:34"
+            "time": "2013-07-20 21:12:13"
         },
         {
             "name": "phpdocumentor/template-xml",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mvriel/template.xml.git",
-                "reference": "1.0.0"
+                "reference": "1.1.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mvriel/template.xml/zipball/1.0.0",
-                "reference": "1.0.0",
+                "url": "https://api.github.com/repos/mvriel/template.xml/zipball/1.1.0",
+                "reference": "1.1.0",
                 "shasum": ""
-            },
-            "require": {
-                "phpdocumentor/unified-asset-installer": "1.*"
             },
             "type": "phpdocumentor-template",
             "notification-url": "https://packagist.org/downloads/",
@@ -3203,26 +3238,25 @@
                 "phpdoc",
                 "template"
             ],
-            "time": "2013-07-10 19:59:18"
+            "time": "2013-07-20 21:14:30"
         },
         {
             "name": "phpdocumentor/template-zend",
-            "version": "1.1.0",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/template.zend.git",
-                "reference": "1.1.0"
+                "reference": "1.2.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/template.zend/zipball/1.1.0",
-                "reference": "1.1.0",
+                "url": "https://api.github.com/repos/phpDocumentor/template.zend/zipball/1.2.0",
+                "reference": "1.2.0",
                 "shasum": ""
             },
             "require": {
                 "ext-xsl": "*",
-                "phpdocumentor/template-abstract": "1.*",
-                "phpdocumentor/unified-asset-installer": "1.*"
+                "phpdocumentor/template-abstract": "1.*"
             },
             "type": "phpdocumentor-template",
             "notification-url": "https://packagist.org/downloads/",
@@ -3239,7 +3273,7 @@
                 "zend",
                 "zf"
             ],
-            "time": "2013-06-10 08:19:18"
+            "time": "2013-07-20 21:13:06"
         },
         {
             "name": "phpdocumentor/unified-asset-installer",

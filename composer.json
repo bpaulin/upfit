@@ -29,7 +29,6 @@
         "sensiolabs/security-checker": "*",
         "squizlabs/php_codesniffer": "dev-master",
         "phpdocumentor/phpdocumentor": "dev-release-2.0",
-        "phpdocumentor/reflection": "0.1.7",
         "zetacomponents/console-tools": "dev-master",
         "phploc/phploc": "dev-master",
         "phpmd/phpmd" : "1.4.*",
