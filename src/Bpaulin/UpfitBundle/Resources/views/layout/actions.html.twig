@@ -4,9 +4,11 @@
             {% if route.route is defined %}
                 <a class="btn {{ route.class is defined? 'btn-'~route.class }}" href="{{ route.route }}" title="{{ label }}">
                     {% if route.icon is defined %}
-                        <i class="icon-{{ route.icon }}"></i>
+                        <i class="icon-{{ route.icon }}"></i> <span class="hidden-phone">{{ label }}</span>
+                    {% else %}
+                        {{ label }}
                     {% endif %}
-                    <span class="hidden-phone">{{ label }}</span>
+
                 </a>
             {% else %}
                 <a class="btn" href="{{ route }}">
