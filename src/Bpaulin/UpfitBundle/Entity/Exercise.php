@@ -68,7 +68,7 @@ class Exercise
                 $intensity
                     ->setExercise($this)
                     ->setMuscle($muscle)
-                    ->setIntensity(0);
+                    ->setIntensity(-1);
                 $this->addIntensity($intensity);
             }
         }

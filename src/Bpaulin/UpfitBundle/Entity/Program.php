@@ -54,12 +54,23 @@ class Program
         foreach ($this->getStages() as $stage) {
             $gradeStage = array();
             foreach ($stage->getExercise()->getIntensities() as $intensity) {
-                $grade = $intensity->getIntensity() - $user->getObjectiveByMuscle($intensity->getMuscle())->getWill();
+                $objective = $user->getObjectiveByMuscle($intensity->getMuscle());
+                if ($objective) {
+                    $will = $objective->getWill();
+                } else {
+                    $will = 0;
+                }
+                $grade = $intensity->getIntensity() - $will;
                 $grade = (2-abs($grade))/2;
                 $gradeStage[] = $grade;
             }
-            $grades[] = array_sum($gradeStage) / count($gradeStage);
+            if (count($gradeStage) == 0) {
+                $grades[] = 0;
+            } else {
+                $grades[] = array_sum($gradeStage) / count($gradeStage);
+            }
         }
+
         return array_sum($grades) / count($grades);
     }
 

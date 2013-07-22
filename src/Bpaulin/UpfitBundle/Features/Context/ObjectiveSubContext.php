@@ -56,6 +56,7 @@ class ObjectiveSubContext extends BehatContext
     {
         foreach ($table->getHash() as $index => $row) {
             $id = 'bpaulin_upfitbundle_objectivestype_objectives_'.$index.'_will';
+
             return new Step\Then("the \"$id\" field should contain \"{$row['will']}\"");
         }
     }

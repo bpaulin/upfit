@@ -47,6 +47,7 @@
 {% block row %}
     <td>
         <a href="{{ path(route_show, { 'id': entity.id }) }}">{{ entity.name }}</a>
+        {{ macros.programGrade(entity) }}
         {{ macros.stagesList(entity) }}
     </td>
     <td>
