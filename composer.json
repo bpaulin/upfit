@@ -26,7 +26,7 @@
         "friendsofsymfony/user-bundle": "*",
         "jms/translation-bundle": "1.1.*",
         "jms/i18n-routing-bundle": "1.1.*@dev",
-        "jms/di-extra-bundle": "1.4.*@dev",
+        "jms/di-extra-bundle": "1.4.*@dev"
     },
     "require-dev": {
         "sensiolabs/security-checker": "*",
