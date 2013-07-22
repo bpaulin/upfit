@@ -14,7 +14,17 @@ class ObjectiveType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('will')
+            ->add(
+                'will',
+                'choice',
+                array(
+                    'choices' => array(
+                        -1 => "None",
+                        0  => "Normal",
+                        1  => "Intense",
+                    )
+                )
+            )
             ->add(
                 'muscle',
                 null,

@@ -55,16 +55,8 @@ class ObjectiveSubContext extends BehatContext
     public function objectivesFormShouldBeFilledWithTheFollowing(TableNode $table)
     {
         foreach ($table->getHash() as $index => $row) {
-            $field = $this->getMainContext()->getMink()
-                            ->getSession()
-                            ->getPage()
-                            ->find('css', '#bpaulin_upfitbundle_objectivestype_objectives_'.$index.'_will');
-            if (!$field) {
-                throw new \Exception('field not found');
-            }
-            if ($field->getAttribute('value') != $row['will']) {
-                throw new \Exception($field->getAttribute('value').' not expected, '.$row['will'].' wanted');
-            }
+            $id = 'bpaulin_upfitbundle_objectivestype_objectives_'.$index.'_will';
+            return new Step\Then("the \"$id\" field should contain \"{$row['will']}\"");
         }
     }
 }
