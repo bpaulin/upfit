@@ -16,7 +16,19 @@ class SessionType extends AbstractType
         $builder
             ->add('name')
             ->add('comment')
-            ->add('grade')
+            ->add(
+                'grade',
+                'choice',
+                array(
+                    'choices' => array(
+                        -2 => "Too easy",
+                        -1 => "Easy",
+                        0  => "Fine",
+                        1  => "Hard",
+                        2  => "Too Hard"
+                    )
+                )
+            )
         ;
     }
 

@@ -16,11 +16,14 @@ class WorkoutType extends AbstractType
         $builder
             ->add(
                 'grade',
-                null,
+                'choice',
                 array(
-                    'attr' => array(
-                        'min'=> -2,
-                        'max'=> 2,
+                    'choices' => array(
+                        -2 => "Too easy",
+                        -1 => "Easy",
+                        0  => "Fine",
+                        1  => "Hard",
+                        2  => "Too Hard"
                     )
                 )
             )
