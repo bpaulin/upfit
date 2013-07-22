@@ -43,6 +43,27 @@ class Program
     protected $stages;
 
     /**
+     * evaluate this program against user objective from 0 to 1
+     *
+     * @param  User  $user
+     * @return float
+     */
+    public function getGradeForUser(User $user)
+    {
+        $grades = array();
+        foreach ($this->getStages() as $stage) {
+            $gradeStage = array();
+            foreach ($stage->getExercise()->getIntensities() as $intensity) {
+                $grade = $intensity->getIntensity() - $user->getObjectiveByMuscle($intensity->getMuscle())->getWill();
+                $grade = (2-abs($grade))/2;
+                $gradeStage[] = $grade;
+            }
+            $grades[] = array_sum($gradeStage) / count($gradeStage);
+        }
+        return array_sum($grades) / count($grades);
+    }
+
+    /**
      * Get id
      *
      * @return integer
