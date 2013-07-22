@@ -1,7 +1,7 @@
-Feature: Muscle management
-  In order to choose an exercise
+Feature: Objective management
+  In order to choose a program
   As an member
-  I need to consult exercises by muscles
+  I need to set my objectives
 
 Background:
   Given I am member

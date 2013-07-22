@@ -3,6 +3,7 @@
 namespace Bpaulin\UpfitBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Objective
@@ -29,6 +30,7 @@ class Objective
      * @var integer
      *
      * @ORM\Column(name="will", type="smallint")
+     * @Assert\Range(min = "-1", max = "1")
      */
     private $will;
 

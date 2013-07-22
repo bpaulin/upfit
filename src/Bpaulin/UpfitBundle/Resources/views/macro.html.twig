@@ -102,3 +102,9 @@
         {% endfor %}
     </ul>
 {% endmacro %}
+
+{% macro programGrade(program) %}
+    <span class="label">
+        {{ '%.2f'|format(program.gradeForUser(app.user)*100) }} %
+    </span>
+{% endmacro %}
