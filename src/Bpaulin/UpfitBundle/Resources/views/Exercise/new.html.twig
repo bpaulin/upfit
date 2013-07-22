@@ -1,15 +1,15 @@
 {% extends "BpaulinUpfitBundle:Crud:new.html.twig" %}
 {%
     set breadcrumbs = {
-        'Admin' : {
+        ('Admin'|trans) : {
             'route': path('upfit_admin'),
             'icon': 'briefcase',
         },
-        'Exercises' : {
+        ('Exercises'|trans) : {
             'route': path('admin_exercise'),
             'icon': 'list',
         },
-        'New' : {
+        ('New'|trans) : {
             'route': path('admin_exercise_create'),
             'icon': 'plus',
         },
@@ -18,4 +18,4 @@
 {%
     set action = path('admin_exercise_create')
 %}
-{% block h1 %}Exercise <small>New</small>{% endblock %}
+{% block h1 %}{% trans %}Exercise{% endtrans %} <small>New</small>{% endblock %}

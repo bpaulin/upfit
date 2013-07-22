@@ -5,18 +5,18 @@
     {% set route_show = 'admin_program_show' %}
     {%
         set breadcrumbs = {
-            'Admin' : {
+            ('Admin'|trans) : {
                 'route': path('upfit_admin'),
                 'icon': 'briefcase',
             },
-            'Programs' : {
+            ('Programs'|trans) : {
                 'route': path('admin_program'),
             },
         }
     %}
     {%
         set actions = {
-            'Add' : {
+            ('Add'|trans) : {
                 'route': path('admin_program_new'),
                 'icon': 'plus',
             },
@@ -26,11 +26,11 @@
     {% set route_show = 'member_program_show' %}
     {%
         set breadcrumbs = {
-            'Member' : {
+            ('Member'|trans) : {
                 'route': path('upfit_member'),
                 'icon': 'gamepad',
             },
-            'Programs' : {
+            ('Programs'|trans) : {
                 'route': path('member_program'),
             },
         }
@@ -38,11 +38,11 @@
 {% endif %}
 {%
     set fields = {
-        'Name' : 'name',
+        ('Name'|trans) : 'name',
     }
 %}
 
-{% block h1 %}Programs{% endblock %}
+{% block h1 %}{% trans %}Programs{% endtrans %}{% endblock %}
 
 {% block row %}
     <td>

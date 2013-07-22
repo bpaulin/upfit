@@ -60,7 +60,7 @@ class ExerciseController extends Controller
 
             $this->get('session')->getFlashBag()->add(
                 'success',
-                $this->get('translator')->trans('Exercise '.$entity->getName().' created')
+                $this->get('translator')->trans('Exercise %name% created', array('%name%'=>$entity->getName()))
             );
 
             return $this->redirect($this->generateUrl('admin_exercise'));
@@ -155,7 +155,7 @@ class ExerciseController extends Controller
 
             $this->get('session')->getFlashBag()->add(
                 'success',
-                $this->get('translator')->trans('Exercise '.$entity->getName().' updated')
+                $this->get('translator')->trans('Exercise %name% updated', array('%name%'=>$entity->getName()))
             );
 
             return $this->redirect($this->generateUrl('admin_exercise'));
@@ -184,7 +184,7 @@ class ExerciseController extends Controller
             $em->flush();
             $this->get('session')->getFlashBag()->add(
                 'success',
-                $this->get('translator')->trans('Exercise '.$entity->getName().' deleted')
+                $this->get('translator')->trans('Exercise %name% deleted', array('%name%'=>$entity->getName()))
             );
         }
 

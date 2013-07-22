@@ -54,7 +54,7 @@ class ProgramController extends Controller
 
             $this->get('session')->getFlashBag()->add(
                 'success',
-                $this->get('translator')->trans('Program '.$entity->getName().' created')
+                $this->get('translator')->trans('Program %name% created', array('%name%'=>$entity->getName()))
             );
 
             return $this->redirect($this->generateUrl('admin_program'));
@@ -159,7 +159,7 @@ class ProgramController extends Controller
 
             $this->get('session')->getFlashBag()->add(
                 'success',
-                $this->get('translator')->trans('Program '.$entity->getName().' updated')
+                $this->get('translator')->trans('Program %name% updated', array('%name%'=>$entity->getName()))
             );
 
             return $this->redirect($this->generateUrl('admin_program'));
@@ -188,7 +188,7 @@ class ProgramController extends Controller
             $em->flush();
             $this->get('session')->getFlashBag()->add(
                 'success',
-                $this->get('translator')->trans('Program '.$entity->getName().' deleted')
+                $this->get('translator')->trans('Program %name% deleted', array('%name%'=>$entity->getName()))
             );
         }
 

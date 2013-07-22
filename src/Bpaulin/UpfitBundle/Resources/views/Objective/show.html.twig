@@ -1,11 +1,11 @@
 {% extends "BpaulinUpfitBundle:Crud:show.html.twig" %}
 {%
     set breadcrumbs = {
-        'Member' : {
+        ('Member'|trans) : {
             'route': path('upfit_member'),
             'icon': 'gamepad',
         },
-        'Muscles' : {
+        ('Muscles'|trans) : {
             'route': path('member_muscle'),
             'icon': 'list',
         },
@@ -16,9 +16,9 @@
 %}
 {%
     set fields = {
-        'id' : entity.id,
-        'name' : entity.name,
+        ('id'|trans) : entity.id,
+        ('name'|trans) : entity.name,
     }
 %}
 
-{% block h1 %}Muscle <small>{{ entity.name }}</small>{% endblock %}
+{% block h1 %}{% trans %}Muscle{% endtrans %} <small>{{ entity.name }}</small>{% endblock %}

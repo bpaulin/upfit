@@ -17,22 +17,22 @@
                         {% if workout.done %}
                             <span class="status label label-success">
                                 <i class="icon-check-sign done"></i>
-                                <span class="hidden-phone">Done</span>
+                                <span class="hidden-phone">{% trans %}Done{% endtrans %}</span>
                             </span>
                             {{ macros.longGrade(workout.grade) }}
                         {% else %}
                             <span class="status label label-important">
                                 <i class="icon-remove-sign abandoned"></i>
-                                <span class="hidden-phone">Abandoned</span>
+                                <span class="hidden-phone">{% trans %}Abandoned{% endtrans %}</span>
                             </span>
                         {% endif %}
                     {% elseif workout == session.nextWorkout %}
                         <span class="status label label-info current">
-                            Current
+                            {% trans %}Current{% endtrans %}
                         </span>
                     {% else %}
                         <span class="status label label-warning todo">
-                            Todo
+                            {% trans %}Todo{% endtrans %}
                         </span>
                     {% endif %}
                 </td>
@@ -68,29 +68,29 @@
     {% if grade == 2 %}
         <span class="grade label label-important" data-grade="{{ grade }}">
             <i class="icon-double-angle-up"></i>
-            <span class="hidden-phone">Too hard</span>
+            <span class="hidden-phone">{% trans %}Too hard{% endtrans %}</span>
     {% elseif grade == 1 %}
         <span class="grade label label-warning" data-grade="{{ grade }}">
             <i class="icon-angle-up"></i>
-            <span class="hidden-phone">Hard</span>
+            <span class="hidden-phone">{% trans %}Hard{% endtrans %}</span>
     {% elseif grade == 0 %}
         <span class="grade label label-info" data-grade="{{ grade }}">
             <i class="icon-chevron-right"></i>
-            <span class="hidden-phone">Fine</span>
+            <span class="hidden-phone">{% trans %}Fine{% endtrans %}</span>
     {% elseif grade == -1 %}
         <span class="grade label label-warning" data-grade="{{ grade }}">
             <i class="icon-angle-down"></i>
-            <span class="hidden-phone">Easy</span>
+            <span class="hidden-phone">{% trans %}Easy{% endtrans %}</span>
     {% elseif grade == -2 %}
         <span class="grade label label-important" data-grade="{{ grade }}">
             <i class="icon-double-angle-down"></i>
-            <span class="hidden-phone">Too easy</span>
+            <span class="hidden-phone">{% trans %}Too easy{% endtrans %}</span>
     {% endif %}
     </span>
 {% endmacro %}
 
 {% macro exerciseSettingsLine(settings) %}
-    <span class="exercise">{{ settings.exercise.name }}</span> ({{ settings.sets }}*{{ settings.number }} {{ settings.unit }}{% if settings.difficulty>0 %} with {{ settings.difficulty }} {{ settings.difficultyUnit }}{% endif %}){% if settings.rest %}, {{ settings.rest }}s{% endif %}
+    <span class="exercise">{{ settings.exercise.name }}</span> ({{ settings.sets }}*{{ settings.number }} {{ settings.unit }}{% if settings.difficulty>0 %} {% trans %}with{% endtrans %} {{ settings.difficulty }} {{ settings.difficultyUnit }}{% endif %}){% if settings.rest %}, {{ settings.rest }}s{% endif %}
 {% endmacro %}
 
 {% macro intensitiesList(exercise) %}

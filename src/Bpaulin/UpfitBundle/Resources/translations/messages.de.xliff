@@ -1,25 +1,344 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2013-07-21T22:59:56Z" source-language="en" target-language="de" datatype="plaintext" original="not.available">
+  <file date="2013-07-22T12:29:36Z" source-language="en" target-language="de" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
     </header>
     <body>
+      <trans-unit id="8e56de7b0d92373498ffe903f2b9d939632908c4" resname="%name% abandoned">
+        <jms:reference-file line="142">UpfitBundle/Controller/SessionController.php</jms:reference-file>
+        <source>%name% abandoned</source>
+        <target state="new">%name% abandoned</target>
+      </trans-unit>
+      <trans-unit id="3d69459e051295cd29ac7438d797c1799b20c7af" resname="%name% passed">
+        <jms:reference-file line="136">UpfitBundle/Controller/SessionController.php</jms:reference-file>
+        <source>%name% passed</source>
+        <target state="new">%name% passed</target>
+      </trans-unit>
+      <trans-unit id="f34fb6e3669dfd5b0cedd26c92efd3f3dfabf2c2" resname="Abandoned">
+        <jms:reference-file line="26">Resources/views/macro.html.twig</jms:reference-file>
+        <source>Abandoned</source>
+        <target state="new">Abandoned</target>
+      </trans-unit>
+      <trans-unit id="61cc55aa0453184734c3fa0b621eda6fa874bd83" resname="Add">
+        <jms:reference-file line="19">views/Program/index.html.twig</jms:reference-file>
+        <source>Add</source>
+        <target state="new">Add</target>
+      </trans-unit>
+      <trans-unit id="4e7afebcfbae000b22c7c85e5560f89a2a0280b4" resname="Admin">
+        <jms:reference-file line="7">views/Program/show.html.twig</jms:reference-file>
+        <jms:reference-file line="4">views/Program/delete.html.twig</jms:reference-file>
+        <jms:reference-file line="4">views/Program/new.html.twig</jms:reference-file>
+        <jms:reference-file line="8">views/Program/index.html.twig</jms:reference-file>
+        <jms:reference-file line="4">views/Program/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="10">views/Home/index.html.twig</jms:reference-file>
+        <jms:reference-file line="4">views/Home/admin.html.twig</jms:reference-file>
+        <jms:reference-file line="5">views/Exercise/show.html.twig</jms:reference-file>
+        <jms:reference-file line="4">views/Exercise/delete.html.twig</jms:reference-file>
+        <jms:reference-file line="4">views/Exercise/new.html.twig</jms:reference-file>
+        <jms:reference-file line="4">views/Exercise/index.html.twig</jms:reference-file>
+        <jms:reference-file line="4">views/Exercise/edit.html.twig</jms:reference-file>
+        <source>Admin</source>
+        <target state="new">Admin</target>
+      </trans-unit>
       <trans-unit id="6e157c5da4410b7e9de85f5c93026b9176e69064" resname="Create">
         <jms:reference-file line="10">views/Crud/new.html.twig</jms:reference-file>
         <source>Create</source>
         <target state="new">Create</target>
       </trans-unit>
+      <trans-unit id="4fc0e2bc80737d784e6d3f24837950f48732c6ca" resname="Current">
+        <jms:reference-file line="31">Resources/views/macro.html.twig</jms:reference-file>
+        <source>Current</source>
+        <target state="new">Current</target>
+      </trans-unit>
+      <trans-unit id="f6fdbe48dc54dd86f63097a03bd24094dedd713a" resname="Delete">
+        <jms:reference-file line="54">views/Session/show.html.twig</jms:reference-file>
+        <jms:reference-file line="16">views/Session/delete.html.twig</jms:reference-file>
+        <jms:reference-file line="31">views/Program/show.html.twig</jms:reference-file>
+        <jms:reference-file line="15">views/Program/delete.html.twig</jms:reference-file>
+        <jms:reference-file line="15">views/Exercise/delete.html.twig</jms:reference-file>
+        <source>Delete</source>
+        <target state="new">Delete</target>
+      </trans-unit>
+      <trans-unit id="e9b450d14bc2363d292c84f17cfad5cfbd58a458" resname="Done">
+        <jms:reference-file line="20">Resources/views/macro.html.twig</jms:reference-file>
+        <source>Done</source>
+        <target state="new">Done</target>
+      </trans-unit>
+      <trans-unit id="00f03137e1553b0354282415020698a20e955299" resname="Easy">
+        <jms:reference-file line="83">Resources/views/macro.html.twig</jms:reference-file>
+        <source>Easy</source>
+        <target state="new">Easy</target>
+      </trans-unit>
       <trans-unit id="5301648dcf6b53cefc9ed52999aaa92d4603cae0" resname="Edit">
+        <jms:reference-file line="29">views/Session/show.html.twig</jms:reference-file>
+        <jms:reference-file line="39">views/Session/show.html.twig</jms:reference-file>
+        <jms:reference-file line="17">views/Session/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="22">views/Program/show.html.twig</jms:reference-file>
+        <jms:reference-file line="15">views/Program/edit.html.twig</jms:reference-file>
         <jms:reference-file line="11">views/Crud/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="15">views/Exercise/edit.html.twig</jms:reference-file>
         <source>Edit</source>
         <target state="new">Edit</target>
+      </trans-unit>
+      <trans-unit id="20863c83d39b58fdef7224f3c1d865ab1deb9713" resname="Exercise">
+        <jms:reference-file line="41">views/Exercise/show.html.twig</jms:reference-file>
+        <jms:reference-file line="25">views/Exercise/delete.html.twig</jms:reference-file>
+        <jms:reference-file line="21">views/Exercise/new.html.twig</jms:reference-file>
+        <jms:reference-file line="25">views/Exercise/edit.html.twig</jms:reference-file>
+        <source>Exercise</source>
+        <target state="new">Exercise</target>
+      </trans-unit>
+      <trans-unit id="9ffbc58ce21f39ff36b7b5f2282c112987ae5da6" resname="Exercise %name% created">
+        <jms:reference-file line="63">UpfitBundle/Controller/ExerciseController.php</jms:reference-file>
+        <source>Exercise %name% created</source>
+        <target state="new">Exercise %name% created</target>
+      </trans-unit>
+      <trans-unit id="168897d8968604c453a7b3ceb503bc5ebff440d6" resname="Exercise %name% deleted">
+        <jms:reference-file line="187">UpfitBundle/Controller/ExerciseController.php</jms:reference-file>
+        <source>Exercise %name% deleted</source>
+        <target state="new">Exercise %name% deleted</target>
+      </trans-unit>
+      <trans-unit id="ad73e28b9c74d6ecbc034da7eaab6b18cbddb75a" resname="Exercise %name% updated">
+        <jms:reference-file line="158">UpfitBundle/Controller/ExerciseController.php</jms:reference-file>
+        <source>Exercise %name% updated</source>
+        <target state="new">Exercise %name% updated</target>
+      </trans-unit>
+      <trans-unit id="4dc503dafcf231e8065504c4cd9f19a0dcdfc147" resname="Exercises">
+        <jms:reference-file line="9">views/Exercise/show.html.twig</jms:reference-file>
+        <jms:reference-file line="8">views/Exercise/delete.html.twig</jms:reference-file>
+        <jms:reference-file line="8">views/Exercise/new.html.twig</jms:reference-file>
+        <jms:reference-file line="8">views/Exercise/index.html.twig</jms:reference-file>
+        <jms:reference-file line="28">views/Exercise/index.html.twig</jms:reference-file>
+        <jms:reference-file line="8">views/Exercise/edit.html.twig</jms:reference-file>
+        <source>Exercises</source>
+        <target state="new">Exercises</target>
+      </trans-unit>
+      <trans-unit id="226d7ec9afb2799e267e4c2c03be0ec2da38f4fc" resname="Fine">
+        <jms:reference-file line="79">Resources/views/macro.html.twig</jms:reference-file>
+        <source>Fine</source>
+        <target state="new">Fine</target>
+      </trans-unit>
+      <trans-unit id="66587a7a62a90fc91c4c88f1872bedaa52d23a35" resname="Follow">
+        <jms:reference-file line="44">views/Session/show.html.twig</jms:reference-file>
+        <jms:reference-file line="27">views/Program/show.html.twig</jms:reference-file>
+        <jms:reference-file line="56">views/Program/show.html.twig</jms:reference-file>
+        <source>Follow</source>
+        <target state="new">Follow</target>
+      </trans-unit>
+      <trans-unit id="aecc49c15355bf4dd750803c608105f0f6fe909c" resname="Grade">
+        <jms:reference-file line="18">views/Session/index.html.twig</jms:reference-file>
+        <source>Grade</source>
+        <target state="new">Grade</target>
+      </trans-unit>
+      <trans-unit id="20a89915f18c15e815e6422bf02ca6944f6dd8d8" resname="Hard">
+        <jms:reference-file line="75">Resources/views/macro.html.twig</jms:reference-file>
+        <source>Hard</source>
+        <target state="new">Hard</target>
+      </trans-unit>
+      <trans-unit id="6853c98a6f4358bbfed1b3b9c81d308649299b0f" resname="Member">
+        <jms:reference-file line="7">views/Session/show.html.twig</jms:reference-file>
+        <jms:reference-file line="5">views/Session/delete.html.twig</jms:reference-file>
+        <jms:reference-file line="6">views/Session/index.html.twig</jms:reference-file>
+        <jms:reference-file line="6">views/Session/workout.html.twig</jms:reference-file>
+        <jms:reference-file line="6">views/Session/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="41">views/Program/show.html.twig</jms:reference-file>
+        <jms:reference-file line="29">views/Program/index.html.twig</jms:reference-file>
+        <jms:reference-file line="4">views/Home/member.html.twig</jms:reference-file>
+        <jms:reference-file line="4">views/Home/index.html.twig</jms:reference-file>
+        <jms:reference-file line="4">views/Objective/show.html.twig</jms:reference-file>
+        <jms:reference-file line="5">views/Objective/index.html.twig</jms:reference-file>
+        <source>Member</source>
+        <target state="new">Member</target>
+      </trans-unit>
+      <trans-unit id="0e542c010f5f4b8f2534b8dce8a6c726d6b9a9a9" resname="Muscle">
+        <jms:reference-file line="24">views/Objective/show.html.twig</jms:reference-file>
+        <source>Muscle</source>
+        <target state="new">Muscle</target>
+      </trans-unit>
+      <trans-unit id="18dba71d950ae64ed24c6ea29908713c0bde2649" resname="Muscles">
+        <jms:reference-file line="8">views/Objective/show.html.twig</jms:reference-file>
+        <source>Muscles</source>
+        <target state="new">Muscles</target>
+      </trans-unit>
+      <trans-unit id="709a23220f2c3d64d1e1d6d18c4d5280f8d82fca" resname="Name">
+        <jms:reference-file line="17">views/Session/index.html.twig</jms:reference-file>
+        <jms:reference-file line="20">views/Session/index.html.twig</jms:reference-file>
+        <jms:reference-file line="41">views/Program/index.html.twig</jms:reference-file>
+        <source>Name</source>
+        <target state="new">Name</target>
+      </trans-unit>
+      <trans-unit id="6403f2b7eb2aaafe6de34cbf2a029b01afebc512" resname="New">
+        <jms:reference-file line="12">views/Program/new.html.twig</jms:reference-file>
+        <jms:reference-file line="12">views/Exercise/new.html.twig</jms:reference-file>
+        <source>New</source>
+        <target state="new">New</target>
+      </trans-unit>
+      <trans-unit id="24d50592b70a997e82a3839de9c69ef0c75660a9" resname="Objectives">
+        <jms:reference-file line="21">views/Home/member.html.twig</jms:reference-file>
+        <jms:reference-file line="9">views/Objective/index.html.twig</jms:reference-file>
+        <jms:reference-file line="18">views/Objective/index.html.twig</jms:reference-file>
+        <source>Objectives</source>
+        <target state="new">Objectives</target>
       </trans-unit>
       <trans-unit id="ed01cbb47304338668e88515e704927122ca1b25" resname="Objectives updated">
         <jms:reference-file line="44">UpfitBundle/Controller/ObjectiveController.php</jms:reference-file>
         <source>Objectives updated</source>
         <target state="new">Objectives updated</target>
+      </trans-unit>
+      <trans-unit id="9d68007b0763cb230f9034ec96f52b39d03ad630" resname="Program">
+        <jms:reference-file line="72">views/Program/show.html.twig</jms:reference-file>
+        <jms:reference-file line="25">views/Program/delete.html.twig</jms:reference-file>
+        <jms:reference-file line="22">views/Program/new.html.twig</jms:reference-file>
+        <jms:reference-file line="25">views/Program/edit.html.twig</jms:reference-file>
+        <source>Program</source>
+        <target state="new">Program</target>
+      </trans-unit>
+      <trans-unit id="b84fe5e1e053ecd9fa397120b6e74201f4ba6d7c" resname="Program %name% created">
+        <jms:reference-file line="57">UpfitBundle/Controller/ProgramController.php</jms:reference-file>
+        <source>Program %name% created</source>
+        <target state="new">Program %name% created</target>
+      </trans-unit>
+      <trans-unit id="90ff9df5ac46d3ab170dd83c18962d8757e9ba2a" resname="Program %name% deleted">
+        <jms:reference-file line="191">UpfitBundle/Controller/ProgramController.php</jms:reference-file>
+        <source>Program %name% deleted</source>
+        <target state="new">Program %name% deleted</target>
+      </trans-unit>
+      <trans-unit id="95ded2cbc499f868b038968915403c4f3429bab0" resname="Program %name% updated">
+        <jms:reference-file line="162">UpfitBundle/Controller/ProgramController.php</jms:reference-file>
+        <source>Program %name% updated</source>
+        <target state="new">Program %name% updated</target>
+      </trans-unit>
+      <trans-unit id="ab14d0a7db8a3f7096a9e83f624f84232485a23c" resname="Programs">
+        <jms:reference-file line="11">views/Program/show.html.twig</jms:reference-file>
+        <jms:reference-file line="45">views/Program/show.html.twig</jms:reference-file>
+        <jms:reference-file line="8">views/Program/delete.html.twig</jms:reference-file>
+        <jms:reference-file line="8">views/Program/new.html.twig</jms:reference-file>
+        <jms:reference-file line="12">views/Program/index.html.twig</jms:reference-file>
+        <jms:reference-file line="33">views/Program/index.html.twig</jms:reference-file>
+        <jms:reference-file line="45">views/Program/index.html.twig</jms:reference-file>
+        <jms:reference-file line="8">views/Program/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="12">views/Home/member.html.twig</jms:reference-file>
+        <source>Programs</source>
+        <target state="new">Programs</target>
+      </trans-unit>
+      <trans-unit id="b3bd0b5a70497bec4a02b7eb1cb0d4f37eb71a2a" resname="Resume">
+        <jms:reference-file line="24">views/Session/show.html.twig</jms:reference-file>
+        <source>Resume</source>
+        <target state="new">Resume</target>
+      </trans-unit>
+      <trans-unit id="f7f1997c6cd1aa051279675742272a956e7db628" resname="Session">
+        <jms:reference-file line="76">views/Session/show.html.twig</jms:reference-file>
+        <jms:reference-file line="26">views/Session/delete.html.twig</jms:reference-file>
+        <jms:reference-file line="31">views/Session/workout.html.twig</jms:reference-file>
+        <jms:reference-file line="27">views/Session/edit.html.twig</jms:reference-file>
+        <source>Session</source>
+        <target state="new">Session</target>
+      </trans-unit>
+      <trans-unit id="327ec146b2d9c3a7d24b814c1d46cd7b3647d2fe" resname="Session %name% deleted">
+        <jms:reference-file line="255">UpfitBundle/Controller/SessionController.php</jms:reference-file>
+        <source>Session %name% deleted</source>
+        <target state="new">Session %name% deleted</target>
+      </trans-unit>
+      <trans-unit id="7406306480209fa2a7d7677258b12a5032e2162a" resname="Session %name% updated">
+        <jms:reference-file line="209">UpfitBundle/Controller/SessionController.php</jms:reference-file>
+        <source>Session %name% updated</source>
+        <target state="new">Session %name% updated</target>
+      </trans-unit>
+      <trans-unit id="e11e37a9253b34ff1c7224447e143fabca1be9fd" resname="Sessions">
+        <jms:reference-file line="11">views/Session/show.html.twig</jms:reference-file>
+        <jms:reference-file line="9">views/Session/delete.html.twig</jms:reference-file>
+        <jms:reference-file line="10">views/Session/index.html.twig</jms:reference-file>
+        <jms:reference-file line="24">views/Session/index.html.twig</jms:reference-file>
+        <jms:reference-file line="10">views/Session/workout.html.twig</jms:reference-file>
+        <jms:reference-file line="10">views/Session/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="17">views/Home/member.html.twig</jms:reference-file>
+        <source>Sessions</source>
+        <target state="new">Sessions</target>
+      </trans-unit>
+      <trans-unit id="fdebf667212089ea7017a4b5425a561bdb3a30b0" resname="Todo">
+        <jms:reference-file line="35">Resources/views/macro.html.twig</jms:reference-file>
+        <source>Todo</source>
+        <target state="new">Todo</target>
+      </trans-unit>
+      <trans-unit id="e0719a00de6054c013653859fe1756e916732fda" resname="Too easy">
+        <jms:reference-file line="87">Resources/views/macro.html.twig</jms:reference-file>
+        <source>Too easy</source>
+        <target state="new">Too easy</target>
+      </trans-unit>
+      <trans-unit id="531d642be82c1592d439da7297577194c76b9abe" resname="Too hard">
+        <jms:reference-file line="71">Resources/views/macro.html.twig</jms:reference-file>
+        <source>Too hard</source>
+        <target state="new">Too hard</target>
+      </trans-unit>
+      <trans-unit id="8647a7ffe46dd5031e4ce70256dde30fadfc50f8" resname="Unfinished sessions">
+        <jms:reference-file line="4">views/Session/todo.html.twig</jms:reference-file>
+        <source>Unfinished sessions</source>
+        <target state="new">Unfinished sessions</target>
+      </trans-unit>
+      <trans-unit id="39463a5aa46e15cbf00764aeec94cd5c5af4f9f3" resname="Workout">
+        <jms:reference-file line="17">views/Session/workout.html.twig</jms:reference-file>
+        <source>Workout</source>
+        <target state="new">Workout</target>
+      </trans-unit>
+      <trans-unit id="ccb58b229959cef1d161b74046030ef29ec25874" resname="Workouts">
+        <jms:reference-file line="19">views/Session/index.html.twig</jms:reference-file>
+        <source>Workouts</source>
+        <target state="new">Workouts</target>
+      </trans-unit>
+      <trans-unit id="8cbd0a74c6efdb39943b290bb82c9d6b2a6ee5a6" resname="begin">
+        <jms:reference-file line="66">views/Session/show.html.twig</jms:reference-file>
+        <source>begin</source>
+        <target state="new">begin</target>
+      </trans-unit>
+      <trans-unit id="bf1a879257521137fc6dc619b89ed11951c319c4" resname="difficulty">
+        <jms:reference-file line="27">views/Session/workout.html.twig</jms:reference-file>
+        <source>difficulty</source>
+        <target state="new">difficulty</target>
+      </trans-unit>
+      <trans-unit id="eb70d1fcdf826fda896f9a129bacd4ee88fb6e9a" resname="exercise">
+        <jms:reference-file line="25">views/Session/workout.html.twig</jms:reference-file>
+        <jms:reference-file line="12">views/Home/admin.html.twig</jms:reference-file>
+        <source>exercise</source>
+        <target state="new">exercise</target>
+      </trans-unit>
+      <trans-unit id="87ea5dfc8b8e384d848979496e706390b497e547" resname="id">
+        <jms:reference-file line="19">views/Objective/show.html.twig</jms:reference-file>
+        <source>id</source>
+        <target state="new">id</target>
+      </trans-unit>
+      <trans-unit id="6ae999552a0d2dca14d62e2bc8b764d377b1dd6c" resname="name">
+        <jms:reference-file line="65">views/Session/show.html.twig</jms:reference-file>
+        <jms:reference-file line="67">views/Program/show.html.twig</jms:reference-file>
+        <jms:reference-file line="20">views/Objective/show.html.twig</jms:reference-file>
+        <source>name</source>
+        <target state="new">name</target>
+      </trans-unit>
+      <trans-unit id="81d9aeea0e1a408d65b6660a176c5de83dc98e7b" resname="program">
+        <jms:reference-file line="13">views/Home/admin.html.twig</jms:reference-file>
+        <source>program</source>
+        <target state="new">program</target>
+      </trans-unit>
+      <trans-unit id="d6c822010fb777a0f5cd6a7e4c9f79fa6a3663f7" resname="sets">
+        <jms:reference-file line="26">views/Session/workout.html.twig</jms:reference-file>
+        <source>sets</source>
+        <target state="new">sets</target>
+      </trans-unit>
+      <trans-unit id="6075ab2b087a7c8e8917cac579e0bb70bbb7ac8a" resname="stages">
+        <jms:reference-file line="68">views/Program/show.html.twig</jms:reference-file>
+        <source>stages</source>
+        <target state="new">stages</target>
+      </trans-unit>
+      <trans-unit id="8fcd25a39d2037183044a8897e9a5333d727fded" resname="with">
+        <jms:reference-file line="93">Resources/views/macro.html.twig</jms:reference-file>
+        <source>with</source>
+        <target state="new">with</target>
+      </trans-unit>
+      <trans-unit id="974125de678fbb7ffe83cdf61767a0db7b1f2bea" resname="workouts">
+        <jms:reference-file line="67">views/Session/show.html.twig</jms:reference-file>
+        <source>workouts</source>
+        <target state="new">workouts</target>
       </trans-unit>
     </body>
   </file>

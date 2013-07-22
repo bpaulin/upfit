@@ -1,13 +1,13 @@
 {% extends "BpaulinUpfitBundle::layout.html.twig" %}
 {%
 	set actions = {
-		'Member' : path('upfit_member')
+		('Member'|trans) : path('upfit_member')
 	}
 %}
 {% if is_granted("ROLE_ADMIN") %}
 	{%
 		set actions = actions|merge({
-			'Admin' : path('upfit_admin')
+			('Admin'|trans) : path('upfit_admin')
 		})
 	%}
 {% endif %}

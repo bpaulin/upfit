@@ -1,15 +1,15 @@
 {% extends "BpaulinUpfitBundle:Crud:new.html.twig" %}
 {%
     set breadcrumbs = {
-        'Admin' : {
+        ('Admin'|trans) : {
             'route': path('upfit_admin'),
             'icon': 'briefcase',
         },
-        'Programs' : {
+        ('Programs'|trans) : {
             'route': path('admin_program'),
             'icon': 'list',
         },
-        'New' : {
+        ('New'|trans) : {
             'route': path('admin_program_create'),
             'icon': 'plus',
         },
@@ -19,7 +19,7 @@
     set action = path('admin_program_create')
 %}
 
-{% block h1 %}Program <small>New</small>{% endblock %}
+{% block h1 %}{% trans %}Program{% endtrans %} <small>New</small>{% endblock %}
 
 {% block javascripts %}
     {# javascripts '@jquery_ui_js' %}

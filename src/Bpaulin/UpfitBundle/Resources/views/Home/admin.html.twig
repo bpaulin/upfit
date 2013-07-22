@@ -1,7 +1,7 @@
 {% extends "BpaulinUpfitBundle::layout.html.twig" %}
 {%
     set breadcrumbs = {
-        'Admin' : {
+        ('Admin'|trans) : {
             'route': path('upfit_admin'),
             'icon': 'briefcase',
         },
@@ -9,8 +9,8 @@
 %}
 {% set
     actions = {
-		'exercise' : path('admin_exercise'),
-        'program' : path('admin_program')
+		('exercise'|trans) : path('admin_exercise'),
+        ('program'|trans) : path('admin_program')
     }
 %}
 

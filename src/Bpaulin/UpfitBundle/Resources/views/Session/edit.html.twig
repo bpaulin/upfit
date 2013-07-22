@@ -3,18 +3,18 @@
 {%
     set breadcrumbs =
     {
-        'Member' : {
+        ('Member'|trans) : {
             'route': path('upfit_member'),
             'icon': 'gamepad',
         },
-        'Sessions' : {
+        ('Sessions'|trans) : {
             'route': path('member_session'),
             'icon': 'list',
         },
         (entity.name) : {
             'route': path('member_session_show', { 'id': entity.id }),
         },
-        'Edit' : {
+        ('Edit'|trans) : {
             'route': path('member_session_edit', { 'id': entity.id }),
             'icon': 'edit',
         },
@@ -24,7 +24,7 @@
     set action = path('member_session_update', { 'id': entity.id })
 %}
 
-{% block h1 %}Session <small>{{ entity.name }}</small>{% endblock %}
+{% block h1 %}{% trans %}Session{% endtrans %} <small>{{ entity.name }}</small>{% endblock %}
 
 {% block content %}
     <dl>

@@ -133,13 +133,16 @@ class SessionController extends Controller
                 $session->passWorkout();
                 $this->get('session')->getFlashBag()->add(
                     'info',
-                    $next->getExercise()->getName().' passed'
+                    $this->get('translator')->trans('%name% passed', array('%name%'=>$next->getExercise()->getName()))
                 );
             } elseif ($form->get('abandon')->isClicked()) {
                 $session->abandonWorkout();
                 $this->get('session')->getFlashBag()->add(
                     'info',
-                    $next->getExercise()->getName().' abandoned'
+                    $this->get('translator')->trans(
+                        '%name% abandoned',
+                        array('%name%'=>$next->getExercise()->getName())
+                    )
                 );
             }
             $em = $this->getDoctrine()->getManager();
@@ -203,7 +206,7 @@ class SessionController extends Controller
 
             $this->get('session')->getFlashBag()->add(
                 'success',
-                $this->get('translator')->trans('Session '.$entity->getName().' updated')
+                $this->get('translator')->trans('Session %name% updated', array('%name%'=>$entity->getName()))
             );
 
             return $this->redirect($this->generateUrl('member_session'));
@@ -249,7 +252,7 @@ class SessionController extends Controller
             $em->flush();
             $this->get('session')->getFlashBag()->add(
                 'success',
-                $this->get('translator')->trans('Session '.$entity->getName().' deleted')
+                $this->get('translator')->trans('Session %name% deleted', array('%name%'=>$entity->getName()))
             );
         }
 

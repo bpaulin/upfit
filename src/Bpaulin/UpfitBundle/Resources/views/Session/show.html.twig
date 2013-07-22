@@ -4,11 +4,11 @@
 {%
     set breadcrumbs =
     {
-        'Member' : {
+        ('Member'|trans) : {
             'route': path('upfit_member'),
             'icon': 'gamepad',
         },
-        'Sessions' : {
+        ('Sessions'|trans) : {
             'route': path('member_session'),
             'icon': 'list',
         },
@@ -21,12 +21,12 @@
     {%
         set actions =
         {
-            'Resume' : {
+            ('Resume'|trans) : {
                 'route': path('member_session_workout', { 'id': entity.id }),
                 'icon': 'play',
                 'class': 'primary'
             },
-            'Edit' : {
+            ('Edit'|trans) : {
                 'route': path('member_session_edit', {'id': entity.id }),
                 'icon': 'edit'
             },
@@ -36,12 +36,12 @@
     {%
         set actions =
         {
-            'Edit' : {
+            ('Edit'|trans) : {
                 'route': path('member_session_edit', {'id': entity.id }),
                 'icon': 'edit',
                 'class': 'primary'
             },
-            'Follow' : {
+            ('Follow'|trans) : {
                 'route': path('member_session_new', { 'follow': 'session', 'id': entity.id }),
                 'icon': 'repeat'
             },
@@ -51,7 +51,7 @@
 {%
     set actions = actions|merge(
         {
-            'Delete' : {
+            ('Delete'|trans) : {
                 'route': path('member_session_delete', {'id': entity.id }),
                 'icon': 'minus',
                 'class': 'danger'
@@ -62,9 +62,9 @@
 {%
     set fields =
     {
-        'name' : entity.name,
-        'begin' : entity.beginning|date("m/d/Y H:m"),
-        'workouts' : macros.workoutsList(entity),
+        ('name'|trans) : entity.name,
+        ('begin'|trans) : entity.beginning|date("m/d/Y H:m"),
+        ('workouts'|trans) : macros.workoutsList(entity),
     }
 %}
 {% if not entity.nextWorkout %}
@@ -73,4 +73,4 @@
     %}
 {% endif %}
 
-{% block h1 %}Session <small>{{ entity.name }}</small>{% endblock %}
+{% block h1 %}{% trans %}Session{% endtrans %} <small>{{ entity.name }}</small>{% endblock %}
