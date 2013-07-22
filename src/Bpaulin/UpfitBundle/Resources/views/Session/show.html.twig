@@ -63,7 +63,7 @@
     set fields =
     {
         ('name'|trans) : entity.name,
-        ('begin'|trans) : entity.beginning|date("m/d/Y H:m"),
+        ('beginning'|trans) : entity.beginning|date("m/d/Y H:m"),
         ('workouts'|trans) : macros.workoutsList(entity),
     }
 %}

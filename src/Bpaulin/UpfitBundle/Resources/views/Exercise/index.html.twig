@@ -12,7 +12,7 @@
 %}
 {%
     set actions = {
-        'Add' : {
+        ('Add'|trans) : {
             'route': path('admin_exercise_new'),
             'icon': 'plus',
         },
@@ -20,8 +20,8 @@
 %}
 {%
     set fields = {
-        'Id' : 'id',
-        'Name' : 'name',
+        ('Id'|trans) : 'id',
+        ('Name'|trans) : 'name',
     }
 %}
 
