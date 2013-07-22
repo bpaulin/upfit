@@ -4,11 +4,11 @@
 {% if is_granted('ROLE_ADMIN') %}
     {%
         set breadcrumbs = {
-            'Admin' : {
+            ('Admin'|trans) : {
                 'route': path('upfit_admin'),
                 'icon': 'briefcase',
             },
-            'Programs' : {
+            ('Programs'|trans) : {
                 'route': path('admin_program'),
                 'icon': 'list',
             },
@@ -19,16 +19,16 @@
     %}
     {%
         set actions = {
-            'Edit' : {
+            ('Edit'|trans) : {
                 'route': path('admin_program_edit', { 'id': entity.id }),
                 'icon': 'edit',
                 'class': 'primary'
             },
-            'Follow' : {
+            ('Follow'|trans) : {
                 'route': path('member_session_new', { 'follow': 'program', 'id': entity.id }),
                 'icon': 'play',
             },
-            'Delete' : {
+            ('Delete'|trans) : {
                 'route': path('admin_program_delete', { 'id': entity.id }),
                 'icon': 'minus',
                 'class': 'danger'
@@ -38,11 +38,11 @@
 {% else %}
     {%
         set breadcrumbs = {
-            'Member' : {
+            ('Member'|trans) : {
                 'route': path('upfit_member'),
                 'icon': 'gamepad',
             },
-            'Programs' : {
+            ('Programs'|trans) : {
                 'route': path('member_program'),
                 'icon': 'list',
             },
@@ -53,7 +53,7 @@
     %}
     {%
         set actions = {
-            'Follow' : {
+            ('Follow'|trans) : {
                 'route': path('member_session_new', { 'follow': 'program', 'id': entity.id }),
                 'icon': 'play',
                 'class': 'primary'
@@ -64,9 +64,9 @@
 
 {%
     set fields = {
-        'name' : entity.name,
-        'stages' : macros.stagesList(entity),
+        ('name'|trans) : entity.name,
+        ('stages'|trans) : macros.stagesList(entity),
     }
 %}
 
-{% block h1 %}Program <small>{{ entity.name }}</small>{% endblock %}
+{% block h1 %}{% trans %}Program{% endtrans %} <small>{{ entity.name }}</small>{% endblock %}

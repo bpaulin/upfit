@@ -2,18 +2,18 @@
 {%
     set breadcrumbs =
     {
-        'Member' : {
+        ('Member'|trans) : {
             'route': path('upfit_member'),
             'icon': 'gamepad',
         },
-        'Sessions' : {
+        ('Sessions'|trans) : {
             'route': path('member_session'),
             'icon': 'list',
         },
         (entity.name) : {
             'route': path('member_session_show', { 'id': entity.id }),
         },
-        'Delete' : {
+        ('Delete'|trans) : {
             'route': path('member_session_delete', { 'id': entity.id }),
             'icon': 'minus',
         },
@@ -23,4 +23,4 @@
     set action = path('member_session_delete_confirm', { 'id': entity.id })
 %}
 
-{% block h1 %}Session <small>{{ entity.name }}</small>{% endblock %}
+{% block h1 %}{% trans %}Session{% endtrans %} <small>{{ entity.name }}</small>{% endblock %}

@@ -1,18 +1,18 @@
 {% extends "BpaulinUpfitBundle:Crud:delete.html.twig" %}
 {%
     set breadcrumbs = {
-        'Admin' : {
+        ('Admin'|trans) : {
             'route': path('upfit_admin'),
             'icon': 'briefcase',
         },
-        'Exercises' : {
+        ('Exercises'|trans) : {
             'route': path('admin_exercise'),
             'icon': 'list',
         },
         (entity.name) : {
             'route': path('admin_exercise_show', { 'id': entity.id }),
         },
-        'Delete' : {
+        ('Delete'|trans) : {
             'route': path('admin_exercise_delete', { 'id': entity.id }),
             'icon': 'minus',
         },
@@ -22,4 +22,4 @@
     set action = path('admin_exercise_delete_confirm', { 'id': entity.id })
 %}
 
-{% block h1 %}Exercise <small>{{ entity.name }}</small>{% endblock %}
+{% block h1 %}{% trans %}Exercise{% endtrans %} <small>{{ entity.name }}</small>{% endblock %}

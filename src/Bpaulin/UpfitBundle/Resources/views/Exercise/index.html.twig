@@ -1,18 +1,18 @@
 {% extends "BpaulinUpfitBundle:Crud:index.html.twig" %}
 {%
     set breadcrumbs = {
-        'Admin' : {
+        ('Admin'|trans) : {
             'route': path('upfit_admin'),
             'icon': 'briefcase',
         },
-        'Exercises' : {
+        ('Exercises'|trans) : {
             'route': path('admin_exercise'),
         },
     }
 %}
 {%
     set actions = {
-        'Add' : {
+        ('Add'|trans) : {
             'route': path('admin_exercise_new'),
             'icon': 'plus',
         },
@@ -20,12 +20,12 @@
 %}
 {%
     set fields = {
-        'Id' : 'id',
-        'Name' : 'name',
+        ('Id'|trans) : 'id',
+        ('Name'|trans) : 'name',
     }
 %}
 
-{% block h1 %}Exercises{% endblock %}
+{% block h1 %}{% trans %}Exercises{% endtrans %}{% endblock %}
 
 {% block row %}
     <td>{{ entity.id }}</td>

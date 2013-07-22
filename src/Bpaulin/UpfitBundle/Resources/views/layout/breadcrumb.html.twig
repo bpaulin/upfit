@@ -8,7 +8,7 @@
             {% if loop.last %}
                 <li class="active">
                     <span class="visible-phone breadcrumb-label">
-                        {{ label|trans }}
+                        {{ label }}
                     </span>
                 </li>
             {% else %}
@@ -16,9 +16,9 @@
                     <a href="{{ route.route }}">
                         {% if route.icon is defined %}
                             <i class="icon-{{ route.icon }}"></i>
-                            <span class="hidden-phone breadcrumb-label">{{ label|trans }}</span>
+                            <span class="hidden-phone breadcrumb-label">{{ label }}</span>
                         {% else %}
-                            <span class="breadcrumb-label">{{ label|trans }}</span>
+                            <span class="breadcrumb-label">{{ label }}</span>
                         {% endif %}
                     </a>
                     <span class="divider">/</span>

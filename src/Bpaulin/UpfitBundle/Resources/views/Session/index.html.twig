@@ -3,25 +3,25 @@
 {%
     set breadcrumbs =
     {
-        'Member' : {
+        ('Member'|trans) : {
             'route': path('upfit_member'),
             'icon': 'gamepad',
         },
-        'Sessions' : {
+        ('Sessions'|trans) : {
             'route': path('member_session'),
         },
     }
 %}
 {%
     set fields = {
-        'Name' : 'name',
-        'Grade' : 'name',
-        'Workouts' : 'name',
-        'Name' : 'name',
+        ('Name'|trans) : 'name',
+        ('Grade'|trans) : 'name',
+        ('Workouts'|trans) : 'name',
+        ('Name'|trans) : 'name',
     }
 %}
 
-{% block h1 %}Sessions{% endblock %}
+{% block h1 %}{% trans %}Sessions{% endtrans %}{% endblock %}
 
 {% block row %}
     <div class="row record-session">
@@ -39,12 +39,12 @@
                 {% if not entity.nextWorkout %}
                     <a class="btn" href="{{ path('member_session_new', { 'follow': 'session', 'id': entity.id }) }}">
                         <i class="icon-repeat"></i>
-                        <span class="hidden-phone">Follow</span>
+                        <span class="hidden-phone">{% trans %}Follow{% endtrans %}</span>
                     </a>
                 {% else %}
                     <a class="btn btn-primary" href="{{ path('member_session_workout', { 'id': entity.id }) }}">
                         <i class="icon-play"></i>
-                        <span class="hidden-phone">Resume</span>
+                        <span class="hidden-phone">{% trans %}Resume{% endtrans %}</span>
                     </a>
                 {% endif %}
             </div>

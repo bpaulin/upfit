@@ -3,18 +3,18 @@
 {%
     set breadcrumbs =
     {
-        'Member' : {
+        ('Member'|trans) : {
             'route': path('upfit_member'),
             'icon': 'gamepad',
         },
-        'Sessions' : {
+        ('Sessions'|trans) : {
             'route': path('member_session'),
             'icon': 'list',
         },
         (entity.name) : {
             'route': path('member_session_show', { 'id': entity.id }),
         },
-        'Workout' : {
+        ('Workout'|trans) : {
             'route': path('member_session_workout', { 'id': entity.id }),
         },
     }
@@ -22,13 +22,13 @@
 
 {%
     set fields = {
-        'exercise' : entity.nextWorkout.exercise.name,
-        'sets': (entity.nextWorkout.sets ~ '*' ~ entity.nextWorkout.number ~ ' ' ~ entity.nextWorkout.unit),
-        'difficulty': (entity.nextWorkout.difficulty ~ ' ' ~ entity.nextWorkout.difficultyUnit)
+        ('exercise'|trans) : entity.nextWorkout.exercise.name,
+        ('sets'|trans): (entity.nextWorkout.sets ~ '*' ~ entity.nextWorkout.number ~ ' ' ~ entity.nextWorkout.unit),
+        ('difficulty'|trans): (entity.nextWorkout.difficulty ~ ' ' ~ entity.nextWorkout.difficultyUnit)
     }
 %}
 
-{% block h1 %}Session <small>{{ entity.name }}</small>{% endblock %}
+{% block h1 %}{% trans %}Session{% endtrans %} <small>{{ entity.name }}</small>{% endblock %}
 
 {% block content %}
 <div class="nav well">

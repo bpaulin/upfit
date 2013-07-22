@@ -5,18 +5,18 @@
     {% set route_show = 'admin_program_show' %}
     {%
         set breadcrumbs = {
-            'Admin' : {
+            ('Admin'|trans) : {
                 'route': path('upfit_admin'),
                 'icon': 'briefcase',
             },
-            'Programs' : {
+            ('Programs'|trans) : {
                 'route': path('admin_program'),
             },
         }
     %}
     {%
         set actions = {
-            'Add' : {
+            ('Add'|trans) : {
                 'route': path('admin_program_new'),
                 'icon': 'plus',
             },
@@ -26,11 +26,11 @@
     {% set route_show = 'member_program_show' %}
     {%
         set breadcrumbs = {
-            'Member' : {
+            ('Member'|trans) : {
                 'route': path('upfit_member'),
                 'icon': 'gamepad',
             },
-            'Programs' : {
+            ('Programs'|trans) : {
                 'route': path('member_program'),
             },
         }
@@ -38,11 +38,11 @@
 {% endif %}
 {%
     set fields = {
-        'Name' : 'name',
+        ('Name'|trans) : 'name',
     }
 %}
 
-{% block h1 %}Programs{% endblock %}
+{% block h1 %}{% trans %}Programs{% endtrans %}{% endblock %}
 
 {% block row %}
     <td>
@@ -52,7 +52,7 @@
     <td>
         <a class="btn btn-mini btn-primary" href="{{ path('member_session_new', { 'follow': 'program', 'id': entity.id }) }}">
             <i class="icon-play"></i>
-            Begin a session
+            {% trans %}Begin a session{% endtrans %}
         </a>
     </td>
 {% endblock %}
