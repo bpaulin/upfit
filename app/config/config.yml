@@ -77,6 +77,6 @@ jms_translation:
             output-format: xliff
 
 jms_i18n_routing:
-    default_locale: en
+    default_locale: %locale%
     locales: [de, en, fr, es]
     strategy: prefix_except_default
