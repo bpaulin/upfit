@@ -23,7 +23,6 @@ class AppKernel extends Kernel
             new JMS\TranslationBundle\JMSTranslationBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Bpaulin\UpfitBundle\BpaulinUpfitBundle(),
-
             new JMS\I18nRoutingBundle\JMSI18nRoutingBundle(),
         );
 

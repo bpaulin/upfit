@@ -25,11 +25,11 @@
         "doctrine/doctrine-migrations-bundle": "dev-master@dev",
         "friendsofsymfony/user-bundle": "*",
         "jms/translation-bundle": "1.1.*",
-        "jms/i18n-routing-bundle": "1.1.*@dev"
+        "jms/i18n-routing-bundle": "1.1.*@dev",
+        "jms/di-extra-bundle": "1.4.*@dev",
     },
     "require-dev": {
         "sensiolabs/security-checker": "*",
-        "jms/di-extra-bundle": "1.4.*@dev",
         "twig/extensions": "1.0.*@dev",
         "squizlabs/php_codesniffer": "dev-master",
         "zetacomponents/console-tools": "dev-master",
