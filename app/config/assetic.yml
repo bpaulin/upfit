@@ -18,7 +18,7 @@ assetic:
                 # - ../vendor/twitter/bootstrap/js/bootstrap-carousel.js
                 - ../vendor/twitter/bootstrap/js/bootstrap-collapse.js
                 # - ../vendor/twitter/bootstrap/js/bootstrap-dropdown.js
-                # - ../vendor/twitter/bootstrap/js/bootstrap-modal.js
+                - ../vendor/twitter/bootstrap/js/bootstrap-modal.js
                 # - ../vendor/twitter/bootstrap/js/bootstrap-popover.js
                 # - ../vendor/twitter/bootstrap/js/bootstrap-scrollspy.js
                 # - ../vendor/twitter/bootstrap/js/bootstrap-tab.js
