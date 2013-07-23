@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2013-07-22T12:56:44Z" source-language="en" target-language="de" datatype="plaintext" original="not.available">
+  <file date="2013-07-23T18:34:12Z" source-language="en" target-language="de" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -33,7 +33,7 @@
         <jms:reference-file line="4">views/Program/new.html.twig</jms:reference-file>
         <jms:reference-file line="8">views/Program/index.html.twig</jms:reference-file>
         <jms:reference-file line="4">views/Program/edit.html.twig</jms:reference-file>
-        <jms:reference-file line="10">views/Home/index.html.twig</jms:reference-file>
+        <jms:reference-file line="13">views/Home/index.html.twig</jms:reference-file>
         <jms:reference-file line="4">views/Home/admin.html.twig</jms:reference-file>
         <jms:reference-file line="5">views/Exercise/show.html.twig</jms:reference-file>
         <jms:reference-file line="4">views/Exercise/delete.html.twig</jms:reference-file>
@@ -44,7 +44,9 @@
         <target state="new">Admin</target>
       </trans-unit>
       <trans-unit id="29ecc0dd7358ab7807d00abfb346a07c9d2a0112" resname="Begin a session">
-        <jms:reference-file line="55">views/Program/index.html.twig</jms:reference-file>
+        <jms:reference-file line="56">views/Program/index.html.twig</jms:reference-file>
+        <jms:reference-file line="77">views/Program/index.html.twig</jms:reference-file>
+        <jms:reference-file line="89">views/Program/index.html.twig</jms:reference-file>
         <source>Begin a session</source>
         <target state="new">Begin a session</target>
       </trans-unit>
@@ -68,11 +70,14 @@
         <target state="new">Delete</target>
       </trans-unit>
       <trans-unit id="e9b450d14bc2363d292c84f17cfad5cfbd58a458" resname="Done">
+        <jms:reference-file line="39">views/Session/workout.html.twig</jms:reference-file>
         <jms:reference-file line="20">Resources/views/macro.html.twig</jms:reference-file>
         <source>Done</source>
         <target state="new">Done</target>
       </trans-unit>
       <trans-unit id="00f03137e1553b0354282415020698a20e955299" resname="Easy">
+        <jms:reference-file line="23">UpfitBundle/Form/WorkoutType.php</jms:reference-file>
+        <jms:reference-file line="25">UpfitBundle/Form/SessionType.php</jms:reference-file>
         <jms:reference-file line="83">Resources/views/macro.html.twig</jms:reference-file>
         <source>Easy</source>
         <target state="new">Easy</target>
@@ -122,6 +127,8 @@
         <target state="new">Exercises</target>
       </trans-unit>
       <trans-unit id="226d7ec9afb2799e267e4c2c03be0ec2da38f4fc" resname="Fine">
+        <jms:reference-file line="24">UpfitBundle/Form/WorkoutType.php</jms:reference-file>
+        <jms:reference-file line="26">UpfitBundle/Form/SessionType.php</jms:reference-file>
         <jms:reference-file line="79">Resources/views/macro.html.twig</jms:reference-file>
         <source>Fine</source>
         <target state="new">Fine</target>
@@ -134,12 +141,19 @@
         <source>Follow</source>
         <target state="new">Follow</target>
       </trans-unit>
+      <trans-unit id="149d7ab31b5cd16693e1d4dcd2d84b102fe01e3b" resname="Go!">
+        <jms:reference-file line="8">views/Home/index.html.twig</jms:reference-file>
+        <source>Go!</source>
+        <target state="new">Go!</target>
+      </trans-unit>
       <trans-unit id="aecc49c15355bf4dd750803c608105f0f6fe909c" resname="Grade">
         <jms:reference-file line="18">views/Session/index.html.twig</jms:reference-file>
         <source>Grade</source>
         <target state="new">Grade</target>
       </trans-unit>
       <trans-unit id="20a89915f18c15e815e6422bf02ca6944f6dd8d8" resname="Hard">
+        <jms:reference-file line="25">UpfitBundle/Form/WorkoutType.php</jms:reference-file>
+        <jms:reference-file line="27">UpfitBundle/Form/SessionType.php</jms:reference-file>
         <jms:reference-file line="75">Resources/views/macro.html.twig</jms:reference-file>
         <source>Hard</source>
         <target state="new">Hard</target>
@@ -148,6 +162,12 @@
         <jms:reference-file line="23">views/Exercise/index.html.twig</jms:reference-file>
         <source>Id</source>
         <target state="new">Id</target>
+      </trans-unit>
+      <trans-unit id="42b74e4d07533c88a5ac073ed2aee7bbc834d1d9" resname="Intense">
+        <jms:reference-file line="24">UpfitBundle/Form/ObjectiveType.php</jms:reference-file>
+        <jms:reference-file line="24">UpfitBundle/Form/IntensityType.php</jms:reference-file>
+        <source>Intense</source>
+        <target state="new">Intense</target>
       </trans-unit>
       <trans-unit id="6853c98a6f4358bbfed1b3b9c81d308649299b0f" resname="Member">
         <jms:reference-file line="7">views/Session/show.html.twig</jms:reference-file>
@@ -158,7 +178,6 @@
         <jms:reference-file line="41">views/Program/show.html.twig</jms:reference-file>
         <jms:reference-file line="29">views/Program/index.html.twig</jms:reference-file>
         <jms:reference-file line="4">views/Home/member.html.twig</jms:reference-file>
-        <jms:reference-file line="4">views/Home/index.html.twig</jms:reference-file>
         <jms:reference-file line="4">views/Objective/show.html.twig</jms:reference-file>
         <jms:reference-file line="5">views/Objective/index.html.twig</jms:reference-file>
         <source>Member</source>
@@ -188,6 +207,18 @@
         <source>New</source>
         <target state="new">New</target>
       </trans-unit>
+      <trans-unit id="6eef6648406c333a4035cd5e60d0bf2ecf2606d7" resname="None">
+        <jms:reference-file line="22">UpfitBundle/Form/ObjectiveType.php</jms:reference-file>
+        <jms:reference-file line="22">UpfitBundle/Form/IntensityType.php</jms:reference-file>
+        <source>None</source>
+        <target state="new">None</target>
+      </trans-unit>
+      <trans-unit id="45e118d0563ea8581f830f46e85b60ae714faae4" resname="Normal">
+        <jms:reference-file line="23">UpfitBundle/Form/ObjectiveType.php</jms:reference-file>
+        <jms:reference-file line="23">UpfitBundle/Form/IntensityType.php</jms:reference-file>
+        <source>Normal</source>
+        <target state="new">Normal</target>
+      </trans-unit>
       <trans-unit id="24d50592b70a997e82a3839de9c69ef0c75660a9" resname="Objectives">
         <jms:reference-file line="21">views/Home/member.html.twig</jms:reference-file>
         <jms:reference-file line="9">views/Objective/index.html.twig</jms:reference-file>
@@ -201,7 +232,7 @@
         <target state="new">Objectives updated</target>
       </trans-unit>
       <trans-unit id="9d68007b0763cb230f9034ec96f52b39d03ad630" resname="Program">
-        <jms:reference-file line="72">views/Program/show.html.twig</jms:reference-file>
+        <jms:reference-file line="73">views/Program/show.html.twig</jms:reference-file>
         <jms:reference-file line="25">views/Program/delete.html.twig</jms:reference-file>
         <jms:reference-file line="22">views/Program/new.html.twig</jms:reference-file>
         <jms:reference-file line="25">views/Program/edit.html.twig</jms:reference-file>
@@ -276,7 +307,15 @@
         <source>Todo</source>
         <target state="new">Todo</target>
       </trans-unit>
+      <trans-unit id="506db14a75faa3ba9dc7e94996b35efc006d0dbe" resname="Too Hard">
+        <jms:reference-file line="26">UpfitBundle/Form/WorkoutType.php</jms:reference-file>
+        <jms:reference-file line="28">UpfitBundle/Form/SessionType.php</jms:reference-file>
+        <source>Too Hard</source>
+        <target state="new">Too Hard</target>
+      </trans-unit>
       <trans-unit id="e0719a00de6054c013653859fe1756e916732fda" resname="Too easy">
+        <jms:reference-file line="22">UpfitBundle/Form/WorkoutType.php</jms:reference-file>
+        <jms:reference-file line="24">UpfitBundle/Form/SessionType.php</jms:reference-file>
         <jms:reference-file line="87">Resources/views/macro.html.twig</jms:reference-file>
         <source>Too easy</source>
         <target state="new">Too easy</target>
@@ -290,6 +329,11 @@
         <jms:reference-file line="4">views/Session/todo.html.twig</jms:reference-file>
         <source>Unfinished sessions</source>
         <target state="new">Unfinished sessions</target>
+      </trans-unit>
+      <trans-unit id="907b3bee27789aea8e5741129a807a24712d027c" resname="View Details">
+        <jms:reference-file line="73">views/Program/index.html.twig</jms:reference-file>
+        <source>View Details</source>
+        <target state="new">View Details</target>
       </trans-unit>
       <trans-unit id="39463a5aa46e15cbf00764aeec94cd5c5af4f9f3" resname="Workout">
         <jms:reference-file line="17">views/Session/workout.html.twig</jms:reference-file>
@@ -317,6 +361,11 @@
         <source>exercise</source>
         <target state="new">exercise</target>
       </trans-unit>
+      <trans-unit id="39a6bd435eb632f802d806b2b41b9326f1b16b51" resname="grade">
+        <jms:reference-file line="69">views/Program/show.html.twig</jms:reference-file>
+        <source>grade</source>
+        <target state="new">grade</target>
+      </trans-unit>
       <trans-unit id="87ea5dfc8b8e384d848979496e706390b497e547" resname="id">
         <jms:reference-file line="19">views/Objective/show.html.twig</jms:reference-file>
         <source>id</source>
@@ -339,12 +388,18 @@
         <source>sets</source>
         <target state="new">sets</target>
       </trans-unit>
+      <trans-unit id="714ba53f75a9a3ecbf656c8b3945ce159a52e2d4" resname="sport for a geek">
+        <jms:reference-file line="6">views/Home/index.html.twig</jms:reference-file>
+        <source>sport for a geek</source>
+        <target state="new">sport for a geek</target>
+      </trans-unit>
       <trans-unit id="6075ab2b087a7c8e8917cac579e0bb70bbb7ac8a" resname="stages">
         <jms:reference-file line="68">views/Program/show.html.twig</jms:reference-file>
         <source>stages</source>
         <target state="new">stages</target>
       </trans-unit>
       <trans-unit id="8fcd25a39d2037183044a8897e9a5333d727fded" resname="with">
+        <jms:reference-file line="35">views/Session/workout.html.twig</jms:reference-file>
         <jms:reference-file line="93">Resources/views/macro.html.twig</jms:reference-file>
         <source>with</source>
         <target state="new">with</target>

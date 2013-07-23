@@ -86,7 +86,9 @@ class SessionSubContext extends BehatContext
         }
 
         return array(
-            new Step\Then("the \".record_properties dd.exercise\" element should contain \"".$exercise->getName()."\""),
+            new Step\Then(
+                "the \".exercise-settings span.exercise\" element should contain \"".$exercise->getName()."\""
+            ),
         );
     }
 

@@ -1,40 +1,46 @@
 <div class="navbar navbar-static-top">
   <div class="navbar-inner">
     <div class="container">
+
       <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="brand" href="#">Upfit</a>
-      <ul class="nav">
-        <li>
-          <a href="https://github.com/bpaulin/upfit">
-            <i class="icon-github-sign icon-large"></i>
-            <span class="hidden-phone">Github</span>
-          </a>
-        </li>
+
+      <a class="brand" href="{{path('upfit_index')}}">
+        Upfit
+      </a>
+
+      <ul class="nav pull-right" id="connection-area">
+        {% if app.user.username is defined %}
+          <li class="navbar-text">
+            {{ app.user.username }}
+          </li>
+          <li>
+            <a href="{{ path('fos_user_security_logout') }}">
+              <i class="icon-signout"></i>
+              <span class="hidden-phone"> {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</span>
+            </a>
+          </li>
+        {% else %}
+          <li>
+            <a href="{{ path('fos_user_security_login') }}">
+              <i class="icon-signin"></i>
+              <span class="hidden-phone"> {{ 'layout.login'|trans({}, 'FOSUserBundle') }}</span>
+            </a>
+          </li>
+        {% endif %}
       </ul>
+
       <div class="nav-collapse collapse">
-        <ul class="nav pull-right" id="connection-area">
-          {% if app.user.username is defined %}
-            <li class="navbar-text">
-              {{ app.user.username }}
-            </li>
-            <li>
-              <a href="{{ path('fos_user_security_logout') }}">
-                <i class="icon-signout"></i>
-                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-              </a>
-            </li>
-          {% else %}
-            <li>
-              <a href="{{ path('fos_user_security_login') }}">
-                <i class="icon-signin"></i>
-                {{ 'layout.login'|trans({}, 'FOSUserBundle') }}
-              </a>
-            </li>
-          {% endif %}
+        <ul class="nav">
+          <li>
+            <a href="https://github.com/bpaulin/upfit">
+              <i class="icon-github-sign icon-large"></i>
+              Github
+            </a>
+          </li>
         </ul>
       </div><!--/.nav-collapse -->
     </div>

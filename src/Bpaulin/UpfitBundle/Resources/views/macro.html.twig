@@ -90,7 +90,7 @@
 {% endmacro %}
 
 {% macro exerciseSettingsLine(settings) %}
-    <span class="exercise">{{ settings.exercise.name }}</span> ({{ settings.sets }}*{{ settings.number }} {{ settings.unit }}{% if settings.difficulty>0 %} {% trans %}with{% endtrans %} {{ settings.difficulty }} {{ settings.difficultyUnit }}{% endif %}){% if settings.rest %}, {{ settings.rest }}s{% endif %}
+    <span class="exercise">{{ settings.exercise.name }}</span> <small>({{ settings.sets }}*{{ settings.number }} {{ settings.unit }}{% if settings.difficulty>0 %} {% trans %}with{% endtrans %} {{ settings.difficulty }} {{ settings.difficultyUnit }}{% endif %}){% if settings.rest %}, {{ settings.rest }}s{% endif %}</small>
 {% endmacro %}
 
 {% macro intensitiesList(exercise) %}
