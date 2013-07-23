@@ -1,17 +1,17 @@
 {% if actions is defined %}
-    <div class="btn-group" id="actions-area">
+    <div class="" id="actions-area">
         {% for label, route in actions %}
             {% if route.route is defined %}
-                <a class="btn {{ route.class is defined? 'btn-'~route.class }}" href="{{ route.route }}" title="{{ label }}">
+                <a class="btn btn-block {{ route.class is defined? 'btn-'~route.class }}" href="{{ route.route }}" title="{{ label }}">
                     {% if route.icon is defined %}
-                        <i class="icon-{{ route.icon }}"></i> <span class="hidden-phone">{{ label }}</span>
+                        <i class="icon-{{ route.icon }}"></i> {{ label }}
                     {% else %}
                         {{ label }}
                     {% endif %}
 
                 </a>
             {% else %}
-                <a class="btn" href="{{ route }}">
+                <a class="btn btn-block" href="{{ route }}">
                     {{ label }}
                 </a>
             {% endif %}

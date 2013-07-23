@@ -1,16 +1,27 @@
 {% extends "BpaulinUpfitBundle::layout.html.twig" %}
-{%
-	set actions = {
-		('Member'|trans) : path('upfit_member')
-	}
-%}
+
+{% block container %}
+<div class="hero-unit">
+    <h1>Upfit</h1>
+    <p>{% trans %}sport for a geek{% endtrans %}</p>
+    <p>
+        <a href="{{ path('upfit_member') }}" class="btn btn-primary btn-large">{% trans %}Go!{% endtrans %}</a>
+    </p>
+</div>
+
 {% if is_granted("ROLE_ADMIN") %}
-	{%
-		set actions = actions|merge({
-			('Admin'|trans) : path('upfit_admin')
-		})
-	%}
+    <a class="btn btn-block" href="{{ path('upfit_admin') }}" class="btn btn-primary btn-large">{% trans %}Admin{% endtrans %}</a>
 {% endif %}
 
-{% block content %}
+<div class="row">
+    <div class="span6">
+        <h2>What's that?</h2>
+        <p>Everything is on github
+        <p><a class="btn" href="https://github.com/bpaulin/upfit"><i class="icon-github-sign icon-large"></i> Github</a></p>
+    </div><!--/span-->
+    <div class="span6">
+        <h2>Registration</h2>
+        <p>This is a test ... it's for my eyes only</p>
+    </div><!--/span-->
+</div><!--/row-->
 {% endblock %}
