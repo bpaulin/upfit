@@ -19,8 +19,6 @@ before_script:
     - phpenv rehash
     - cp build.properties.dist build.properties
     - phing install:ci
-    # - wget http://getcomposer.org/composer.phar
-    # - php composer.phar install --prefer-source -n
     - "php app/console server:run > /dev/null &"
     - "sh -e /etc/init.d/xvfb start"
     - "export DISPLAY=:99.0"
