@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "5c8e3ddf0382acd6d6356dc7b41e0d7e",
+    "hash": "a7b8cdd70af4308c1784698fe88564a5",
     "packages": [
         {
             "name": "doctrine/common",
@@ -3611,13 +3611,23 @@
     ],
     "minimum-stability": "dev",
     "stability-flags": {
+        "symfony/symfony": 0,
+        "doctrine/orm": 0,
+        "doctrine/doctrine-bundle": 0,
+        "twig/extensions": 20,
+        "symfony/assetic-bundle": 0,
+        "symfony/swiftmailer-bundle": 0,
+        "symfony/monolog-bundle": 0,
+        "sensio/distribution-bundle": 0,
+        "sensio/framework-extra-bundle": 0,
+        "sensio/generator-bundle": 0,
+        "incenteev/composer-parameter-handler": 0,
         "phing/phing": 20,
         "doctrine/data-fixtures": 20,
         "doctrine/doctrine-fixtures-bundle": 20,
         "doctrine/doctrine-migrations-bundle": 20,
         "jms/i18n-routing-bundle": 20,
         "jms/di-extra-bundle": 20,
-        "twig/extensions": 20,
         "squizlabs/php_codesniffer": 20,
         "zetacomponents/console-tools": 20,
         "phploc/phploc": 20,
