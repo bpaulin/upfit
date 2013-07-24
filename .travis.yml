@@ -15,7 +15,6 @@ matrix:
 
 before_script:
     - pear channel-discover pear.phing.info
-    - pear install PHP_CodeSniffer
     - pear install phing/phing
     - phpenv rehash
     - cp build.properties.dist build.properties
