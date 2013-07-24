@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "99de094e95b03f4e7ae26b5ff2fb3553",
+    "hash": "67ff73bd2362aa2e86a3d5b80b0b233c",
     "packages": [
         {
             "name": "doctrine/common",
@@ -3570,7 +3570,6 @@
         "sensio/framework-extra-bundle": 0,
         "sensio/generator-bundle": 0,
         "incenteev/composer-parameter-handler": 0,
-        "doctrine/data-fixtures": 20,
         "doctrine/doctrine-fixtures-bundle": 20,
         "doctrine/doctrine-migrations-bundle": 20,
         "jms/i18n-routing-bundle": 20,
