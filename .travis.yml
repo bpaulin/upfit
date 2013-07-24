@@ -1,9 +1,9 @@
 language: php
 
-branches:
-  only:
-    - master
-    - develop
+# branches:
+#   only:
+#     - master
+#     - develop
 
 php:
   - 5.4
