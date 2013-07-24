@@ -28,8 +28,7 @@ class SessionType extends AbstractType
                         2  => "Too Hard"
                     )
                 )
-            )
-        ;
+            );
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

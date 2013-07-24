@@ -29,7 +29,6 @@
         "doctrine/doctrine-migrations-bundle"     : "dev-master",
         "sensiolabs/security-checker"             : "*",
         "twig/extensions"                         : "1.0.*@dev",
-        "squizlabs/php_codesniffer"               : "dev-master",
         "zetacomponents/console-tools"            : "dev-master",
         "phploc/phploc"                           : "dev-master",
         "phpmd/phpmd"                             : "1.4.*",

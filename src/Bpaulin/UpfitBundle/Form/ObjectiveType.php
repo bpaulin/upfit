@@ -32,8 +32,7 @@ class ObjectiveType extends AbstractType
                     'property'=>'name',
                     'disabled'=>true
                 )
-            )
-        ;
+            );
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

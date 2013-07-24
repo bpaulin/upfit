@@ -215,12 +215,9 @@
     </target>
 
     <target name="check:style">
-        <exec executable="${path.php}" passthru="true" checkreturn="true">
-            <arg value="${path.phpcs}"/>
-            <arg value="-p"/>
-            <arg value="--standard=PSR2"/>
-            <arg path="${dir.src}"/>
-        </exec>
+        <phpcodesniffer
+            standard="PSR2"
+            file="${dir.src}"/>
     </target>
 
     <target name="check:mess">
