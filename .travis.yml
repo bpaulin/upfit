@@ -26,4 +26,4 @@ before_script:
     - "java -jar vendor/selenium/standalone-server/selenium-server-standalone-2.*.jar > /dev/null &"
     - sleep 5
 
-script: ./bin/phing ci:travis
+script: phing ci:travis

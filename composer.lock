@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "a7b8cdd70af4308c1784698fe88564a5",
+    "hash": "99de094e95b03f4e7ae26b5ff2fb3553",
     "packages": [
         {
             "name": "doctrine/common",
@@ -1183,58 +1183,6 @@
                 "php"
             ],
             "time": "2012-04-23 15:52:11"
-        },
-        {
-            "name": "phing/phing",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phingofficial/phing.git",
-                "reference": "a4d292e5c02c6cf317ba47d9c7a35669c68eb873"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phingofficial/phing/zipball/a4d292e5c02c6cf317ba47d9c7a35669c68eb873",
-                "reference": "a4d292e5c02c6cf317ba47d9c7a35669c68eb873",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.2.0"
-            },
-            "bin": [
-                "bin/phing"
-            ],
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "classes/phing/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "include-path": [
-                "classes"
-            ],
-            "license": [
-                "LGPL3"
-            ],
-            "authors": [
-                {
-                    "name": "Michiel Rook",
-                    "email": "mrook@php.net"
-                },
-                {
-                    "name": "Phing Community",
-                    "homepage": "http://www.phing.info/trac/wiki/Development/Contributors"
-                }
-            ],
-            "description": "PHing Is Not GNU make; it's a PHP project build system or build tool based on Apache Ant.",
-            "homepage": "http://www.phing.info/",
-            "keywords": [
-                "build",
-                "task",
-                "tool"
-            ],
-            "time": "2013-07-01 13:53:19"
         },
         {
             "name": "psr/log",
@@ -3622,7 +3570,6 @@
         "sensio/framework-extra-bundle": 0,
         "sensio/generator-bundle": 0,
         "incenteev/composer-parameter-handler": 0,
-        "phing/phing": 20,
         "doctrine/data-fixtures": 20,
         "doctrine/doctrine-fixtures-bundle": 20,
         "doctrine/doctrine-migrations-bundle": 20,
