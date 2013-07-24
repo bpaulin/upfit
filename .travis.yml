@@ -14,7 +14,8 @@ matrix:
     - php: 5.5
 
 before_script:
-    - pyrus install phing/phing
+    - pear channel-discover pear.phing.info
+    - pear install phing/phing
     - phpenv rehash
     - cp build.properties.dist build.properties
     - wget http://getcomposer.org/composer.phar
