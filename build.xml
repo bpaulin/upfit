@@ -77,12 +77,12 @@
 
     <target name="ci:travis"
             description="continuous integration (called by travis)"
-            depends="cache:clear:test, test, check">
+            depends="test, check">
     </target>
 
     <target name="ci:jenkins"
             description="continuous integration (called by jenkins)"
-            depends="install:ci, test:no-browser, check, report:no-browser">
+            depends="test:no-browser, check, report:no-browser">
     </target>
 
     <target name="ci:clean"
@@ -102,9 +102,23 @@
     <!-- Install                                                            -->
     <!-- ================================================================== -->
 
+    <target name="install:composer">
+        <if>
+            <available file="${path.composer}"/>
+            <then>
+                <composer command="self-update"
+                          composer="${path.composer}"
+                          php="${path.php}"/>
+            </then>
+            <else>
+                <exec command="curl -s https://getcomposer.org/installer | php"/>
+            </else>
+        </if>
+    </target>
+
     <target name="install:ci"
             description="install deps and testing db"
-            depends="composer:install, base:test:reset">
+            depends="composer:install">
     </target>
 
     <target name="install:dev"
@@ -121,7 +135,7 @@
         <exec executable="git" passthru="true" checkreturn="true">
             <arg value="clean"/>
             <arg value="-fdx"/>
-            <arg line="-e develop.rb -e master.rb -e parameters.yml -e build.properties -e composer.phar -e php-cs-fixer.phar"/>
+            <arg line="-e develop.rb -e master.rb -e parameters.yml -e build.properties -e php-cs-fixer.phar"/>
         </exec>
         <delete dir="vendor/"/>
     </target>
@@ -137,6 +151,7 @@
     </target>
 
     <target name="composer:update"
+            depends="install:composer"
             description="update dependencies">
         <composer command="update"
                   composer="${path.composer}"
@@ -144,11 +159,13 @@
     </target>
 
     <target name="composer:install"
+            depends="install:composer"
             description="install dependencies">
         <composer command="install" composer="${path.composer}" php="${path.php}"/>
     </target>
 
     <target name="composer:deploy"
+            depends="install:composer"
             description="install dependencies for prod">
         <composer command="install" composer="${path.composer}" php="${path.php}">
             <arg value="--no-dev" />
