@@ -133,7 +133,11 @@ class ProgramSubContext extends BehatContext
     {
         //bpaulin_upfitbundle_programtype_stages_0_difficultyUnit
         $form = 'bpaulin_upfitbundle_programtype_stages_0_';
-        foreach ($table->getRowsHash() as $field => $value) {
+        $tab = $table->getRowsHash();
+        $em = $this->getMainContext()->getKernel()->getContainer()->get('doctrine')->getManager();
+        $exercise = $em->getRepository('BpaulinUpfitBundle:Exercise')->findOneByName($tab['exercise']);
+        $tab['exercise'] = $exercise->getId();
+        foreach ($tab as $field => $value) {
             $this->getMainContext()->fillField($form.$field, $value);
         }
     }

@@ -233,7 +233,7 @@
     </target>
 
     <target name="check:cpd">
-        <exec executable="${path.php}" passthru="true" checkreturn="true">
+        <exec executable="${path.php}" passthru="true" checkreturn="false">
             <arg value="${path.phpcpd}"/>
             <arg line="--names *.php,*.twig"/>
             <arg line="--min-lines 5"/>
