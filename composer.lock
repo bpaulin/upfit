@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "9cdb30ac05bfc07bc23062d109f0209f",
+    "hash": "477f1444e92b5996893dfe12abc5b0a1",
     "packages": [
         {
             "name": "doctrine/common",
@@ -1750,21 +1750,21 @@
         },
         {
             "name": "behat/mink",
-            "version": "v1.4.3",
+            "version": "v1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Behat/Mink.git",
-                "reference": "v1.4.3"
+                "reference": "v1.5.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Behat/Mink/zipball/v1.4.3",
-                "reference": "v1.4.3",
+                "url": "https://api.github.com/repos/Behat/Mink/zipball/v1.5.0",
+                "reference": "v1.5.0",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.1",
-                "symfony/css-selector": ">=2.0,<2.4-dev"
+                "symfony/css-selector": ">=2.0,<3.0"
             },
             "suggest": {
                 "behat/mink-browserkit-driver": "extremely fast headless driver for Symfony\\Kernel-based apps (Sf2, Silex)",
@@ -1775,7 +1775,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-develop": "1.4.x-dev"
+                    "dev-develop": "1.5.x-dev"
                 }
             },
             "autoload": {
@@ -1801,24 +1801,24 @@
                 "testing",
                 "web"
             ],
-            "time": "2013-03-02 15:53:18"
+            "time": "2013-04-13 23:39:27"
         },
         {
             "name": "behat/mink-browserkit-driver",
-            "version": "v1.0.5",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Behat/MinkBrowserKitDriver.git",
-                "reference": "v1.0.5"
+                "reference": "v1.1.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Behat/MinkBrowserKitDriver/zipball/v1.0.5",
-                "reference": "v1.0.5",
+                "url": "https://api.github.com/repos/Behat/MinkBrowserKitDriver/zipball/v1.1.0",
+                "reference": "v1.1.0",
                 "shasum": ""
             },
             "require": {
-                "behat/mink": ">=1.4.3,<1.5",
+                "behat/mink": ">=1.5,<1.6",
                 "php": ">=5.3.1",
                 "symfony/browser-kit": ">=2.0,<3.0",
                 "symfony/dom-crawler": ">=2.0,<3.0"
@@ -1829,7 +1829,7 @@
             "type": "mink-driver",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "1.1.x-dev"
                 }
             },
             "autoload": {
@@ -1856,7 +1856,7 @@
                 "browser",
                 "testing"
             ],
-            "time": "2013-04-13 12:17:15"
+            "time": "2013-04-13 23:46:30"
         },
         {
             "name": "behat/mink-extension",
@@ -1914,27 +1914,27 @@
         },
         {
             "name": "behat/mink-selenium2-driver",
-            "version": "v1.0.6",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Behat/MinkSelenium2Driver.git",
-                "reference": "v1.0.6"
+                "reference": "v1.1.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Behat/MinkSelenium2Driver/zipball/v1.0.6",
-                "reference": "v1.0.6",
+                "url": "https://api.github.com/repos/Behat/MinkSelenium2Driver/zipball/v1.1.1",
+                "reference": "v1.1.1",
                 "shasum": ""
             },
             "require": {
-                "behat/mink": ">=1.4.3,<1.5",
+                "behat/mink": ">=1.5,<1.6",
                 "instaclick/php-webdriver": ">=1.0.12.0,<1.1",
                 "php": ">=5.3.1"
             },
             "type": "mink-driver",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "1.1.x-dev"
                 }
             },
             "autoload": {
@@ -1968,7 +1968,7 @@
                 "testing",
                 "webdriver"
             ],
-            "time": "2013-04-13 12:56:28"
+            "time": "2013-06-02 19:09:45"
         },
         {
             "name": "behat/symfony2-extension",
@@ -3574,13 +3574,14 @@
         "squizlabs/php_codesniffer": 0,
         "phpmd/phpmd": 0,
         "phpunit/phpunit": 0,
-        "behat/behat": 20,
-        "behat/mink": 20,
-        "behat/symfony2-extension": 20,
-        "behat/mink-extension": 20,
-        "behat/mink-browserkit-driver": 20,
-        "behat/mink-selenium2-driver": 20,
+        "behat/behat": 0,
+        "behat/mink": 0,
+        "behat/symfony2-extension": 0,
+        "behat/mink-extension": 0,
+        "behat/mink-browserkit-driver": 0,
+        "behat/mink-selenium2-driver": 0,
         "vipsoft/doctrine-data-fixtures-extension": 0,
+        "selenium/standalone-server": 0,
         "leafo/lessphp": 0,
         "twitter/bootstrap": 0,
         "components/font-awesome": 0,
