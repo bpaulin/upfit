@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "2b612b82e98c29ec18fa03c9c159f053",
+    "hash": "9cdb30ac05bfc07bc23062d109f0209f",
     "packages": [
         {
             "name": "doctrine/common",
@@ -2028,16 +2028,16 @@
         },
         {
             "name": "components/font-awesome",
-            "version": "dev-master",
+            "version": "3.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/components/font-awesome.git",
-                "reference": "af5860ab7aecada8c9f3942c6204563915d0d6f1"
+                "reference": "3.2.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/components/font-awesome/zipball/af5860ab7aecada8c9f3942c6204563915d0d6f1",
-                "reference": "af5860ab7aecada8c9f3942c6204563915d0d6f1",
+                "url": "https://api.github.com/repos/components/font-awesome/zipball/3.2.1",
+                "reference": "3.2.1",
                 "shasum": ""
             },
             "require": {
@@ -2065,7 +2065,7 @@
                 "OFL-1.1"
             ],
             "description": "The iconic font designed for use with Twitter Bootstrap.",
-            "time": "2013-06-14 14:00:48"
+            "time": "2013-07-27 07:29:06"
         },
         {
             "name": "components/jquery",
@@ -2513,16 +2513,16 @@
         },
         {
             "name": "pdepend/pdepend",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
-                "url": "git://github.com/pdepend/pdepend.git",
-                "reference": "1.1.0"
+                "url": "https://github.com/pdepend/pdepend.git",
+                "reference": "1.1.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/pdepend/pdepend/zipball/1.1.0",
-                "reference": "1.1.0",
+                "url": "https://api.github.com/repos/pdepend/pdepend/zipball/1.1.1",
+                "reference": "1.1.1",
                 "shasum": ""
             },
             "require": {
@@ -2534,7 +2534,7 @@
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
             "description": "Official version of pdepend to be handled with Composer",
-            "time": "2012-09-12 04:09:19"
+            "time": "2013-07-25 19:23:48"
         },
         {
             "name": "phploc/phploc",
@@ -2542,12 +2542,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phploc.git",
-                "reference": "ccf4221911a336869b84ecc6b8e16d072fae9ec3"
+                "reference": "2e72af68a47c55bd08e4d387aae8ea8f0a9fcb42"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phploc/zipball/ccf4221911a336869b84ecc6b8e16d072fae9ec3",
-                "reference": "ccf4221911a336869b84ecc6b8e16d072fae9ec3",
+                "url": "https://api.github.com/repos/sebastianbergmann/phploc/zipball/2e72af68a47c55bd08e4d387aae8ea8f0a9fcb42",
+                "reference": "2e72af68a47c55bd08e4d387aae8ea8f0a9fcb42",
                 "shasum": ""
             },
             "require": {
@@ -2555,7 +2555,7 @@
                 "sebastian/finder-facade": ">=1.1.0",
                 "sebastian/git": ">=1.0.0",
                 "sebastian/version": ">=1.0.0",
-                "zetacomponents/console-tools": "dev-master"
+                "symfony/console": ">=2.2.0"
             },
             "bin": [
                 "composer/bin/phploc"
@@ -2579,24 +2579,24 @@
             ],
             "description": "A tool for quickly measuring the size of a PHP project.",
             "homepage": "https://github.com/sebastianbergmann/phploc",
-            "time": "2013-07-03 06:35:21"
+            "time": "2013-07-26 10:05:55"
         },
         {
             "name": "phpmd/phpmd",
-            "version": "1.4.1",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
-                "url": "git://github.com/phpmd/phpmd.git",
-                "reference": "1.4.1"
+                "url": "https://github.com/phpmd/phpmd.git",
+                "reference": "1.5.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/phpmd/phpmd/archive/1.4.1.zip",
-                "reference": "1.4.1",
+                "url": "https://api.github.com/repos/phpmd/phpmd/zipball/1.5.0",
+                "reference": "1.5.0",
                 "shasum": ""
             },
             "require": {
-                "pdepend/pdepend": "*",
+                "pdepend/pdepend": ">=1.1.1",
                 "php": ">=5.3.0"
             },
             "bin": [
@@ -2609,7 +2609,7 @@
                 "src/main/php"
             ],
             "description": "Official version of PHPMD handled with Composer.",
-            "time": "2012-12-14 12:25:09"
+            "time": "2013-07-26 14:47:02"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -3104,16 +3104,16 @@
         },
         {
             "name": "sebastian/phpcpd",
-            "version": "dev-master",
+            "version": "1.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpcpd.git",
-                "reference": "105262ad7c0e1d3cbe688c4312f4c06fce6d7ec8"
+                "reference": "1.4.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpcpd/zipball/105262ad7c0e1d3cbe688c4312f4c06fce6d7ec8",
-                "reference": "105262ad7c0e1d3cbe688c4312f4c06fce6d7ec8",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpcpd/zipball/1.4.2",
+                "reference": "1.4.2",
                 "shasum": ""
             },
             "require": {
@@ -3122,7 +3122,7 @@
                 "sebastian/finder-facade": "~1.1",
                 "sebastian/version": ">=1.0.0",
                 "symfony/finder": ">=2.1.2",
-                "theseer/fdomdocument": "~1.3",
+                "theseer/fdomdocument": "~1.4",
                 "zetacomponents/base": ">=1.8",
                 "zetacomponents/console-tools": ">=1.6"
             },
@@ -3148,7 +3148,7 @@
             ],
             "description": "Copy/Paste Detector (CPD) for PHP code.",
             "homepage": "https://github.com/sebastianbergmann/phpcpd",
-            "time": "2013-06-07 08:26:26"
+            "time": "2013-07-25 12:25:27"
         },
         {
             "name": "sebastian/version",
@@ -3242,16 +3242,16 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "dev-master",
+            "version": "1.4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "95588635e87545726e1b102ab1d61d6d16c1690f"
+                "reference": "1.4.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/95588635e87545726e1b102ab1d61d6d16c1690f",
-                "reference": "95588635e87545726e1b102ab1d61d6d16c1690f",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/1.4.6",
+                "reference": "1.4.6",
                 "shasum": ""
             },
             "require": {
@@ -3309,7 +3309,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2013-07-11 04:11:54"
+            "time": "2013-07-25 03:49:02"
         },
         {
             "name": "theseer/fdomdocument",
@@ -3489,23 +3489,17 @@
         },
         {
             "name": "zetacomponents/console-tools",
-            "version": "dev-master",
+            "version": "1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zetacomponents/ConsoleTools.git",
-                "reference": "90156abef01e4215fda8b9740f77c322f126fb02"
+                "reference": "1.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zetacomponents/ConsoleTools/zipball/90156abef01e4215fda8b9740f77c322f126fb02",
-                "reference": "90156abef01e4215fda8b9740f77c322f126fb02",
+                "url": "https://github.com/zetacomponents/ConsoleTools/zipball/1.6",
+                "reference": "1.6",
                 "shasum": ""
-            },
-            "require": {
-                "zetacomponents/base": "*"
-            },
-            "require-dev": {
-                "zetacomponents/unit-test": "*"
             },
             "type": "library",
             "autoload": {
@@ -3515,7 +3509,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "Apache-2.0"
+                "apache2"
             ],
             "authors": [
                 {
@@ -3551,7 +3545,7 @@
             ],
             "description": "A set of classes to do different actions with the console (also called shell). It can render a progress bar, tables and a status bar and contains a class for parsing command line options.",
             "homepage": "https://github.com/zetacomponents",
-            "time": "2012-05-21 09:55:34"
+            "time": "2009-12-21 04:19:33"
         }
     ],
     "aliases": [
@@ -3562,7 +3556,7 @@
         "symfony/symfony": 0,
         "doctrine/orm": 0,
         "doctrine/doctrine-bundle": 0,
-        "twig/extensions": 20,
+        "twig/extensions": 0,
         "symfony/assetic-bundle": 0,
         "symfony/swiftmailer-bundle": 0,
         "symfony/monolog-bundle": 0,
@@ -3576,18 +3570,24 @@
         "jms/di-extra-bundle": 0,
         "doctrine/doctrine-fixtures-bundle": 20,
         "doctrine/doctrine-migrations-bundle": 20,
-        "squizlabs/php_codesniffer": 20,
-        "zetacomponents/console-tools": 20,
-        "phploc/phploc": 20,
-        "sebastian/phpcpd": 20,
+        "sebastian/phpcpd": 0,
+        "squizlabs/php_codesniffer": 0,
+        "phpmd/phpmd": 0,
+        "phpunit/phpunit": 0,
         "behat/behat": 20,
         "behat/mink": 20,
         "behat/symfony2-extension": 20,
         "behat/mink-extension": 20,
         "behat/mink-browserkit-driver": 20,
         "behat/mink-selenium2-driver": 20,
-        "leafo/lessphp": 20,
-        "components/font-awesome": 20
+        "vipsoft/doctrine-data-fixtures-extension": 0,
+        "leafo/lessphp": 0,
+        "twitter/bootstrap": 0,
+        "components/font-awesome": 0,
+        "components/jqueryui": 0,
+        "components/jquery": 0,
+        "sensiolabs/security-checker": 0,
+        "phploc/phploc": 20
     },
     "platform": {
         "php": ">=5.3.3"

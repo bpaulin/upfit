@@ -25,29 +25,31 @@
         "jms/di-extra-bundle"                 : "~1.4@stable"
     },
     "require-dev": {
-        "doctrine/doctrine-fixtures-bundle"       : "dev-master",
-        "doctrine/doctrine-migrations-bundle"     : "dev-master",
-        "sensiolabs/security-checker"             : "*",
-        "twig/extensions"                         : "1.0.*@dev",
-        "squizlabs/php_codesniffer"               : "dev-master",
-        "zetacomponents/console-tools"            : "dev-master",
-        "phploc/phploc"                           : "dev-master",
-        "phpmd/phpmd"                             : "1.4.*",
-        "sebastian/phpcpd"                        : "dev-master",
-        "phpunit/phpunit"                         : "3.7.*",
+        "doctrine/doctrine-fixtures-bundle"  : "dev-master",
+        "doctrine/doctrine-migrations-bundle": "dev-master",
+
+        "sebastian/phpcpd"           : "~1@stable",
+        "squizlabs/php_codesniffer"  : "~1@stable",
+        "phpmd/phpmd"                : "~1@stable",
+
+        "phpunit/phpunit"                         : "~3.7@stable",
         "behat/behat"                             : "2.4.*@dev",
         "behat/mink"                              : "1.4.*@dev",
         "behat/symfony2-extension"                : "*@dev",
         "behat/mink-extension"                    : "*@dev",
         "behat/mink-browserkit-driver"            : "*@dev",
         "behat/mink-selenium2-driver"             : "*@dev",
-        "vipsoft/doctrine-data-fixtures-extension": "*",
+        "vipsoft/doctrine-data-fixtures-extension": "~0.9@stable",
         "selenium/standalone-server"              : "*",
-        "leafo/lessphp"                           : "0.3.*@dev",
-        "twitter/bootstrap"                       : "*",
-        "components/font-awesome"                 : "dev-master@dev",
-        "components/jqueryui"                     : "1.*",
-        "components/jquery"                       : "1.*"
+
+        "leafo/lessphp"          : "~0.3@stable",
+        "twitter/bootstrap"      : "~2.3@stable",
+        "components/font-awesome": "~3.2@stable",
+        "components/jqueryui"    : "~1.10@stable",
+        "components/jquery"      : "~1.10@stable",
+
+        "sensiolabs/security-checker": "~1@stable",
+        "phploc/phploc"              : "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
