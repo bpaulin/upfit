@@ -22,11 +22,11 @@
         "friendsofsymfony/user-bundle"        : "1.3.*@stable",
         "jms/translation-bundle"              : "1.1.*@stable",
         "jms/i18n-routing-bundle"             : "1.1.*@stable",
-        "jms/di-extra-bundle"                 : "1.4.*@stable"
+        "jms/di-extra-bundle"                 : "1.4.*@stable",
+        "doctrine/doctrine-migrations-bundle" : "dev-master"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle"  : "dev-master",
-        "doctrine/doctrine-migrations-bundle": "dev-master",
 
         "sebastian/phpcpd"           : "*@stable",
         "squizlabs/php_codesniffer"  : "*@stable",

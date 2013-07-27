@@ -452,6 +452,15 @@
     <!-- Database                                                           -->
     <!-- ================================================================== -->
 
+    <target name="base:master:import">
+        <exec command="cap master database:move:to_local" passthru="true"/>
+    </target>
+
+    <target name="base:develop:update"
+            depends="base:master:import, cache:clear:prod, base:prod:update">
+        <exec command="cap develop database:move:to_remote" passthru="true"/>
+    </target>
+
     <target name="base:migrate:diff"
             description="generate and apply a new migration to dev db">
         <SymfonyConsole command="doctrine:migrations:diff" checkreturn="true">
