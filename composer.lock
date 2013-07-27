@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "477f1444e92b5996893dfe12abc5b0a1",
+    "hash": "f392a4c2090041bfd22f59710cf38331",
     "packages": [
         {
             "name": "doctrine/common",
@@ -773,7 +773,7 @@
                 {
                     "name": "Johannes M. Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -3353,30 +3353,14 @@
         },
         {
             "name": "twitter/bootstrap",
-            "version": "v2.3.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/twitter/bootstrap.git",
-                "reference": "v2.3.2"
-            },
+            "version": "2.3.2",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twitter/bootstrap/zipball/v2.3.2",
-                "reference": "v2.3.2",
-                "shasum": ""
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/v2.3.2",
+                "reference": null,
+                "shasum": null
             },
-            "type": "library",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "description": "Sleek, intuitive, and powerful front-end framework for faster and easier web development.",
-            "homepage": "http://twitter.github.com/bootstrap/",
-            "keywords": [
-                "bootstrap",
-                "css"
-            ],
-            "time": "2013-05-17 17:26:09"
+            "type": "library"
         },
         {
             "name": "vipsoft/doctrine-data-fixtures-extension",
@@ -3583,7 +3567,6 @@
         "vipsoft/doctrine-data-fixtures-extension": 0,
         "selenium/standalone-server": 0,
         "leafo/lessphp": 0,
-        "twitter/bootstrap": 0,
         "components/font-awesome": 0,
         "components/jqueryui": 0,
         "components/jquery": 0,

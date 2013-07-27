@@ -43,7 +43,7 @@
         "selenium/standalone-server"              : "*@stable",
 
         "leafo/lessphp"          : "0.3.*@stable",
-        "twitter/bootstrap"      : "2.3.*@stable",
+        "twitter/bootstrap"      : "2.3.2",
         "components/font-awesome": "3.2.*@stable",
         "components/jqueryui"    : "1.10.*@stable",
         "components/jquery"      : "1.10.*@stable",
@@ -92,6 +92,17 @@
                 "dist": {
                     "url": "http://selenium.googlecode.com/files/selenium-server-standalone-2.33.0.jar",
                     "type": "file"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "twitter/bootstrap",
+                "version": "2.3.2",
+                "dist": {
+                    "url": "https://api.github.com/repos/twbs/bootstrap/zipball/v2.3.2",
+                    "type": "zip"
                 }
             }
         }
