@@ -66,6 +66,80 @@
         </SymfonyConsole>
     </target>
 
+    <target name="tools:start"
+            depends="tools:server:start, tools:selenium:start"/>
+
+    <target name="tools:server:start">
+        <if>
+            <available file="./pid-server.txt"/>
+            <then>
+                <fail message="php server already started"/>
+            </then>
+            <else>
+                <exec command="bash scripts/server.sh" spawn="true" output="./pid-server.txt" />
+                <echo msg="php server started"/>
+            </else>
+        </if>
+    </target>
+
+    <target name="tools:selenium:start">
+        <if>
+            <available file="./pid-selenium.txt"/>
+            <then>
+                <fail message="selenium server already started"/>
+            </then>
+            <else>
+                <exec command="bash scripts/selenium.sh" spawn="true" output="./pid-selenium.txt" />
+                <echo msg="selenium server started"/>
+            </else>
+        </if>
+    </target>
+
+    <target name="tools:stop"
+            depends="tools:server:stop, tools:selenium:stop"/>
+
+    <target name="tools:server:stop">
+        <if>
+            <not>
+                <available file="./pid-server.txt"/>
+            </not>
+            <then>
+                <fail message="php server already running"/>
+            </then>
+            <else>
+                <loadfile property="pid-server" file="./pid-server.txt">
+                    <filterchain>
+                        <striplinebreaks />
+                    </filterchain>
+                </loadfile>
+                <echo msg="php server ${pid-server} killed" />
+                <exec command="kill ${pid-server}" dir="./" />
+                <delete file="./pid-server.txt" />
+            </else>
+        </if>
+    </target>
+
+    <target name="tools:selenium:stop">
+        <if>
+            <not>
+                <available file="./pid-selenium.txt"/>
+            </not>
+            <then>
+                <fail message="selenium server already running"/>
+            </then>
+            <else>
+                <loadfile property="pid-selenium" file="./pid-selenium.txt">
+                    <filterchain>
+                        <striplinebreaks />
+                    </filterchain>
+                </loadfile>
+                <echo msg="selenium server ${pid-server} killed" />
+                <exec command="kill ${pid-selenium}" dir="./" />
+                <delete file="./pid-selenium.txt" />
+            </else>
+        </if>
+    </target>
+
     <target name="pre:deploy"
             description="generate assets"
             depends="run:lang, run:assets, composer:update, ci:travis">

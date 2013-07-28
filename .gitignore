@@ -15,4 +15,5 @@
 /build.properties
 /data/templates
 /app/sessions
+/pid-*.txt
 *~
