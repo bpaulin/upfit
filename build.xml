@@ -66,6 +66,15 @@
         </SymfonyConsole>
     </target>
 
+    <target name="pre:deploy"
+            description="generate assets"
+            depends="run:lang, run:assets, composer:update, ci:travis">
+    </target>
+
+    <!-- ================================================================== -->
+    <!-- Build                                                              -->
+    <!-- ================================================================== -->
+
     <target name="tools:start"
             depends="tools:server:start, tools:selenium:start"/>
 
@@ -140,11 +149,6 @@
         </if>
     </target>
 
-    <target name="pre:deploy"
-            description="generate assets"
-            depends="run:lang, run:assets, composer:update, ci:travis">
-    </target>
-
     <!-- ================================================================== -->
     <!-- CI                                                                 -->
     <!-- ================================================================== -->
@@ -160,7 +164,6 @@
     </target>
 
     <target name="ci:clean"
-            description="generate assets"
             depends="install:clean, install:ci, ci:travis">
     </target>
 
@@ -192,12 +195,12 @@
 
     <target name="install:ci"
             description="install deps and testing db"
-            depends="composer:install">
+            depends="composer:install, npm:install">
     </target>
 
     <target name="install:dev"
             description="let's code!"
-            depends="install:ci, base:dev:reset, ci:travis">
+            depends="install:ci, base:dev:reset">
     </target>
 
     <target name="install:prod"
@@ -212,6 +215,18 @@
             <arg line="-e develop.rb -e master.rb -e parameters.yml -e build.properties -e php-cs-fixer.phar"/>
         </exec>
         <delete dir="vendor/"/>
+    </target>
+
+    <!-- ================================================================== -->
+    <!-- Npm                                                                -->
+    <!-- ================================================================== -->
+
+    <target name="npm:install">
+        <exec command="npm install" passthru="true"/>
+    </target>
+
+    <target name="npm:update">
+        <exec command="npm update" passthru="true"/>
     </target>
 
     <!-- ================================================================== -->
