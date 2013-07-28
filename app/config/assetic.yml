@@ -6,8 +6,9 @@ assetic:
     bundles:        ["BpaulinUpfitBundle"]
     filters:
         cssrewrite: ~
-        lessphp:
+        less:
             apply_to: "\.less$"
+            bin: %kernel.root_dir%/../node_modules/.bin/lessc
     assets:
         common_js:
             input:
