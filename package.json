@@ -1,0 +1,13 @@
+{
+    "name": "upfit",
+    "repository" :
+    {
+        "type" : "git"
+        , "url" : "http://github.com/bpaulin/upfit.git"
+    },
+    "dependencies": {
+      "less"     : "~1.4.0",
+      "uglify-js": "~2.3.4",
+      "uglifycss": "~0.0.3"
+    }
+}

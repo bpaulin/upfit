@@ -2,12 +2,13 @@
 assetic:
     debug:          %kernel.debug%
     use_controller: false
-    node:           /usr/bin/node
+    node:           node
     bundles:        ["BpaulinUpfitBundle"]
     filters:
         cssrewrite: ~
-        lessphp:
+        less:
             apply_to: "\.less$"
+            node_paths: [/usr/bin/node,node_modules]
     assets:
         common_js:
             input:
