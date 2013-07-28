@@ -155,7 +155,7 @@
 
     <target name="ci:travis"
             description="continuous integration (called by travis)"
-            depends="test, check">
+            depends="test, run:assets, check">
     </target>
 
     <target name="ci:jenkins"

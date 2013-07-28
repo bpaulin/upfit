@@ -8,7 +8,7 @@ assetic:
         cssrewrite: ~
         less:
             apply_to: "\.less$"
-            bin: %kernel.root_dir%/../node_modules/.bin/lessc
+            node_paths: [/usr/bin/node,node_modules]
     assets:
         common_js:
             input:
