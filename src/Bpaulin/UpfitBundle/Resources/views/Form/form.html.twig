@@ -16,10 +16,10 @@
 
 {% block form_row %}
 {% spaceless %}
-    <div class="control-group{% if errors|length > 0 %} error{% endif %}">
-            {{ form_label(form, label|default(null), { 'label_attr': { 'class': 'control-label' }}) }}
-        <div class="controls">
-            {{ form_widget(form) }}
+    <div class="form-group{% if errors|length > 0 %} error{% endif %}">
+            {{ form_label(form, label|default(null), { 'label_attr': { 'class': 'control-label col-lg-2' }}) }}
+        <div class="col-lg-10">
+            {{ form_widget(form, { 'attr': { 'class': 'form-control' }}) }}
             {{ form_errors(form) }}
         </div>
     </div>
