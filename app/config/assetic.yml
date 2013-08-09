@@ -13,19 +13,19 @@ assetic:
         common_js:
             input:
                 - ../vendor/components/jquery/jquery.js
-                # - ../vendor/twitter/bootstrap/js/bootstrap-affix.js
-                - ../vendor/twitter/bootstrap/js/bootstrap-alert.js
-                - ../vendor/twitter/bootstrap/js/bootstrap-button.js
-                # - ../vendor/twitter/bootstrap/js/bootstrap-carousel.js
-                - ../vendor/twitter/bootstrap/js/bootstrap-collapse.js
-                # - ../vendor/twitter/bootstrap/js/bootstrap-dropdown.js
-                - ../vendor/twitter/bootstrap/js/bootstrap-modal.js
-                # - ../vendor/twitter/bootstrap/js/bootstrap-popover.js
-                # - ../vendor/twitter/bootstrap/js/bootstrap-scrollspy.js
-                # - ../vendor/twitter/bootstrap/js/bootstrap-tab.js
-                # - ../vendor/twitter/bootstrap/js/bootstrap-tooltip.js
-                # - ../vendor/twitter/bootstrap/js/bootstrap-transition.js
-                # - ../vendor/twitter/bootstrap/js/bootstrap-typeahead.js
+                # - ../vendor/twitter/bootstrap/js/affix.js
+                - ../vendor/twitter/bootstrap/js/alert.js
+                - ../vendor/twitter/bootstrap/js/button.js
+                # - ../vendor/twitter/bootstrap/js/carousel.js
+                - ../vendor/twitter/bootstrap/js/collapse.js
+                # - ../vendor/twitter/bootstrap/js/dropdown.js
+                - ../vendor/twitter/bootstrap/js/modal.js
+                # - ../vendor/twitter/bootstrap/js/popover.js
+                # - ../vendor/twitter/bootstrap/js/scrollspy.js
+                # - ../vendor/twitter/bootstrap/js/tab.js
+                # - ../vendor/twitter/bootstrap/js/tooltip.js
+                # - ../vendor/twitter/bootstrap/js/transition.js
+                # - ../vendor/twitter/bootstrap/js/typeahead.js
         collection_js:
             input:
                 - ../vendor/components/jquery-ui/ui/jquery.ui.core.js

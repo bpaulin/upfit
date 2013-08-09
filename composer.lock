@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "3c511e1ea4ca69965a393a1a446a2f88",
+    "hash": "ce8f39f98f0d83ae04dd88042ccb6d97",
     "packages": [
         {
             "name": "doctrine/common",
@@ -2474,47 +2474,6 @@
             "time": "2013-08-08 13:56:39"
         },
         {
-            "name": "leafo/lessphp",
-            "version": "v0.3.9",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/leafo/lessphp.git",
-                "reference": "v0.3.9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/leafo/lessphp/zipball/v0.3.9",
-                "reference": "v0.3.9",
-                "shasum": ""
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "0.3-dev"
-                }
-            },
-            "autoload": {
-                "classmap": [
-                    "lessc.inc.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT",
-                "GPL-3.0"
-            ],
-            "authors": [
-                {
-                    "name": "Leaf Corcoran",
-                    "email": "leafot@gmail.com",
-                    "homepage": "http://leafo.net"
-                }
-            ],
-            "description": "lessphp is a compiler for LESS written in PHP.",
-            "homepage": "http://leafo.net/lessphp/",
-            "time": "2013-03-02 16:13:31"
-        },
-        {
             "name": "pdepend/pdepend",
             "version": "1.1.1",
             "source": {
@@ -3366,16 +3325,16 @@
         },
         {
             "name": "twitter/bootstrap",
-            "version": "v2.3.2",
+            "version": "dev-3.0.0-wip",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "v2.3.2"
+                "reference": "d0ac0f30b45bb7eede3ec541fbd37cb24ffd7db9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/v2.3.2",
-                "reference": "v2.3.2",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/d0ac0f30b45bb7eede3ec541fbd37cb24ffd7db9",
+                "reference": "d0ac0f30b45bb7eede3ec541fbd37cb24ffd7db9",
                 "shasum": ""
             },
             "type": "library",
@@ -3383,13 +3342,23 @@
             "license": [
                 "Apache-2.0"
             ],
+            "authors": [
+                {
+                    "name": "Mark Otto",
+                    "email": "markdotto@gmail.com"
+                },
+                {
+                    "name": "Jacob Thornton",
+                    "email": "jacobthornton@gmail.com"
+                }
+            ],
             "description": "Sleek, intuitive, and powerful front-end framework for faster and easier web development.",
-            "homepage": "http://twbs.github.com/bootstrap/",
+            "homepage": "http://getbootstrap.com",
             "keywords": [
                 "bootstrap",
                 "css"
             ],
-            "time": "2013-07-27 06:36:38"
+            "time": "2013-08-09 07:59:43"
         },
         {
             "name": "vipsoft/doctrine-data-fixtures-extension",
@@ -3595,7 +3564,7 @@
         "behat/mink-selenium2-driver": 0,
         "vipsoft/doctrine-data-fixtures-extension": 0,
         "selenium/standalone-server": 0,
-        "leafo/lessphp": 0,
+        "twitter/bootstrap": 20,
         "components/font-awesome": 0,
         "components/jqueryui": 0,
         "components/jquery": 0,

@@ -42,8 +42,7 @@
         "vipsoft/doctrine-data-fixtures-extension": "*@stable",
         "selenium/standalone-server"              : "*@stable",
 
-        "leafo/lessphp"          : "0.3.*@stable",
-        "twitter/bootstrap"      : "2.3.2",
+        "twitter/bootstrap"      : "dev-3.0.0-wip",
         "components/font-awesome": "3.2.*@stable",
         "components/jqueryui"    : "1.10.*@stable",
         "components/jquery"      : "1.10.*@stable",
