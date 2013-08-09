@@ -142,7 +142,7 @@
                         <striplinebreaks />
                     </filterchain>
                 </loadfile>
-                <echo msg="selenium server ${pid-server} killed" />
+                <echo msg="selenium server ${pid-selenium} killed" />
                 <exec command="kill ${pid-selenium}" dir="./" />
                 <delete file="./pid-selenium.txt" />
             </else>

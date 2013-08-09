@@ -88,21 +88,10 @@
             "type": "package",
             "package": {
                 "name": "selenium/standalone-server",
-                "version": "2.33",
+                "version": "2.34",
                 "dist": {
-                    "url": "http://selenium.googlecode.com/files/selenium-server-standalone-2.33.0.jar",
+                    "url": "http://selenium.googlecode.com/files/selenium-server-standalone-2.34.0.jar",
                     "type": "file"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "twitter/bootstrap",
-                "version": "2.3.2",
-                "dist": {
-                    "url": "https://api.github.com/repos/twbs/bootstrap/zipball/v2.3.2",
-                    "type": "zip"
                 }
             }
         }
