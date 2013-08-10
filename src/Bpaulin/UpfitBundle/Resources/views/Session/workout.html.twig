@@ -37,7 +37,11 @@
 </h2>
 {{ form_start(form) }}
     <a href="#gradeModal" class="btn btn-block btn-large btn-primary" data-toggle="modal">{% trans %}Done{% endtrans %}</a><br/>
-    <div id="gradeModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    
+            
+    <div id="gradeModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h3 id="myModalLabel">{{ entity.nextWorkout.exercise.name }}</h3>
@@ -48,6 +52,8 @@
       <div class="modal-footer">
         {{ form_widget(form.done, {'attr': {'class': 'btn-block btn-primary'}}) }}
       </div>
+                </div>
+            </div>
     </div>
     <div class="btn-group btn-group-vertical btn-block">
     {{ form_widget(form.pass, {'attr': {'class': 'btn-block btn-warning'}}) }}

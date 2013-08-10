@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "ac86b0610f83b70cec2cb19b4e325455",
+    "hash": "9c3afe747606ec06cf299b8527fb6643",
     "packages": [
         {
             "name": "doctrine/common",
@@ -3314,16 +3314,16 @@
         },
         {
             "name": "twitter/bootstrap",
-            "version": "v2.3.2",
+            "version": "dev-3.0.0-wip",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "v2.3.2"
+                "reference": "da417c3e7e1c621973348954a5a80c8db319789e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/v2.3.2",
-                "reference": "v2.3.2",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/da417c3e7e1c621973348954a5a80c8db319789e",
+                "reference": "da417c3e7e1c621973348954a5a80c8db319789e",
                 "shasum": ""
             },
             "type": "library",
@@ -3331,13 +3331,23 @@
             "license": [
                 "Apache-2.0"
             ],
+            "authors": [
+                {
+                    "name": "Mark Otto",
+                    "email": "markdotto@gmail.com"
+                },
+                {
+                    "name": "Jacob Thornton",
+                    "email": "jacobthornton@gmail.com"
+                }
+            ],
             "description": "Sleek, intuitive, and powerful front-end framework for faster and easier web development.",
-            "homepage": "http://twbs.github.com/bootstrap/",
+            "homepage": "http://getbootstrap.com",
             "keywords": [
                 "bootstrap",
                 "css"
             ],
-            "time": "2013-07-27 06:36:38"
+            "time": "2013-08-10 01:01:11"
         },
         {
             "name": "vipsoft/doctrine-data-fixtures-extension",
@@ -3542,6 +3552,7 @@
         "behat/mink-browserkit-driver": 0,
         "behat/mink-selenium2-driver": 0,
         "vipsoft/doctrine-data-fixtures-extension": 0,
+        "twitter/bootstrap": 20,
         "components/font-awesome": 0,
         "components/jqueryui": 0,
         "components/jquery": 0,
