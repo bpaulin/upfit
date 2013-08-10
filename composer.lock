@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "5665f55f7b23a40c3b69af8da24a27bc",
+    "hash": "ac86b0610f83b70cec2cb19b4e325455",
     "packages": [
         {
             "name": "doctrine/common",
@@ -3158,17 +3158,6 @@
             "time": "2013-05-29 10:02:00"
         },
         {
-            "name": "selenium/standalone-server",
-            "version": "2.34",
-            "dist": {
-                "type": "file",
-                "url": "http://selenium.googlecode.com/files/selenium-server-standalone-2.34.0.jar",
-                "reference": null,
-                "shasum": null
-            },
-            "type": "library"
-        },
-        {
             "name": "sensiolabs/security-checker",
             "version": "v1.2",
             "source": {
@@ -3553,7 +3542,6 @@
         "behat/mink-browserkit-driver": 0,
         "behat/mink-selenium2-driver": 0,
         "vipsoft/doctrine-data-fixtures-extension": 0,
-        "selenium/standalone-server": 0,
         "components/font-awesome": 0,
         "components/jqueryui": 0,
         "components/jquery": 0,
