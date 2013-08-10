@@ -20,7 +20,7 @@ before_script:
     - cp build.properties.dist build.properties
     - phing install:ci
     - "php app/console server:run > /dev/null &"
-    - "phantomjs --webdriver=8643 > /dev/null &"
+    - "./node_modules/.bin/phantomjs --webdriver=8643 > /dev/null &"
     - sleep 5
 
 script: phing ci:travis
