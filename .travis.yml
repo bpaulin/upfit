@@ -19,10 +19,6 @@ before_script:
     - phpenv rehash
     - cp build.properties.dist build.properties
     - phing install:ci
-    - "php app/console server:run > /dev/null &"
-    - "sh -e /etc/init.d/xvfb start"
-    - "export DISPLAY=:99.0"
-    - "java -jar vendor/selenium/standalone-server/selenium-server-standalone-2.*.jar > /dev/null &"
-    - sleep 5
+    - phing tools:start
 
 script: phing ci:travis
