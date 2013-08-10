@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Program
  *
  * @ORM\Table("program")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="Bpaulin\UpfitBundle\Entity\ProgramRepository")
  */
 class Program
 {

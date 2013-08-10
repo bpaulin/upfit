@@ -28,12 +28,16 @@ class ProgramController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('BpaulinUpfitBundle:Program')->findAll();
+        $repo = $em->getRepository('BpaulinUpfitBundle:Program');
+        $user = $this->get('security.context')->getToken()->getUser();
 
         return array(
-            'entities' => $entities,
+            'entities' => $repo->findAllOrderedByName(),
+            'proposed' => $repo->findProposed($user),
+            'recent'   => $repo->findRecent($user),
         );
     }
+
     /**
      * Creates a new Program entity.
      *
