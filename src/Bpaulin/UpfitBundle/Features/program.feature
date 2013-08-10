@@ -128,19 +128,19 @@ Scenario: Administrator can delete stage
     | stages |
     | exercise2 (2*2 2 with 2 2) |
 
-@javascript
-Scenario: Administrator can sort stages
-  Given I am on program "program1" page
-  Then I should see a link to edit program "program1"
-  When I follow this link
-  And I drag stage "0" down "2" position
-  And I press "Edit"
-  Then I should be on "/admin/program"
-  And I should see a "success" message "program program1 updated"
-  And I should see a link to program "program1"
-  When I follow this link
-  Then I should see "program1" as "name"
-  And I should see the following stages:
-    | stages |
-    | exercise2 (2*2 2 with 2 2) |
-    | exercise1 (1*1 1 with 1 1) |
+# @javascript
+# Scenario: Administrator can sort stages
+#   Given I am on program "program1" page
+#   Then I should see a link to edit program "program1"
+#   When I follow this link
+#   And I drag stage "0" down "2" position
+#   And I press "Edit"
+#   Then I should be on "/admin/program"
+#   And I should see a "success" message "program program1 updated"
+#   And I should see a link to program "program1"
+#   When I follow this link
+#   Then I should see "program1" as "name"
+#   And I should see the following stages:
+#     | stages |
+#     | exercise2 (2*2 2 with 2 2) |
+#     | exercise1 (1*1 1 with 1 1) |

@@ -39,6 +39,7 @@
         "behat/mink-extension"                    : "*@stable",
         "behat/mink-browserkit-driver"            : "*@stable",
         "behat/mink-selenium2-driver"             : "*@stable",
+        "behat/mink-zombie-driver"                : "*@stable",
         "vipsoft/doctrine-data-fixtures-extension": "*@stable",
         "selenium/standalone-server"              : "*@stable",
 

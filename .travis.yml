@@ -20,9 +20,7 @@ before_script:
     - cp build.properties.dist build.properties
     - phing install:ci
     - "php app/console server:run > /dev/null &"
-    - "sh -e /etc/init.d/xvfb start"
-    - "export DISPLAY=:99.0"
-    - "java -jar vendor/selenium/standalone-server/selenium-server-standalone-2.*.jar > /dev/null &"
+    - "phantomjs --webdriver=8643 > /dev/null &"
     - sleep 5
 
 script: phing ci:travis
