@@ -66,7 +66,7 @@
 <h2>Recommended</h2>
 <div class="row">
     {% for entity in proposed %}
-        <div class="span4">
+        <div class="col-lg-4">
             <h3>{{ macros.programGrade(entity.program) }} {{ entity.program.name }} {{ entity.grade }}</h3>
             <a class="btn btn-block " href="{{ path(route_show, { 'id': entity.program.id }) }}">
                 <i class="icon-eye-open"></i>
@@ -82,7 +82,7 @@
 <h2>Last done</h2>
 <div class="row">
     {% for entity in recent %}
-        <div class="span3">
+        <div class="col-lg-3">
             <h4>{{ macros.programGrade(entity) }} {{ entity.name }}</h4>
             <a class="btn btn-block btn-primary" href="{{ path('member_session_new', { 'follow': 'program', 'id': entity.id }) }}">
                 <i class="icon-play"></i>
@@ -94,7 +94,7 @@
 <h2>All</h2>
 <div class="row">
     {% for entity in entities %}
-        <div class="span2">
+        <div class="col-lg-2">
             <a href="{{ path(route_show, { 'id': entity.id }) }}">{{ entity.name }}</a>
         </div>
     {% endfor %}

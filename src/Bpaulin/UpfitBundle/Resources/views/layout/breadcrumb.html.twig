@@ -2,7 +2,6 @@
     {% if breadcrumbs is defined %}
         <li>
             <a href="{{path('upfit_index')}}"><i class="icon-home"></i> <span class="breadcrumb-label"></span></a>
-            <span class="divider">/</span>
         </li>
         {% for label, route in breadcrumbs %}
             {% if loop.last %}
@@ -16,19 +15,17 @@
                     <a href="{{ route.route }}">
                         {% if route.icon is defined %}
                             <i class="icon-{{ route.icon }}"></i>
-                            <span class="hidden-phone breadcrumb-label">{{ label }}</span>
+                            <span class="hidden-sm breadcrumb-label">{{ label }}</span>
                         {% else %}
                             <span class="breadcrumb-label">{{ label }}</span>
                         {% endif %}
                     </a>
-                    <span class="divider">/</span>
                 </li>
             {% endif %}
         {% endfor %}
     {% else %}
         <li class="active">
             <i class="icon-home"></i> <span class="breadcrumb-label"></span>
-            <span class="divider">/</span>
         </li>
     {% endif %}
 </ul>

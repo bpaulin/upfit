@@ -72,11 +72,11 @@
     </target>
 
     <!-- ================================================================== -->
-    <!-- Build                                                              -->
+    <!-- Tools                                                              -->
     <!-- ================================================================== -->
 
     <target name="tools:start"
-            depends="tools:server:start, tools:selenium:start"/>
+            depends="tools:server:start, tools:phantom:start"/>
 
     <target name="tools:server:start">
         <if>
@@ -91,21 +91,21 @@
         </if>
     </target>
 
-    <target name="tools:selenium:start">
+    <target name="tools:phantom:start">
         <if>
-            <available file="./pid-selenium.txt"/>
+            <available file="./pid-phantom.txt"/>
             <then>
-                <fail message="selenium server already started"/>
+                <fail message="phantom server already started"/>
             </then>
             <else>
-                <exec command="bash scripts/selenium.sh" spawn="true" output="./pid-selenium.txt" />
-                <echo msg="selenium server started"/>
+                <exec command="bash scripts/phantom.sh" spawn="true" output="./pid-phantom.txt" />
+                <echo msg="phantom server started"/>
             </else>
         </if>
     </target>
 
     <target name="tools:stop"
-            depends="tools:server:stop, tools:selenium:stop"/>
+            depends="tools:server:stop, tools:phantom:stop"/>
 
     <target name="tools:server:stop">
         <if>
@@ -128,23 +128,23 @@
         </if>
     </target>
 
-    <target name="tools:selenium:stop">
+    <target name="tools:phantom:stop">
         <if>
             <not>
-                <available file="./pid-selenium.txt"/>
+                <available file="./pid-phantom.txt"/>
             </not>
             <then>
-                <fail message="selenium server already running"/>
+                <fail message="phantom server already running"/>
             </then>
             <else>
-                <loadfile property="pid-selenium" file="./pid-selenium.txt">
+                <loadfile property="pid-phantom" file="./pid-phantom.txt">
                     <filterchain>
                         <striplinebreaks />
                     </filterchain>
                 </loadfile>
-                <echo msg="selenium server ${pid-server} killed" />
-                <exec command="kill ${pid-selenium}" dir="./" />
-                <delete file="./pid-selenium.txt" />
+                <echo msg="phantom server ${pid-phantom} killed" />
+                <exec command="kill ${pid-phantom}" dir="./" />
+                <delete file="./pid-phantom.txt" />
             </else>
         </if>
     </target>

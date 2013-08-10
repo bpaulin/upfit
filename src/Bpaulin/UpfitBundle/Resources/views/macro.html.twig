@@ -17,13 +17,13 @@
                         {% if workout.done %}
                             <span class="status label label-success">
                                 <i class="icon-check-sign done"></i>
-                                <span class="hidden-phone">{% trans %}Done{% endtrans %}</span>
+                                <span class="">{% trans %}Done{% endtrans %}</span>
                             </span>
                             {{ macros.longGrade(workout.grade) }}
                         {% else %}
-                            <span class="status label label-important">
+                            <span class="status label label-danger">
                                 <i class="icon-remove-sign abandoned"></i>
-                                <span class="hidden-phone">{% trans %}Abandoned{% endtrans %}</span>
+                                <span class="">{% trans %}Abandoned{% endtrans %}</span>
                             </span>
                         {% endif %}
                     {% elseif workout == session.nextWorkout %}
@@ -68,23 +68,23 @@
     {% if grade == 2 %}
         <span class="grade label label-important" data-grade="{{ grade }}">
             <i class="icon-double-angle-up"></i>
-            <span class="hidden-phone">{% trans %}Too hard{% endtrans %}</span>
+            <span class="">{% trans %}Too hard{% endtrans %}</span>
     {% elseif grade == 1 %}
         <span class="grade label label-warning" data-grade="{{ grade }}">
             <i class="icon-angle-up"></i>
-            <span class="hidden-phone">{% trans %}Hard{% endtrans %}</span>
+            <span class="">{% trans %}Hard{% endtrans %}</span>
     {% elseif grade == 0 %}
         <span class="grade label label-info" data-grade="{{ grade }}">
             <i class="icon-chevron-right"></i>
-            <span class="hidden-phone">{% trans %}Fine{% endtrans %}</span>
+            <span class="">{% trans %}Fine{% endtrans %}</span>
     {% elseif grade == -1 %}
         <span class="grade label label-warning" data-grade="{{ grade }}">
             <i class="icon-angle-down"></i>
-            <span class="hidden-phone">{% trans %}Easy{% endtrans %}</span>
+            <span class="">{% trans %}Easy{% endtrans %}</span>
     {% elseif grade == -2 %}
         <span class="grade label label-important" data-grade="{{ grade }}">
             <i class="icon-double-angle-down"></i>
-            <span class="hidden-phone">{% trans %}Too easy{% endtrans %}</span>
+            <span class="">{% trans %}Too easy{% endtrans %}</span>
     {% endif %}
     </span>
 {% endmacro %}
@@ -104,7 +104,7 @@
 {% endmacro %}
 
 {% macro programGrade(program) %}
-    <span class="label">
+    <span class="label label-default">
         {{ '%.2f'|format(program.gradeForUser(app.user)*100) }} %
     </span>
 {% endmacro %}
