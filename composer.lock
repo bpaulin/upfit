@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "3c511e1ea4ca69965a393a1a446a2f88",
+    "hash": "ac86b0610f83b70cec2cb19b4e325455",
     "packages": [
         {
             "name": "doctrine/common",
@@ -2474,47 +2474,6 @@
             "time": "2013-08-08 13:56:39"
         },
         {
-            "name": "leafo/lessphp",
-            "version": "v0.3.9",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/leafo/lessphp.git",
-                "reference": "v0.3.9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/leafo/lessphp/zipball/v0.3.9",
-                "reference": "v0.3.9",
-                "shasum": ""
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "0.3-dev"
-                }
-            },
-            "autoload": {
-                "classmap": [
-                    "lessc.inc.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT",
-                "GPL-3.0"
-            ],
-            "authors": [
-                {
-                    "name": "Leaf Corcoran",
-                    "email": "leafot@gmail.com",
-                    "homepage": "http://leafo.net"
-                }
-            ],
-            "description": "lessphp is a compiler for LESS written in PHP.",
-            "homepage": "http://leafo.net/lessphp/",
-            "time": "2013-03-02 16:13:31"
-        },
-        {
             "name": "pdepend/pdepend",
             "version": "1.1.1",
             "source": {
@@ -3199,17 +3158,6 @@
             "time": "2013-05-29 10:02:00"
         },
         {
-            "name": "selenium/standalone-server",
-            "version": "2.34",
-            "dist": {
-                "type": "file",
-                "url": "http://selenium.googlecode.com/files/selenium-server-standalone-2.34.0.jar",
-                "reference": null,
-                "shasum": null
-            },
-            "type": "library"
-        },
-        {
             "name": "sensiolabs/security-checker",
             "version": "v1.2",
             "source": {
@@ -3594,8 +3542,6 @@
         "behat/mink-browserkit-driver": 0,
         "behat/mink-selenium2-driver": 0,
         "vipsoft/doctrine-data-fixtures-extension": 0,
-        "selenium/standalone-server": 0,
-        "leafo/lessphp": 0,
         "components/font-awesome": 0,
         "components/jqueryui": 0,
         "components/jquery": 0,

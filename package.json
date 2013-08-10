@@ -8,6 +8,7 @@
     "dependencies": {
       "less"     : "~1.4.0",
       "uglify-js": "~2.3.4",
-      "uglifycss": "~0.0.3"
+      "uglifycss": "~0.0.3",
+      "phantomjs": "*"
     }
 }
