@@ -21,4 +21,4 @@ before_script:
     - phing install:ci
     - phing tools:start
 
-script: phing ci:travis
+script: phing ci
