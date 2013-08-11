@@ -155,7 +155,7 @@
 
     <target name="ci:travis"
             description="continuous integration (called by travis)"
-            depends="test, run:assets, check">
+            depends="test, check">
     </target>
 
     <target name="ci:jenkins"
@@ -366,7 +366,7 @@
 
     <target name="test"
             description="run all tests"
-            depends="test:base,test:unit,test:behat">
+            depends="test:base,test:unit,test:behat, test:assets">
     </target>
 
     <target name="test:wip"
@@ -376,7 +376,14 @@
 
     <target name="test:no-browser"
             description="run all tests (no browser needed)"
-            depends="test:base,test:unit,test:behat:no-browser">
+            depends="test:base,test:unit,test:behat:no-browser, test:assets">
+    </target>
+
+    <target name="test:assets">
+        <SymfonyConsole command="assetic:dump" checkreturn="true">
+            <arg value="--env=prod"/>
+            <arg value="build/tmp"/>
+        </SymfonyConsole>
     </target>
 
     <target name="test:base"
