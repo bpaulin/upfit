@@ -282,28 +282,25 @@
 
     <target name="check"
             description="check code quality"
-            depends="check:syntax,check:style,check:mess,check:cpd,check:debug,check:doc">
+            depends="check:style, check:phpmd, check:phpcpd, check:phpdoc, check:debug">
     </target>
 
-    <target name="check:syntax"
-            depends="check:syntax:twig,check:syntax:php">
+    <target name="check:style"
+            depends="check:style:twig, check:style:php, check:style:less, check:style:js">
     </target>
 
-    <target name="check:syntax:twig">
+    <target name="check:style:twig">
         <SymfonyConsole command="twig:lint">
             <arg value="${bundle}" quotes="true"/>
         </SymfonyConsole>
     </target>
 
-    <target name="check:syntax:php">
+    <target name="check:style:php">
         <phplint interpreter="${path.php}" haltonfailure="true">
             <fileset dir="${dir.src}">
                 <include name="**/*.php"/>
             </fileset>
         </phplint>
-    </target>
-
-    <target name="check:style">
         <exec executable="${path.php}" passthru="true" checkreturn="true">
             <arg value="${path.phpcs}"/>
             <arg value="-p"/>
@@ -312,7 +309,15 @@
         </exec>
     </target>
 
-    <target name="check:mess">
+    <target name="check:style:less">
+        <exec command="./node_modules/.bin/lessc -l ${dir.bundle}/Resources/public/less/*" passthru="true" checkreturn="true"/>
+    </target>
+
+    <target name="check:style:js">
+        <exec command="./node_modules/.bin/jshint ${dir.bundle}/Resources/public/js/*" passthru="true" checkreturn="true"/>
+    </target>
+
+    <target name="check:phpmd">
         <exec executable="${path.php}" passthru="true" checkreturn="true">
             <arg value="${path.phpmd}"/>
             <arg path="${dir.src}"/>
@@ -321,8 +326,8 @@
         </exec>
     </target>
 
-    <target name="check:cpd">
-        <exec executable="${path.php}" passthru="true" checkreturn="false">
+    <target name="check:phpcpd">
+        <exec executable="${path.php}" passthru="true" checkreturn="true">
             <arg value="${path.phpcpd}"/>
             <arg line="--names *.php,*.twig"/>
             <arg line="--min-lines 5"/>
@@ -331,7 +336,7 @@
         </exec>
     </target>
 
-    <target name="check:doc">
+    <target name="check:phpdoc">
         <exec executable="${path.phpdoc}" passthru="true">
             <arg value="--ansi"/>
             <arg value="--force"/>
@@ -343,7 +348,7 @@
     </target>
 
     <target name="check:deps">
-        <exec executable="${path.php}" passthru="true" checkreturn="false">
+        <exec executable="${path.php}" passthru="true" checkreturn="true">
             <arg value="${path.security-checker}"/>
             <arg value="security:check"/>
             <arg value="--ansi"/>
