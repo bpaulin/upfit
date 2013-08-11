@@ -15,7 +15,7 @@ use Bpaulin\UpfitBundle\Form\ExerciseType;
  *
  * @Route("/admin/exercise")
  */
-class ExerciseController extends Controller
+class ExerciseController extends AbstractController
 {
 
     /**
@@ -200,25 +200,6 @@ class ExerciseController extends Controller
      */
     public function deleteAction(Exercise $entity)
     {
-        $deleteForm = $this->createDeleteForm($entity->getId());
-
-        return array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-        );
-    }
-
-    /**
-     * Creates a form to delete a Exercise entity by id.
-     *
-     * @param mixed $id The entity id
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm($id)
-    {
-        return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
-            ->getForm();
+        return $this->deleteAbstractAction($entity);
     }
 }
