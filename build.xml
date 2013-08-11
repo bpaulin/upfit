@@ -59,7 +59,7 @@
 
     <target name="pre:release"
             description="update everything and test"
-            depends="run:lang, run:assets, composer:update, ci">
+            depends="composer:update, run:lang, run:assets, ci">
     </target>
 
     <!-- ================================================================== -->

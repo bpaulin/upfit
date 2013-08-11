@@ -3318,12 +3318,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "da417c3e7e1c621973348954a5a80c8db319789e"
+                "reference": "d5290c61d80ee6ed108b498221fb48a84b4f2e6f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/da417c3e7e1c621973348954a5a80c8db319789e",
-                "reference": "da417c3e7e1c621973348954a5a80c8db319789e",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/d5290c61d80ee6ed108b498221fb48a84b4f2e6f",
+                "reference": "d5290c61d80ee6ed108b498221fb48a84b4f2e6f",
                 "shasum": ""
             },
             "type": "library",
@@ -3347,7 +3347,7 @@
                 "bootstrap",
                 "css"
             ],
-            "time": "2013-08-10 01:01:11"
+            "time": "2013-08-10 23:11:34"
         },
         {
             "name": "vipsoft/doctrine-data-fixtures-extension",
