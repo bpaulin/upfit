@@ -39,6 +39,8 @@
     <target name="run:assets"
             description="generate assets"
             depends="cache:clear:prod">
+        <delete dir="web/css"/>
+        <delete dir="web/js"/>
         <SymfonyConsole command="assetic:dump" checkreturn="true">
             <arg value="--env=prod"/>
         </SymfonyConsole>
