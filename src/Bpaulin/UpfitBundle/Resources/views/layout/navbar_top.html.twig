@@ -23,6 +23,20 @@
     </ul>
 
     <ul class="nav navbar-nav pull-right" id="connection-area">
+      <li>
+        <a data-toggle="dropdown" href="#">{{ app.request.locale|capitalize }}</a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+          {% for locale in ['fr', 'en', 'es', 'de'] %}
+            {% if app.request.locale != locale %}
+              <li>
+                <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': locale})) }}">
+                  {{ locale|capitalize }}
+                </a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </li>
       {% if app.user.username is defined %}
         <li class="navbar-text">
           {{ app.user.username }}
