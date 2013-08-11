@@ -1,48 +1,47 @@
 <div class="navbar navbar-static-top">
-  <div class="navbar-inner">
-    <div class="container">
+  <div class="container">
 
-      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+    <!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
+  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+     <span class="icon-bar"></span>
+     <span class="icon-bar"></span>
+     <span class="icon-bar"></span>
+  </button>
 
-      <a class="brand" href="{{path('upfit_index')}}">
-        Upfit
-      </a>
+  <a class="navbar-brand" href="{{path('upfit_index')}}">
+    Upfit
+  </a>
 
-      <ul class="nav pull-right" id="connection-area">
-        {% if app.user.username is defined %}
-          <li class="navbar-text">
-            {{ app.user.username }}
-          </li>
-          <li>
-            <a href="{{ path('fos_user_security_logout') }}">
-              <i class="icon-signout"></i>
-              <span class="hidden-phone"> {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</span>
+  <div class="nav-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="https://github.com/bpaulin/upfit">
+          <i class="icon-github-sign icon-large"></i>
+            Github
+        </a>
+      </li>
+    </ul>
+
+    <ul class="nav navbar-nav pull-right" id="connection-area">
+      {% if app.user.username is defined %}
+        <li class="navbar-text">
+          {{ app.user.username }}
+        </li>
+        <li>
+          <a href="{{ path('fos_user_security_logout') }}">
+            <i class="icon-signout"></i>
+              <span class=""> {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</span>
             </a>
-          </li>
-        {% else %}
-          <li>
-            <a href="{{ path('fos_user_security_login') }}">
-              <i class="icon-signin"></i>
-              <span class="hidden-phone"> {{ 'layout.login'|trans({}, 'FOSUserBundle') }}</span>
-            </a>
-          </li>
-        {% endif %}
-      </ul>
-
-      <div class="nav-collapse collapse">
-        <ul class="nav">
-          <li>
-            <a href="https://github.com/bpaulin/upfit">
-              <i class="icon-github-sign icon-large"></i>
-              Github
-            </a>
-          </li>
-        </ul>
-      </div><!--/.nav-collapse -->
-    </div>
-  </div>
+        </li>
+      {% else %}
+        <li>
+          <a href="{{ path('fos_user_security_login') }}">
+            <i class="icon-signin"></i>
+              <span class=""> {{ 'layout.login'|trans({}, 'FOSUserBundle') }}</span>
+          </a>
+        </li>
+      {% endif %}
+    </ul>
+  </div><!--/.nav-collapse -->
+</div>
 </div>

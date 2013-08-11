@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table()
  * @ORM\Entity
  */
-class Intensity
+class Intensity extends MuscleSettings
 {
     /**
      * Id
@@ -40,13 +40,6 @@ class Intensity
      * @ORM\ManyToOne(targetEntity="Exercise", inversedBy="intensities")
      */
     protected $exercise;
-
-    /**
-     * muscle
-     *
-     * @ORM\ManyToOne(targetEntity="Muscle")
-     */
-    protected $muscle;
 
     /**
      * Get id
@@ -102,28 +95,5 @@ class Intensity
     public function getExercise()
     {
         return $this->exercise;
-    }
-
-    /**
-     * Set muscle
-     *
-     * @param  \Bpaulin\UpfitBundle\Entity\Muscle $muscle
-     * @return Intensity
-     */
-    public function setMuscle(\Bpaulin\UpfitBundle\Entity\Muscle $muscle = null)
-    {
-        $this->muscle = $muscle;
-
-        return $this;
-    }
-
-    /**
-     * Get muscle
-     *
-     * @return \Bpaulin\UpfitBundle\Entity\Muscle
-     */
-    public function getMuscle()
-    {
-        return $this->muscle;
     }
 }

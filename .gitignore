@@ -15,4 +15,7 @@
 /build.properties
 /data/templates
 /app/sessions
+/pid-*.txt
+/node_modules
 *~
+/nbproject/private/

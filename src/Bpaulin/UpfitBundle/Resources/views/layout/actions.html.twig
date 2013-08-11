@@ -2,7 +2,7 @@
     <div class="" id="actions-area">
         {% for label, route in actions %}
             {% if route.route is defined %}
-                <a class="btn btn-block {{ route.class is defined? 'btn-'~route.class }}" href="{{ route.route }}" title="{{ label }}">
+                <a class="btn btn-block {{ route.class is defined? 'btn-'~route.class : 'btn-default' }}" href="{{ route.route }}" title="{{ label }}">
                     {% if route.icon is defined %}
                         <i class="icon-{{ route.icon }}"></i> {{ label }}
                     {% else %}
