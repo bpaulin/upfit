@@ -8,7 +8,7 @@ assetic:
         cssrewrite: ~
         less:
             apply_to: "\.less$"
-            node_paths: [/usr/bin/node,node_modules]
+            node_paths: [/usr/bin/node,%kernel.root_dir%/../node_modules]
     assets:
         common_js:
             input:
@@ -32,6 +32,3 @@ assetic:
                 - ../vendor/components/jquery-ui/ui/jquery.ui.mouse.js
                 - ../vendor/components/jquery-ui/ui/jquery.ui.sortable.js
                 - @BpaulinUpfitBundle/Resources/public/js/collections.js
-        common_css:
-            input:
-                - @BpaulinUpfitBundle/Resources/public/less/bootstrap.less

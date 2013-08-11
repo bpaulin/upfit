@@ -34,6 +34,3 @@ wip:
 demo:
     formatter:
         name: pretty
-    extensions:
-        Behat\MinkExtension\Extension:
-            default_session: 'selenium2'
