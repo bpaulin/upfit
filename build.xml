@@ -330,7 +330,7 @@
         <exec executable="${path.php}" passthru="true" checkreturn="true">
             <arg value="${path.phpcpd}"/>
             <arg line="--names *.php,*.twig"/>
-            <arg line="--min-lines 5"/>
+            <arg line="--min-lines 15"/>
             <arg line="--min-tokens 70"/>
             <arg path="${dir.src}"/>
         </exec>
