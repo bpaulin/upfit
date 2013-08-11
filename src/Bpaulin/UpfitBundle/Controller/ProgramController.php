@@ -13,7 +13,7 @@ use Bpaulin\UpfitBundle\Form\ProgramType;
 /**
  * Program controller.
  */
-class ProgramController extends Controller
+class ProgramController extends AbstractController
 {
 
     /**
@@ -204,25 +204,6 @@ class ProgramController extends Controller
      */
     public function deleteAction(Program $entity)
     {
-        $deleteForm = $this->createDeleteForm($entity->getId());
-
-        return array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-        );
-    }
-
-    /**
-     * Creates a form to delete a Program entity by id.
-     *
-     * @param mixed $id The entity id
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm($id)
-    {
-        return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
-            ->getForm();
+        return $this->deleteAbstractAction($entity);
     }
 }
