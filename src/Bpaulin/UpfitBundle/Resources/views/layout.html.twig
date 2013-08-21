@@ -1,7 +1,10 @@
 {% extends "::base.html.twig" %}
 
 {% block stylesheets_global %}
-    {% stylesheets '@common_css' '@BpaulinUpfitBundle/Resources/public/less/upfit.less' %}
+    {% stylesheets
+        '@BpaulinUpfitBundle/Resources/public/less/bootstrap.less'
+        '@BpaulinUpfitBundle/Resources/public/less/upfit.less'
+    %}
         <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
     {% block stylesheets %}{% endblock %}
@@ -19,12 +22,14 @@
 <div class="container">
     <div class="row">
 	    <div class="span12">
-            <h1 class='hidden-phone'>{% block h1 %}Upfit{% endblock %}</h1>
-            {% block messages %}{% endblock %}
-            {% include 'BpaulinUpfitBundle:layout:notification.html.twig' %}
-            {% include 'BpaulinUpfitBundle:layout:breadcrumb.html.twig' %}
-		    {% block content %}{% endblock %}
-            {% include 'BpaulinUpfitBundle:layout:actions.html.twig' %}
+            {% block container %}
+                {% include 'BpaulinUpfitBundle:layout:breadcrumb.html.twig' %}
+                <h1 class='hidden-phone'>{% block h1 %}Upfit{% endblock %}</h1>
+                {% block messages %}{% endblock %}
+                {% include 'BpaulinUpfitBundle:layout:notification.html.twig' %}
+    		    {% block content %}{% endblock %}
+                {% include 'BpaulinUpfitBundle:layout:actions.html.twig' %}
+            {% endblock %}
 		</div>
     </div>
 </div>

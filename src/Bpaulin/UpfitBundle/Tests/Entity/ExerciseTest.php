@@ -60,7 +60,7 @@ class ExerciseTest extends \PHPUnit_Framework_TestCase
         $this->assertNotContains($workout, $exercise->getWorkouts());
     }
 
-    public function testFillObjectives()
+    public function testFillIntensities()
     {
         $muscles = array();
         $exercise = new Exercise();
@@ -93,7 +93,7 @@ class ExerciseTest extends \PHPUnit_Framework_TestCase
         );
         $this->assertEquals(
             $exercise->getIntensityByMuscle($muscles[3])->getIntensity(),
-            0
+            -1
         );
     }
 

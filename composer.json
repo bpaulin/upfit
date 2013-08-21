@@ -7,47 +7,47 @@
         "psr-0": { "": "src/" }
     },
     "require": {
-        "php": ">=5.3.3",
-        "symfony/symfony": "2.3.*",
-        "doctrine/orm": ">=2.2.3,<2.4-dev",
-        "doctrine/doctrine-bundle": "1.2.*",
-        "twig/extensions": "1.0.*",
-        "symfony/assetic-bundle": "2.3.*",
-        "symfony/swiftmailer-bundle": "2.3.*",
-        "symfony/monolog-bundle": "2.3.*",
-        "sensio/distribution-bundle": "2.3.*",
-        "sensio/framework-extra-bundle": "2.3.*",
-        "sensio/generator-bundle": "2.3.*",
-        "incenteev/composer-parameter-handler": "~2.0",
-        "phing/phing": "dev-master",
-        "doctrine/data-fixtures": "dev-master@dev",
-        "doctrine/doctrine-fixtures-bundle": "dev-master@dev",
-        "doctrine/doctrine-migrations-bundle": "dev-master@dev",
-        "friendsofsymfony/user-bundle": "*"
+        "php"                                 : ">=5.3.3",
+        "symfony/symfony"                     : "2.3.*@stable",
+        "doctrine/orm"                        : "2.3.*@stable",
+        "doctrine/doctrine-bundle"            : "1.2.*@stable",
+        "twig/extensions"                     : "1.0.*@stable",
+        "symfony/assetic-bundle"              : "2.3.*@stable",
+        "symfony/swiftmailer-bundle"          : "2.3.*@stable",
+        "symfony/monolog-bundle"              : "2.3.*@stable",
+        "sensio/distribution-bundle"          : "2.3.*@stable",
+        "sensio/framework-extra-bundle"       : "2.3.*@stable",
+        "sensio/generator-bundle"             : "2.3.*@stable",
+        "incenteev/composer-parameter-handler": "2.0.*@stable",
+        "friendsofsymfony/user-bundle"        : "1.3.*@stable",
+        "jms/translation-bundle"              : "1.1.*@stable",
+        "jms/i18n-routing-bundle"             : "1.1.*@stable",
+        "jms/di-extra-bundle"                 : "1.4.*@stable",
+        "doctrine/doctrine-migrations-bundle" : "dev-master"
     },
     "require-dev": {
-        "sensiolabs/security-checker": "*",
-        "squizlabs/php_codesniffer": "dev-master",
-        "phpdocumentor/phpdocumentor": "dev-release-2.0",
-        "phpdocumentor/reflection": "0.1.7",
-        "zetacomponents/console-tools": "dev-master",
-        "phploc/phploc": "dev-master",
-        "phpmd/phpmd" : "1.4.*",
-        "sebastian/phpcpd": "dev-master",
-        "phpunit/phpunit": "3.7.*",
-        "behat/behat":  "2.4.*@dev",
-        "behat/mink":   "1.4.*@dev",
-        "behat/symfony2-extension":      "*@dev",
-        "behat/mink-extension":          "*@dev",
-        "behat/mink-browserkit-driver":  "*@dev",
-        "behat/mink-selenium2-driver" :   "*@dev",
-        "vipsoft/doctrine-data-fixtures-extension": "*",
-        "selenium/standalone-server"  : "*",
-        "leafo/lessphp": "0.3.*@dev",
-        "twitter/bootstrap": "*",
-        "components/font-awesome": "dev-master@dev",
-        "components/jqueryui": "1.*",
-        "components/jquery": "1.*"
+        "doctrine/doctrine-fixtures-bundle"  : "dev-master",
+
+        "sebastian/phpcpd"           : "*@stable",
+        "squizlabs/php_codesniffer"  : "*@stable",
+        "phpmd/phpmd"                : "*@stable",
+
+        "phpunit/phpunit"                         : "*@stable",
+        "behat/behat"                             : "*@stable",
+        "behat/mink"                              : "*@stable",
+        "behat/symfony2-extension"                : "*@stable",
+        "behat/mink-extension"                    : "*@stable",
+        "behat/mink-browserkit-driver"            : "*@stable",
+        "behat/mink-selenium2-driver"             : "*@stable",
+        "vipsoft/doctrine-data-fixtures-extension": "*@stable",
+
+        "twitter/bootstrap"      : "3.0.*",
+        "components/font-awesome": "3.2.*@stable",
+        "components/jqueryui"    : "1.10.*@stable",
+        "components/jquery"      : "1.10.*@stable",
+
+        "sensiolabs/security-checker": "*@stable",
+        "phploc/phploc"              : "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
@@ -80,18 +80,5 @@
         "branch-alias": {
             "dev-master": "2.3-dev"
         }
-    },
-    "repositories": [
-        {
-            "type": "package",
-            "package": {
-                "name": "selenium/standalone-server",
-                "version": "2.33",
-                "dist": {
-                    "url": "http://selenium.googlecode.com/files/selenium-server-standalone-2.33.0.jar",
-                    "type": "file"
-                }
-            }
-        }
-    ]
+    }
 }

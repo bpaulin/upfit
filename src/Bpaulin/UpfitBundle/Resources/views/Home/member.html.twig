@@ -1,7 +1,7 @@
 {% extends "BpaulinUpfitBundle::layout.html.twig" %}
 {%
     set breadcrumbs = {
-        'Member' : {
+        ('Member'|trans) : {
             'route': path('upfit_member'),
             'icon': 'gamepad',
         },
@@ -9,16 +9,16 @@
 %}
 {%
     set actions = {
-        'Programs' : {
+        ('Programs'|trans) : {
             'route': path('member_program'),
             'icon': 'tasks',
             'class': 'primary'
         },
-        'Sessions' : {
+        ('Sessions'|trans) : {
             'route': path('member_session'),
             'icon': 'trophy',
         },
-        'Objectives' : {
+        ('Objectives'|trans) : {
             'route': path('member_objectives'),
             'icon': 'user',
         },

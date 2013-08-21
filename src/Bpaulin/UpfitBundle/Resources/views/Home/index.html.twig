@@ -1,16 +1,41 @@
 {% extends "BpaulinUpfitBundle::layout.html.twig" %}
-{%
-	set actions = {
-		'Member' : path('upfit_member')
-	}
-%}
+
+{% block container %}
+<div class="jumbotron">
+    <h1>Upfit</h1>
+    <p>{% trans %}sport for a geek{% endtrans %}</p>
+    <p>
+        <a href="{{ path('upfit_member') }}" class="btn btn-primary btn-lg">{% trans %}Go!{% endtrans %}</a>
+    </p>
+</div>
+
 {% if is_granted("ROLE_ADMIN") %}
-	{%
-		set actions = actions|merge({
-			'Admin' : path('upfit_admin')
-		})
-	%}
+    <a class="btn btn-block" href="{{ path('upfit_admin') }}" class="btn btn-primary btn-lg">{% trans %}Admin{% endtrans %}</a>
 {% endif %}
 
-{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">{% trans %}What's that?{% endtrans %}</h2>
+            </div>
+            <div class="panel-body">
+                {% trans %}Everything is on github{% endtrans %}
+            </div>
+            <div class="panel-footer">
+                <a class="btn btn-default" href="https://github.com/bpaulin/upfit"><i class="icon-github-sign icon-large"></i> Github</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Registration</h2>
+            </div>
+            <div class="panel-body">
+                {% trans %}This is a test ... it's for my eyes only{% endtrans %}
+            </div>
+        </div>
+    </div>
+</div><!--/row-->
 {% endblock %}

@@ -3,9 +3,9 @@ assetic:
     filters:
         uglifyjs2:
             apply_to: "\.js$"
-            bin: /usr/bin/uglifyjs
+            bin: %kernel.root_dir%/../node_modules/.bin/uglifyjs
             compress: true
             mangle: true
         uglifycss:
             apply_to: ["\.css$", "\.less$"]
-            bin: /usr/bin/uglifycss
+            bin: %kernel.root_dir%/../node_modules/.bin/uglifycss

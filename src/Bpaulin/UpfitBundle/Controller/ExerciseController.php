@@ -15,7 +15,7 @@ use Bpaulin\UpfitBundle\Form\ExerciseType;
  *
  * @Route("/admin/exercise")
  */
-class ExerciseController extends Controller
+class ExerciseController extends AbstractController
 {
 
     /**
@@ -60,7 +60,7 @@ class ExerciseController extends Controller
 
             $this->get('session')->getFlashBag()->add(
                 'success',
-                $this->get('translator')->trans('Exercise '.$entity->getName().' created')
+                $this->get('translator')->trans('Exercise %name% created', array('%name%'=>$entity->getName()))
             );
 
             return $this->redirect($this->generateUrl('admin_exercise'));
@@ -155,7 +155,7 @@ class ExerciseController extends Controller
 
             $this->get('session')->getFlashBag()->add(
                 'success',
-                $this->get('translator')->trans('Exercise '.$entity->getName().' updated')
+                $this->get('translator')->trans('Exercise %name% updated', array('%name%'=>$entity->getName()))
             );
 
             return $this->redirect($this->generateUrl('admin_exercise'));
@@ -184,7 +184,7 @@ class ExerciseController extends Controller
             $em->flush();
             $this->get('session')->getFlashBag()->add(
                 'success',
-                $this->get('translator')->trans('Exercise '.$entity->getName().' deleted')
+                $this->get('translator')->trans('Exercise %name% deleted', array('%name%'=>$entity->getName()))
             );
         }
 
@@ -200,25 +200,6 @@ class ExerciseController extends Controller
      */
     public function deleteAction(Exercise $entity)
     {
-        $deleteForm = $this->createDeleteForm($entity->getId());
-
-        return array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-        );
-    }
-
-    /**
-     * Creates a form to delete a Exercise entity by id.
-     *
-     * @param mixed $id The entity id
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm($id)
-    {
-        return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
-            ->getForm();
+        return $this->deleteAbstractAction($entity);
     }
 }

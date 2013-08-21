@@ -2,11 +2,11 @@
 {%
     set breadcrumbs =
     {
-        'Member' : {
+        ('Member'|trans) : {
             'route': path('upfit_member'),
             'icon': 'gamepad',
         },
-        'Objectives' : {
+        ('Objectives'|trans) : {
             'route': path('member_objectives'),
         },
     }
@@ -15,7 +15,7 @@
     set action = ''
 %}
 
-{% block h1 %}Objectives{% endblock %}
+{% block h1 %}{% trans %}Objectives{% endtrans %}{% endblock %}
 
 {% block content %}
 {{ form_start(edit_form) }}

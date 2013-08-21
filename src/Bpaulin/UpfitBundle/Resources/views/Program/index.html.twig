@@ -5,18 +5,18 @@
     {% set route_show = 'admin_program_show' %}
     {%
         set breadcrumbs = {
-            'Admin' : {
+            ('Admin'|trans) : {
                 'route': path('upfit_admin'),
                 'icon': 'briefcase',
             },
-            'Programs' : {
+            ('Programs'|trans) : {
                 'route': path('admin_program'),
             },
         }
     %}
     {%
         set actions = {
-            'Add' : {
+            ('Add'|trans) : {
                 'route': path('admin_program_new'),
                 'icon': 'plus',
             },
@@ -26,11 +26,11 @@
     {% set route_show = 'member_program_show' %}
     {%
         set breadcrumbs = {
-            'Member' : {
+            ('Member'|trans) : {
                 'route': path('upfit_member'),
                 'icon': 'gamepad',
             },
-            'Programs' : {
+            ('Programs'|trans) : {
                 'route': path('member_program'),
             },
         }
@@ -38,25 +38,63 @@
 {% endif %}
 {%
     set fields = {
-        'Name' : 'name',
+        ('Name'|trans) : 'name',
     }
 %}
 
-{% block h1 %}Programs{% endblock %}
+{% block h1 %}{% trans %}Programs{% endtrans %}{% endblock %}
 
 {% block row %}
     <td>
         <a href="{{ path(route_show, { 'id': entity.id }) }}">{{ entity.name }}</a>
+        {{ macros.programGrade(entity) }}
         {{ macros.stagesList(entity) }}
     </td>
     <td>
         <a class="btn btn-mini btn-primary" href="{{ path('member_session_new', { 'follow': 'program', 'id': entity.id }) }}">
             <i class="icon-play"></i>
-            Begin a session
+            {% trans %}Begin a session{% endtrans %}
         </a>
     </td>
 {% endblock %}
 
 {% block messages %}
     {{ render(controller('BpaulinUpfitBundle:Session:todo')) }}
+{% endblock %}
+
+{% block content -%}
+<h2>Recommended</h2>
+    <div class="row">
+        {% for entity in entities|slice(0, 3) %}
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{ entity.name }}</h3>
+                    </div>
+                    <div class="panel-body">
+                        {{ macros.programGrade(entity) }}
+                    </div>
+                    <div class="panel-footer">
+                        <a class="btn btn-block btn-primary" href="{{ path('member_session_new', { 'follow': 'program', 'id': entity.id }) }}">
+                            <i class="icon-play"></i>
+                            {% trans %}Begin a session{% endtrans %}
+                        </a>
+                        <a class="btn btn-block btn-default" href="{{ path(route_show, { 'id': entity.id }) }}">
+                            <i class="icon-eye-open"></i>
+                            {% trans %}View Details{% endtrans %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+<hr/>
+<h2>All</h2>
+    <div class="row">
+        {% for entity in entities %}
+            <div class="col-md-2">
+                <a href="{{ path(route_show, { 'id': entity.id }) }}">{{ entity.name }}</a>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}

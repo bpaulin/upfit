@@ -5,9 +5,6 @@ Feature: Authentification
 
 Scenario Outline: Visitor should be able to login and logout to access member section
   Given I am on homepage
-  Then I should see the following breadcrumbs:
-    | icon | label | link |
-    | home |       |      |
   Then I should see a link to "/login" in "connection" area
   When I follow this link
   Then I should see the following breadcrumbs:

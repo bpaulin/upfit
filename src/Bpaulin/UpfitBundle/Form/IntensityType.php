@@ -14,7 +14,17 @@ class IntensityType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('intensity')
+            ->add(
+                'intensity',
+                'choice',
+                array(
+                    'choices' => array(
+                        -1 => "None",
+                        0  => "Normal",
+                        1  => "Intense",
+                    )
+                )
+            )
             ->add(
                 'muscle',
                 null,
@@ -22,8 +32,7 @@ class IntensityType extends AbstractType
                     'property'=>'name',
                     'disabled'=>true
                 )
-            )
-        ;
+            );
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

@@ -1,9 +1,9 @@
 language: php
 
-branches:
-  only:
-    - master
-    - develop
+# branches:
+#   only:
+#     - master
+#     - develop
 
 php:
   - 5.4
@@ -14,13 +14,11 @@ matrix:
     - php: 5.5
 
 before_script:
-    - wget http://getcomposer.org/composer.phar
-    - php composer.phar install --prefer-source -n
-    - "php app/console server:run > /dev/null &"
-    - "sh -e /etc/init.d/xvfb start"
-    - "export DISPLAY=:99.0"
-    - "java -jar vendor/selenium/standalone-server/selenium-server-standalone-2.*.jar > /dev/null &"
-    - sleep 5
+    - pear channel-discover pear.phing.info
+    - pear install phing/phing
+    - phpenv rehash
     - cp build.properties.dist build.properties
+    - phing install:ci
+    - phing tools:start
 
-script: ./bin/phing ci:travis
+script: phing ci

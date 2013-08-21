@@ -1,42 +1,59 @@
-<div class="navbar navbar-static-top">
-  <div class="navbar-inner">
-    <div class="container">
-      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="brand" href="#">Upfit</a>
-      <ul class="nav">
+<div class="navbar navbar-default navbar-static-top">
+<div class="container">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="{{path('upfit_index')}}">Upfit</a>
+  </div><!--/.navbar-toggle -->
+
+  <div class="navbar-collapse collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="https://github.com/bpaulin/upfit">
+          <i class="icon-github-sign icon-large"></i>
+            Github
+        </a>
+      </li>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right" id="connection-area">
+      <li class="dropdown">
+        <a data-toggle="dropdown" href="#">
+          {{ app.request.locale|capitalize }}
+          <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+          {% for locale in ['fr', 'en', 'es', 'de'] %}
+            {% if app.request.locale != locale %}
+              <li>
+                <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': locale})) }}">
+                  {{ locale|capitalize }}
+                </a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </li>
+      {% if app.user.username is defined %}
         <li>
-          <a href="https://github.com/bpaulin/upfit">
-            <i class="icon-github-sign icon-large"></i>
-            <span class="hidden-phone">Github</span>
+          <a href="{{ path('fos_user_security_logout') }}">
+            <i class="icon-signout"></i>
+            <span class=""> {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</span>
           </a>
         </li>
-      </ul>
-      <div class="nav-collapse collapse">
-        <ul class="nav pull-right" id="connection-area">
-          {% if app.user.username is defined %}
-            <li class="navbar-text">
-              {{ app.user.username }}
-            </li>
-            <li>
-              <a href="{{ path('fos_user_security_logout') }}">
-                <i class="icon-signout"></i>
-                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-              </a>
-            </li>
-          {% else %}
-            <li>
-              <a href="{{ path('fos_user_security_login') }}">
-                <i class="icon-signin"></i>
-                {{ 'layout.login'|trans({}, 'FOSUserBundle') }}
-              </a>
-            </li>
-          {% endif %}
-        </ul>
-      </div><!--/.nav-collapse -->
-    </div>
-  </div>
+      {% else %}
+        <li>
+          <a href="{{ path('fos_user_security_login') }}">
+            <i class="icon-signin"></i>
+            <span class=""> {{ 'layout.login'|trans({}, 'FOSUserBundle') }}</span>
+          </a>
+        </li>
+      {% endif %}
+    </ul>
+  </div><!--/.navbar-collapse -->
+</div>
 </div>

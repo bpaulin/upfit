@@ -3,18 +3,18 @@
 {%
     set breadcrumbs =
     {
-        'Member' : {
+        ('Member'|trans) : {
             'route': path('upfit_member'),
             'icon': 'gamepad',
         },
-        'Sessions' : {
+        ('Sessions'|trans) : {
             'route': path('member_session'),
             'icon': 'list',
         },
         (entity.name) : {
             'route': path('member_session_show', { 'id': entity.id }),
         },
-        'Workout' : {
+        ('Workout'|trans) : {
             'route': path('member_session_workout', { 'id': entity.id }),
         },
     }
@@ -22,28 +22,46 @@
 
 {%
     set fields = {
-        'exercise' : entity.nextWorkout.exercise.name,
-        'sets': (entity.nextWorkout.sets ~ '*' ~ entity.nextWorkout.number ~ ' ' ~ entity.nextWorkout.unit),
-        'difficulty': (entity.nextWorkout.difficulty ~ ' ' ~ entity.nextWorkout.difficultyUnit)
+        ('exercise'|trans) : entity.nextWorkout.exercise.name,
+        ('sets'|trans): (entity.nextWorkout.sets ~ '*' ~ entity.nextWorkout.number ~ ' ' ~ entity.nextWorkout.unit),
+        ('difficulty'|trans): (entity.nextWorkout.difficulty ~ ' ' ~ entity.nextWorkout.difficultyUnit)
     }
 %}
 
-{% block h1 %}Session <small>{{ entity.name }}</small>{% endblock %}
+{% block h1 %}{% trans %}Session{% endtrans %} <small>{{ entity.name }}</small>{% endblock %}
 
 {% block content %}
-<div class="nav well">
-    {{ macros.workoutsList(entity) }}
-</div>
-{{ parent() }}
+<h2 class="exercise-settings"><span class="exercise">{{ entity.nextWorkout.exercise.name }}</span><br/>
+    <small>({{ entity.nextWorkout.sets }}*{{ entity.nextWorkout.number }} {{ entity.nextWorkout.unit }}{% if entity.nextWorkout.difficulty>0 %} {% trans %}with{% endtrans %} {{ entity.nextWorkout.difficulty }} {{ entity.nextWorkout.difficultyUnit }}{% endif %}){% if entity.nextWorkout.rest %}, {{ entity.nextWorkout.rest }}s{% endif %}</small>
+
+</h2>
 {{ form_start(form) }}
-    {{ form_row(form.grade) }}
-    <div class="control-group">
-        <div class="controls">
-            {{ form_widget(form.done, {'attr': {'class': 'btn-primary'}}) }}
-            {{ form_widget(form.pass, {'attr': {'class': 'btn-warning'}}) }}
-            {{ form_widget(form.abandon, {'attr': {'class': 'btn-danger'}}) }}
-        </div>
+    <a href="#gradeModal" class="btn btn-block btn-large btn-primary" data-toggle="modal">{% trans %}Done{% endtrans %}</a><br/>
+
+
+    <div id="gradeModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">{{ entity.nextWorkout.exercise.name }}</h3>
+      </div>
+      <div class="modal-body">
+            {{ form_row(form.grade) }}
+      </div>
+      <div class="modal-footer">
+        {{ form_widget(form.done, {'attr': {'class': 'btn-block btn-primary'}}) }}
+      </div>
+                </div>
+            </div>
+    </div>
+    <div class="btn-group btn-group-vertical btn-block">
+    {{ form_widget(form.pass, {'attr': {'class': 'btn-block btn-warning'}}) }}
+    {{ form_widget(form.abandon, {'attr': {'class': 'btn-block btn-danger'}}) }}
     </div>
     {{ form_rest(form) }}
 {{ form_end(form) }}
+<div class="nav well">
+    {{ macros.workoutsList(entity) }}
+</div>
 {% endblock %}

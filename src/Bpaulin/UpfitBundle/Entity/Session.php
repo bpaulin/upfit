@@ -116,7 +116,7 @@ class Session
             if ($workout->isDone() === true) {
                 $copy = clone $workout;
                 $copy->setDone(null);
-                $copy->setGrade(null);
+                $copy->setGrade(0);
                 $copy->setPosition($index);
                 $this->addWorkout($copy);
             }

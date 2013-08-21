@@ -1,11 +1,11 @@
 <div id="message-area">
     {% if sessions %}
-        <div class="alert">
-            Unfinished sessions
-            <ul>
+        <div class="alert alert-warning">
+            {% trans %}Unfinished sessions{% endtrans %}
+            <ul class="list-unstyled">
             {% for session in sessions %}
                 <li class="unfinished-sessions">
-                    <a href="{{ path('member_session_show', { 'id': session.id }) }}">{{ session.name }}</a>
+                    <a href="{{ path('member_session_show', { 'id': session.id }) }}" class="alert-link">{{ session.name }}</a>
                 </li>
             {% endfor %}
             </ul>

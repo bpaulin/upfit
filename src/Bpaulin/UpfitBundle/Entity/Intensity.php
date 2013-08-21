@@ -3,6 +3,7 @@
 namespace Bpaulin\UpfitBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Insentity
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity
  */
-class Intensity
+class Intensity extends MuscleSettings
 {
     /**
      * Id
@@ -29,6 +30,7 @@ class Intensity
      * @var integer
      *
      * @ORM\Column(name="intensity", type="smallint")
+     * @Assert\Range(min = "-1", max = "1")
      */
     private $intensity;
 
@@ -38,13 +40,6 @@ class Intensity
      * @ORM\ManyToOne(targetEntity="Exercise", inversedBy="intensities")
      */
     protected $exercise;
-
-    /**
-     * muscle
-     *
-     * @ORM\ManyToOne(targetEntity="Muscle")
-     */
-    protected $muscle;
 
     /**
      * Get id
@@ -100,28 +95,5 @@ class Intensity
     public function getExercise()
     {
         return $this->exercise;
-    }
-
-    /**
-     * Set muscle
-     *
-     * @param  \Bpaulin\UpfitBundle\Entity\Muscle $muscle
-     * @return Intensity
-     */
-    public function setMuscle(\Bpaulin\UpfitBundle\Entity\Muscle $muscle = null)
-    {
-        $this->muscle = $muscle;
-
-        return $this;
-    }
-
-    /**
-     * Get muscle
-     *
-     * @return \Bpaulin\UpfitBundle\Entity\Muscle
-     */
-    public function getMuscle()
-    {
-        return $this->muscle;
     }
 }

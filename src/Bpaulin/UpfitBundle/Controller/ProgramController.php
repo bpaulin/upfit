@@ -13,7 +13,7 @@ use Bpaulin\UpfitBundle\Form\ProgramType;
 /**
  * Program controller.
  */
-class ProgramController extends Controller
+class ProgramController extends AbstractController
 {
 
     /**
@@ -54,7 +54,7 @@ class ProgramController extends Controller
 
             $this->get('session')->getFlashBag()->add(
                 'success',
-                $this->get('translator')->trans('Program '.$entity->getName().' created')
+                $this->get('translator')->trans('Program %name% created', array('%name%'=>$entity->getName()))
             );
 
             return $this->redirect($this->generateUrl('admin_program'));
@@ -159,7 +159,7 @@ class ProgramController extends Controller
 
             $this->get('session')->getFlashBag()->add(
                 'success',
-                $this->get('translator')->trans('Program '.$entity->getName().' updated')
+                $this->get('translator')->trans('Program %name% updated', array('%name%'=>$entity->getName()))
             );
 
             return $this->redirect($this->generateUrl('admin_program'));
@@ -188,7 +188,7 @@ class ProgramController extends Controller
             $em->flush();
             $this->get('session')->getFlashBag()->add(
                 'success',
-                $this->get('translator')->trans('Program '.$entity->getName().' deleted')
+                $this->get('translator')->trans('Program %name% deleted', array('%name%'=>$entity->getName()))
             );
         }
 
@@ -204,25 +204,6 @@ class ProgramController extends Controller
      */
     public function deleteAction(Program $entity)
     {
-        $deleteForm = $this->createDeleteForm($entity->getId());
-
-        return array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-        );
-    }
-
-    /**
-     * Creates a form to delete a Program entity by id.
-     *
-     * @param mixed $id The entity id
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm($id)
-    {
-        return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
-            ->getForm();
+        return $this->deleteAbstractAction($entity);
     }
 }
