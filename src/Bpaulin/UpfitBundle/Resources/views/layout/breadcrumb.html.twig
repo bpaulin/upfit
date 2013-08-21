@@ -6,7 +6,7 @@
         {% for label, route in breadcrumbs %}
             {% if loop.last %}
                 <li class="active">
-                    <span class="visible-phone breadcrumb-label">
+                    <span class="breadcrumb-label">
                         {{ label }}
                     </span>
                 </li>
@@ -15,7 +15,7 @@
                     <a href="{{ route.route }}">
                         {% if route.icon is defined %}
                             <i class="icon-{{ route.icon }}"></i>
-                            <span class="hidden-sm breadcrumb-label">{{ label }}</span>
+                            <span class="breadcrumb-label">{{ label }}</span>
                         {% else %}
                             <span class="breadcrumb-label">{{ label }}</span>
                         {% endif %}

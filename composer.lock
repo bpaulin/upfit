@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "9c3afe747606ec06cf299b8527fb6643",
+    "hash": "3c63e9fd1e361e9934f281344b68d43a",
     "packages": [
         {
             "name": "doctrine/common",
@@ -2504,12 +2504,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phploc.git",
-                "reference": "e6d12df502f5cbadfa9a2b826cb64b6e32f6bec2"
+                "reference": "188c14edcd72b2aa48ba39a1ad14931b427d305e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phploc/zipball/e6d12df502f5cbadfa9a2b826cb64b6e32f6bec2",
-                "reference": "e6d12df502f5cbadfa9a2b826cb64b6e32f6bec2",
+                "url": "https://api.github.com/repos/sebastianbergmann/phploc/zipball/188c14edcd72b2aa48ba39a1ad14931b427d305e",
+                "reference": "188c14edcd72b2aa48ba39a1ad14931b427d305e",
                 "shasum": ""
             },
             "require": {
@@ -2546,7 +2546,7 @@
             ],
             "description": "A tool for quickly measuring the size of a PHP project.",
             "homepage": "https://github.com/sebastianbergmann/phploc",
-            "time": "2013-08-05 15:17:09"
+            "time": "2013-08-13 06:25:33"
         },
         {
             "name": "phpmd/phpmd",
@@ -3314,16 +3314,16 @@
         },
         {
             "name": "twitter/bootstrap",
-            "version": "dev-3.0.0-wip",
+            "version": "v3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "d5290c61d80ee6ed108b498221fb48a84b4f2e6f"
+                "reference": "e8a1df5f060bf7e6631554648e0abde150aedbe4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/d5290c61d80ee6ed108b498221fb48a84b4f2e6f",
-                "reference": "d5290c61d80ee6ed108b498221fb48a84b4f2e6f",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/e8a1df5f060bf7e6631554648e0abde150aedbe4",
+                "reference": "e8a1df5f060bf7e6631554648e0abde150aedbe4",
                 "shasum": ""
             },
             "type": "library",
@@ -3341,13 +3341,13 @@
                     "email": "jacobthornton@gmail.com"
                 }
             ],
-            "description": "Sleek, intuitive, and powerful front-end framework for faster and easier web development.",
+            "description": "Sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.",
             "homepage": "http://getbootstrap.com",
             "keywords": [
                 "bootstrap",
                 "css"
             ],
-            "time": "2013-08-10 23:11:34"
+            "time": "2013-08-19 21:18:20"
         },
         {
             "name": "vipsoft/doctrine-data-fixtures-extension",
@@ -3552,7 +3552,6 @@
         "behat/mink-browserkit-driver": 0,
         "behat/mink-selenium2-driver": 0,
         "vipsoft/doctrine-data-fixtures-extension": 0,
-        "twitter/bootstrap": 20,
         "components/font-awesome": 0,
         "components/jqueryui": 0,
         "components/jquery": 0,

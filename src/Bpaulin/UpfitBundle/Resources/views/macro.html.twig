@@ -46,7 +46,7 @@
 
 {% macro shortGrade(grade) %}
     {% if grade == 2 %}
-        <span class="grade label label-important">
+        <span class="grade label label-danger">
             <i class="icon-double-angle-up"></i>
     {% elseif grade == 1 %}
         <span class="grade label label-warning">
@@ -58,7 +58,7 @@
         <span class="grade label label-warning">
             <i class="icon-angle-down"></i>
     {% elseif grade == -2 %}
-        <span class="grade label label-important">
+        <span class="grade label label-danger">
             <i class="icon-double-angle-down"></i>
     {% endif %}
     </span>
@@ -66,7 +66,7 @@
 
 {% macro longGrade(grade) %}
     {% if grade == 2 %}
-        <span class="grade label label-important" data-grade="{{ grade }}">
+        <span class="grade label label-danger" data-grade="{{ grade }}">
             <i class="icon-double-angle-up"></i>
             <span class="">{% trans %}Too hard{% endtrans %}</span>
     {% elseif grade == 1 %}
@@ -82,7 +82,7 @@
             <i class="icon-angle-down"></i>
             <span class="">{% trans %}Easy{% endtrans %}</span>
     {% elseif grade == -2 %}
-        <span class="grade label label-important" data-grade="{{ grade }}">
+        <span class="grade label label-danger" data-grade="{{ grade }}">
             <i class="icon-double-angle-down"></i>
             <span class="">{% trans %}Too easy{% endtrans %}</span>
     {% endif %}

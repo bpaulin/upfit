@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="Upfit" basedir="." default="ci">
+<project name="Upfit" phingVersion="2.5.0" basedir="." default="ci">
 
     <!-- ================================================================== -->
     <!-- Properties                                                         -->
