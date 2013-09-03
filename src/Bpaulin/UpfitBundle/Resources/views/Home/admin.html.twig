@@ -9,8 +9,12 @@
 %}
 {% set
     actions = {
-		('exercise'|trans) : path('admin_exercise'),
-        ('program'|trans) : path('admin_program')
+        ('Exercises'|trans) : {
+            'route': path('admin_exercise'),
+        },
+        ('Programs'|trans) : {
+            'route': path('admin_program'),
+        },
     }
 %}
 
