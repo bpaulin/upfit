@@ -175,7 +175,7 @@
 
     <target name="install:ci"
             description="install deps and testing db"
-            depends="composer:install, npm:install">
+            depends="composer:install, npm:install, base:test:reset">
     </target>
 
     <target name="install:dev"

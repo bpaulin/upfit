@@ -6,12 +6,11 @@
     <p>{% trans %}sport for a geek{% endtrans %}</p>
     <p>
         <a href="{{ path('upfit_member') }}" class="btn btn-primary btn-lg">{% trans %}Go!{% endtrans %}</a>
+        {% if is_granted("ROLE_ADMIN") %}
+            <a href="{{ path('upfit_admin') }}" class="btn btn-danger btn-lg" >{% trans %}Admin{% endtrans %}</a>
+        {% endif %}
     </p>
 </div>
-
-{% if is_granted("ROLE_ADMIN") %}
-    <a class="btn btn-block" href="{{ path('upfit_admin') }}" class="btn btn-primary btn-lg">{% trans %}Admin{% endtrans %}</a>
-{% endif %}
 
 <div class="row">
     <div class="col-md-6">

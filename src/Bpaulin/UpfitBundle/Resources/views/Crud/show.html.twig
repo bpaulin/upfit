@@ -1,7 +1,7 @@
 {% extends "BpaulinUpfitBundle::layout.html.twig" %}
 
 {% block content -%}
-    <dl class="record_properties">
+    <dl class="dl-horizontal record_properties">
         {% for label, value in fields %}
             <dt class="{{ label }}">{{ label }}</dt>
             <dd class="{{ label }}">{{ value }}</dd>

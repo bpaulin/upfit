@@ -12,7 +12,6 @@
 /backups/
 /composer.phar
 /upfit2.sublime-workspace
-/build.properties
 /data/templates
 /app/sessions
 /pid-*.txt
