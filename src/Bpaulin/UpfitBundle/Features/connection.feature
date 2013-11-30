@@ -3,7 +3,6 @@ Feature: Authentification
   As a visitor
   I need to authenticate myself
 
-@wip
 Scenario Outline: Visitor should be able to login and logout to access member section
   Given I am on homepage
   Then I should see a link to "/login" in "connection" area
