@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2013-08-21T11:46:34Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+  <file date="2013-11-30T12:44:52Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -33,7 +33,7 @@
         <jms:reference-file line="4">views/Program/new.html.twig</jms:reference-file>
         <jms:reference-file line="8">views/Program/index.html.twig</jms:reference-file>
         <jms:reference-file line="4">views/Program/edit.html.twig</jms:reference-file>
-        <jms:reference-file line="13">views/Home/index.html.twig</jms:reference-file>
+        <jms:reference-file line="10">views/Home/index.html.twig</jms:reference-file>
         <jms:reference-file line="4">views/Home/admin.html.twig</jms:reference-file>
         <jms:reference-file line="5">views/Exercise/show.html.twig</jms:reference-file>
         <jms:reference-file line="4">views/Exercise/delete.html.twig</jms:reference-file>
@@ -93,7 +93,7 @@
         <target state="new">Edit</target>
       </trans-unit>
       <trans-unit id="cad326181768dcfbf659c280405d17fa06dba5a1" resname="Everything is on github">
-        <jms:reference-file line="23">views/Home/index.html.twig</jms:reference-file>
+        <jms:reference-file line="22">views/Home/index.html.twig</jms:reference-file>
         <source>Everything is on github</source>
         <target state="new">Everything is on github</target>
       </trans-unit>
@@ -121,6 +121,7 @@
         <target state="new">Exercise %name% updated</target>
       </trans-unit>
       <trans-unit id="4dc503dafcf231e8065504c4cd9f19a0dcdfc147" resname="Exercises">
+        <jms:reference-file line="12">views/Home/admin.html.twig</jms:reference-file>
         <jms:reference-file line="9">views/Exercise/show.html.twig</jms:reference-file>
         <jms:reference-file line="8">views/Exercise/delete.html.twig</jms:reference-file>
         <jms:reference-file line="8">views/Exercise/new.html.twig</jms:reference-file>
@@ -268,6 +269,7 @@
         <jms:reference-file line="45">views/Program/index.html.twig</jms:reference-file>
         <jms:reference-file line="8">views/Program/edit.html.twig</jms:reference-file>
         <jms:reference-file line="12">views/Home/member.html.twig</jms:reference-file>
+        <jms:reference-file line="15">views/Home/admin.html.twig</jms:reference-file>
         <source>Programs</source>
         <target state="new">Programs</target>
       </trans-unit>
@@ -307,7 +309,7 @@
         <target state="new">Sessions</target>
       </trans-unit>
       <trans-unit id="ba6f331fe7695252bbd7971808a0ff159e240565" resname="This is a test ... it's for my eyes only">
-        <jms:reference-file line="36">views/Home/index.html.twig</jms:reference-file>
+        <jms:reference-file line="35">views/Home/index.html.twig</jms:reference-file>
         <source>This is a test ... it's for my eyes only</source>
         <target state="new">This is a test ... it's for my eyes only</target>
       </trans-unit>
@@ -345,7 +347,7 @@
         <target state="new">View Details</target>
       </trans-unit>
       <trans-unit id="2669cc23ec9a922ca884004193bd4d8e1e422462" resname="What's that?">
-        <jms:reference-file line="20">views/Home/index.html.twig</jms:reference-file>
+        <jms:reference-file line="19">views/Home/index.html.twig</jms:reference-file>
         <source>What's that?</source>
         <target state="new">What's that?</target>
       </trans-unit>
@@ -371,7 +373,6 @@
       </trans-unit>
       <trans-unit id="eb70d1fcdf826fda896f9a129bacd4ee88fb6e9a" resname="exercise">
         <jms:reference-file line="25">views/Session/workout.html.twig</jms:reference-file>
-        <jms:reference-file line="12">views/Home/admin.html.twig</jms:reference-file>
         <source>exercise</source>
         <target state="new">exercise</target>
       </trans-unit>
@@ -391,11 +392,6 @@
         <jms:reference-file line="20">views/Objective/show.html.twig</jms:reference-file>
         <source>name</source>
         <target state="new">name</target>
-      </trans-unit>
-      <trans-unit id="81d9aeea0e1a408d65b6660a176c5de83dc98e7b" resname="program">
-        <jms:reference-file line="13">views/Home/admin.html.twig</jms:reference-file>
-        <source>program</source>
-        <target state="new">program</target>
       </trans-unit>
       <trans-unit id="d6c822010fb777a0f5cd6a7e4c9f79fa6a3663f7" resname="sets">
         <jms:reference-file line="26">views/Session/workout.html.twig</jms:reference-file>
