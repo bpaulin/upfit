@@ -19,7 +19,6 @@ set   :use_composer,     true
 set   :use_composer_tmp, true
 set   :scm,              :git
 set   :model_manager,    "doctrine"
-set   :use_sudo,      true
 set   :shared_children,   ["app/logs", "web/uploads", "app/sessions"]
 set   :shared_files,      ["app/config/parameters.yml"]
 set   :writable_dirs,       ["app/cache", "app/logs", "app/sessions"]
