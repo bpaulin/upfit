@@ -41,10 +41,11 @@
         "behat/mink-selenium2-driver"             : "*@stable",
         "vipsoft/doctrine-data-fixtures-extension": "*@stable",
 
-        "twitter/bootstrap"      : "3.0.*",
-        "components/font-awesome": "3.2.*@stable",
-        "components/jqueryui"    : "1.10.*@stable",
-        "components/jquery"      : "1.10.*@stable",
+        "twitter/bootstrap"               : "3.0.*",
+        "components/font-awesome"         : "3.2.*@stable",
+        "components/jqueryui"             : "1.10.*@stable",
+        "components/jquery"               : "1.10.*@stable",
+        "bpaulin/jquery-sf2formcollection": "*",
 
         "sensiolabs/security-checker": "*@stable",
         "phploc/phploc"              : "dev-master"
@@ -80,5 +81,20 @@
         "branch-alias": {
             "dev-master": "2.3-dev"
         }
-    }
+    },
+    "repositories": [
+        {
+            "type":"package",
+            "package": {
+              "name": "bpaulin/jquery-sf2formcollection",
+              "version":"master",
+              "source": {
+                  "url": "https://github.com/bpaulin/jquery-sf2formcollection.git",
+                  "type": "git",
+                  "reference":"master"
+                }
+            }
+        }
+    ]
+
 }

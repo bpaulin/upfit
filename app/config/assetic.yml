@@ -31,4 +31,4 @@ assetic:
                 - ../vendor/components/jquery-ui/ui/jquery.ui.widget.js
                 - ../vendor/components/jquery-ui/ui/jquery.ui.mouse.js
                 - ../vendor/components/jquery-ui/ui/jquery.ui.sortable.js
-                - @BpaulinUpfitBundle/Resources/public/js/collections.js
+                - ../vendor/bpaulin/jquery-sf2formcollection/dist/sf2FormCollection.js
