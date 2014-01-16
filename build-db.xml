@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Upfit" phingVersion="2.5.0" basedir="." default="ci">
+    <!-- ================================================================== -->
+    <!-- Database                                                           -->
+    <!-- ================================================================== -->
+
+    <target name="base:master:import">
+        <exec command="cap master database:move:to_local" passthru="true"/>
+    </target>
+
+    <target name="base:develop:update"
+            depends="base:master:import, cache:clear:prod, base:prod:update">
+        <exec command="cap develop database:move:to_remote" passthru="true"/>
+    </target>
+
+    <target name="base:migrate:diff"
+            description="generate and apply a new migration to dev db">
+        <SymfonyConsole command="doctrine:migrations:diff" checkreturn="true">
+            <arg value="--env=dev"/>
+            <arg value="--no-interaction"/>
+        </SymfonyConsole>
+        <SymfonyConsole command="doctrine:migrations:migrate" checkreturn="true">
+            <arg value="--env=dev"/>
+            <arg value="--no-interaction"/>
+        </SymfonyConsole>
+    </target>
+
+    <!-- test db -->
+    <target name="base:test:reset"
+            description="reset testing database"
+            depends="base:test:drop,base:test:create,base:test:update,base:test:fill"/>
+
+    <target name="base:test:drop">
+        <SymfonyConsole command="doctrine:database:drop">
+            <arg value="--env=test"/>
+            <arg value="--force"/>
+        </SymfonyConsole>
+    </target>
+
+    <target name="base:test:create">
+        <SymfonyConsole command="doctrine:database:create" checkreturn="true">
+            <arg value="--env=test"/>
+        </SymfonyConsole>
+    </target>
+
+    <target name="base:test:update">
+        <SymfonyConsole command="doctrine:migrations:migrate" checkreturn="true">
+            <arg value="--env=test"/>
+            <arg value="--no-interaction"/>
+        </SymfonyConsole>
+    </target>
+
+    <target name="base:test:fill">
+        <SymfonyConsole command="doctrine:fixtures:load" checkreturn="true">
+            <arg value="--env=test"/>
+            <arg value="--no-interaction"/>
+            <arg value="--fixtures=${dir.bundle}/DataFixtures/ORM/Dev"/>
+            <arg value="--fixtures=${dir.bundle}/DataFixtures/ORM/Test"/>
+        </SymfonyConsole>
+    </target>
+
+    <!-- dev db -->
+    <target name="base:dev:reset"
+            description="reset dev database"
+            depends="base:dev:drop,base:dev:create,base:dev:update,base:dev:fill"/>
+
+    <target name="base:dev:drop">
+        <SymfonyConsole command="doctrine:database:drop">
+            <arg value="--env=dev"/>
+            <arg value="--force"/>
+        </SymfonyConsole>
+    </target>
+
+    <target name="base:dev:create">
+        <SymfonyConsole command="doctrine:database:create" checkreturn="true">
+            <arg value="--env=dev"/>
+        </SymfonyConsole>
+    </target>
+
+    <target name="base:dev:update">
+        <SymfonyConsole command="doctrine:migrations:migrate" checkreturn="true">
+            <arg value="--env=dev"/>
+            <arg value="--no-interaction"/>
+        </SymfonyConsole>
+    </target>
+
+    <target name="base:dev:fill">
+        <SymfonyConsole command="doctrine:fixtures:load" checkreturn="true">
+            <arg value="--env=dev"/>
+            <arg value="--no-interaction"/>
+            <arg value="--fixtures=${dir.bundle}/DataFixtures/ORM/Dev"/>
+            <arg value="--fixtures=${dir.bundle}/DataFixtures/ORM/Prod"/>
+        </SymfonyConsole>
+    </target>
+
+    <!-- prod db -->
+    <target name="base:prod:dump"
+            description="dump prod database">
+        <exec executable="${path.php}">
+            <arg value="dumpsf2.php"/>
+        </exec>
+    </target>
+
+    <target name="base:prod:create"
+            description="init prod database">
+        <SymfonyConsole command="doctrine:database:create" checkreturn="true">
+            <arg value="--env=prod"/>
+        </SymfonyConsole>
+        <SymfonyConsole command="doctrine:migrations:migrate" checkreturn="true">
+            <arg value="--env=prod"/>
+            <arg value="--no-interaction"/>
+        </SymfonyConsole>
+        <SymfonyConsole command="doctrine:fixtures:load" checkreturn="true">
+            <arg value="--env=prod"/>
+            <arg value="--no-interaction"/>
+            <arg value="--fixtures=${dir.bundle}/DataFixtures/ORM/Prod"/>
+        </SymfonyConsole>
+    </target>
+
+    <target name="base:prod:update"
+            description="update prod database"
+            depends="base:prod:dump">
+        <SymfonyConsole command="doctrine:migrations:migrate" checkreturn="true">
+            <arg value="--env=prod"/>
+            <arg value="--no-interaction"/>
+        </SymfonyConsole>
+    </target>
+</project>

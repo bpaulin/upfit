@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Upfit" phingVersion="2.5.0" basedir="." default="install:dev">
+    <!-- ================================================================== -->
+    <!-- Install                                                            -->
+    <!-- ================================================================== -->
+
+    <target name="install:composer">
+        <if>
+            <available file="${path.composer}"/>
+            <then>
+                <composer command="self-update"
+                          composer="${path.composer}"
+                          php="${path.php}"/>
+            </then>
+            <else>
+                <exec command="curl -s https://getcomposer.org/installer | php"/>
+            </else>
+        </if>
+    </target>
+
+    <target name="install:ci"
+            description="install deps and testing db"
+            depends="composer:install, npm:install, base:test:reset">
+    </target>
+
+    <target name="install:dev"
+            description="let's code!"
+            depends="install:ci, base:dev:reset">
+    </target>
+
+    <target name="install:prod"
+            description="magical (?!) deploy command"
+            depends="composer:deploy, cache:clear:prod, base:prod:update">
+    </target>
+
+    <target name="install:update"
+            description="install deps and testing db"
+            depends="composer:update, npm:update">
+    </target>
+
+    <target name="install:clean">
+        <exec executable="git" passthru="true" checkreturn="true">
+            <arg value="clean"/>
+            <arg value="-fdx"/>
+            <arg line="-e develop.rb -e master.rb -e parameters.yml -e build.properties -e php-cs-fixer.phar"/>
+        </exec>
+        <delete dir="vendor/" quiet="true"/>
+    </target>
+
+    <!-- ================================================================== -->
+    <!-- Npm                                                                -->
+    <!-- ================================================================== -->
+
+    <target name="npm:install">
+        <exec command="npm install" passthru="true"/>
+    </target>
+
+    <target name="npm:update">
+        <exec command="npm update" passthru="true"/>
+    </target>
+
+    <!-- ================================================================== -->
+    <!-- Composer                                                           -->
+    <!-- ================================================================== -->
+
+    <target name="composer:self-update">
+        <composer command="self-update"
+                  composer="${path.composer}"
+                  php="${path.php}"/>
+    </target>
+
+    <target name="composer:update"
+            depends="install:composer"
+            description="update dependencies">
+        <composer command="update"
+                  composer="${path.composer}"
+                  php="${path.php}"/>
+    </target>
+
+    <target name="composer:install"
+            depends="install:composer"
+            description="install dependencies">
+        <composer command="install" composer="${path.composer}" php="${path.php}"/>
+    </target>
+
+    <target name="composer:deploy"
+            depends="install:composer"
+            description="install dependencies for prod">
+        <composer command="install" composer="${path.composer}" php="${path.php}">
+            <arg value="--no-dev" />
+            <arg value="--optimize-autoloader" />
+        </composer>
+        <exec command="find ./vendor -name '.git' -exec rm -rf {} \;" passthru="true"/>
+    </target>
+</project>

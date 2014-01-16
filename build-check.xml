@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Upfit" phingVersion="2.5.0" basedir="." default="check">
+    <!-- ================================================================== -->
+    <!-- Checks                                                             -->
+    <!-- ================================================================== -->
+
+    <target name="check"
+            description="check code quality"
+            depends="check:style, check:phpmd, check:phpcpd, check:phpdoc, check:debug">
+    </target>
+
+    <target name="check:style"
+            depends="check:style:twig, check:style:php, check:style:less, check:style:js">
+    </target>
+
+    <target name="check:style:twig">
+        <SymfonyConsole command="twig:lint">
+            <arg value="${bundle}" quotes="true"/>
+        </SymfonyConsole>
+    </target>
+
+    <target name="check:style:php">
+        <phplint interpreter="${path.php}" haltonfailure="true">
+            <fileset dir="${dir.src}">
+                <include name="**/*.php"/>
+            </fileset>
+        </phplint>
+        <exec executable="${path.php}" passthru="true" checkreturn="true">
+            <arg value="${path.phpcs}"/>
+            <arg value="-p"/>
+            <arg value="--standard=PSR2"/>
+            <arg path="${dir.src}"/>
+        </exec>
+    </target>
+
+    <target name="check:style:less">
+        <exec command="./node_modules/.bin/lessc -l ${dir.bundle}/Resources/public/less/*" passthru="true" checkreturn="true"/>
+    </target>
+
+    <target name="check:style:js">
+        <exec command="./node_modules/.bin/jshint ${dir.bundle}/Resources/public/js/*" passthru="true" checkreturn="true"/>
+    </target>
+
+    <target name="check:phpmd">
+        <exec executable="${path.php}" passthru="true" checkreturn="true">
+            <arg value="${path.phpmd}"/>
+            <arg path="${dir.src}"/>
+            <arg value="text"/>
+            <arg value="app/phpmd_rules.xml"/>
+        </exec>
+    </target>
+
+    <target name="check:phpcpd">
+        <exec executable="${path.php}" passthru="true" checkreturn="true">
+            <arg value="${path.phpcpd}"/>
+            <arg line="--names *.php,*.twig"/>
+            <arg line="--min-lines 15"/>
+            <arg line="--min-tokens 70"/>
+            <arg path="${dir.src}"/>
+        </exec>
+    </target>
+
+    <target name="check:phpdoc">
+        <exec executable="${path.phpdoc}" passthru="true">
+            <arg value="--ansi"/>
+            <arg value="--force"/>
+            <arg line="-d ${dir.src}"/>
+            <arg line="-t ${dir.reports.docs}"/>
+            <arg line="-i *Test.php,*Features/Context/*,*Form/*Type.php,*DataFixtures/*"/>
+            <arg line="--template checkstyle"/>
+        </exec>
+    </target>
+
+    <target name="check:deps">
+        <exec executable="${path.php}" passthru="true" checkreturn="true">
+            <arg value="${path.security-checker}"/>
+            <arg value="security:check"/>
+            <arg value="--ansi"/>
+        </exec>
+    </target>
+
+    <target name="check:debug">
+        <exec command="! grep -n '@wip' ${dir.bundle}/Features/*.feature" passthru="true" checkreturn="true"/>
+        <exec command="! grep -n '@group wip' ${dir.bundle}/Tests/**/*.php" passthru="true" checkreturn="true"/>
+    </target>
+</project>

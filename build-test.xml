@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Upfit" phingVersion="2.5.0" basedir="." default="test">
+    <!-- ================================================================== -->
+    <!-- Tests                                                              -->
+    <!-- ================================================================== -->
+
+    <target name="test"
+            description="run all tests"
+            depends="test:base,test:unit,test:behat, test:assets">
+    </target>
+
+    <target name="test:wip"
+            description="run all work-in-progress tests"
+            depends="test:unit:wip,test:behat:wip">
+    </target>
+
+    <target name="test:assets">
+        <SymfonyConsole command="assetic:dump" checkreturn="true">
+            <arg value="--env=prod"/>
+            <arg value="build/tmp"/>
+        </SymfonyConsole>
+    </target>
+
+    <target name="test:base"
+            depends="base:test:drop,base:test:create,base:test:update,base:test:fill">
+        <SymfonyConsole command="doctrine:schema:validate" checkreturn="true">
+            <arg value="--env=test"/>
+        </SymfonyConsole>
+    </target>
+
+    <target name="test:unit"
+            description="unit tests">
+        <exec executable="${path.php}" passthru="true" checkreturn="true">
+            <arg value="${path.phpunit}"/>
+            <arg value="--configuration=app"/>
+            <arg value="--exclude-group=behat"/>
+        </exec>
+    </target>
+
+    <target name="test:unit:wip"
+            description="unit tests (only marqued as '@group wip')">
+        <exec executable="${path.php}" passthru="true" checkreturn="true">
+            <arg value="${path.phpunit}"/>
+            <arg value="--configuration=app"/>
+            <arg line="--group wip"/>
+        </exec>
+    </target>
+
+    <target name="test:behat"
+            description="behat tests">
+        <exec executable="${path.php}" passthru="true" checkreturn="true">
+            <arg value="${path.behat}"/>
+            <arg value="--ansi"/>
+            <arg value="--strict"/>
+            <arg value="--expand"/>
+        </exec>
+    </target>
+
+    <target name="test:behat:wip"
+            description="behat tests (only marqued as '@wip')">
+        <exec executable="${path.php}" passthru="true" checkreturn="true">
+            <arg value="${path.behat}"/>
+            <arg value="--ansi"/>
+            <arg value="--strict"/>
+            <arg value="--expand"/>
+            <arg value="--profile=wip"/>
+        </exec>
+    </target>
+
+    <target name="test:behat:verbose"
+            depends="base:test:reset">
+        <exec executable="${path.php}" passthru="true" checkreturn="true">
+            <arg value="${path.behat}"/>
+            <arg value="--ansi"/>
+            <arg value="--profile=demo"/>
+            <arg value="--no-paths"/>
+        </exec>
+    </target>
+</project>
