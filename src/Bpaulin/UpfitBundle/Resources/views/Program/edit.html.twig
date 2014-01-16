@@ -37,11 +37,10 @@
     $().ready(function(){
         $('#bpaulin_upfitbundle_programtype_stages').sf2FormCollection(
             {
-              'addItem': '<span class="btn btn-success btn-small" href="#"><i class="icon-plus"></i> Add a stage</span>',
-              'removeItem': '<span class="btn btn-danger btn-small" href="#"><i class="icon-remove"></i> Remove</span>',
+              'addItem': '<span class="btn btn-success btn-small" href="#"><i class="icon-plus"></i> {% trans %}Add a stage{% endtrans %}</span>',
+              'removeItem': '<span class="btn btn-danger btn-small" href="#"><i class="icon-remove"></i> {% trans %}Remove{% endtrans %}</span>',
               'tokenIndex': '__name__',
-              'sortable': true,
-              'sortItem': '<span class="btn btn-info btn-small"><i class="icon-move icon-white"></i> sort</span>',
+              'sortItem': '<span class="btn btn-info btn-small"><i class="icon-move icon-white"></i> {% trans %}Sort{% endtrans %}</span>',
             }
         );
         $('button[type=submit]').click(function (event) {
