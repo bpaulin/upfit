@@ -1,0 +1,27 @@
+{% extends "BpaulinUpfitBundle:Crud:new.html.twig" %}
+{%
+    set breadcrumbs =
+    {
+        ('Member'|trans) : {
+            'route': path('upfit_member'),
+            'icon': 'gamepad',
+        },
+        ('Weight Tracker'|trans) : {
+            'route': path('member_weight'),
+        },
+    }
+%}
+
+{%
+    set action = path('member_weight_create')
+%}
+
+{% block content %}
+    {% if lastWeight %}
+        <dl>
+            <dt>Last record:</dt>
+            <dd>{{ lastWeight[0].weight }} kg</dd>
+        </dl>
+    {% endif %}
+    {{ parent() }}
+{% endblock %}

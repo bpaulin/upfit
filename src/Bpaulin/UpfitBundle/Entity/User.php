@@ -30,6 +30,13 @@ class User extends BaseUser
     protected $objectives;
 
     /**
+     * weights
+     *
+     * @ORM\OneToMany(targetEntity="Weight", mappedBy="user", cascade={"remove", "persist"})
+     */
+    protected $weights;
+
+    /**
      * Get id
      *
      * @return integer
@@ -119,5 +126,38 @@ class User extends BaseUser
     public function getObjectives()
     {
         return $this->objectives;
+    }
+
+    /**
+     * Add weights
+     *
+     * @param \Bpaulin\UpfitBundle\Entity\Weight $weights
+     * @return User
+     */
+    public function addWeight(\Bpaulin\UpfitBundle\Entity\Weight $weights)
+    {
+        $this->weights[] = $weights;
+
+        return $this;
+    }
+
+    /**
+     * Remove weights
+     *
+     * @param \Bpaulin\UpfitBundle\Entity\Weight $weights
+     */
+    public function removeWeight(\Bpaulin\UpfitBundle\Entity\Weight $weights)
+    {
+        $this->weights->removeElement($weights);
+    }
+
+    /**
+     * Get weights
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getWeights()
+    {
+        return $this->weights;
     }
 }
