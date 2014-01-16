@@ -48,16 +48,29 @@
 
     <target name="test:behat"
             description="behat tests">
-        <exec executable="${path.php}" passthru="true" checkreturn="true">
+        <exec command="bash scripts/phantom.sh" spawn="true" output="./pid-phantom.txt"/>
+        <exec executable="${path.php}" passthru="true" returnProperty="return">
             <arg value="${path.behat}"/>
             <arg value="--ansi"/>
             <arg value="--strict"/>
             <arg value="--expand"/>
         </exec>
+        <loadfile property="pid" file="./pid-phantom.txt" />
+        <exec command="kill ${pid}" dir="./" />
+        <delete file="./pid-phantom.txt" quiet="true"/>
+        <if>
+            <not>
+                <equals arg1="${return}" arg2="0"/>
+            </not>
+            <then>
+                <fail/>
+            </then>
+        </if>
     </target>
 
     <target name="test:behat:wip"
             description="behat tests (only marqued as '@wip')">
+        <exec command="bash scripts/phantom.sh" spawn="true" output="./pid-phantom.txt"/>
         <exec executable="${path.php}" passthru="true" checkreturn="true">
             <arg value="${path.behat}"/>
             <arg value="--ansi"/>
@@ -65,15 +78,38 @@
             <arg value="--expand"/>
             <arg value="--profile=wip"/>
         </exec>
+        <loadfile property="pid" file="./pid-phantom.txt" />
+        <exec command="kill ${pid}" dir="./" />
+        <delete file="./pid-phantom.txt" quiet="true"/>
+        <if>
+            <not>
+                <equals arg1="${return}" arg2="0"/>
+            </not>
+            <then>
+                <fail/>
+            </then>
+        </if>
     </target>
 
     <target name="test:behat:verbose"
             depends="base:test:reset">
+        <exec command="bash scripts/phantom.sh" spawn="true" output="./pid-phantom.txt"/>
         <exec executable="${path.php}" passthru="true" checkreturn="true">
             <arg value="${path.behat}"/>
             <arg value="--ansi"/>
             <arg value="--profile=demo"/>
             <arg value="--no-paths"/>
         </exec>
+        <loadfile property="pid" file="./pid-phantom.txt" />
+        <exec command="kill ${pid}" dir="./" />
+        <delete file="./pid-phantom.txt" quiet="true"/>
+        <if>
+            <not>
+                <equals arg1="${return}" arg2="0"/>
+            </not>
+            <then>
+                <fail/>
+            </then>
+        </if>
     </target>
 </project>
