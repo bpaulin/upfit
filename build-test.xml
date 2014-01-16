@@ -71,7 +71,7 @@
     <target name="test:behat:wip"
             description="behat tests (only marqued as '@wip')">
         <exec command="bash scripts/phantom.sh" spawn="true" output="./pid-phantom.txt"/>
-        <exec executable="${path.php}" passthru="true" checkreturn="true">
+        <exec executable="${path.php}" passthru="true" returnProperty="return">
             <arg value="${path.behat}"/>
             <arg value="--ansi"/>
             <arg value="--strict"/>
@@ -94,7 +94,7 @@
     <target name="test:behat:verbose"
             depends="base:test:reset">
         <exec command="bash scripts/phantom.sh" spawn="true" output="./pid-phantom.txt"/>
-        <exec executable="${path.php}" passthru="true" checkreturn="true">
+        <exec executable="${path.php}" passthru="true" returnProperty="return">
             <arg value="${path.behat}"/>
             <arg value="--ansi"/>
             <arg value="--profile=demo"/>

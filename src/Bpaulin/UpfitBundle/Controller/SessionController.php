@@ -14,7 +14,7 @@ use Bpaulin\UpfitBundle\Form\SessionType;
 use Bpaulin\UpfitBundle\Form\WorkoutType;
 
 /**
- * Program controller.
+ * Session controller.
  *
  */
 class SessionController extends Controller

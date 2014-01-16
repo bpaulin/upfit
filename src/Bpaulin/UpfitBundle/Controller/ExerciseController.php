@@ -35,6 +35,7 @@ class ExerciseController extends AbstractController
             'entities' => $entities,
         );
     }
+
     /**
      * Creates a new Exercise entity.
      *
