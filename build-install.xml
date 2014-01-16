@@ -80,7 +80,9 @@
     <target name="composer:install"
             depends="install:composer"
             description="install dependencies">
-        <composer command="install" composer="${path.composer}" php="${path.php}"/>
+        <composer command="install" composer="${path.composer}" php="${path.php}">
+            <arg value="--prefer-source" />
+        </composer>
     </target>
 
     <target name="composer:deploy"
