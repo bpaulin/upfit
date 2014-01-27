@@ -23,7 +23,7 @@
     <div class="col-md-6">
       {{ form_start(form, {'attr': {'class': 'form-ĥorizontal'}}) }}
       <div class="panel panel-default">
-        <div class="panel-heading">Today</div>
+        <div class="panel-heading">{% trans %}Today{% endtrans %}</div>
         <div class="panel-body">
             {{ form_errors(form) }}
             {{ form_errors(form.weight) }}
@@ -43,34 +43,35 @@
       </div>
       {{ form_end(form) }}
       <div class="panel panel-default">
-        <div class="panel-heading">Statistics</div>
+        <div class="panel-heading">{% trans %}Statistics{% endtrans %}</div>
         <div class="panel-body">
           <dl class="dl-horizontal">
             {% if lastWeight %}
               <dt>
-                Last
+                {% trans %}Last{% endtrans %}
                 {% if lastWeight|last.daysAgo == 0 %}
-                  (today):
+                  ({% trans %}today{% endtrans %}):
                 {% else %}
-                  ({{ lastWeight|last.daysAgo }} days ago):
+                  {% set daysAgo = lastWeight|last.daysAgo %}
+                  ({% trans %}%daysAgo% days ago{% endtrans %}):
                 {% endif %}
               </dt>
               <dd>{{ lastWeight|last.weight }} kg</dd>
             {% endif %}
-            <dt>Average (week):</dt>
+            <dt>{% trans %}Average (week){% endtrans %}:</dt>
             <dd>
               {% if weekWeight %}
                 {{ weekWeight }} kg
               {% else %}
-                no data
+                {% trans %}no data{% endtrans %}
               {% endif %}
             </dd>
-            <dt>Average (month):</dt>
+            <dt>{% trans %}Average (month){% endtrans %}:</dt>
             <dd>
               {% if monthWeight %}
                 {{ monthWeight }} kg
               {% else %}
-                no data
+                {% trans %}no data{% endtrans %}
               {% endif %}
             </dd>
           </dl>
@@ -78,7 +79,7 @@
       </div>
       {{ form_start(objectiveForm, {'attr': {'class': 'form-ĥorizontal'}}) }}
       <div class="panel panel-default">
-        <div class="panel-heading">Objective</div>
+        <div class="panel-heading">{% trans %}Objective{% endtrans %}</div>
         <div class="panel-body">
             {{ form_errors(objectiveForm) }}
             <div class="form-group">
@@ -110,7 +111,7 @@
     </div>
     <div class="col-md-6">
       <div class="panel panel-default">
-        <div class="panel-heading">History</div>
+        <div class="panel-heading">{% trans %}History{% endtrans %}</div>
         <div id="weight-chart" class="panel-body">
         </div>
       </div>
@@ -142,7 +143,7 @@ $(function () {
     },
     yAxis: {
       title: {
-        text: 'Weight (kg)'
+        text: '{% trans %}Weight{% endtrans %} (kg)'
       },
       min: 0,
       plotBands: [
@@ -152,7 +153,7 @@ $(function () {
           color: 'rgba(50, 210, 50, 0.1)',
           label:
           {
-            text: 'Objective'
+            text: '{% trans %}Objective{% endtrans %}'
           }
         }
       ]

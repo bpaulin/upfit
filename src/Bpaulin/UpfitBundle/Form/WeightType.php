@@ -15,7 +15,13 @@ class WeightType extends AbstractType
     {
         $builder
             ->add('weight')
-            ->add('save', 'submit');
+            ->add(
+                'save',
+                'submit',
+                array(
+                    "label" => "Save"
+                )
+            );
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
