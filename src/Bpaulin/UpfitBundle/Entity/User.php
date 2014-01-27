@@ -37,6 +37,16 @@ class User extends BaseUser
     protected $weights;
 
     /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $weightObjective;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $weightTolerance;
+
+    /**
      * Get id
      *
      * @return integer
@@ -159,5 +169,51 @@ class User extends BaseUser
     public function getWeights()
     {
         return $this->weights;
+    }
+
+    /**
+     * Set weightObjective
+     *
+     * @param integer $weightObjective
+     * @return User
+     */
+    public function setWeightObjective($weightObjective)
+    {
+        $this->weightObjective = $weightObjective;
+
+        return $this;
+    }
+
+    /**
+     * Get weightObjective
+     *
+     * @return integer
+     */
+    public function getWeightObjective()
+    {
+        return $this->weightObjective;
+    }
+
+    /**
+     * Set weightTolerance
+     *
+     * @param integer $weightTolerance
+     * @return User
+     */
+    public function setWeightTolerance($weightTolerance)
+    {
+        $this->weightTolerance = $weightTolerance;
+
+        return $this;
+    }
+
+    /**
+     * Get weightTolerance
+     *
+     * @return integer
+     */
+    public function getWeightTolerance()
+    {
+        return $this->weightTolerance;
     }
 }

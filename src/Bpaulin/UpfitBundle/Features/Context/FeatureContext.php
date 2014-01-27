@@ -37,6 +37,8 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
         $this->useContext('exercise', new ExerciseSubContext());
         $this->useContext('session', new SessionSubContext());
         $this->useContext('objective', new ObjectiveSubContext());
+        $this->useContext('weight', new WeightSubContext());
+        $this->useContext('style', new StyleSubContext());
     }
 
     /**
@@ -56,26 +58,6 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
     public function getKernel()
     {
         return $this->kernel;
-    }
-
-    protected function assertElementContainsIcon($element, $iconClass)
-    {
-        $icon = $element->find('css', 'i');
-        if (!$icon) {
-            throw new \Exception('icon not found, icon-'.$icon.' wanted ');
-        }
-        $icon = $icon->getAttribute('class');
-        if ($icon != 'icon-'.$iconClass) {
-            throw new \Exception($icon.' is not expected, icon-'.$iconClass.' wanted ');
-        }
-    }
-
-    protected function assertElementContainsNoIcon($element)
-    {
-        $icon = $element->find('css', "i[class^='icon-']");
-        if ($icon) {
-            throw new \Exception('icon found, none wanted');
-        }
     }
 
     /**
@@ -245,9 +227,9 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
         }
         foreach ($hash as $index => $row) {
             if ($row['icon']) {
-                $this->assertElementContainsIcon($lis[$index], $row['icon']);
+                $this->getSubcontext('style')->assertElementContainsIcon($lis[$index], $row['icon']);
             } else {
-                $this->assertElementContainsNoIcon($lis[$index]);
+                $this->getSubcontext('style')->assertElementContainsNoIcon($lis[$index]);
             }
             // $row['label'] = ucfirst($row['label']);
             $label = trim($lis[$index]->find('css', 'span.breadcrumb-label')->getHtml());
@@ -285,9 +267,9 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
                     }
                 }
                 if ($row['icon']) {
-                    $this->assertElementContainsIcon($as[$index], $row['icon']);
+                    $this->getSubcontext('style')->assertElementContainsIcon($as[$index], $row['icon']);
                 } else {
-                    $this->assertElementContainsNoIcon($as[$index]);
+                    $this->getSubcontext('style')->assertElementContainsNoIcon($as[$index]);
                 }
                 // $row['label'] = ucfirst($row['label']);
                 $label = trim($as[$index]->getText());
@@ -302,5 +284,14 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
                 }
             }
         }
+    }
+
+    /**
+     * @Given /^the "([^"]*)" field in "([^"]*)" form should contain "([^"]*)"$/
+     */
+    public function theFieldInFormShouldContain($field, $form, $value)
+    {
+        $field = "bpaulin_upfitbundle_".$form."type_".$field;
+        return new Step\Then("the \"$field\" field should contain \"$value\"");
     }
 }

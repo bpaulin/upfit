@@ -3,12 +3,16 @@
 namespace Bpaulin\UpfitBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
  *
  * @ORM\Entity
- * @ORM\Table(name="weight")
+ * @ORM\Entity(repositoryClass="Bpaulin\UpfitBundle\Entity\WeightRepository")
+ * @ORM\Table(name="weight",
+ * uniqueConstraints={@ORM\UniqueConstraint(name="one_a_day", columns={"dateRecord", "user_id"})})
  */
 class Weight
 {
@@ -43,6 +47,12 @@ class Weight
      * @ORM\ManyToOne(targetEntity="User", inversedBy="weights")
      */
     protected $user;
+
+    public function daysAgo()
+    {
+        $datediff = $this->dateRecord->diff(new \DateTime());
+        return $datediff->format('%a');
+    }
 
     /**
      * Get id

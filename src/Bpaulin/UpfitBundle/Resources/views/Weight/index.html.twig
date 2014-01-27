@@ -1,27 +1,179 @@
-{% extends "BpaulinUpfitBundle:Crud:new.html.twig" %}
+{% extends "BpaulinUpfitBundle::layout.html.twig" %}
 {%
-    set breadcrumbs =
-    {
-        ('Member'|trans) : {
-            'route': path('upfit_member'),
-            'icon': 'gamepad',
-        },
-        ('Weight Tracker'|trans) : {
-            'route': path('member_weight'),
-        },
-    }
+  set breadcrumbs =
+  {
+    ('Member'|trans) : {
+      'route': path('upfit_member'),
+      'icon': 'gamepad',
+    },
+    ('Weight Tracker'|trans) : {
+      'route': path('member_weight'),
+    },
+  }
 %}
 
 {%
-    set action = path('member_weight_create')
+  set action = path('member_weight_store')
 %}
+
+{% block h1 %}{% trans %}Weight Tracker{% endtrans %}{% endblock %}
 
 {% block content %}
-    {% if lastWeight %}
-        <dl>
-            <dt>Last record:</dt>
-            <dd>{{ lastWeight[0].weight }} kg</dd>
-        </dl>
-    {% endif %}
-    {{ parent() }}
+  <div class="row">
+    <div class="col-md-6">
+      {{ form_start(form, {'attr': {'class': 'form-ĥorizontal'}}) }}
+      <div class="panel panel-default">
+        <div class="panel-heading">Today</div>
+        <div class="panel-body">
+            {{ form_errors(form) }}
+            {{ form_errors(form.weight) }}
+            <div class="form-group">
+              {{ form_label(form.weight, null, {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+              <div class="col-sm-10">
+                <div class="input-group">
+                  {{ form_widget(form.weight, {'attr': {'class': 'form-control'}}) }}
+                  <span class="input-group-addon">Kg</span>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="panel-footer text-right">
+          {{ form_row(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
+        </div>
+      </div>
+      {{ form_end(form) }}
+      <div class="panel panel-default">
+        <div class="panel-heading">Statistics</div>
+        <div class="panel-body">
+          <dl class="dl-horizontal">
+            {% if lastWeight %}
+              <dt>
+                Last
+                {% if lastWeight|last.daysAgo == 0 %}
+                  (today):
+                {% else %}
+                  ({{ lastWeight|last.daysAgo }} days ago):
+                {% endif %}
+              </dt>
+              <dd>{{ lastWeight|last.weight }} kg</dd>
+            {% endif %}
+            <dt>Average (week):</dt>
+            <dd>
+              {% if weekWeight %}
+                {{ weekWeight }} kg
+              {% else %}
+                no data
+              {% endif %}
+            </dd>
+            <dt>Average (month):</dt>
+            <dd>
+              {% if monthWeight %}
+                {{ monthWeight }} kg
+              {% else %}
+                no data
+              {% endif %}
+            </dd>
+          </dl>
+        </div>
+      </div>
+      {{ form_start(objectiveForm, {'attr': {'class': 'form-ĥorizontal'}}) }}
+      <div class="panel panel-default">
+        <div class="panel-heading">Objective</div>
+        <div class="panel-body">
+            {{ form_errors(objectiveForm) }}
+            <div class="form-group">
+            {{ form_errors(objectiveForm.weightObjective) }}
+              {{ form_label(objectiveForm.weightObjective, null, {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+              <div class="col-sm-10">
+                <div class="input-group">
+                  {{ form_widget(objectiveForm.weightObjective, {'attr': {'class': 'form-control'}}) }}
+                  <span class="input-group-addon">Kg</span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+            {{ form_errors(objectiveForm.weightTolerance) }}
+              {{ form_label(objectiveForm.weightTolerance, null, {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+              <div class="col-sm-10">
+                <div class="input-group">
+                  {{ form_widget(objectiveForm.weightTolerance, {'attr': {'class': 'form-control'}}) }}
+                  <span class="input-group-addon">%</span>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="panel-footer text-right">
+          {{ form_row(objectiveForm.save) }}
+        </div>
+      </div>
+      {{ form_end(objectiveForm) }}
+    </div>
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">History</div>
+        <div id="weight-chart" class="panel-body">
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block javascripts %}
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script>
+$(function () {
+  $('#weight-chart').highcharts({
+    chart: {
+      type: 'spline'
+    },
+    title: {
+      text: null
+    },
+    legend: {
+      enabled: false
+    },
+    xAxis: {
+      type: 'datetime',
+      dateTimeLabelFormats: {
+        month: '%e. %b',
+        year: '%b'
+      }
+    },
+    yAxis: {
+      title: {
+        text: 'Weight (kg)'
+      },
+      min: 0,
+      plotBands: [
+        {
+          from: {{ app.user.weightObjective * (1-app.user.weightTolerance/100) }},
+          to: {{ app.user.weightObjective * (1+app.user.weightTolerance/100) }},
+          color: 'rgba(50, 210, 50, 0.1)',
+          label:
+          {
+            text: 'Objective'
+          }
+        }
+      ]
+    },
+    tooltip: {
+      formatter: function() {
+        return Highcharts.dateFormat('%e. %b', this.x) +': '+ this.y +' kg';
+      }
+    },
+    series: [{
+      data: [
+        {% for weight in lastWeight %}
+          [Date.UTC(
+            {{weight.dateRecord|date("Y")}},
+            {{weight.dateRecord|date("m")-1}},
+            {{weight.dateRecord|date("d")}}
+          ), {{weight.weight}}   ],
+        {% endfor %}
+      ]
+    }]
+  });
+});
+</script>
 {% endblock %}
