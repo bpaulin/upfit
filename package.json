@@ -9,7 +9,7 @@
       "less"     : "~1.4.0",
       "uglify-js": "~2.3.4",
       "uglifycss": "~0.0.3",
-      "phantomjs": "*",
+      "phantomjs": "1.9.7-1",
       "jshint"   : "*"
     }
 }
