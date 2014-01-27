@@ -5,7 +5,7 @@ default:
             bundle: BpaulinUpfitBundle
         Behat\MinkExtension\Extension:
             default_session: 'symfony2'
-            base_url: 'http://localhost:8000/app_test.php'
+            base_url: 'http://localhost/app_test.php'
             selenium2:
                 wd_host: "http://localhost:8643/wd/hub"
         VIPSoft\DoctrineDataFixturesExtension\Extension:

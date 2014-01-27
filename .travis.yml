@@ -1,19 +1,20 @@
 language: php
 
-# branches:
-#   only:
-#     - master
-#     - develop
-
 php:
+  - 5.3
   - 5.4
   - 5.5
 
 before_script:
+    - sudo apt-get update > /dev/null
+    - sudo apt-get install -y --force-yes apache2 libapache2-mod-php5 php5-curl php5-mysql php5-intl
+    - sudo sed -i -e "s,/var/www,$(pwd)/web,g" /etc/apache2/sites-available/default
+    - sudo /etc/init.d/apache2 restart
     - pear channel-discover pear.phing.info
     - pear install phing/phing
     - phpenv rehash
     - phing install:ci
     - bash scripts/server.sh
 
-script: phing ci
+script:
+    - phing ci
