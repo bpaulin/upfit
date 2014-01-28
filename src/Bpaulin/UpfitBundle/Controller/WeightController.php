@@ -13,8 +13,7 @@ use Bpaulin\UpfitBundle\Form\WeightType;
 use Bpaulin\UpfitBundle\Form\WeightObjectiveType;
 
 /**
- * Weight controller.
- *
+ * Weight controller
  */
 class WeightController extends AbstractController
 {
@@ -31,17 +30,20 @@ class WeightController extends AbstractController
         $user = $this->get('security.context')->getToken()->getUser();
         $repoWeight = $em->getRepository('BpaulinUpfitBundle:Weight');
 
+        // weight history
         $weights = $repoWeight->findBy(
             array('user' => $user),
             array('dateRecord' => 'ASC')
         );
 
+        // today's weight
         $weight = end($weights);
         reset($weights);
         if (!$weight || $weight->getDateRecord()->diff(new \DateTime("today"))->format('%a') !== '0') {
             $weight = new Weight();
         }
-        $editForm = $this->createForm(new WeightType(), $weight, array(
+
+        $weightForm = $this->createForm(new WeightType(), $weight, array(
             'action' => $this->generateUrl('member_weight_store'),
             'method' => 'POST',
         ));
@@ -51,15 +53,11 @@ class WeightController extends AbstractController
             'method' => 'POST',
         ));
 
-        $weekWeight = $repoWeight->average($user, 7);
-        $monthWeight = $repoWeight->average($user, 30);
-
         return array(
-            'entity'      => $weight,
-            'lastWeight'  => $weights,
-            'weekWeight'  => $weekWeight,
-            'monthWeight' => $monthWeight,
-            'form'        => $editForm->createView(),
+            'weights'       => $weights,
+            'weekWeight'    => $repoWeight->average($user, 7),
+            'monthWeight'   => $repoWeight->average($user, 30),
+            'weightForm'    => $weightForm->createView(),
             'objectiveForm' => $objectiveForm->createView(),
         );
     }
@@ -76,24 +74,24 @@ class WeightController extends AbstractController
         $user = $this->get('security.context')->getToken()->getUser();
         $repoWeight = $em->getRepository('BpaulinUpfitBundle:Weight');
 
-        $weights = $repoWeight->findBy(
-            array('user' => $user),
-            array('dateRecord' => 'ASC')
+        $weight = $repoWeight->findOneBy(
+            array(
+                'user' => $user,
+                'dateRecord' => new \DateTime("today")
+            )
         );
 
-        $entity = end($weights);
-        reset($weights);
-        if (!$entity || $entity->getDateRecord()->diff(new \DateTime("today"))->format('%a') !== '0') {
-            $entity = new Weight();
-            $entity->setDateRecord(new \DateTime("today"));
-            $entity->setUser($this->get('security.context')->getToken()->getUser());
+        if (!$weight) {
+            $weight = new Weight();
+            $weight->setDateRecord(new \DateTime("today"));
+            $weight->setUser($this->get('security.context')->getToken()->getUser());
         }
 
-        $form = $this->createForm(new WeightType(), $entity);
+        $form = $this->createForm(new WeightType(), $weight);
         $form->bind($request);
 
         if ($form->isValid()) {
-            $em->persist($entity);
+            $em->persist($weight);
             $em->flush();
 
             $this->get('session')->getFlashBag()->add(
