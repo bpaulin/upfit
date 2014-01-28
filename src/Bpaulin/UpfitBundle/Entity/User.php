@@ -4,6 +4,7 @@ namespace Bpaulin\UpfitBundle\Entity;
 
 use FOS\UserBundle\Entity\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
@@ -28,6 +29,24 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="Objective", mappedBy="user", cascade={"remove", "persist"})
      */
     protected $objectives;
+
+    /**
+     * weights
+     *
+     * @ORM\OneToMany(targetEntity="Weight", mappedBy="user", cascade={"remove", "persist"})
+     */
+    protected $weights;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $weightObjective;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Range( min = 0, max = 50)
+     */
+    protected $weightTolerance;
 
     /**
      * Get id
@@ -119,5 +138,84 @@ class User extends BaseUser
     public function getObjectives()
     {
         return $this->objectives;
+    }
+
+    /**
+     * Add weights
+     *
+     * @param \Bpaulin\UpfitBundle\Entity\Weight $weights
+     * @return User
+     */
+    public function addWeight(\Bpaulin\UpfitBundle\Entity\Weight $weights)
+    {
+        $this->weights[] = $weights;
+
+        return $this;
+    }
+
+    /**
+     * Remove weights
+     *
+     * @param \Bpaulin\UpfitBundle\Entity\Weight $weights
+     */
+    public function removeWeight(\Bpaulin\UpfitBundle\Entity\Weight $weights)
+    {
+        $this->weights->removeElement($weights);
+    }
+
+    /**
+     * Get weights
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getWeights()
+    {
+        return $this->weights;
+    }
+
+    /**
+     * Set weightObjective
+     *
+     * @param integer $weightObjective
+     * @return User
+     */
+    public function setWeightObjective($weightObjective)
+    {
+        $this->weightObjective = $weightObjective;
+
+        return $this;
+    }
+
+    /**
+     * Get weightObjective
+     *
+     * @return integer
+     */
+    public function getWeightObjective()
+    {
+        return $this->weightObjective;
+    }
+
+    /**
+     * Set weightTolerance
+     *
+     * @param integer $weightTolerance
+     * @return User
+     */
+    public function setWeightTolerance($weightTolerance)
+    {
+        $this->weightTolerance = $weightTolerance;
+
+        return $this;
+    }
+
+    /**
+     * Get weightTolerance
+     *
+     * @return integer
+     */
+    public function getWeightTolerance()
+    {
+        return $this->weightTolerance;
     }
 }
