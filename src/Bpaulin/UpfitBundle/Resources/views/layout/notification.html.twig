@@ -1,6 +1,10 @@
 <div id="notification-area">
 {% for level in ['error', 'info', 'success'] %}
     {% for flashMessage in app.session.flashbag.get(level) %}
+        {# twbs 3.x changed alert-error to alert-danger #}
+        {% if level == 'error' %}
+            {% set level = 'danger' %}
+        {% endif %}
         <div class="alert alert-{{ level }}">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             {{ flashMessage }}

@@ -218,6 +218,8 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
      */
     public function iShouldSeeAMessage($type, $texte)
     {
+        // twbs 3.x changed alert-error to alert-danger
+        $type = ($type === 'error') ? 'danger' : $type ;
         return new Step\Then("I should see \"$texte\" in the \"#notification-area .alert-$type\" element");
     }
 
