@@ -2,8 +2,6 @@ language: php
 
 php:
   - 5.3
-  - 5.4
-  - 5.5
 
 before_script:
     - sudo apt-get update > /dev/null
@@ -17,6 +15,7 @@ before_script:
     - npm install
     - pear channel-discover pear.phing.info
     - pear install phing/phing
+    - phpenv rehash
     - phing base:test:reset
     - chmod -R 777 app/cache app/logs app/sessions
     - app/console --env=test cache:warmup
