@@ -8,13 +8,19 @@ php:
 before_script:
     - sudo apt-get update > /dev/null
     - sudo apt-get install -y --force-yes apache2 libapache2-mod-php5 php5-curl php5-mysql php5-intl
-    - sudo sed -i -e "s,/var/www,$(pwd)/web,g" /etc/apache2/sites-available/default
+    - sudo cp scripts/upfit-dev.conf /etc/apache2/sites-available/upfit-dev.conf
+    - sudo a2enmod rewrite
+    - sudo a2ensite upfit-dev.conf 
     - sudo /etc/init.d/apache2 restart
+    - composer self-update
+    - composer install --dev --prefer-dist
+    - npm install
     - pear channel-discover pear.phing.info
     - pear install phing/phing
-    - phpenv rehash
-    - phing install:ci
-    - bash scripts/server.sh
-
+    - phing base:test:reset
+    - chmod -R 777 app/cache app/logs app/sessions
+    - app/console --env=test cache:warmup
+    - chmod -R 777 app/cache app/logs app/sessions
+    - ./node_modules/.bin/phantomjs --webdriver=8643 > /dev/null 2>&1 &
 script:
-    - phing ci
+    - ./bin/behat
