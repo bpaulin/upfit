@@ -37,7 +37,7 @@ class Weight
     /**
      * weight
      *
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="decimal", scale=1, precision=4)
      */
     protected $weight;
 

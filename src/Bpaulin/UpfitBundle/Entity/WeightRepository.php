@@ -25,7 +25,7 @@ class WeightRepository extends EntityRepository
         )->setParameter('user', $user)
         ->setParameter('data', new \DateTime("$days days ago"));
 
-        $average = round($query->getResult()[0]['average']);
+        $average = round($query->getResult()[0]['average'],1);
         return $average;
     }
 }

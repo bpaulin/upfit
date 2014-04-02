@@ -1,6 +1,6 @@
 <?php
 
-namespace Bpaulin\UpfitBundle\DataFixtures\ORM\Dev;
+namespace Bpaulin\UpfitBundle\DataFixtures\ORM\Test;
 
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
