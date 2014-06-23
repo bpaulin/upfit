@@ -23,10 +23,11 @@
         "jms/translation-bundle"              : "1.1.*@stable",
         "jms/i18n-routing-bundle"             : "1.1.*@stable",
         "jms/di-extra-bundle"                 : "1.4.*@stable",
+        "doctrine/migrations": "dev-master@dev",
         "doctrine/doctrine-migrations-bundle" : "dev-master"
     },
     "require-dev": {
-        "doctrine/doctrine-fixtures-bundle"  : "dev-master",
+        "doctrine/doctrine-fixtures-bundle"  : "2.2.*",
 
         "sebastian/phpcpd"           : "*@stable",
         "squizlabs/php_codesniffer"  : "*@stable",
@@ -34,7 +35,7 @@
 
         "phpunit/phpunit"                         : "*@stable",
         "behat/behat"                             : "*@stable",
-        "behat/mink"                              : "1.5.x-dev",
+        "behat/mink"                              : "1.5.*",
         "behat/symfony2-extension"                : "*@stable",
         "behat/mink-extension"                    : "*@stable",
         "behat/mink-browserkit-driver"            : "*@stable",

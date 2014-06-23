@@ -88,6 +88,7 @@
         <SymfonyConsole command="doctrine:fixtures:load" checkreturn="true">
             <arg value="--env=dev"/>
             <arg value="--no-interaction"/>
+            <arg value="--fixtures=${dir.bundle}/DataFixtures/ORM/Test"/>
             <arg value="--fixtures=${dir.bundle}/DataFixtures/ORM/Dev"/>
             <arg value="--fixtures=${dir.bundle}/DataFixtures/ORM/Prod"/>
         </SymfonyConsole>
